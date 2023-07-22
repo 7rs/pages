@@ -1,0 +1,53 @@
+---
+import Gradient from "./Gradient.astro";
+import GradientLink from "./GradientLink.astro";
+---
+
+<header class="bg-white font-mono opacity-70">
+    <nav
+        class="w-10/12 h-16 max-h-16 | lg:w-8/12 lg:h-14 lg:max-h-14 | mx-auto flex items-center justify-between"
+    >
+        <div class="basis-1/4 lg:text-2xl text-xl">
+            <h1><Gradient style="rainbow crop">Cbrnex</Gradient></h1>
+        </div>
+        <div
+            class="justify-self-end | flex space-x-8 w-36 | lg:text-lg lg:font-extrabold"
+        >
+            <a class="links" href="/links">
+                <img src="icons/links.svg" alt="links" />
+            </a>
+            <a class="blog" href="/blog">
+                <img src="icons/blog.svg" alt="blog" />
+            </a>
+            <a class="tech" href="https://zenn.dev/7rs">
+                <img src="icons/tech.svg" alt="tech" />
+            </a>
+        </div>
+    </nav>
+</header>
+
+<style>
+    .links:after {
+        content: "";
+    }
+    .blog:after {
+        content: "";
+    }
+    .tech:after {
+        content: "";
+    }
+    @media (min-width: 1024px) {
+        div > a > img {
+            display: none;
+        }
+        .links:after {
+            content: "Link";
+        }
+        .blog:after {
+            content: "Blog";
+        }
+        .tech:after {
+            content: "Tech";
+        }
+    }
+</style>

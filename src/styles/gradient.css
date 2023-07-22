@@ -1,0 +1,37 @@
+.rainbow {
+    background: linear-gradient(135deg,
+            rgb(255, 23, 68),
+            rgb(255, 145, 0),
+            rgb(255, 234, 0),
+            rgb(0, 230, 118),
+            rgb(41, 121, 255),
+            rgb(61, 90, 254),
+            rgb(213, 0, 249));
+}
+
+.purple {
+    background: linear-gradient(135deg,
+            rgb(66, 165, 245),
+            rgb(171, 71, 188),
+            rgb(239, 83, 80));
+}
+
+.orange {
+    background: linear-gradient(135deg,
+            rgb(255, 202, 40),
+            rgb(255, 167, 38),
+            rgb(239, 83, 80));
+}
+
+.green {
+    background: linear-gradient(135deg,
+            rgb(66, 165, 245),
+            rgb(77, 182, 172),
+            rgb(212, 225, 87));
+}
+
+.crop {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}

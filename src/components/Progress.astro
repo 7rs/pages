@@ -1,0 +1,95 @@
+---
+import "../styles/gradient.css";
+export interface Props {
+  name: string;
+  href?: string;
+}
+const { name, href = "" } = Astro.props;
+const progress_class =
+  "h-4 px-1 | lg:h-6 lg:px-2 | rainbow rounded-full text-white progress-bar " +
+  name;
+const percent_class = name + "-percent block text-end";
+---
+
+<div class="mx-4 | flex items-center justify-between">
+  <a
+    class={progress_class}
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"></a>
+  <p class={percent_class}></p>
+</div>
+
+<style>
+  .progress-bar {
+    animation: 1s normal ease-out 0s 1 forwards progress;
+  }
+  @keyframes progress {
+    0% {
+      flex-grow: 0;
+    }
+    100% {
+      flex-grow: 1;
+    }
+  }
+
+  .python:after {
+    content: "Python";
+  }
+  .python-percent {
+    flex-basis: 50%;
+  }
+  .python-percent:after {
+    content: "50%";
+  }
+
+  .go:after {
+    content: "Go";
+  }
+  .go-percent {
+    flex-basis: 85%;
+  }
+  .go-percent:after {
+    content: "15%";
+  }
+
+  .java-percent {
+    flex-basis: 85%;
+  }
+  .java:after {
+    content: "Java";
+  }
+  .java-percent:after {
+    content: "15%";
+  }
+
+  .web-percent {
+    flex-basis: 90%;
+  }
+  .web:after {
+    content: "Web";
+  }
+  .web-percent:after {
+    content: "10%";
+  }
+
+  .shell-percent {
+    flex-basis: 95%;
+  }
+  .shell:after {
+    content: "sh";
+  }
+  .shell-percent:after {
+    content: "5%";
+  }
+
+  .js-percent {
+    flex-basis: 95%;
+  }
+  .js:after {
+    content: "JS";
+  }
+  .js-percent:after {
+    content: "5%";
+  }
+</style>

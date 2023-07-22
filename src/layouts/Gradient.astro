@@ -1,0 +1,13 @@
+---
+import "../styles/gradient.css";
+
+export interface Props {
+    style?: string;
+}
+
+const { style = "purple" } = Astro.props;
+---
+
+<span class={style}>
+    <slot />
+</span>

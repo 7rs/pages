@@ -4,33 +4,34 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+
+import Header from "./Header.astro";
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html class="font-sans" lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
+		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<Header />
+
+		<main class="w-11/12 lg:w-9/12 mx-auto my-4 rounded-2xl bg-white"><slot /></main>
 	</body>
 </html>
+
 <style is:global>
-	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-	}
 	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
+		background: linear-gradient(0deg,
+            rgb(66, 165, 245),
+            rgb(171, 71, 188),
+            rgb(239, 83, 80),
+			rgb(171, 71, 188),
+			rgb(66, 165, 245));
 	}
 </style>

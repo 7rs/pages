@@ -20,6 +20,9 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-
+# config files
 .git/
 .vscode/
+!.vscode/extensions.json
+
+.images/
