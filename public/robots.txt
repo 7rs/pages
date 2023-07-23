@@ -1,2 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /brand-icons/
+Disallow: /icons/
+Crawl-delay: 60
+Sitemap: https://7rs.dev/sitemap.xml
+
+User-agent: Slurp
+Crawl-delay: 1
