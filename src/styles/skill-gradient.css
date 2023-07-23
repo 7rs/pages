@@ -1,0 +1,45 @@
+.python {
+    background: linear-gradient(135deg,
+            rgb(100, 100, 100),
+            rgb(75, 139, 190),
+            rgb(48, 105, 152),
+            rgb(255, 232, 115),
+            rgb(255, 212, 59));
+}
+
+.go {
+    background: rgb(41, 190, 176);
+}
+
+.java {
+    background: linear-gradient(135deg,
+            rgb(0, 0, 0),
+            rgb(237, 29, 37),
+            rgb(241, 76, 77),
+            rgb(250, 185, 168),
+            rgb(255, 255, 255));
+}
+
+.web {
+    background: linear-gradient(135deg,
+            rgb(0, 0, 0),
+            rgb(227, 76, 38),
+            rgb(240, 101, 41),
+            rgb(235, 235, 235),
+            rgb(255, 255, 255));
+}
+
+.shell {
+    background: linear-gradient(135deg,
+            rgb(40, 48, 55),
+            rgb(77, 168, 37),
+            rgb(255, 255, 255))
+}
+
+.js {
+    background: linear-gradient(135deg,
+            rgb(48, 48, 48),
+            rgb(60, 135, 58),
+            rgb(104, 160, 99),
+            rgb(240, 219, 79));
+}

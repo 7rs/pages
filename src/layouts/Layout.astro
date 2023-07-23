@@ -4,7 +4,7 @@ export interface Props {
 }
 
 const { title } = Astro.props;
-
+import Links from "../components/Links.astro";
 import Header from "./Header.astro";
 ---
 
@@ -23,6 +23,10 @@ import Header from "./Header.astro";
 
 		<main class="w-11/12 lg:w-9/12 mx-auto my-4 rounded-2xl bg-white"><slot /></main>
 	</body>
+	<footer class="w-11/12 lg:w-9/12 mx-auto my-4 rounded-2xl bg-white">
+		<Links />
+		<p>Source code: https://github.com/7rs/my-site</p>
+	</footer>
 </html>
 
 <style is:global>

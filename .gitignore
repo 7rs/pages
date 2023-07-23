@@ -25,4 +25,4 @@ pnpm-debug.log*
 .vscode/
 !.vscode/extensions.json
 
-.images/
+.images/*
