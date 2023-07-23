@@ -1,6 +1,8 @@
 # Cloudflare Pages with Astro  
 
 ### You can visit to [7rs.dev](https://7rs.dev).  
+This website and source code are published under WTFPL.  
+Images and other material not created by me are follow to the license of the copyrighted it.  
 
 
 [astro]: https://docs.astro.build/  
@@ -16,7 +18,7 @@
 [unsplash]: https://unsplash.com/  
 [materialui]: https://materialui.co/colors/  
 
-## Docmentations  
+## Docs/Refs  
 
 | Name                           | Type    | About                     |
 | ------------------------------ | ------- | ------------------------- |
@@ -37,28 +39,28 @@
 ## Installation  
 
 ```bash
-❯ git clone git@github.com:7rs/my-site.git --depth 1
+git clone git@github.com:7rs/my-site.git --depth 1
 ```  
 When connecting to this repository, you must use the SSH.  
-https://docs.github.com/authentication/connecting-to-github-with-ssh  
+[Connecting to GitHub with SSH](https://docs.github.com/authentication/connecting-to-github-with-ssh)  
 
 ```bash
-❯ cd my-site
-❯ git branch develop
-❯ git switch develop
+cd my-site
+git branch develop
+git switch develop
 ```  
 When pushing to this repository, you must sign with GPG.  
-https://docs.github.com/authentication/managing-commit-signature-verification/generating-a-new-gpg-key  
+[Generating a new GPG key](https://docs.github.com/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)  
 
 ```bash
-❯ node --version
+node --version
 v18.16.1
 ```   
 Astro needs Node 16.12.0 or later.  
 
 ```bash
-❯ pnpm install astro
-❯ pnpm run dev
+pnpm install astro
+pnpm run dev
 ```
 Astro supports npm, Yarn, and pnpm.  
 In them, pnpm is the fastest, so you should use pnpm.  
