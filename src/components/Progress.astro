@@ -6,13 +6,11 @@ export interface Props {
   href?: string;
 }
 const { name, href = "" } = Astro.props;
-const progress_class =
-  "h-4 px-1 | lg:h-6 lg:px-2 | rainbow rounded-full text-white progress-bar " +
-  name;
-const percent_class = name + "-percent block text-end";
+const progress_class = "progress-bar " + name;
+const percent_class = name + "-percent";
 ---
 
-<div class="mx-4 | flex items-center justify-between">
+<div>
   <a
     class={progress_class}
     href={href}
@@ -31,6 +29,33 @@ const percent_class = name + "-percent block text-end";
     }
     100% {
       flex-grow: 1;
+    }
+  }
+  div {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: monospace;
+  }
+  a {
+    border-radius: 1rem;
+    color: rgb(255, 255, 255);
+    height: 1rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    text-decoration: none;
+  }
+  p {
+    display: block;
+    text-align: end;
+  }
+  @media screen and (min-width: 1024px) {
+    a {
+      height: 1.5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
     }
   }
 

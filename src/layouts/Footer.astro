@@ -2,16 +2,15 @@
 import Links from "../components/Links.astro";
 ---
 
-<footer class="w-full bg-white font-mono opacity-70">
+<footer>
   <Links />
-  <div class="text-center py-8">
+  <div>
     <a
       href="https://github.com/7rs/my-site"
       target="_blank"
       rel="noopener noreferrer">Source code</a
     >
     <a
-      class="ml-4"
       href="http://www.wtfpl.net/about/"
       target="_blank"
       rel="noopener noreferrer">WTFPL</a
@@ -19,4 +18,15 @@ import Links from "../components/Links.astro";
   </div>
 </footer>
 
-<style></style>
+<style>
+  footer {
+    background: rgb(255, 255, 255);
+    font-family: monospace;
+    opacity: 70%;
+  }
+  div {
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+</style>

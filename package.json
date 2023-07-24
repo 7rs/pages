@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@astrojs/image": "^0.17.2",
-    "@astrojs/tailwind": "^4.0.0",
+    "@astrojs/mdx": "^0.19.7",
     "@webcomponents/template-shadowroot": "^0.2.1",
     "astro": "^2.8.1",
     "astro-compress": "^1.1.49",

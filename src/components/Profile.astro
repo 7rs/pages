@@ -3,14 +3,11 @@ import Avatar from "./Avatar.astro";
 import Name from "./Name.astro";
 ---
 
-<section
-  class="mx-4 gap-4 flex-col-reverse | lg:mx-44 lg:flex-row | pt-8 flex justify-between items-center"
->
-  <h1 class="basis-3/4 | text-4xl | lg:text-8xl | text-center">
+<section>
+  <h1>
     <Name />
   </h1>
   <a
-    class="basis-1/4 w-36"
     href="https://unsplash.com/photos/7bynNtRqu4E"
     target="_blank"
     rel="noopener noreferrer"
@@ -19,8 +16,21 @@ import Name from "./Name.astro";
   </a>
 </section>
 <style>
+  h1 {
+    text-align: center;
+    flex-grow: 1;
+  }
   a {
     width: 100%;
     height: 100%;
+    flex-basis: 25%;
+  }
+  section {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    /* flex-col-reverse */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 </style>

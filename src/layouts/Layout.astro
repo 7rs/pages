@@ -10,7 +10,7 @@ import Header from "./Header.astro";
 ---
 
 <!DOCTYPE html>
-<html class="font-sans" lang="en">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Cbrnex's website" />
@@ -21,7 +21,7 @@ import Header from "./Header.astro";
 	</head>
 	<body>
 		<Header />
-		<main class="w-11/12 lg:w-9/12 mx-auto my-4 rounded-2xl bg-white">
+		<main>
 			<slot />
 		</main>
 		<Footer />
@@ -29,13 +29,30 @@ import Header from "./Header.astro";
 	
 </html>
 
-<style is:global>
-	html {
+<style>
+	body {
 		background: linear-gradient(0deg,
             rgb(66, 165, 245),
             rgb(171, 71, 188),
             rgb(239, 83, 80),
 			rgb(171, 71, 188),
 			rgb(66, 165, 245));
+		margin: 0;
+		padding: 0;
+	}
+
+	main {
+		margin: auto;
+		padding-bottom: 2rem;
+		margin-top, margin-bottom: 1rem;
+		border-radius: 1rem;
+		background: rgb(255, 255, 255);
+		width: 90%;
+	}
+	@media screen and (min-width: 1024px) {
+		main {
+			padding-bottom: padding-bottom: 4rem;
+			width: 75%;
+		}
 	}
 </style>
