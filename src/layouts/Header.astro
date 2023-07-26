@@ -4,76 +4,75 @@ import GradientLink from "./GradientLink.astro";
 ---
 
 <header>
-    <nav>
-        <div class="logo">
-            <h1><Gradient style="rainbow crop">Cbrnex</Gradient></h1>
-        </div>
-        <div
-            class="items"
-        >
-            <a class="links" href="/links">
-                <img src="icons/links.svg" alt="links" />
-            </a>
-            <a class="blog" href="/blog">
-                <img src="icons/blog.svg" alt="blog" />
-            </a>
-            <a class="tech" href="https://zenn.dev/7rs">
-                <img src="icons/tech.svg" alt="tech" />
-            </a>
-        </div>
-    </nav>
+  <h1><Gradient style="rainbow crop">Cbrnex</Gradient></h1>
+  <nav>
+    <a class="links" href="/links">
+      <img src="icons/links.svg" alt="links" />
+    </a>
+    <a class="blog" href="/blog">
+      <img src="icons/blog.svg" alt="blog" />
+    </a>
+    <a class="tech" href="https://zenn.dev/7rs">
+      <img src="icons/tech.svg" alt="tech" />
+    </a>
+  </nav>
 </header>
 
-<style>
-    header {
-        background: rgb(255, 255, 255);
-        font-family: monospace;
-        opacity: 70%;
-    }
+<style lang="stylus">
+  $padding-x = 1.5rem
+  $wide-padding-x = 3rem
+  $nav_size = 1.5rem
 
-    nav {
-        width: 100%;
-        height: 4rem;
-        max-height: 4rem;
-        margin: auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+  header
+    margin: 0;
+    padding-left: $padding-x;
+    padding-right: $padding-x;
+    height: 5rem;
+    background: rgb(255, 255, 255);
+    opacity: 70%;
+    font-family: monospace;
+    // Flex box
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    .logo {
-        flex-basis: 25%;
-        font-size: 1.5rem;
-    }
+  h1
+    flex-basis: 25%;
+    font-size: $nav_size;
 
-    .items {
-        justify-self: end;
-        display: flex;
-        font-size: 1.125rem;
-        gap: 2rem;
-    }
+  nav
+    display: flex;
+    justify-self: end;
+    gap: 2rem;
 
-    .links:after {
-        content: "";
-    }
-    .blog:after {
-        content: "";
-    }
-    .tech:after {
-        content: "";
-    }
-    @media (min-width: 1024px) {
-        div > a > img {
-            display: none;
-        }
-        .links:after {
-            content: "Link";
-        }
-        .blog:after {
-            content: "Blog";
-        }
-        .tech:after {
-            content: "Tech";
-        }
-    }
+  a
+    text-decoration: none;
+    font-size: $nav_size;
+    color: rgb(0, 0, 0);
+
+  img
+    width: $nav_size
+
+  .links:after
+    content: "";
+  .blog:after
+    content: "";
+  .tech:after
+    content: "";
+
+  @media (min-width: 1024px)
+    header
+      height: 4rem;
+      padding-left: $wide-padding-x;
+      padding-right: $wide-padding-x;
+
+    img
+      display: none;
+
+    .links:after
+      content: "Link";
+    .blog:after
+      content: "Blog";
+    .tech:after
+      content: "Tech";
 </style>

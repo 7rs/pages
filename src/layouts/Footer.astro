@@ -1,9 +1,26 @@
 ---
 import Links from "../components/Links.astro";
+import Icon from "../components/Icon.astro";
 ---
 
 <footer>
-  <Links />
+  <div class="icons">
+    <Icon src="brand-icons/youtube.svg" , href="https://youtube.com/@Cbrnex" />
+    <Icon
+      src="brand-icons/youtubegaming.svg"
+      ,
+      href="https://youtube.com/@QRZE"
+    />
+    <Icon src="brand-icons/github.svg" href="https://github.com/7rs" />
+    <Icon src="brand-icons/twitter.svg" href="https://twitter.com/Cbrnex" />
+    <Icon src="brand-icons/pinterest.svg" href="https://pinterest.com/Cbrnex" />
+    <Icon
+      src="brand-icons/applemusic.svg"
+      href="https://music.apple.com/profile/7rs"
+    />
+    <Icon src="brand-icons/telegram.svg" href="https://t.me/Cbrnex" />
+    <Icon src="brand-icons/discord.svg" href="https://discord.gg/GQP8A5kDJV" />
+  </div>
   <div>
     <a
       href="https://github.com/7rs/my-site"
@@ -14,19 +31,28 @@ import Links from "../components/Links.astro";
       href="http://www.wtfpl.net/about/"
       target="_blank"
       rel="noopener noreferrer">WTFPL</a
-    > © 2023 Cbrnex
+    >
+    <span>© 2023 Cbrnex</span>
   </div>
 </footer>
 
-<style>
-  footer {
+<style lang="stylus">
+  $padding-y = 1rem
+
+  footer
+    padding-top: $padding-y;
+    padding-bottom: $padding-y;
     background: rgb(255, 255, 255);
-    font-family: monospace;
     opacity: 70%;
-  }
-  div {
+    font-family: monospace;
+
+  div
     text-align: center;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
+    padding: 1rem;
+    a, span
+      font-size: 1rem;
+
+  .icons
+    display: flex;
+    justify-content: space-evenly;
 </style>
