@@ -1,33 +1,27 @@
 ---
 export interface Props {
-    src: string;
+  src: string;
 }
 
 const { src } = Astro.props;
 ---
 
-<img src={src} alt="https://unsplash.com/photos/7bynNtRqu4E" />
+<img src={src} alt={src} />
 
-<style>
-    img {
-        margin: auto;
+<style lang="stylus">
+    img
         animation: 1s normal linear 0s 1 forwards zoom-in,
             1s normal linear 0s 1 forwards round;
-    }
-    @keyframes zoom-in {
-        0% {
+
+    @keyframes zoom-in
+        0%
             width: 0%;
-        }
-        100% {
+        100%
             width: 100%;
-        }
-    }
-    @keyframes round {
-        0% {
+        
+    @keyframes round
+        0%
             border-radius: 0%;
-        }
-        100% {
+        100%
             border-radius: 100%;
-        }
-    }
 </style>

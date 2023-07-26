@@ -2,7 +2,7 @@
 import Icon from "../components/Icon.astro";
 ---
 
-<div class="w-full p-4 flex justify-evenly">
+<div>
   <Icon src="brand-icons/youtube.svg" , href="https://youtube.com/@Cbrnex" />
   <Icon
     src="brand-icons/youtubegaming.svg"
@@ -19,3 +19,10 @@ import Icon from "../components/Icon.astro";
   <Icon src="brand-icons/telegram.svg" href="https://t.me/Cbrnex" />
   <Icon src="brand-icons/discord.svg" href="https://discord.gg/GQP8A5kDJV" />
 </div>
+
+<style lang="stylus">
+  div
+    padding: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+</style>

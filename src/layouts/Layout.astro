@@ -1,6 +1,6 @@
 ---
 export interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -10,32 +10,53 @@ import Header from "./Header.astro";
 ---
 
 <!DOCTYPE html>
-<html class="font-sans" lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Cbrnex's website" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<Header />
-		<main class="w-11/12 lg:w-9/12 mx-auto my-4 rounded-2xl bg-white">
-			<slot />
-		</main>
-		<Footer />
-	</body>
-	
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Cbrnex's website" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>
 
-<style is:global>
-	html {
+<style lang="stylus">
+	$margin-y = 1.5rem;
+	$padding-y = 2rem
+	$wide-padding-y = 4rem
+
+	body
+		margin: 0;
+		padding: 0;
 		background: linear-gradient(0deg,
             rgb(66, 165, 245),
             rgb(171, 71, 188),
             rgb(239, 83, 80),
 			rgb(171, 71, 188),
 			rgb(66, 165, 245));
-	}
+
+	main
+		margin: auto;
+		border-radius: 1rem;
+		background: rgb(255, 255, 255);
+		margin-top: $margin-y;
+		margin-bottom: $margin-y;
+		// Responsive
+		width: 90%;
+		padding-top: $padding-y;
+		padding-bottom: $padding-y;
+
+	@media screen and (min-width: 1024px)
+		main
+			width: 75%;
+			padding-top: $wide-padding-y;
+			padding-bottom: $wide-padding-y;
 </style>
