@@ -11,7 +11,7 @@ Images and other material not created by me are follow to the license of the cop
 [pnpm]: https://pnpm.io/motivation  
 [html]: https://developer.mozilla.org/docs/Web/HTML  
 [css]: https://developer.mozilla.org/docs/Web/CSS  
-[tailwind]: https://tailwindcss.com/docs/installation  
+[stylus]: https://stylus-lang.com/docs/  
 [stackshare]: https://stackshare.io/7rs/my-site  
 [node]: https://nodejs.org/en/download/releases  
 [simpleicons]: https://simpleicons.org/  
@@ -29,7 +29,7 @@ Images and other material not created by me are follow to the license of the cop
 | [Astro][astro]                 | docs    | All-in-one web framework  |
 | [HTML][html]                   | docs    | HyperText Markup Language |
 | [CSS][css]                     | docs    | Cascading Style Sheets    |
-| [Tailwind CSS][tailwind]       | docs    | CSS framework             |
+| [Stylus][stylus]               | docs    | CSS Extension Tool        |
 | [stackshare][stackshare]       | tool    | Tech stack visualizer     |
 | [Material Colors][materialui]  | tool    | Color Resources           |
 | [Simple Icons][simpleicons]    | tool    | Free SVG List             |
