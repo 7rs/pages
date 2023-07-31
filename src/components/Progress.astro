@@ -19,103 +19,78 @@ const percent_class = name + "-percent";
   <p class={percent_class}></p>
 </div>
 
-<style>
-  .progress-bar {
-    animation: 1s normal ease-out 0s 1 forwards progress;
-  }
-  @keyframes progress {
-    0% {
-      flex-grow: 0;
-    }
-    100% {
-      flex-grow: 1;
-    }
-  }
-  div {
-    margin-right: 1rem;
-    margin-left: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: monospace;
-  }
-  a {
-    border-radius: 1rem;
-    color: rgb(255, 255, 255);
-    height: 1rem;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-    text-decoration: none;
-  }
-  p {
-    display: block;
-    text-align: end;
-  }
-  @media screen and (min-width: 1024px) {
-    a {
-      height: 1.5rem;
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
-    }
-  }
+<style lang="stylus">
+  .progress-bar
+    animation 1s normal ease-out 0s 1 forwards progress
+  @keyframes progress
+    0%
+      flex-grow 0
+    100%
+      flex-grow 1
 
-  .python:after {
-    content: "Python";
-  }
-  .python-percent {
-    flex-basis: 50%;
-  }
-  .python-percent:after {
-    content: "50%";
-  }
 
-  .go:after {
-    content: "Go";
-  }
-  .go-percent {
-    flex-basis: 85%;
-  }
-  .go-percent:after {
-    content: "15%";
-  }
+  div
+    margin-right 1rem
+    margin-left 1rem
+    display flex
+    justify-content space-between
+    align-items center
+    font-family monospace
+  a
+    border-radius 1rem
+    color rgb(255, 255, 255)
+    height 1rem
+    padding-left 0.25rem
+    padding-right 0.25rem
+    text-decoration none
+  p
+    display block
+    text-align end
+  @media screen and (min-width: 1024px)
+    a
+      height 1.5rem
+      padding-left 0.5rem
+      padding-right 0.5rem
 
-  .java-percent {
-    flex-basis: 85%;
-  }
-  .java:after {
-    content: "Java";
-  }
-  .java-percent:after {
-    content: "15%";
-  }
+  .python:after
+    content "Python"
+  .python-percent
+    flex-basis 50%
+  .python-percent:after
+    content "50%"
 
-  .web-percent {
-    flex-basis: 90%;
-  }
-  .web:after {
-    content: "Web";
-  }
-  .web-percent:after {
-    content: "10%";
-  }
+  .go:after
+    content "Go"
+  .go-percent
+    flex-basis 85%
+  .go-percent:after
+    content "15%"
 
-  .shell-percent {
-    flex-basis: 95%;
-  }
-  .shell:after {
-    content: "sh";
-  }
-  .shell-percent:after {
-    content: "5%";
-  }
+  .java-percent
+    flex-basis 85%
+  .java:after
+    content "Java"
+  .java-percent:after
+    content "15%"
 
-  .js-percent {
-    flex-basis: 95%;
-  }
-  .js:after {
-    content: "JS";
-  }
-  .js-percent:after {
-    content: "5%";
-  }
+  .web-percent
+    flex-basis 90%
+  .web:after
+    content "Web"
+  .web-percent:after
+    content "10%"
+
+  .shell-percent
+    flex-basis 95%
+  .shell:after
+    content "sh"
+  .shell-percent:after
+    content "5%"
+
+  .js-percent
+    flex-basis 95%
+  .js:after
+    content "JS"
+  .js-percent:after
+    content "5%"
 </style>

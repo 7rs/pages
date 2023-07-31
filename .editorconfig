@@ -1,13 +1,16 @@
 root = true
 
+[*]
+max_line_length = 120
+
 [*.md, *.mdx]
 charset = utf-8
 end_of_line = lf
 insert_final_newline = true
 
-[*.astro, *.ts, *.mjs]
+[*.astro, *.ts, *.mjs *.html *.css *.styl]
 charset = utf-8
 indent_style = space
-indent_size = 4
+indent_size = 2
 end_of_line = lf
 insert_final_newline = true

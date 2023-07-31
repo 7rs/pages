@@ -29,34 +29,29 @@ import Header from "./Header.astro";
 </html>
 
 <style lang="stylus">
-	$margin-y = 1.5rem;
-	$padding-y = 2rem
-	$wide-padding-y = 4rem
+  @import "../styles/main"
 
-	body
-		margin: 0;
-		padding: 0;
-		background: linear-gradient(0deg,
-            rgb(66, 165, 245),
-            rgb(171, 71, 188),
-            rgb(239, 83, 80),
-			rgb(171, 71, 188),
-			rgb(66, 165, 245));
+  html
+    height 100%
+    background linear-gradient(70deg,
+      rgb(66, 165, 245),
+      rgb(171, 71, 188),
+      rgb(239, 83, 80),
+      rgb(171, 71, 188),
+      rgb(66, 165, 245)) no-repeat center/cover
 
-	main
-		margin: auto;
-		border-radius: 1rem;
-		background: rgb(255, 255, 255);
-		margin-top: $margin-y;
-		margin-bottom: $margin-y;
-		// Responsive
-		width: 90%;
-		padding-top: $padding-y;
-		padding-bottom: $padding-y;
+  body
+    margin 0
+    padding 0
 
-	@media screen and (min-width: 1024px)
-		main
-			width: 75%;
-			padding-top: $wide-padding-y;
-			padding-bottom: $wide-padding-y;
+  main
+    @extend .main-box
+    position relative
+    border-radius 1rem
+    @media screen and (max-width narrow-screen)
+      width narrow-width
+      margin header-height+main-spacing auto footer-height+main-spacing
+    @media screen and (min-width wide-screen)
+      width wide-width
+      margin header-height+main-spacing auto wide-footer-height+main-spacing
 </style>
