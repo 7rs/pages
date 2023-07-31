@@ -23,9 +23,11 @@
     @extend .flex-row
 
   a
-    font-size item-size
     text-decoration none
     color black
+    font-size item-size
+    @media (min-width wide-screen)
+      font-size wide-item-size
 
   .title
     flex-grow 1
@@ -34,6 +36,8 @@
   nav
     @extend .flex-row
     @extend .flex-gap
+    @media (min-width wide-screen)
+      gap static-spacing
 
   .nav-item
     @media (max-width narrow-screen)

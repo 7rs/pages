@@ -8,6 +8,7 @@ narrow-width = 80%
 wide-width = 75%
 
 item-size = 2rem
+wide-item-size = 1.5rem
 
 text-size = 1rem
 wide-text-size = 1.5rem
@@ -16,6 +17,7 @@ icon-size = 1.5rem
 wide-icon-size = 2.5rem
 
 static-spacing = 1.5rem
+wide-static-spacing = 1rem
 
 item-spacing = 1.5rem
 wide-item-spacing = item-spacing * 2
@@ -49,8 +51,10 @@ wide-footer-height = wide-icon-size + static-spacing + wide-text-size + static-s
 
 .static-box
   @extend .blur-background
-  padding static-spacing
   font-family monospace
+  padding static-spacing
+  @media (min-width wide-screen)
+    padding wide-static-spacing
 
 .main-box
   @extend .blur-background
