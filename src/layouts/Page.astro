@@ -46,12 +46,17 @@ import Header from "./Header.astro";
 
   main
     @extend .main-box
+    position relative
     border-radius 1rem
-    flex-grow 1
     @media screen and (max-width narrow-screen)
       width narrow-width
       margin header-height+main-spacing auto footer-height+main-spacing
     @media screen and (min-width wide-screen)
       width wide-width
       margin header-height+main-spacing auto wide-footer-height+main-spacing
+
+  // Markdown Styles
+  main
+    @extend .text-box
+    font-family monospace
 </style>

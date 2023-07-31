@@ -19,10 +19,6 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
-
-import Layout from "../layouts/Layout.astro";
 ---
-<Layout title="pages">
-  <Content />
-</Layout>
+<Content />
 
