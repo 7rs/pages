@@ -1,6 +1,6 @@
 ---
 export interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -10,32 +10,48 @@ import Header from "./Header.astro";
 ---
 
 <!DOCTYPE html>
-<html class="font-sans" lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Cbrnex's website" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<Header />
-		<main class="w-11/12 lg:w-9/12 mx-auto my-4 rounded-2xl bg-white">
-			<slot />
-		</main>
-		<Footer />
-	</body>
-	
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Cbrnex's website" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>
 
-<style is:global>
-	html {
-		background: linear-gradient(0deg,
-            rgb(66, 165, 245),
-            rgb(171, 71, 188),
-            rgb(239, 83, 80),
-			rgb(171, 71, 188),
-			rgb(66, 165, 245));
-	}
+<style lang="stylus">
+  @import "../styles/main"
+
+  html
+    height 100%
+    background linear-gradient(70deg,
+      rgb(66, 165, 245),
+      rgb(171, 71, 188),
+      rgb(239, 83, 80),
+      rgb(171, 71, 188),
+      rgb(66, 165, 245)) no-repeat center/cover
+
+  body
+    margin 0
+    padding 0
+
+  main
+    @extend .main-box
+    position relative
+    border-radius 1rem
+    @media screen and (max-width narrow-screen)
+      width narrow-width
+      margin header-height+main-spacing auto footer-height+main-spacing
+    @media screen and (min-width wide-screen)
+      width wide-width
+      margin header-height+main-spacing auto wide-footer-height+main-spacing
 </style>

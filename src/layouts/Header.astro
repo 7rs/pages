@@ -1,53 +1,63 @@
----
-import Gradient from "./Gradient.astro";
-import GradientLink from "./GradientLink.astro";
----
-
-<header class="bg-white font-mono opacity-70">
-    <nav
-        class="w-10/12 h-16 max-h-16 | lg:w-8/12 lg:h-14 lg:max-h-14 | mx-auto flex items-center justify-between"
-    >
-        <div class="basis-1/4 lg:text-2xl text-xl">
-            <h1><Gradient style="rainbow crop">Cbrnex</Gradient></h1>
-        </div>
-        <div
-            class="justify-self-end | flex space-x-8 w-36 | lg:text-lg lg:font-extrabold"
-        >
-            <a class="links" href="/links">
-                <img src="icons/links.svg" alt="links" />
-            </a>
-            <a class="blog" href="/blog">
-                <img src="icons/blog.svg" alt="blog" />
-            </a>
-            <a class="tech" href="https://zenn.dev/7rs">
-                <img src="icons/tech.svg" alt="tech" />
-            </a>
-        </div>
+<header>
+  <div class="header-box">
+    <a class="title">Cbrnex</a>
+    <nav>
+      <a class="nav-item links" href="/links"></a>
+      <a class="nav-item blog" href="/blog"></a>
+      <a class="nav-item tech" href="https://zenn.dev/7rs"></a>
     </nav>
+  </div>
 </header>
 
-<style>
-    .links:after {
-        content: "";
-    }
-    .blog:after {
-        content: "";
-    }
-    .tech:after {
-        content: "";
-    }
-    @media (min-width: 1024px) {
-        div > a > img {
-            display: none;
-        }
-        .links:after {
-            content: "Link";
-        }
-        .blog:after {
-            content: "Blog";
-        }
-        .tech:after {
-            content: "Tech";
-        }
-    }
+<style lang="stylus">
+  @import "../styles/main"
+
+  header
+    position fixed
+    top 0
+    left 0
+    width 100%
+
+  .header-box
+    @extend .static-box
+    @extend .flex-row
+
+  a
+    text-decoration none
+    color black
+    font-size item-size
+    @media (min-width wide-screen)
+      font-size wide-item-size
+
+  .title
+    flex-grow 1
+    flex-basis 25%
+
+  nav
+    @extend .flex-row
+    @extend .flex-gap
+    @media (min-width wide-screen)
+      gap static-spacing
+
+  .nav-item
+    @media (max-width narrow-screen)
+      height item-size
+      width item-size
+      &.links
+        background url("icons/links.svg") 0%/100% no-repeat
+      &.blog
+        background url("icons/blog.svg") 0%/100% no-repeat
+      &.tech
+        background url("icons/tech.svg") 0%/100% no-repeat
+
+    @media (min-width wide-screen)
+      text-align center
+      &:hover
+        color red
+      &.links:after
+        content "Link"
+      &.blog:after
+        content "Blog"
+      &.tech:after
+        content "Tech"
 </style>

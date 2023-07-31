@@ -1,22 +1,90 @@
----
-import Links from "../components/Links.astro";
----
-
-<footer class="w-full bg-white font-mono opacity-70">
-  <Links />
-  <div class="text-center py-8">
-    <a
-      href="https://github.com/7rs/my-site"
-      target="_blank"
-      rel="noopener noreferrer">Source code</a
-    >
-    <a
-      class="ml-4"
-      href="http://www.wtfpl.net/about/"
-      target="_blank"
-      rel="noopener noreferrer">WTFPL</a
-    > © 2023 Cbrnex
+<footer>
+  <div class="footer-box">
+    <div class="icons">
+      <a
+        class="youtube"
+        href="https://youtube.com/@Cbrnex"
+        rel="noopener noreferrer"></a>
+      <a
+        class="youtubegaming"
+        href="https://youtube.com/@QRZE"
+        rel="noopener noreferrer"></a>
+      <a class="github" href="https://github.com/7rs" rel="noopener noreferrer"
+      ></a>
+      <a
+        class="twitter"
+        href="https://twitter.com/Cbrnex"
+        rel="noopener noreferrer"></a>
+      <a
+        class="pinterest"
+        href="https://pinterest.com/Cbrnex"
+        rel="noopener noreferrer"></a>
+      <a class="telegram" href="https://t.me/Cbrnex" rel="noopener noreferrer"
+      ></a>
+      <a
+        class="discord"
+        href="https://discord.gg/GQP8A5kDJV"
+        rel="noopener noreferrer"></a>
+    </div>
+    <div class="credits">
+      <a
+        class="credit"
+        href="https://github.com/7rs/my-site"
+        target="_blank"
+        rel="noopener noreferrer">Code</a
+      >
+      <a
+        class="credit"
+        href="http://www.wtfpl.net/about/"
+        target="_blank"
+        rel="noopener noreferrer">WTFPL</a
+      >
+      <span class="credit">© 2023 Cbrnex</span>
+    </div>
   </div>
 </footer>
+<style lang="stylus">
+  @import "../styles/main"
 
-<style></style>
+  footer
+    position absolute
+    bottom 0
+    left 0
+    width 100%
+
+  .footer-box
+    @extend .flex-col
+    @extend .flex-gap
+    @extend .static-box
+
+  .icons, .credits
+    @extend .flex-row
+    @extend .flex-gap
+    justify-content center
+
+  .credit
+    @extend .text-box
+    text-decoration none
+
+  .youtube
+    @extend .icon
+    background url("brand-icons/youtube.svg") 0%/100% no-repeat
+  .youtubegaming
+    @extend .icon
+    background url("brand-icons/youtubegaming.svg") 0%/100% no-repeat
+  .github
+    @extend .icon
+    background url("brand-icons/github.svg") 0%/100% no-repeat
+  .twitter
+    @extend .icon
+    background url("brand-icons/twitter.svg") 0%/100% no-repeat
+  .pinterest
+    @extend .icon
+    background url("brand-icons/pinterest.svg") 0%/100% no-repeat
+  .telegram
+    @extend .icon
+    background url("brand-icons/telegram.svg") 0%/100% no-repeat
+  .discord
+    @extend .icon
+    background url("brand-icons/discord.svg") 0%/100% no-repeat
+</style>

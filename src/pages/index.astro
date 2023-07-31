@@ -1,14 +1,57 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-import Profile from "../components/Profile.astro";
-import ProgressSkill from "../components/ProgressSkill.astro";
-import Bio from "../components/Bio.astro";
 ---
 
 <Layout title="7rs.dev">
-	<Profile />
-	<Bio />
-	<ProgressSkill />
+    <section>
+      <div class="profile-card">
+        <a
+          class="name"
+          href="https://wikipedia.org/wiki/CBRNE"
+          target="_blank"
+          rel="noopener noreferrer">CBRNE卍DAWN</a>
+        <a
+          class="avatar"
+          href="https://unsplash.com/photos/7bynNtRqu4E"
+          target="_blank"
+          rel="noopener noreferrer"><img src="avatar.avif" width="240px"></a
+        >
+      </div>
+      <p class="bio">Cbrnex is always here.</p>
+    </section>
 </Layout>
 
+
+<style lang="stylus">
+  @import "../styles/main"
+
+  .profile-card
+    @extend .flex-row
+    @extend .flex-gap
+    width 100%
+    flex-wrap wrap-reverse
+
+  a, img
+    margin 0 auto
+
+  .name
+    flex-grow 1
+    text-align center
+    text-decoration none
+    color black
+    font 2rem monospace
+    @media screen and (min-width wide-screen)
+      font 5rem monospace
+
+  .avatar
+    flex-basis 25%
+
+  img
+    border-radius 100%
+
+  .bio
+    text-align center
+    font 1.5rem/1.5rem monospace
+    @media (min-width wide-screen)
+      font 3rem/3rem monospace
+</style>
