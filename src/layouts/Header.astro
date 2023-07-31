@@ -41,14 +41,15 @@
 
   .nav-item
     @media (max-width narrow-screen)
+      background-size 100%
       height item-size
       width item-size
       &.links
-        background url("icons/links.svg") 0%/100% no-repeat
+        background-image url("/_astro/icons/links.svg"), url("/icons/links.svg")
       &.blog
-        background url("icons/blog.svg") 0%/100% no-repeat
+        background-image url("/_astro/icons/blog.svg"), url("/icons/blog.svg")
       &.tech
-        background url("icons/tech.svg") 0%/100% no-repeat
+        background-image url("/_astro/icons/tech.svg"), url("/icons/tech.svg")
 
     @media (min-width wide-screen)
       text-align center
