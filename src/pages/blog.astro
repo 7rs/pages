@@ -7,7 +7,7 @@ const posts = await getCollection("blog");
 
 <Layout title="Cbrnex's Blog">
   <main>
-    <div>{posts.map((post) => <a href={post.slug}>{post.data.title}</a>)}</div>
+    <div>{posts.map((post) => <a href={`/${post.slug}`}>{post.data.title}</a>)}</div>
   </main>
 </Layout>
 
