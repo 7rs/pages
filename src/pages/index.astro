@@ -2,56 +2,74 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="7rs.dev">
-    <section>
-      <div class="profile-card">
+<Layout title="Cbrnex">
+  <main>
+    <div class="profile-card">
+      <div class="profile-text">
         <a
           class="name"
           href="https://wikipedia.org/wiki/CBRNE"
+          title="name"
           target="_blank"
-          rel="noopener noreferrer">CBRNE卍DAWN</a>
-        <a
-          class="avatar"
-          href="https://unsplash.com/photos/7bynNtRqu4E"
-          target="_blank"
-          rel="noopener noreferrer"><img src="avatar.avif" width="240px"></a
+          rel="noopener noreferrer">Cbrnex</a
         >
+        <p class="bio">Cbrnex is always here.</p>
       </div>
-      <p class="bio">Cbrnex is always here.</p>
-    </section>
+      <a
+        class="avatar"
+        href="https://unsplash.com/photos/7bynNtRqu4E"
+        title="avatar"
+        target="_blank"
+        rel="noopener noreferrer"><img src="avatar.avif" alt="icon" width="240px" /></a
+      >
+    </div>
+  </main>
 </Layout>
-
 
 <style lang="stylus">
   @import "../styles/main"
 
-  .profile-card
-    @extend .flex-row
-    @extend .flex-gap
-    width 100%
-    flex-wrap wrap-reverse
-
-  a, img
+  a, p, img
     margin 0 auto
 
-  .name
+  .profile-card
+    display flex
+    width 100%
+    @media (min-width mobile-screen)
+      flex-direction column-reverse
+      gap 1.5rem
+    @media (min-width wide-screen)
+      flex-direction row
+      justify-content space-between
+      align-items center
+
+  .profile-text
     flex-grow 1
     text-align center
+
+  .name
+    @extend .dark-text
     text-decoration none
-    color black
-    font 2rem monospace
-    @media screen and (min-width wide-screen)
-      font 5rem monospace
+    @media (min-width mobile-screen)
+      font-size 3rem
+    @media (min-width wide-screen)
+      font-size 4rem
+    @media (min-width desktop-screen)
+      font-size 4.5rem
+
+  .bio
+    @extend .dark-text
+    font-family monospace
+    @media (min-width mobile-screen)
+      font-size 1.35rem
+    @media (min-width desktop-screen)
+      font-size 1.75rem
 
   .avatar
-    flex-basis 25%
+    @media (min-width wide-screen)
+      flex-basis 30%
 
   img
     border-radius 100%
-
-  .bio
-    text-align center
-    font 1.5rem/1.5rem monospace
-    @media (min-width wide-screen)
-      font 3rem/3rem monospace
+    width 100%
 </style>

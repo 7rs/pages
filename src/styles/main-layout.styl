@@ -1,0 +1,31 @@
+@import "./main"
+
+main-spacing = 1.75rem
+header-spacing = ((box-padding * 2) + static-item) + main-spacing
+
+wide-main-spacing = 3.5rem
+wide-header-spacing = ((wide-box-padding * 2) + static-item) + wide-main-spacing
+
+body
+  @extend .flex-col
+  margin 0
+  padding 0
+  min-height 100vh
+  background linear-gradient(70deg,
+    rgb(66, 165, 245),
+    rgb(171, 71, 188),
+    rgb(239, 83, 80),
+    rgb(171, 71, 188),
+    rgb(66, 165, 245)) no-repeat center/cover
+
+main
+  @extend .blur-background
+  border-radius 1rem
+  @media (min-width mobile-screen)
+    margin header-spacing auto main-spacing
+    padding main-spacing
+    width 80vw
+  @media (min-width wide-screen)
+    margin wide-header-spacing auto wide-main-spacing
+    padding wide-main-spacing
+    width 70vw
