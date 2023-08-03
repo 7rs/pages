@@ -1,8 +1,7 @@
 ---
-// src/pages/blog/[slug].astro
-
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
+import Markdown from "../layouts/Markdown.astro";
 
 type Props = {
   entry: CollectionEntry<"blog">;
@@ -20,5 +19,5 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
-<Content />
 
+<Content />

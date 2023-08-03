@@ -4,85 +4,97 @@
       <a
         class="youtube"
         href="https://youtube.com/@Cbrnex"
+        title="youtube"
         rel="noopener noreferrer"></a>
       <a
         class="youtubegaming"
         href="https://youtube.com/@QRZE"
+        title="youtube-sub"
         rel="noopener noreferrer"></a>
-      <a class="github" href="https://github.com/7rs" rel="noopener noreferrer"
-      ></a>
+      <a
+        class="github"
+        href="https://github.com/7rs"
+        title="github"
+        rel="noopener noreferrer"></a>
       <a
         class="twitter"
         href="https://twitter.com/Cbrnex"
+        title="twitter"
         rel="noopener noreferrer"></a>
       <a
         class="pinterest"
         href="https://pinterest.com/Cbrnex"
+        title="pinterest"
         rel="noopener noreferrer"></a>
-      <a class="telegram" href="https://t.me/Cbrnex" rel="noopener noreferrer"
-      ></a>
+      <a
+        class="telegram"
+        href="https://t.me/Cbrnex"
+        title="telegram"
+        rel="noopener noreferrer"></a>
       <a
         class="discord"
         href="https://discord.gg/GQP8A5kDJV"
+        title="discord"
         rel="noopener noreferrer"></a>
     </div>
     <div class="credits">
       <a
-        class="credit"
         href="https://github.com/7rs/my-site"
+        title="source code"
         target="_blank"
         rel="noopener noreferrer">Code</a
       >
       <a
-        class="credit"
         href="http://www.wtfpl.net/about/"
+        title="wtfpl"
         target="_blank"
         rel="noopener noreferrer">WTFPL</a
       >
-      <span class="credit">© 2023 Cbrnex</span>
+      <a
+        href="https://github.com/7rs"
+        title="github"
+        target="_blank"
+        rel="noopener noreferrer">© 2023 Cbrnex</a
+      >
     </div>
   </div>
 </footer>
+
 <style lang="stylus">
   @import "../styles/main"
 
   footer
     width 100%
-    margin-top auto
 
-  .footer-box
-    @extend .flex-col
-    @extend .flex-gap
-    @extend .static-box
+  div
+    &.footer-box
+      @extend .flex-col
+      @extend .flex-gap
+      @extend .static-box
 
-  .icons, .credits
-    @extend .flex-row
-    @extend .flex-gap
-    justify-content center
+    &.icons, .credits
+      @extend .flex-row
+      @extend .flex-gap
+      justify-content center
 
-  .credit
-    @extend .text-box
-    text-decoration none
+    &.credits>a
+      @extend .text
 
-  .youtube
-    @extend .icon
-    background-image url("/_astro/brand-icons/youtube.svg"), url("/brand-icons/youtube.svg")
-  .youtubegaming
-    @extend .icon
-    background-image url("/_astro/brand-icons/youtubegaming.svg"), url("/brand-icons/youtubegaming.svg")
-  .github
-    @extend .icon
-    background-image url("/_astro/brand-icons/github.svg"), url("/brand-icons/github.svg")
-  .twitter
-    @extend .icon
-    background-image url("/_astro/brand-icons/twitter.svg"), url("/brand-icons/twitter.svg")
-  .pinterest
-    @extend .icon
-    background-image url("/_astro/brand-icons/pinterest.svg"), url("/brand-icons/pinterest.svg")
-  .telegram
-    @extend .icon
-    background-image url("/_astro/brand-icons/telegram.svg"), url("/brand-icons/telegram.svg")
-  .discord
-    @extend .icon
-    background-image url("/_astro/brand-icons/discord.svg"), url("/brand-icons/discord.svg")
+    &.icons>a
+      @extend .icon
+      &.youtube
+        mask-image url("/_astro/brand-icons/youtube.svg"), url("/brand-icons/youtube.svg")
+      &.youtubegaming
+        mask-image url("/_astro/brand-icons/youtubegaming.svg"), url("/brand-icons/youtubegaming.svg")
+      &.github
+        mask-image url("/_astro/brand-icons/github.svg"), url("/brand-icons/github.svg")
+      &.twitter
+        mask-image url("/_astro/brand-icons/twitter.svg"), url("/brand-icons/twitter.svg")
+      &.pinterest
+        mask-image url("/_astro/brand-icons/pinterest.svg"), url("/brand-icons/pinterest.svg")
+      &.telegram
+        mask-image url("/_astro/brand-icons/telegram.svg"), url("/brand-icons/telegram.svg")
+      &.discord
+        mask-image url("/_astro/brand-icons/discord.svg"), url("/brand-icons/discord.svg")
+    
 </style>

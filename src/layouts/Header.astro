@@ -1,10 +1,15 @@
 <header>
   <div class="header-box">
-    <a class="title">Cbrnex</a>
+    <a class="logo" href="/" title="top" />
     <nav>
-      <a class="nav-item links" href="/links"></a>
-      <a class="nav-item blog" href="/blog"></a>
-      <a class="nav-item tech" href="https://zenn.dev/7rs"></a>
+      <a class="links" href="/links" title="links"></a>
+      <a class="blog" href="/blog" title="blog"></a>
+      <a
+        class="tech"
+        href="https://zenn.dev/7rs"
+        title="tech"
+        target="_blank"
+        rel="noopener noreferrer"></a>
     </nav>
   </div>
 </header>
@@ -16,50 +21,28 @@
     position fixed
     top 0
     left 0
-    width 100%
     z-index 1
+    width 100%
 
-  .header-box
-    @extend .static-box
+  div
     @extend .flex-row
+    @extend .box
 
-  a
-    text-decoration none
-    color black
-    font-size item-size
-    @media (min-width wide-screen)
-      font-size wide-item-size
-
-  .title
-    flex-grow 1
-    flex-basis 25%
+  .logo
+    @extend .static-icon
+    mask-image url("/_astro/favicon.svg"), url("/favicon.svg")
 
   nav
     @extend .flex-row
-    @extend .flex-gap
-    @media (min-width wide-screen)
-      gap static-spacing
+    @extend .static-flex-gap
 
-  .nav-item
-    @media (max-width narrow-screen)
-      background-size 100%
-      height item-size
-      width item-size
+    a
+      @extend .static-icon
+
       &.links
-        background-image url("/_astro/icons/links.svg"), url("/icons/links.svg")
+        mask-image url("/_astro/icons/links.svg"), url("/icons/links.svg")
       &.blog
-        background-image url("/_astro/icons/blog.svg"), url("/icons/blog.svg")
+        mask-image url("/_astro/icons/blog.svg"), url("/icons/blog.svg")
       &.tech
-        background-image url("/_astro/icons/tech.svg"), url("/icons/tech.svg")
-
-    @media (min-width wide-screen)
-      text-align center
-      &:hover
-        color red
-      &.links:after
-        content "Link"
-      &.blog:after
-        content "Blog"
-      &.tech:after
-        content "Tech"
+        mask-image url("/_astro/icons/tech.svg"), url("/icons/tech.svg")
 </style>
