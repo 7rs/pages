@@ -1,31 +1,32 @@
 @import "./main"
 
-main-spacing = 1.75rem
-header-spacing = ((box-padding * 2) + static-item) + main-spacing
+mobile-main-spacing = 1.75rem
+mobile-header-spacing = ((mobile-box-padding * 2) + static-item) + mobile-main-spacing
 
-wide-main-spacing = 3.5rem
-wide-header-spacing = ((wide-box-padding * 2) + static-item) + wide-main-spacing
+tablet-main-spacing = 3.5rem
+tablet-header-spacing = ((tablet-box-padding * 2) + static-item) + tablet-main-spacing
 
 body
   @extend .flex-col
   margin 0
   padding 0
   min-height 100vh
-  background linear-gradient(70deg,
-    rgb(66, 165, 245),
-    rgb(171, 71, 188),
-    rgb(239, 83, 80),
-    rgb(171, 71, 188),
-    rgb(66, 165, 245)) no-repeat center/cover
+
+  background-color rgba(255, 255, 255, 0.3)
+  @media (prefers-color-scheme dark)
+    background-color rgba(0, 0, 0, 0.3)
+  background-image conic-gradient(from 120deg at 40% 10%, rgba(255, 255, 255, 0) 0deg, rgba(255, 0, 128, 0.5) 360deg),
+    conic-gradient(from 20deg at 50% 80%, rgba(255, 255, 255, 0) 0deg, rgba(128, 0, 255, 0.49) 360deg),
+    conic-gradient(from 250deg at 84% 0%, rgba(255, 255, 255, 0) 0deg, rgba(255, 0, 255, 0.5) 360deg)
 
 main
   @extend .blur-background
   border-radius 1rem
   @media (min-width mobile-screen)
-    margin header-spacing auto main-spacing
-    padding main-spacing
+    margin mobile-header-spacing auto mobile-main-spacing
+    padding mobile-main-spacing
     width 80vw
-  @media (min-width wide-screen)
-    margin wide-header-spacing auto wide-main-spacing
-    padding wide-main-spacing
+  @media (min-width tablet-screen)
+    margin tablet-header-spacing auto tablet-main-spacing
+    padding tablet-main-spacing
     width 70vw

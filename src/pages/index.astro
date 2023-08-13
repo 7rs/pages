@@ -1,5 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const random_max = 5 + 0.44;
+let i = Math.round((Math.random() * random_max));
+const avater = "avatars/avatar" + i + ".avif";
+
+const avatar_size = "240px";
 ---
 
 <Layout title="Cbrnex">
@@ -11,17 +17,20 @@ import Layout from "../layouts/Layout.astro";
           href="https://wikipedia.org/wiki/CBRNE"
           title="name"
           target="_blank"
-          rel="noopener noreferrer">Cbrnex</a
+          rel="noopener noreferrer">CbrneX</a
         >
         <p class="bio">Cbrnex is always here.</p>
       </div>
-      <a
-        class="avatar"
-        href="https://unsplash.com/photos/7bynNtRqu4E"
-        title="avatar"
-        target="_blank"
-        rel="noopener noreferrer"><img src="avatar.avif" alt="icon" width="240px" /></a
-      >
+      <div class="avatar">
+        <div class="avatar-layer">
+          <img
+            src={avater}
+            alt="icon"
+            width={avatar_size}
+            height={avatar_size}
+          />
+        </div>
+      </div>
     </div>
   </main>
 </Layout>
@@ -29,19 +38,33 @@ import Layout from "../layouts/Layout.astro";
 <style lang="stylus">
   @import "../styles/main"
 
-  a, p, img
+  mobile-name = 3rem
+  mobile-bio = 1rem
+  mobile-spacing = 3.5rem
+  mobile-profile = mobile-name + mobile-bio + mobile-spacing *2
+
+  desktop-name = 4.5rem
+  desktop-bio = 1.5rem
+  desktop-spacing = 4.5rem
+  desktop-profile = desktop-name + desktop-bio + desktop-spacing * 2
+
+  a, p
     margin 0 auto
 
   .profile-card
     display flex
     width 100%
+    gap 0
     @media (min-width mobile-screen)
+      gap 1rem
       flex-direction column-reverse
-      gap 1.5rem
-    @media (min-width wide-screen)
+    @media (min-width tablet-screen)
       flex-direction row
       justify-content space-between
       align-items center
+      height wide-profile
+    @media (min-width desktop-screen)
+      height desktop-profile
 
   .profile-text
     flex-grow 1
@@ -49,27 +72,39 @@ import Layout from "../layouts/Layout.astro";
 
   .name
     @extend .dark-text
+    @extend .bitching-font
     text-decoration none
     @media (min-width mobile-screen)
-      font-size 3rem
-    @media (min-width wide-screen)
-      font-size 4rem
+      font-size mobile-name
     @media (min-width desktop-screen)
-      font-size 4.5rem
+      font-size desktop-name
 
   .bio
     @extend .dark-text
-    font-family monospace
+    @extend .mono-font
     @media (min-width mobile-screen)
-      font-size 1.35rem
+      font-size mobile-bio
     @media (min-width desktop-screen)
-      font-size 1.75rem
+      font-size desktop-bio
 
   .avatar
-    @media (min-width wide-screen)
-      flex-basis 30%
+    @media (min-width tablet-screen)
+      flex-basis 40%
+
+  .avatar-layer
+    margin 0 auto
+    @media (min-width mobile-screen)
+      width mobile-profile
+      height mobile-profile
+    @media (min-width tablet-screen)
+      width mobile-profile
+      height mobile-profile
+    @media (min-width desktop-screen)
+      width desktop-profile
+      height desktop-profile
 
   img
     border-radius 100%
     width 100%
+    height 100%
 </style>

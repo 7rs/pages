@@ -1,40 +1,50 @@
 @import "./static"
 
-mobile-screen = 0px
-wide-screen = 600px
+mobile-screen = 320px
+tablet-screen = 600px
 desktop-screen = 1024px
-hd-screen = 1920px  // low priority
-uhd-screen = 3840px  // I WON'T SUPPORT
 
-flex-gap = 1.5rem
-wide-flex-gap = 2rem
-.flex-gap
-  gap flex-gap
-  @media (min-width wide-screen)
-    gap wide-flex-gap
+mobile-gap-vertical = 2.25rem
+tablet-gap-vertical = 4.5rem
+.flex-gap-vertical
+  @media (min-width mobile-screen)
+    gap mobile-gap-vertical
+  @media (min-width tablet-screen)
+    gap tablet-gap-vertical
 
-box-padding = 1.5rem
-wide-box-padding = 1rem
+mobile-gap-horizontal = 2rem
+tablet-gap-horizontal = 2.5rem
+.flex-gap-horizontal
+  @media (min-width mobile-screen)
+    gap mobile-gap-horizontal
+  @media (min-width tablet-screen)
+    gap tablet-gap-horizontal
+
+mobile-box-padding = 1.5rem
+tablet-box-padding = 1rem
 .box
   @extend .static-box
-  padding box-padding
-  @media (min-width wide-screen)
-    padding wide-box-padding
+  @media (min-width mobile-screen)
+    padding mobile-box-padding
+  @media (min-width tablet-screen)
+    padding tablet-box-padding
 
-text = 1.25rem
-wide-text = 1.6rem
+mobile-text = 0.95rem
+tablet-text = 1.5rem
 .text
   @extend .static-text
-  font-size text
-  @media (min-width wide-screen)
-    font-size wide-text
+  @media (min-width mobile-screen)
+    font-size mobile-text
+  @media (min-width tablet-screen)
+    font-size tablet-text
 
-icon = 1.5rem
-wide-icon = 2rem
+mobile-icon = 1.5rem
+tablet-icon = 2rem
 .icon
   @extend .static-icon
-  width icon
-  height icon
-  @media (min-width wide-screen)
-    width wide-icon
-    height wide-icon
+  @media (min-width mobile-screen)
+    width mobile-icon
+    height mobile-icon
+  @media (min-width tablet-screen)
+    width tablet-icon
+    height tablet-icon
