@@ -35,7 +35,8 @@ dark-hover = blue
     @media (prefers-color-scheme dark)
       color dark-hover
 
+bg-blur = 1rem
 .blur-background
   @extend .dark-background
-  backdrop-filter blur(5rem)
-  -webkit-backdrop-filter blur(5rem)
+  backdrop-filter blur(bg-blur)
+  -webkit-backdrop-filter blur(bg-blur)

@@ -5,50 +5,39 @@
         class="youtube"
         href="https://youtube.com/@Cbrnex"
         title="youtube"
-        rel="noopener noreferrer"></a>
-      <a
-        class="youtubegaming"
-        href="https://youtube.com/@QRZE"
-        title="youtube-sub"
-        rel="noopener noreferrer"></a>
-      <a
-        class="github"
-        href="https://github.com/7rs"
-        title="github"
+        target="_blank"
         rel="noopener noreferrer"></a>
       <a
         class="twitter"
         href="https://twitter.com/Cbrnex"
         title="twitter"
+        target="_blank"
         rel="noopener noreferrer"></a>
       <a
         class="pinterest"
         href="https://pinterest.com/Cbrnex"
         title="pinterest"
+        target="_blank"
         rel="noopener noreferrer"></a>
       <a
         class="telegram"
         href="https://t.me/Cbrnex"
         title="telegram"
+        target="_blank"
         rel="noopener noreferrer"></a>
       <a
         class="discord"
         href="https://discord.gg/GQP8A5kDJV"
         title="discord"
+        target="_blank"
         rel="noopener noreferrer"></a>
     </div>
     <div class="credits">
       <a
-        href="https://github.com/7rs/my-site"
+        href="https://github.com/7rs/pages"
         title="source code"
         target="_blank"
-        rel="noopener noreferrer">Code</a
-      >
-      <a
-        href="http://www.wtfpl.net/about/"
-        title="wtfpl"
-        target="_blank"
-        rel="noopener noreferrer">WTFPL</a
+        rel="noopener noreferrer">Source Code</a
       >
       <a
         href="https://github.com/7rs"
@@ -69,16 +58,23 @@
   div
     &.footer-box
       @extend .flex-col
-      @extend .flex-gap
+      @extend .flex-gap-horizontal
       @extend .static-box
+      padding-bottom static-box * 2
 
     &.icons, .credits
       @extend .flex-row
-      @extend .flex-gap
       justify-content center
+
+    &.credits
+      @extend .flex-gap-vertical
 
     &.credits>a
       @extend .text
+      @extend .mono-font
+
+    &.icons
+      @extend .flex-gap-vertical
 
     &.icons>a
       @extend .icon
