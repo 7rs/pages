@@ -14,7 +14,13 @@
 
 
 # [7rs.dev](https://7rs.dev/)  
-`Require` icons, screenshots (PNG, GIF) and  etc.  
+
+
+<div>
+    <img src="screenshot/desktop.png" height="240px" />
+    <img src="screenshot/tablet.png" height="240px"/>
+    <img src="screenshot/mobile.png" height="240px" />
+</div>  
 
 ### Modern and simple website.
 

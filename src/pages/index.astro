@@ -1,11 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-const random_max = 5 + 0.44;
-let i = Math.round((Math.random() * random_max));
-const avater = "avatars/avatar" + i + ".avif";
+// const random_max = 5 + 0.44;
+// let i = Math.round((Math.random() * random_max));
+// const avater = "avatars/avatar" + i + ".avif";
 
-const avatar_size = "240px";
+// const avatar_size = "240px";
 ---
 
 <Layout title="Cbrnex">
@@ -17,17 +17,17 @@ const avatar_size = "240px";
           href="https://wikipedia.org/wiki/CBRNE"
           title="name"
           target="_blank"
-          rel="noopener noreferrer">CbrneX</a
+          rel="noopener noreferrer">Cbrnex</a
         >
         <p class="bio">Cbrnex is always here.</p>
       </div>
       <div class="avatar">
         <div class="avatar-layer">
           <img
-            src={avater}
+            src="avatar.avif"
             alt="icon"
-            width={avatar_size}
-            height={avatar_size}
+            width="240px"
+            height="240px"
           />
         </div>
       </div>
@@ -94,9 +94,6 @@ const avatar_size = "240px";
   .avatar-layer
     margin 0 auto
     @media (min-width mobile-screen)
-      width mobile-profile
-      height mobile-profile
-    @media (min-width tablet-screen)
       width mobile-profile
       height mobile-profile
     @media (min-width desktop-screen)

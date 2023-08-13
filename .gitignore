@@ -8,19 +8,16 @@ dist/
 node_modules/
 
 # logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+*log*
 
 # environment variables
-.env
-.env.production
+.env*
 
-# macOS-specific files
+# specific files
 .DS_Store
+*.Identifier
 
 # config files
 .git/
-.vscode/
+.vscode/*
 !.vscode/extensions.json
