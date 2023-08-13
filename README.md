@@ -18,18 +18,16 @@
 
 <div>
     <img src="screenshot/desktop.png" height="240px" />
-    <img src="screenshot/tablet.png" height="240px"/>
-    <img src="screenshot/mobile.png" height="240px" />
+    <img src="screenshot/mobile.jpg" height="240px" />
 </div>  
 
 ### Modern and simple website.
 
 
 # Benchmark  
-`Require` Screenshots.  
 
-- [PageSpeed Insights](https://pagespeed.web.dev/)  
-- [Cloudflare Speed Observatory](https://dash.cloudflare.com/)  
+![g-d](screenshot/google-desktop.png)  
+![g-m](screenshot/google-mobile.png)
 
 
 # Licence  
