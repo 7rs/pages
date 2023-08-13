@@ -17,8 +17,8 @@
 
 
 <div>
-    <img src="screenshot/desktop.png" height="240px" />
-    <img src="screenshot/mobile.jpg" height="240px" />
+    <img src="screenshot/desktop.png" height="320px" />
+    <img src="screenshot/mobile.jpg" height="320px" />
 </div>  
 
 ### Modern and simple website.
