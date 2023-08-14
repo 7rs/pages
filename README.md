@@ -94,6 +94,18 @@ pnpm run dev
 | [Unsplash](https://unsplash.com/)                       | Wallpapers    |
 
 
+# Contributing  
+`Require` Add contributing.md  
+
+Please see our ~~contributing.md~~.  
+Plaese use English or Japanese.  
+
+
+# Author  
+
+- [Cbrnex/7rs](https://github.com/7rs)  
+
+
 # Tools (recommendation)  
 
 | Name                                                            | About/Comment                                             | Platform           |
@@ -123,18 +135,6 @@ pnpm run dev
 | [FFmpeg](https://www.ffmpeg.org/)                               | Video editor in CLI (Supports image, audio)               | CLI                |
 | [sharp-cli](https://github.com/vseventer/sharp-cli)             | Image compressor                                          | CLI                |
 | [Squoosh](https://squoosh.app/)                                 | Webapp. Image Compressor. (no longer actively maintained) | Browser            |
-
-
-# Contributing  
-`Require` Add contributing.md  
-
-Please see our ~~contributing.md~~.  
-Plaese use English or Japanese.  
-
-
-# Author  
-
-- [Cbrnex/7rs](https://github.com/7rs)  
 
 
 # Other  
