@@ -1,22 +1,15 @@
 <header>
-  <div class="header-box">
-    <a class="logo" href="/" title="top" />
-    <nav>
-      <a class="links" href="/links" title="links"></a>
-      <a class="blog" href="/blog" title="blog"></a>
-      <a
-        class="tech"
-        href="https://zenn.dev/7rs"
-        title="tech"
-        target="_blank"
-        rel="noopener noreferrer"></a>
+  <div class="flex-row box">
+    <a class="logo static-icon" href="/" title="top"></a>
+    <nav class="flex-row static-flex-gap">
+      <a class="links static-icon" href="/links" title="links"></a>
+      <a class="blog static-icon" href="/blog" title="blog"></a>
+      <a class="tech static-icon" href="https://zenn.dev/7rs" title="tech"></a>
     </nav>
   </div>
 </header>
 
 <style lang="stylus">
-  @import "../styles/main"
-
   header
     position fixed
     top 0
@@ -24,21 +17,12 @@
     z-index 1
     width 100%
 
-  div
-    @extend .flex-row
-    @extend .box
-
   .logo
-    @extend .static-icon
     mask-image url("/_astro/favicon.svg"), url("/favicon.svg")
     -webkit-mask-image url("/_astro/favicon.svg"), url("/favicon.svg")
 
   nav
-    @extend .flex-row
-    @extend .static-flex-gap
-
     a
-      @extend .static-icon
 
       &.links
         mask-image url("/_astro/icons/links.svg"), url("/icons/links.svg")
