@@ -1,34 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-// const random_max = 5 + 0.44;
-// let i = Math.round((Math.random() * random_max));
-// const avater = "avatars/avatar" + i + ".avif";
-
-// const avatar_size = "240px";
 ---
 
 <Layout title="Cbrnex">
   <main>
     <div class="profile-card">
       <div class="profile-text">
-        <a
-          class="name"
-          href="https://wikipedia.org/wiki/CBRNE"
-          title="name"
-          target="_blank"
-          rel="noopener noreferrer">Cbrnex</a
-        >
-        <p class="bio">Cbrnex is always here.</p>
+        <p class="name dark-text bitching-font">Cbrnex</p>
+        <p class="bio dark-text mono-font">Cbrnex is always here.</p>
       </div>
       <div class="avatar">
         <div class="avatar-layer">
-          <img
-            src="avatar.webp"
-            alt="icon"
-            width="240px"
-            height="240px"
-          />
+          <img src="avatar.webp" alt="icon" width="240px" height="240px" />
         </div>
       </div>
     </div>
@@ -36,7 +19,9 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <style lang="stylus">
-  @import "../styles/main"
+  mobile-screen = 320px
+  tablet-screen = 600px
+  desktop-screen = 1024px
 
   mobile-name = 3rem
   mobile-bio = 1rem
@@ -48,7 +33,7 @@ import Layout from "../layouts/Layout.astro";
   desktop-spacing = 4.5rem
   desktop-profile = desktop-name + desktop-bio + desktop-spacing * 2
 
-  a, p
+  p
     margin 0 auto
 
   .profile-card
@@ -71,8 +56,6 @@ import Layout from "../layouts/Layout.astro";
     text-align center
 
   .name
-    @extend .dark-text
-    @extend .bitching-font
     text-decoration none
     @media (min-width mobile-screen)
       font-size mobile-name
@@ -80,8 +63,6 @@ import Layout from "../layouts/Layout.astro";
       font-size desktop-name
 
   .bio
-    @extend .dark-text
-    @extend .mono-font
     @media (min-width mobile-screen)
       font-size mobile-bio
     @media (min-width desktop-screen)
