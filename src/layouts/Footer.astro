@@ -1,6 +1,18 @@
+---
+export interface Props {
+  icons?: string;
+}
+
+const { icons = "true" } = Astro.props;
+let icons_class = "icons flex-row flex-gap-vertical";
+if (icons === "false") {
+  icons_class = "hideen-icons";
+}
+---
+
 <footer>
   <div class="footer-box flex-col flex-gap-horizontal static-box">
-    <div class="icons flex-row flex-gap-vertical">
+    <div class={icons_class}>
       <a
         class="youtube icon"
         href="https://7rs.dev/yt"
@@ -56,6 +68,9 @@
 
   footer
     width 100%
+
+  .hideen-icons
+    display none
 
   div
     &.footer-box
