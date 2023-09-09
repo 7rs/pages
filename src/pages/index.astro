@@ -1,8 +1,6 @@
 ---
-import { Image } from "@astrojs/image/components";
-import avatar from "/public/avatar.webp";
-
 import Layout from "../layouts/Layout.astro";
+import avatar from "@assets/avatar.webp"
 ---
 
 <Layout title="Cbrnex">
@@ -14,7 +12,7 @@ import Layout from "../layouts/Layout.astro";
       </div>
       <div class="avatar">
         <div class="avatar-layer">
-          <Image src={avatar} alt="avatar" format="webp" />
+          <img src={avatar.src} width={avatar.width} height={avatar.height} alt="avatar" />
         </div>
       </div>
     </div>

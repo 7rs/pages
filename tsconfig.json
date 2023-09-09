@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
-    // Replace `astro/client` with `@astrojs/image/client`
-    "types": ["@astrojs/image/client"],
-    "strictNullChecks": true
+    "types": ["@astrojs/client"],
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"]
+    }
   }
 }
