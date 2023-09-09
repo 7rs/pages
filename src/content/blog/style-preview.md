@@ -33,7 +33,7 @@ if __name__ == "__main__":
     print("multi line code block")
 ```
 
-![Logo](avatar.avif)
+<!-- ![Logo](avatar.avif) -->
 
 ---
 ***

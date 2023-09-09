@@ -1,7 +1,4 @@
 ---
-import { Image } from "@astrojs/image/components";
-import avatar from "/public/avatar.webp";
-
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -14,7 +11,7 @@ import Layout from "../layouts/Layout.astro";
       </div>
       <div class="avatar">
         <div class="avatar-layer">
-          <Image src={avatar} alt="avatar" format="webp" />
+          <img src="/public/avatar.webp" alt="avatar" />
         </div>
       </div>
     </div>
