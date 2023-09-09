@@ -1,4 +1,10 @@
 ---
+import youtube from "@assets/brand-icons/youtube.svg";
+import twitter from "@assets/brand-icons/twitter.svg";
+import pinterest from "@assets/brand-icons/pinterest.svg";
+import telegram from "@assets/brand-icons/telegram.svg";
+import discord from "@assets/brand-icons/discord.svg";
+
 export interface Props {
   icons?: string;
 }
@@ -14,30 +20,35 @@ if (icons === "false") {
   <div class="footer-box flex-col flex-gap-horizontal static-box">
     <div class={icons_class}>
       <a
+        style=`mask-image: url(${youtube.src}); --webkit-mask-image: url(${youtube.src})`
         class="youtube icon"
         href="https://7rs.dev/yt"
         title="youtube"
         target="_blank"
         rel="noopener noreferrer"></a>
       <a
+        style=`mask-image: url(${twitter.src}); --webkit-mask-image: url(${twitter.src})`
         class="twitter icon"
         href="https://7rs.dev/x"
         title="twitter"
         target="_blank"
         rel="noopener noreferrer"></a>
       <a
+        style=`mask-image: url(${pinterest.src}); --webkit-mask-image: url(${pinterest.src})`
         class="pinterest icon"
         href="https://7rs.dev/p"
         title="pinterest"
         target="_blank"
         rel="noopener noreferrer"></a>
       <a
+        style=`mask-image: url(${telegram.src}); --webkit-mask-image: url(${telegram.src})`
         class="telegram icon"
         href="https://7rs.dev/t"
         title="telegram"
         target="_blank"
         rel="noopener noreferrer"></a>
       <a
+        style=`mask-image: url(${discord.src}); --webkit-mask-image: url(${discord.src})`
         class="discord icon"
         href="https://7rs.dev/d"
         title="discord"
@@ -81,28 +92,28 @@ if (icons === "false") {
 
     &.icons>a
       &.youtube
-        mask-image url("/_astro/brand-icons/youtube.svg"), url("/brand-icons/youtube.svg")
-        -webkit-mask-image url("/_astro/brand-icons/youtube.svg"), url("/brand-icons/youtube.svg")
+        // mask-image url("/_astro/brand-icons/youtube.svg"), url("/brand-icons/youtube.svg")
+        // -webkit-mask-image url("/_astro/brand-icons/youtube.svg"), url("/brand-icons/youtube.svg")
         &:hover
           background rgb(255, 0, 0)
       &.twitter
-        mask-image url("/_astro/brand-icons/twitter.svg"), url("/brand-icons/twitter.svg")
-        -webkit-mask-image url("/_astro/brand-icons/twitter.svg"), url("/brand-icons/twitter.svg")
+        // mask-image url("/_astro/brand-icons/twitter.svg"), url("/brand-icons/twitter.svg")
+        // -webkit-mask-image url("/_astro/brand-icons/twitter.svg"), url("/brand-icons/twitter.svg")
         &:hover
           background rgba(0, 0, 0, 0.5)
       &.pinterest
-        mask-image url("/_astro/brand-icons/pinterest.svg"), url("/brand-icons/pinterest.svg")
-        -webkit-mask-image url("/_astro/brand-icons/pinterest.svg"), url("/brand-icons/pinterest.svg")
+        // mask-image url("/_astro/brand-icons/pinterest.svg"), url("/brand-icons/pinterest.svg")
+        // -webkit-mask-image url("/_astro/brand-icons/pinterest.svg"), url("/brand-icons/pinterest.svg")
         &:hover
           background rgb(189, 8, 28)
       &.telegram
-        mask-image url("/_astro/brand-icons/telegram.svg"), url("/brand-icons/telegram.svg")
-        -webkit-mask-image url("/_astro/brand-icons/telegram.svg"), url("/brand-icons/telegram.svg")
+        // mask-image url("/_astro/brand-icons/telegram.svg"), url("/brand-icons/telegram.svg")
+        // -webkit-mask-image url("/_astro/brand-icons/telegram.svg"), url("/brand-icons/telegram.svg")
         &:hover
           background rgb(38, 165, 228)
       &.discord
-        mask-image url("/_astro/brand-icons/discord.svg"), url("/brand-icons/discord.svg")
-        -webkit-mask-image url("/_astro/brand-icons/discord.svg"), url("/brand-icons/discord.svg")
+        // mask-image url("/_astro/brand-icons/discord.svg"), url("/brand-icons/discord.svg")
+        // -webkit-mask-image url("/_astro/brand-icons/discord.svg"), url("/brand-icons/discord.svg")
         &:hover
           background rgb(88, 101, 242)
 </style>

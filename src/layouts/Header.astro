@@ -1,10 +1,18 @@
+---
+import logo from "@assets/logo.svg"
+
+import links from "@assets/icons/links.svg"
+import blog from "@assets/icons/blog.svg"
+import tech from "@assets/icons/tech.svg"
+---
+
 <header>
   <div class="flex-row box">
-    <a class="logo static-icon" href="/" title="top"></a>
+    <a style=`mask-image: url(${logo.src}); --webkit-mask-image: url(${logo.src})` class="static-icon" href="/" title="top"></a>
     <nav class="flex-row static-flex-gap">
-      <a class="links static-icon" href="/links" title="links"></a>
-      <a class="blog static-icon" href="/blog" title="blog"></a>
-      <a class="tech static-icon" href="https://7rs.dev/z" title="tech"></a>
+      <a style=`mask-image: url(${links.src}); --webkit-mask-image: url(${links.src})` class="static-icon" href="/links" title="links"></a>
+      <a style=`mask-image: url(${blog.src}); --webkit-mask-image: url(${blog.src})` class="static-icon" href="/blog" title="blog"></a>
+      <a style=`mask-image: url(${tech.src}); --webkit-mask-image: url(${tech.src})` class="static-icon" href="https://7rs.dev/z" title="tech"></a>
     </nav>
   </div>
 </header>
@@ -17,20 +25,20 @@
     z-index 1
     width 100%
 
-  .logo
-    mask-image url("/_astro/logo.svg"), url("/logo.svg")
-    -webkit-mask-image url("/_astro/logo.svg"), url("/logo.svg")
+  // .logo
+  //   mask-image url("/_astro/logo.svg"), url("/logo.svg")
+  //   -webkit-mask-image url("/_astro/logo.svg"), url("/logo.svg")
 
-  nav
-    a
+  // nav
+  //   a
 
-      &.links
-        mask-image url("/_astro/icons/links.svg"), url("/icons/links.svg")
-        -webkit-mask-image url("/_astro/icons/links.svg"), url("/icons/links.svg")
-      &.blog
-        mask-image url("/_astro/icons/blog.svg"), url("/icons/blog.svg")
-        -webkit-mask-image url("/_astro/icons/blog.svg"), url("/icons/blog.svg")
-      &.tech
-        mask-image url("/_astro/icons/tech.svg"), url("/icons/tech.svg")
-        -webkit-mask-image url("/_astro/icons/tech.svg"), url("/icons/tech.svg")
+  //     &.links
+  //       mask-image url("/_astro/icons/links.svg"), url("/icons/links.svg")
+  //       -webkit-mask-image url("/_astro/icons/links.svg"), url("/icons/links.svg")
+  //     &.blog
+  //       mask-image url("/_astro/icons/blog.svg"), url("/icons/blog.svg")
+  //       -webkit-mask-image url("/_astro/icons/blog.svg"), url("/icons/blog.svg")
+  //     &.tech
+  //       mask-image url("/_astro/icons/tech.svg"), url("/icons/tech.svg")
+  //       -webkit-mask-image url("/_astro/icons/tech.svg"), url("/icons/tech.svg")
 </style>

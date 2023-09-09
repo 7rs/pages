@@ -1,6 +1,11 @@
 {
   "compilerOptions": {
     "types": ["@astrojs/client"],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"]
+    }
   }
 }
