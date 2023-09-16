@@ -5,105 +5,100 @@ import pinterest from "@assets/brand-icons/pinterest.svg";
 import telegram from "@assets/brand-icons/telegram.svg";
 import discord from "@assets/brand-icons/discord.svg";
 
+import Icon from "@components/Icon.astro";
+
 export interface Props {
   icons?: string;
 }
 
 const { icons = "true" } = Astro.props;
-let icons_class = "icons flex-row flex-gap-vertical";
+let icons_class = "flex-row social-icons";
 if (icons === "false") {
   icons_class = "hideen-icons";
 }
 ---
 
-<footer>
-  <div class="footer-box flex-col flex-gap-horizontal static-box">
-    <div class={icons_class}>
-      <a
-        style=`mask-image: url(${youtube.src}); -webkit-mask-image: url(${youtube.src})`
-        class="youtube icon"
-        href="https://7rs.dev/yt"
-        title="youtube"
-        target="_blank"
-        rel="noopener noreferrer"></a>
-      <a
-        style=`mask-image: url(${twitter.src}); -webkit-mask-image: url(${twitter.src})`
-        class="twitter icon"
-        href="https://7rs.dev/x"
-        title="twitter"
-        target="_blank"
-        rel="noopener noreferrer"></a>
-      <a
-        style=`mask-image: url(${pinterest.src}); -webkit-mask-image: url(${pinterest.src})`
-        class="pinterest icon"
-        href="https://7rs.dev/p"
-        title="pinterest"
-        target="_blank"
-        rel="noopener noreferrer"></a>
-      <a
-        style=`mask-image: url(${telegram.src}); -webkit-mask-image: url(${telegram.src})`
-        class="telegram icon"
-        href="https://7rs.dev/t"
-        title="telegram"
-        target="_blank"
-        rel="noopener noreferrer"></a>
-      <a
-        style=`mask-image: url(${discord.src}); -webkit-mask-image: url(${discord.src})`
-        class="discord icon"
-        href="https://7rs.dev/d"
-        title="discord"
-        target="_blank"
-        rel="noopener noreferrer"></a>
-    </div>
-    <div class="credits flex-row flex-gap-vertical">
-      <a
-        class="text mono-font"
-        href="https://7rs.dev/repo"
-        title="source code"
-        target="_blank"
-        rel="noopener noreferrer">Source Code</a
-      >
-      <a
-        class="text mono-font"
-        href="https://7rs.dev/gh"
-        title="github"
-        target="_blank"
-        rel="noopener noreferrer">© 2023 Cbrnex</a
-      >
-    </div>
+<footer class="blur-background">
+  <div class={icons_class}>
+    <Icon
+      classes="social-icon youtube"
+      src={youtube.src}
+      href="https://7rs.dev/yt"
+      title="youtube"
+      blank
+    />
+    <Icon
+      classes="social-icon twitter"
+      src={twitter.src}
+      href="https://7rs.dev/x"
+      title="twitter"
+      blank
+    />
+    <Icon
+      classes="social-icon pinterest"
+      src={pinterest.src}
+      href="https://7rs.dev/p"
+      title="pinterest"
+      blank
+    />
+    <Icon
+      classes="social-icon telegram"
+      src={telegram.src}
+      href="https://7rs.dev/t"
+      title="telegram"
+      blank
+    />
+    <Icon
+      classes="social-icon discord"
+      src={discord.src}
+      href="https://7rs.dev/d"
+      title="discord"
+      blank
+    />
   </div>
+  <a
+    class="dark-text-hover mono-font copyright"
+    href="https://7rs.dev/gh"
+    title="github"
+    target="_blank"
+    rel="noopener noreferrer">© 2023 Cbrnex</a
+  >
 </footer>
 
 <style lang="stylus">
-  static-box = 2rem
-
-  footer
-    width 100%
+  tablet-screen = 600px
+  desktop-screen = 1024px
 
   .hideen-icons
     display none
 
-  div
-    &.footer-box
-      padding-bottom static-box * 2
+  .social-icons
+    height 2rem
+    justify-content center
+    // responsive
+    gap 2rem
+    @media (min-width tablet-screen)
+      gap 6rem
+    @media (min-width desktop-screen)
+      gap 8rem
 
-    &.icons, .credits
-      justify-content center
-
-    &.icons>a
-      &.youtube
-        &:hover
-          background rgb(255, 0, 0)
-      &.twitter
-        &:hover
-          background rgba(0, 0, 0, 0.5)
-      &.pinterest
-        &:hover
-          background rgb(189, 8, 28)
-      &.telegram
-        &:hover
-          background rgb(38, 165, 228)
-      &.discord
-        &:hover
-          background rgb(88, 101, 242)
+  mobile-text = 1.2rem
+  tablet-text = 1.7rem
+  desktop-text = 2rem
+  .copyright
+    display block
+    text-decoration none
+    text-align center
+    // responsive
+    font-size mobile-text
+    line-height mobile-text
+    margin-top 1.7rem
+    @media (min-width tablet-screen)
+      font-size tablet-text
+      line-height tablet-text
+      margin-top 3rem
+    @media (min-width desktop-screen)
+      font-size desktop-text
+      line-height desktop-text
+      margin-top 4rem
 </style>

@@ -1,0 +1,26 @@
+---
+export interface Props {
+  classes?: string;
+  src: string;
+  href?: string;
+  title?: string;
+  blank?: boolean;
+}
+const {
+  classes = "icon",
+  src,
+  href = "/",
+  title = "unknown",
+  blank = false,
+} = Astro.props;
+
+const blankString = blank ? "_blank" : "";
+---
+
+<a
+  class={classes}
+  style=`mask-image: url(${src}); -webkit-mask-image: url(${src})`
+  href={href}
+  title={title}
+  target={blankString}
+  rel="noopener noreferrer"></a>

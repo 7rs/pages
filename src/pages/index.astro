@@ -1,6 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import avatar from "@assets/avatar.webp"
+import avatar from "@assets/avatar.webp";
+
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
 ---
 
 <Layout title="Cbrnex">
@@ -12,9 +16,23 @@ import avatar from "@assets/avatar.webp"
       </div>
       <div class="avatar">
         <div class="avatar-layer">
-          <img src={avatar.src} width={avatar.width} height={avatar.height} alt="avatar" />
+          <img
+            src={avatar.src}
+            width={avatar.width}
+            height={avatar.height}
+            alt="avatar"
+          />
         </div>
       </div>
+    </div>
+    <div class="posts flex-col">
+      {
+        posts.map((post) => (
+          <a class="dark-text-hover" href={`/${post.slug}`}>
+            {post.data.title}
+          </a>
+        ))
+      }
     </div>
   </main>
 </Layout>
@@ -86,4 +104,17 @@ import avatar from "@assets/avatar.webp"
     border-radius 100%
     width 100%
     height 100%
+
+  .posts
+    font-family monospace
+    @media (min-width mobile-screen)
+      font-size 1.25rem
+    @media (min-width wide-screen)
+      font-size 2rem
+    @media (min-width desktop-screen)
+      font-size 2.5rem
+
+    a
+      width 100%
+      text-decoration none
 </style>

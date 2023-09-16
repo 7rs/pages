@@ -1,27 +1,34 @@
 ---
-import logo from "@assets/logo.svg"
+import logo from "@assets/logo.svg";
+import links from "@assets/icons/links.svg";
+import tech from "@assets/icons/tech.svg";
 
-import links from "@assets/icons/links.svg"
-import blog from "@assets/icons/blog.svg"
-import tech from "@assets/icons/tech.svg"
+import Icon from "@components/Icon.astro";
 ---
 
-<header>
-  <div class="flex-row box">
-    <a style=`mask-image: url(${logo.src}); -webkit-mask-image: url(${logo.src})` class="static-icon" href="/" title="top"></a>
-    <nav class="flex-row static-flex-gap">
-      <a style=`mask-image: url(${links.src}); -webkit-mask-image: url(${links.src})` class="static-icon" href="/links" title="links"></a>
-      <a style=`mask-image: url(${blog.src}); -webkit-mask-image: url(${blog.src})` class="static-icon" href="/blog" title="blog"></a>
-      <a style=`mask-image: url(${tech.src}); -webkit-mask-image: url(${tech.src})` class="static-icon" href="https://7rs.dev/z" title="tech"></a>
-    </nav>
-  </div>
+<header class="flex-row blur-background">
+  <Icon src={logo.src} title="top" href="/" />
+  <nav class="flex-row">
+    <Icon src={links.src} title="links" href="/links" />
+    <Icon src={tech.src} title="tech" href="https://7rs.dev/z" blank />
+  </nav>
 </header>
 
 <style lang="stylus">
+  mobile-screen = 320px
+  tablet-screen = 600px
+  desktop-screen = 1024px
+
   header
     position fixed
     top 0
     left 0
     z-index 1
-    width 100%
+
+  nav
+    gap 2.25rem
+    @media (min-width tablet-screen)
+      gap 2.5rem
+    @media (min-width desktop-screen)
+      gap 2.5rem
 </style>

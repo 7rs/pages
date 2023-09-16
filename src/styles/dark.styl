@@ -1,39 +1,34 @@
-light-background = rgba(255, 255, 255, 0.5)
-light-item = black
-light-hover = red
-
-dark-background = rgba(0, 0, 0, 0.5)
-dark-item = white
-dark-hover = blue
+white-background = rgba(255, 255, 255, 0.5)
+black-background = rgba(0, 0, 0, 0.5)
 
 .dark-background
-  background light-background
+  background white-background
   @media (prefers-color-scheme dark)
-    background dark-background
+    background black-background
 
 .dark-item
-  background light-item
+  background black
   @media (prefers-color-scheme dark)
-    background dark-item
+    background white
 
 .dark-text
-  color light-item
+  color black
   @media (prefers-color-scheme dark)
-    color dark-item
+    color white
 
 .dark-item-hover
   @extend .dark-item
   &:hover
-    background light-hover
+    background red
     @media (prefers-color-scheme dark)
-      background dark-hover
+      background blue
 
 .dark-text-hover
   @extend .dark-text
   &:hover
-    color light-hover
+    color red
     @media (prefers-color-scheme dark)
-      color dark-hover
+      color blue
 
 bg-blur = 1rem
 .blur-background

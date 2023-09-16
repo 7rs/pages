@@ -1,32 +1,54 @@
 @import "./main"
 
-mobile-main-spacing = 1.75rem
-mobile-header-spacing = ((mobile-box-padding * 2) + static-item) + mobile-main-spacing
-
-tablet-main-spacing = 3.5rem
-tablet-header-spacing = ((tablet-box-padding * 2) + static-item) + tablet-main-spacing
-
 body
   @extend .flex-col
   margin 0
   padding 0
+  width 100%
   min-height 100vh
-
+  // Supports dark mode
   background-color rgba(255, 255, 255, 0.3)
   @media (prefers-color-scheme dark)
     background-color rgba(0, 0, 0, 0.3)
+  // background
   background-image conic-gradient(from 120deg at 40% 10%, rgba(255, 255, 255, 0) 0deg, rgba(255, 0, 128, 0.5) 360deg),
     conic-gradient(from 20deg at 50% 80%, rgba(255, 255, 255, 0) 0deg, rgba(128, 0, 255, 0.49) 360deg),
     conic-gradient(from 250deg at 84% 0%, rgba(255, 255, 255, 0) 0deg, rgba(255, 0, 255, 0.5) 360deg)
 
+mobile-header-padding = 1.1rem
+tablet-header-padding = 1.25rem
+desktop-header-padding = 1rem
+
+header
+  width 90vw
+  padding mobile-header-padding 5vw
+  height mobile-icon
+  @media (min-width tablet-screen)
+    width 95vw
+    padding tablet-header-padding 2.5vw
+    height tablet-icon
+  @media (min-width desktop-screen)
+    width 97vw
+    padding desktop-header-padding 1.5vw
+    height desktop-icon
+  
 main
   @extend .blur-background
-  border-radius 1rem
-  @media (min-width mobile-screen)
-    margin mobile-header-spacing auto mobile-main-spacing
-    padding mobile-main-spacing
-    width 80vw
+  padding 5vw
+  width 90vw
+  min-height 100vh
+  // responsive
+  margin-top mobile-icon + (mobile-header-padding * 2)
   @media (min-width tablet-screen)
-    margin tablet-header-spacing auto tablet-main-spacing
-    padding tablet-main-spacing
-    width 70vw
+    margin-top tablet-icon + (tablet-header-padding * 2)
+  @media (min-width desktop-screen)
+    margin-top desktop-icon + (desktop-header-padding * 2)
+
+footer
+  width 100%
+  //responsive
+  padding 1rem 0 1rem
+  @media (min-width tablet-screen)
+    padding 2rem 0 2rem
+  @media (min-width desktop-screen)
+    padding 2.5rem 0 2.5rem
