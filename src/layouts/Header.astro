@@ -8,27 +8,18 @@ import Icon from "@components/Icon.astro";
 
 <header class="flex-row blur-background">
   <Icon src={logo.src} title="top" href="/" />
-  <nav class="flex-row">
+  <nav class="flex-row header-nav-gap">
     <Icon src={links.src} title="links" href="/links" />
     <Icon src={tech.src} title="tech" href="https://7rs.dev/z" blank />
   </nav>
 </header>
 
 <style lang="stylus">
-  mobile-screen = 320px
   tablet-screen = 600px
-  desktop-screen = 1024px
 
   header
     position fixed
     top 0
     left 0
     z-index 1
-
-  nav
-    gap 2.25rem
-    @media (min-width tablet-screen)
-      gap 2.5rem
-    @media (min-width desktop-screen)
-      gap 2.5rem
 </style>

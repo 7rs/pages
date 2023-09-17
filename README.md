@@ -1,142 +1,91 @@
-[last-commit-badge]: https://img.shields.io/github/last-commit/7rs/pages?color=green  
-[commits-badge]: https://img.shields.io/github/commit-activity/t/7rs/pages?color=green  
-[issues-badge]: https://img.shields.io/github/issues/7rs/pages?color=yellow  
-[closed-issues-badge]: https://img.shields.io/github/issues-closed/7rs/pages?color=green  
-[pr-badge]: https://img.shields.io/github/issues-pr/7rs/pages?color=yellow&label=PR  
-[closed-pr-badge]: https://img.shields.io/github/issues-pr-closed/7rs/pages?color=green&label=PR  
+![banner](https://github.com/7rs/pages/assets/31788262/c86e3ab1-f650-4454-b6ae-2c3315dda3b3)
 
-[license-badge]: https://img.shields.io/github/license/7rs/pages?color=blue  
-[languages-badge]: https://img.shields.io/github/languages/count/7rs/pages?color=blue  
-[contributors-badge]: https://img.shields.io/github/contributors/7rs/pages?color=blue  
+<h1 align="center">
+    <a href="https://7rs.dev">Pages</a>
+</h1>
 
-![][license-badge] ![][languages-badge] ![][contributors-badge] ![][commits-badge] ![][last-commit-badge]  
-![][issues-badge] ![][pr-badge] ![][closed-issues-badge] ![][closed-pr-badge]  
+<p align="center">
+    <b>Pages</b> is a website focused on <b>low cost</b> and <b>the use of modern tools.</b>
+    The only cost is the domain fee.
+    Tools such as Astro, Stylus, and Cloudflare are used.
+</p>
 
+<p align="center">
+    <a href="https://github.com/7rs/pages/blob/main/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/7rs/pages?style=for-the-badge&labelColor=black&color=blue"></a>
+    <a href="https://github.com/7rs/pages/commits/main"><img alt="GitHub commit activity (branch)" src="https://img.shields.io/github/commit-activity/t/7rs/pages?style=for-the-badge&labelColor=black&color=blue"></a>
+    <a href="https://github.com/7rs/pages/commits/main"><img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/7rs/pages/main?style=for-the-badge&label=%20&color=blue"></a>
+    <a href="https://github.com/7rs/pages/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues-raw/7rs/pages?style=for-the-badge&label=issues&labelColor=black&color=red"></a>
+    <a href="https://github.com/7rs/pages/issues?q=is%3Aissue+is%3Aclosed"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed-raw/7rs/pages?style=for-the-badge&label=%20&color=green"></a>
+</p>
 
-# [7rs.dev](https://7rs.dev/)  
+[wtfpl]: http://www.wtfpl.net/about/
+[unsplash]: https://unsplash.com/license
+[ofl]: https://scripts.sil.org/ofl
+[apache]: https://www.apache.org/licenses/LICENSE-2.0
 
+## License
 
-<div>
-    <img src="screenshot/desktop.png" height="320px" />
-    <img src="screenshot/mobile.jpg" height="320px" />
-</div>  
+**Pages** are published under the **WTFPL**. If you use **something that was not created by me,** please **follow its license.** (For example, simpleicons).
 
-### Modern and simple website.
+| License                      | Target             |
+| ---------------------------- | ------------------ |
+| [WTFPL][wtfpl]               | Source code        |
+| [Unsplash License][unsplash] | Wallpapers         |
+| [OFL][ofl]                   | Google Fonts/Icons |
+| [Apache License 2.0][apache] | Google Fonts/Icons |
 
+## Benchmark (Score)
 
-# Benchmark  
+<a href="https://pagespeed.web.dev/"><img src="https://img.shields.io/badge/PageSpeed%20Insights-black?style=for-the-badge&logo=pagespeed-insights&color=black"></a>
 
-![g-d](screenshot/google-desktop.png)  
-![g-m](screenshot/google-mobile.png)
+## Requirement
 
+![Cloudflare Pages](https://img.shields.io/badge/cloudflare%20pages-black?style=for-the-badge&logo=cloudflare-pages)
+![Node.js](https://img.shields.io/badge/Hydrogen-black?style=for-the-badge&logo=node.js&label=Node.js&labelColor=black&color=blue)
+![Astro](https://img.shields.io/node/v/astro?style=for-the-badge&logo=astro&label=Astro&labelColor=black&color=blue)
+![Stylus](https://img.shields.io/node/v/stylus?style=for-the-badge&logo=stylus&label=Stylus&labelColor=black&color=blue)
 
-# Licence  
+[auto]: https://docs.astro.build/en/install/auto/
+[manual]: https://docs.astro.build/install/manual/
 
-Do wtf you wanna use with the favicon and source codes I created.  
-If you use content I ain't created, you've to follow its license.  
+## Installation
 
-| License                                                           | Target               |
-| ----------------------------------------------------------------- | -------------------- |
-| [WTFPL](http://www.wtfpl.net/about/)                              | Source code          |
-| [Unsplash License](https://unsplash.com/license)                  | Images from Unsplash |
-| [OFL](https://scripts.sil.org/ofl)                                | Google Fonts/Icons   |
-| [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) | Google Fonts/Icons   |
+```bash
+git clone git@github.com:7rs/pages.git --depth 1
+# git clone https://github.com/7rs/pages.git --depth 1
 
+cd pages
 
-# Requirement  
+pnpm install astro
+# npm install astro
+# yarn add astro
 
-| Package                                                                                                                                             | Version                                              |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [Astro](https://docs.astro.build/ja/guides/upgrade-to/v2/)                                                                                          | ![node-current](https://img.shields.io/node/v/astro) |
-| [Node.js](https://nodejs.org/en/download/releases)                                                                                                  |                                                      |
-| [Cloudflare Pages (Recommendation)](https://pages.cloudflare.com/)                                                                                  |                                                      |
-| [Node version in Cloudflare (How to)](https://developers.cloudflare.com/pages/framework-guides/deploy-a-hexo-site/#using-a-specific-nodejs-version) |                                                      |
-| [Porkbun (Recommendation)](https://porkbun.com/)                                                                                                    |                                                      |
-| [pnpm (Recommendation)](https://pnpm.io/)                                                                                                           | ![node-current](https://img.shields.io/node/v/pnpm)  |
-| [fnm (Recommendation)](https://fnm.vercel.app/)                                                                                                     |                                                      |
+pnpm run dev
+# npm run dev
+# yarn run dev
+```
 
+- [Install Astro with the Automatic CLI][auto]
+- [Install Astro manually][manual]
 
-# Usage / Installation  
-`Require` Screen capture (GIF)  
+## Information
 
-```bash  
-git clone git@github.com:7rs/pages.git  
-# HTTPS: git clone https://github.com/7rs/pages.git  
-# "--depth 1" option for faster speed  
+- [Google Fonts](https://fonts.google.com/)
+- [Google Icons](https://fonts.google.com/icons)
+- [Simple Icons](https://simpleicons.org/)
+- [Unsplash](https://unsplash.com/)
+- [Can I use?](https://caniuse.com/)
+- [SVGOMG](https://jakearchibald.github.io/svgomg/)
+- [Cloudflare Pages](https://pages.cloudflare.com/)
+- [Google Search Console](https://search.google.com/search-console)
+- [Porkbun](https://porkbun.com/)
 
-pnpm install astro  
-pnpm run dev  
-```  
+[deepl]: https://deepl.com/
 
+## Contributing
 
-# Documentation  
+Please use **Japanese** or **English**. If using them is difficult for you, I recommend using [DeepL][deepl].
 
-| Title/Name | About/Comment |
-| ---------- | ------------- |
-| [Astro Docs](https://docs.astro.build/en/getting-started/) | Astro |
-| [MDN HTML](https://developer.mozilla.org/docs/Web/HTML) | HTML |
-| [MDN CSS](https://developer.mozilla.org/docs/Web/CSS) | CSS |
-| [MDN JavaScript](https://developer.mozilla.org/docs/Web/JavaScript) | JavaScript |
-| [Stylus](https://stylus-lang.com/docs/executable.html) | Stylus |
-| [Can I use](https://caniuse.com/) | Support tables |
-| [Cloudflare Docs](https://developers.cloudflare.com/pages/) | Cloudflare pages, etc. |
-| [Porkbun Knowledge Base](https://kb.porkbun.com/) | Porkbun, etc. |
+## Other
 
-
-# Reference / Resource  
-
-| Title/Name                                              | About/Comment |
-| ------------------------------------------------------- | ------------- |
-| [Material Design Colors](https://materialui.co/colors/) | Good colors   |
-| [Google Fonts](https://fonts.google.com/)               | Fonts         |
-| [Google Icons](https://fonts.google.com/icons)          | Icons         |
-| [Simple Icons](https://simpleicons.org/)                | Brand icons   |
-| [Unsplash](https://unsplash.com/)                       | Wallpapers    |
-
-
-# Contributing  
-`Require` Add contributing.md  
-
-Please see our ~~contributing.md~~.  
-Plaese use English or Japanese.  
-
-
-# Author  
-
-- [Cbrnex/7rs](https://github.com/7rs)  
-
-
-# Tools (recommendation)  
-
-| Name                                                            | About/Comment                                             | Platform           |
-| --------------------------------------------------------------- | --------------------------------------------------------- | ------------------ |
-| [VSCode (Most used?)](https://code.visualstudio.com/)           | IDE/Editor                                                | X                  |
-| [VSCodium](https://vscodium.com/)                               | VSCode without Microsoft. Can't use microsoft extensions. | X                  |
-| Atom                                                            | Repository has been archived.                             | X                  |
-| [Sublime Text](https://www.sublimetext.com/)                    | Fast Editor                                               | X                  |
-| [Neovim](https://neovim.io/)                                    | CUI Editor                                                | CLI                |
-| Vim                                                             | built-in?                                                 | CLI                |
-| vi                                                              | built-in?                                                 | CLI                |
-| [EditorConfig](https://editorconfig.org/)                       | Coding Ruler                                              | X                  |
-| [FireFox](https://www.mozilla.org/firefox/browsers/)            | Fast and OSS browser                                      | X                  |
-| [Chrome (Most used)](https://www.google.com/intl/en_us/chrome/) | Google's browser                                          | X                  |
-| Safari                                                          | built-in                                                  | iOS, iPadOS, MacOS |
-| Edge                                                            | built-in                                                  | X                  |
-| [Bromite](https://www.bromite.org/)                             | Chromium fork with ad blocking and enhanced privacy       | Android            |
-| [Alacritty](https://alacritty.org/)                             | Fast Terminal                                             | X                  |
-| [iTerm2](https://iterm2.com/)                                   | Terminal for beginners                                    | MacOS              |
-| Terminal.app                                                    | built-in                                                  | MacOS              |
-| Powershell                                                      | built-in                                                  | Windows            |
-| [Termux](https://termux.dev/en/)                                | Terminal emulator and Linux environment app               | Android            |
-| [Fish](https://fishshell.com/)                                  | Fast and awesome shell                                    | CLI                |
-| Bash                                                            | built-in (Mac OS, Linux)                                  | CLI                |
-| Zsh                                                             | built-in (Mac OS)                                         | CLI                |
-| [Starship](https://starship.rs/)                                | Awesome prompt                                            | CLI                |
-| [FFmpeg](https://www.ffmpeg.org/)                               | Video editor in CLI (Supports image, audio)               | CLI                |
-| [sharp-cli](https://github.com/vseventer/sharp-cli)             | Image compressor                                          | CLI                |
-| [Squoosh](https://squoosh.app/)                                 | Webapp. Image Compressor. (no longer actively maintained) | Browser            |
-
-
-# Other  
-
-- [stackshare](https://stackshare.io/7rs/my-site)  
+`Author:` [Cbrnex](https://github.com/7rs)

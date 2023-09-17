@@ -14,13 +14,23 @@ const {
   blank = false,
 } = Astro.props;
 
-const blankString = blank ? "_blank" : "";
+const iconURL = `url(${src})`
 ---
 
-<a
-  class={classes}
-  style=`mask-image: url(${src}); -webkit-mask-image: url(${src})`
-  href={href}
-  title={title}
-  target={blankString}
-  rel="noopener noreferrer"></a>
+{
+  blank ?
+    <a class={classes}
+       href={href}
+       title={title}
+       target="_blank"
+       rel="noopener noreferrer"></a>
+  :
+  <a class={classes}
+     href={href}
+     title={title}></a>
+}
+<style lang="stylus" define:vars={{iconURL}}>
+  a
+    mask-image mask-image var(--iconURL)
+    -webkit-mask-image var(--iconURL)
+</style>

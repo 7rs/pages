@@ -4,26 +4,17 @@ desktop-screen = 1024px
 
 mobile-icon = 2rem
 tablet-icon = 2rem
-desktop-icon = 2rem
 .icon
   @extend .dark-item-hover
   mask-size 100%
   mask-repeat no-repeat
   -webkit-mask-size 100%
   -webkit-mask-repeat no-repeat
-  // responsive
   width mobile-icon
   height mobile-icon
-  // @media (min-width tablet-screen)
-  //   width tablet-icon
-  //   height tablet-icon
-  // @media (min-width desktop-screen)
-  //   width desktop-icon
-  //   height desktop-icon
 
 mobile-social-icon = 1.5rem
 tablet-social-icon = 2rem
-desktop-social-icon = 2.25rem
 .social-icon
   @extend .dark-item-hover
   width mobile-social-icon
@@ -31,9 +22,6 @@ desktop-social-icon = 2.25rem
   @media (min-width tablet-screen)
     width tablet-social-icon
     height tablet-social-icon
-  @media (min-width desktop-screen)
-    width desktop-social-icon
-    height desktop-social-icon
 
 .youtube:hover
     background rgb(255, 0, 0)

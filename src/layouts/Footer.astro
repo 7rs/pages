@@ -8,12 +8,13 @@ import discord from "@assets/brand-icons/discord.svg";
 import Icon from "@components/Icon.astro";
 
 export interface Props {
-  icons?: string;
+  hiddenIcons?: boolean;
 }
 
-const { icons = "true" } = Astro.props;
+const {hiddenIcons = false} = Astro.props;
+
 let icons_class = "flex-row social-icons";
-if (icons === "false") {
+if (hiddenIcons) {
   icons_class = "hideen-icons";
 }
 ---
@@ -78,13 +79,10 @@ if (icons === "false") {
     // responsive
     gap 2rem
     @media (min-width tablet-screen)
-      gap 6rem
-    @media (min-width desktop-screen)
-      gap 8rem
+      gap 4.5rem
 
-  mobile-text = 1.2rem
-  tablet-text = 1.7rem
-  desktop-text = 2rem
+  mobile-text = 1rem
+  tablet-text = 1.25rem
   .copyright
     display block
     text-decoration none
@@ -97,8 +95,4 @@ if (icons === "false") {
       font-size tablet-text
       line-height tablet-text
       margin-top 3rem
-    @media (min-width desktop-screen)
-      font-size desktop-text
-      line-height desktop-text
-      margin-top 4rem
 </style>
