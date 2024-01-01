@@ -30,6 +30,8 @@ const className = colored ? "colored" : "colorless";
 
   .colored
     hoverable(colors.link-colored)
+    @media (prefers-color-scheme dark)
+      hoverable(colors.dark.link-colored)
 
   .colorless
     hoverable(colors.link)

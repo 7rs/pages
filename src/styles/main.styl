@@ -5,6 +5,7 @@
   padding 0
 
 body
+  z-index -1
   min-height 100vh
   display flex
   flex-direction column
@@ -47,6 +48,8 @@ p, em, del, u, li, table
   sans(1rem, 1.5rem)
   a
     hoverable(colors.link-colored)
+    @media (prefers-color-scheme dark)
+      hoverable(colors.dark.link-colored)
 
 h1
   sans(2rem, 2rem)
