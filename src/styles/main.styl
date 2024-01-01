@@ -1,26 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Fira+Code&display=swap');
-@import "dark"
-@import "responsive"
+@import "../styles/api.styl"
 
-.mono-font
-  font-family "Fira Code", monospace
+*
+  margin 0
+  padding 0
 
-.bitching-font
-  font-family "Cinzel Decorative", Garamond, "Times New Roman", Georgia, serif
-
-.flex-row 
+body
+  min-height 100vh
   display flex
-  justify-content space-between
-  align-items center
-
-.flex-row-reverse
-  @extend .flex-row
-  flex-direction row-reverse
-
-.flex-col
-  @extend .flex-row
   flex-direction column
+  justify-content space-between
+  background colors.background
+  @media (prefers-color-scheme dark)
+    background colors.dark.background
 
-.flex-col-reverse
-  @extend .flex-row
-  flex-direction column-reverse
+header, main, footer
+  box-sizing border-box
+  -moz-box-sizing border-box
+  max-width 100vw
+  width 100vw
+
+header, footer
+  padding 0 1rem
+
+main
+  padding 1rem
+
+header, footer
+  background-blur(1rem)
+  z-index 1
+  background colors.widget
+  @media (prefers-color-scheme dark)
+    background colors.dark.widget
+
+main
+  margin 5rem auto
+  box-sizing border-box
+  @media screen and (min-width widths.large)
+    width 900px
+
+p, h1, h2, h3, h4, h5, h6, li
+  color colors.text
+  @media (prefers-color-scheme dark)
+    color colors.dark.text
+
+p, em, del, u, li, table
+  sans(1rem, 1.5rem)
+  a
+    hoverable(colors.link-colored)
+
+h1
+  sans(2rem, 2rem)
+
+h2, h3
+  sans(1.5rem, 2rem)
+
+h4
+  sans(1.25rem, 1.5rem)
+
+h5
+  sans(1.1rem, 1.5rem)
+
+h6
+  sans(1rem, 1rem)

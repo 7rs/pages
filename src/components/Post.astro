@@ -1,0 +1,31 @@
+---
+export interface Props {
+  slug: string;
+  title: string;
+}
+
+const { slug, title } = Astro.props;
+---
+
+<a href=`/${slug}`>
+  <article>
+    <h1>{title}</h1>
+  </article>
+</a>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  article
+    border-radius 1rem
+    padding 1rem
+    // For responsive
+    background colors.widget
+    @media (prefers-color-scheme dark)
+      background colors.dark.widget
+
+    &:hover
+      background rgba(colors.widget-hovered, 0.2)
+      @media (prefers-color-scheme dark)
+        background rgba(colors.dark.widget-hovered, 0.2)
+</style>

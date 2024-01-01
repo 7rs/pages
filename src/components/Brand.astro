@@ -1,0 +1,47 @@
+---
+import logo from "@assets/logo.svg";
+
+const iconURL = `url(${logo.src})`;
+---
+
+<a href="/">
+  <div>
+    <div></div>
+    <h1>pAges</h1>
+  </div>
+</a>
+
+<style lang="stylus" define:vars={{iconURL}}>
+  @import "../styles/api.styl"
+
+  div
+    display flex
+    align-items center
+    gap 0.5rem
+
+    div
+      display block
+      mask-image var(--iconURL)
+      -webkit-mask-image var(--iconURL)
+      // For dark mode
+      background colors.icon
+      @media (prefers-color-scheme dark)
+        background colors.dark.icon
+
+  div > div, h1
+    // For responsive
+    width heights.icon.small
+    height heights.icon.small
+    @media screen and (min-width widths.large)
+      width heights.icon.large
+      height heights.icon.large
+
+  a
+    text-decoration none
+
+  h1
+    deco(item-height, brand-height)
+    color colors.text
+    @media (prefers-color-scheme dark)
+      color colors.dark.text
+</style>

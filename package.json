@@ -7,13 +7,25 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write . --plugin=prettier-plugin-astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.19.7",
+    "@astrojs/mdx": "^2.0.3",
     "@webcomponents/template-shadowroot": "^0.2.1",
-    "astro": "^3.0.12",
-    "astro-compress": "^2.0.5",
+    "astro": "^4.0.8",
+    "astro-compress": "^2.2.5",
+    "astro-purgecss": "^4.0.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "postcss-preset-env": "^9.3.0",
+    "purgecss": "^5.0.0",
     "stylus": "^0.59.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "prettier": "^3.1.1",
+    "prettier-plugin-astro": "^0.12.3",
+    "prettier-plugin-stylus": "^0.1.0"
   }
 }

@@ -1,217 +1,65 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import avatar from "@assets/avatar.webp";
-
-// import NoLinkIcon from "@components/NoLinkIcon.astro"
-import youtube from "@assets/brand-icons/youtube.svg";
-import twitter from "@assets/brand-icons/twitter.svg";
-import pinterest from "@assets/brand-icons/pinterest.svg";
-import telegram from "@assets/brand-icons/telegram.svg";
-import discord from "@assets/brand-icons/discord.svg";
-
 import { getCollection } from "astro:content";
+
+import Layout from "@layouts/Layout.astro";
+
+import Repository from "@components/Repository.astro";
+import Profile from "@components/Profile.astro";
+import Post from "@components/Post.astro";
+
+import gear from "@assets/repo-icons/gear.svg";
+import tools from "@assets/repo-icons/tools.svg";
+import fileDirectory from "@assets/repo-icons/file-directory.svg";
+import packageIcon from "@assets/repo-icons/package.svg";
+import mortarBoard from "@assets/repo-icons/mortar-board.svg";
+import typography from "@assets/repo-icons/typography.svg";
 
 const posts = await getCollection("blog");
 ---
 
-<Layout title="Cbrnex" hiddenIcons>
-  <main>
-    <div class="flex-col profile-card">
-      <img class="avatar" src={avatar.src} />
-      <p class="name bitching-font">cBrNeX</p>
-      <p class="bio mono-font">Cbrnex is always here.</p>
-    </div>
-    <div class="flex-col social-list">
-      <a class="flex-row social-item" href="https://7rs.dev/yt">
-        <div
-          class="list-icon youtube-icon"
-          style=`mask-image: url(${youtube.src}); -webkit-mask-image: url(${youtube.src})`
-        >
-        </div>
-        <p class="list-label mono-font">YouTube</p>
-      </a>
-      <a class="flex-row social-item" href="https://7rs.dev/x">
-        <div
-          class="list-icon twitter-icon"
-          style=`mask-image: url(${twitter.src}); -webkit-mask-image: url(${twitter.src})`
-        >
-        </div>
-        <p class="list-label mono-font">Twitter (X)</p>
-      </a>
-      <a class="flex-row social-item" href="https://7rs.dev/p">
-        <div
-          class="list-icon pinterest-icon"
-          style=`mask-image: url(${pinterest.src}); -webkit-mask-image: url(${pinterest.src})`
-        >
-        </div>
-        <p class="list-label mono-font">Pinterest</p>
-      </a>
-      <a class="flex-row social-item" href="https://7rs.dev/t">
-        <div
-          class="list-icon telegram-icon"
-          style=`mask-image: url(${telegram.src}); -webkit-mask-image: url(${telegram.src})`
-        >
-        </div>
-        <p class="list-label mono-font">Telegram</p>
-      </a>
-      <a class="flex-row social-item" href="https://7rs.dev/d">
-        <div
-          class="list-icon discord-icon"
-          style=`mask-image: url(${discord.src}); -webkit-mask-image: url(${discord.src})`
-        >
-        </div>
-        <p class="list-label mono-font">Discord</p>
-      </a>
-    </div>
-    <div class="flex-col posts">
-      {
-        posts.map((post) => (
-          <a class="dark-text-hover" href={`/${post.slug}`}>
-            {post.data.title}
-          </a>
-        ))
-      }
-    </div>
-  </main>
+<Layout title="Main Page">
+  <Profile />
+  <section class="repositories">
+    <Repository url="https://github.com/7rs/pages" src={gear.src} license="WTFPL" lang="astro">
+      Fast and simple design website.
+    </Repository>
+    <Repository url="https://github.com/7rs/parfait" src={tools.src} lang="lua">A fork of SM64 Lua Redux.</Repository>
+    <Repository url="https://github.com/7rs/sm64tas" src={fileDirectory.src} license="WTFPL">
+      An archive for publication and storage TASing files.
+    </Repository>
+    <Repository url="https://github.com/7rs/line4py" src={packageIcon.src} license="WTFPL" lang="python">
+      An closed LINE API for Python.
+    </Repository>
+    <Repository url="https://github.com/7rs/line" src={mortarBoard.src} license="WTFPL" lang="thrift">
+      A repository for collection closed LINE api information and publishing thrift files.
+    </Repository>
+    <Repository url="https://github.com/7rs/legible-fonts" src={typography.src} license="OFL v1.1" lang="python">
+      A Legible monospace fonts for engineers.
+    </Repository>
+  </section>
+  <section class="posts">
+    {posts.map((post) => !post.slug.startsWith("_") && <Post slug={post.slug} title={post.data.title} />)}
+  </section>
 </Layout>
 
 <style lang="stylus">
-  mobile-screen = 320px
-  tablet-screen = 600px
-  desktop-screen = 1024px
+  @import "../styles/api.styl"
 
-  .profile-card
-    @media (min-width tablet-screen)
-      margin auto
-      display grid
-      grid-template-rows 3fr 2fr
-      grid-template-columns 2fr 1fr
-      gap 0 1rem
+  .repositories
+    margin 3rem auto
+    display grid
+    gap 1rem
+    justify-content center
+    @media screen and (min-width widths.medium)
+      grid-template-columns repeat(2, 1fr)
       width 30rem
-    @media (min-width desktop-screen)
-      width 50rem
-
-  .avatar
-    width 10rem
-    border-radius 100%
-    @media (min-width tablet-screen)
-      grid-area 1 / 2 / -1 / -1
-      width 11rem
-    @media (min-width desktop-screen)
-      width 15rem
-
-  .name
-    font-size 2.5rem
-    margin 0.7rem 0 0
-    @media (min-width tablet-screen)
-      margin 0
-      grid-area 1 / 1 / 1 / 2
-      align-self end
-      font-size 3rem
-    @media (min-width desktop-screen)
-      font-size 4rem
-
-  .bio
-    font-size 1.25rem
-    margin 0
-    @media (min-width tablet-screen)
-      grid-area 2 / 1 / 2 / 2
-      align-self start
-      font-size 1.2rem
-    @media (min-width desktop-screen)
-      font-size 1.7rem
-
-  .name, .bio
-    text-align center
-    color black
-    @media (prefers-color-scheme dark)
-      color white
-
-  .social-list
-    margin 3rem auto 0
-    width 12.5rem
-    gap 0.7rem
-    @media (min-width tablet-screen)
-      width 25rem
       gap 1rem
-    @media (min-width desktop-screen)
-      width 35rem
-
-  mobile-item-height = 2rem
-  tablet-item-height = 2.5rem
-  desktop-item-height = 3rem
-  .social-item
-    width 100%
-    justify-content space-between
-    text-decoration none
-    border-radius 1rem
-    padding 0 1rem
-    // responsive
-    height mobile-item-height
-    @media (min-width tablet-screen)
-      height tablet-item-height
-    @media (min-width desktop-screen)
-      height desktop-item-height
-    // darkmode
-    background rgba(255, 255, 255, 0.2)
-    @media (prefers-color-scheme dark)
-      background rgba(0, 0, 0 0.2)
-    &:hover
-      background rgba(0, 0, 0, 0.3)
-      @media (prefers-color-scheme dark)
-        background rgba(255, 255 255, 0.3)
-
-  mobile-icon = 1.25rem
-  tablet-icon = 1.5rem
-  desktop-icon = 2rem
-  .list-icon
-    width mobile-icon
-    height mobile-icon
-    @media (min-width tablet-screen)
-      width tablet-icon
-      height tablet-icon
-    @media (min-width desktop-screen)
-      width desktop-icon
-      height desktop-icon
-
-  .youtube-icon
-    background rgb(255, 0, 0)
-  .twitter-icon
-    background rgb(0, 0, 0)
-    @media (prefers-color-scheme dark)
-      background rgb(255, 255, 255)
-  .pinterest-icon
-    background rgb(189, 8, 28)
-  .telegram-icon
-    background rgb(38, 165, 228)
-  .discord-icon
-    background rgb(88, 101, 242)
-
-  mobile-label = 1rem
-  tablet-label = 1.5rem
-  desktop-label = 1.75rem
-  .list-label
-    text-align center
-    flex-grow 1
-    margin 0
-    line-height mobile-item-height
-    font-size mobile-label
-    @media (min-width tablet-screen)
-      line-height tablet-item-height
-      font-size tablet-label
-    @media (min-width desktop-screen)
-      line-height desktop-item-height
-      font-size desktop-label
-    // darkmode
-    color black
-    @media (prefers-color-scheme dark)
-      color white
+    @media screen and (min-width widths.large)
+      grid-template-columns repeat(3, 1fr)
+      width 45rem
 
   .posts
-    margin 3rem auto 0
-
-  .posts>a
-    text-decoration none
-    font-size 2rem
-
+    display flex
+    gap 1rem
+    flex-direction column
 </style>

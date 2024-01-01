@@ -7,6 +7,7 @@ max_line_length = 120
 charset = utf-8
 end_of_line = lf
 insert_final_newline = true
+trim_trailing_whitespace = false
 
 [*.astro, *.ts, *.mjs *.html *.css *.styl]
 charset = utf-8

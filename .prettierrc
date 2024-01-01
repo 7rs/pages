@@ -1,0 +1,32 @@
+{
+    "plugins": ["prettier-plugin-astro", "prettier-plugin-stylus"],
+    "astroAllowShorthand": false,
+    "printWidth": 120,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": false,
+    "endOfLine": "lf",
+    "options.editorconfig": true,
+    "overrides": [
+        {
+            "files": ".prettierrc",
+            "options": {
+                "parser": "json",
+                "tabWidth": 4
+            }
+        },
+        {
+            "files": "*.astro",
+            "options": {
+                "parser": "astro"
+            }
+        },
+        {
+            "files": "*.styl",
+            "options": {
+                "parser": "stylus"
+            }
+        }
+    ]
+}

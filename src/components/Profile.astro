@@ -1,0 +1,86 @@
+---
+import avatar from "@assets/avatar.webp";
+---
+
+<article>
+  <img class="avatar" src={avatar.src} />
+  <h1 class="name">CbrneX</h1>
+  <p class="bio">
+    I'm Japanese student and a SM64 Romhack TASer. <br />
+    The name "Cbrnex" comes from <a
+      href="https://simple.wikipedia.org/wiki/CBRNE"
+      target="_blank"
+      rel="noopener noreferrer">CBRNE</a
+    >.
+  </p>
+</article>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  gap = {
+    small: 1rem 0,
+    large: 0.25rem 2rem,
+    largest: 0.5rem 2rem,
+  }
+
+  sizes = {
+    name: {
+      small: 2.5rem,
+      largest: 3.5rem,
+    },
+    bio: {
+      small: 1rem,
+      largest: 1.25rem,
+    },
+    avatar: {
+      small: 10rem,
+      largest: 12.5rem,
+    },
+  }
+
+  article
+    margin auto
+    display grid
+    justify-items center
+    gap gap.small
+    grid-template-areas \
+      "avatar" \
+      "name" \
+      "bio";
+    @media screen and (min-width widths.large)
+      gap gap.large
+      grid-template-rows repeat(2, 1fr)
+      grid-template-columns 2fr 3fr
+      grid-template-areas \
+        "avatar name" \
+        "avatar bio";
+
+  img
+    grid-area avatar
+    border-radius 100%
+    width sizes.avatar.small
+    height sizes.avatar.small
+    @media screen and (min-width widths.large)
+      justify-self flex-end
+
+  h1, p
+    text-align center
+    width 16rem
+    @media screen and (min-width widths.medium)
+      width 25rem
+    @media screen and (min-width widths.large)
+      justify-self flex-start
+
+  h1
+    deco(sizes.name.small, sizes.name.small)
+    grid-area name
+    @media screen and (min-width widths.large)
+      align-self flex-end
+
+  p
+    grid-area bio
+    sans(sizes.bio.small, sizes.bio.small + 0.5rem)
+    @media screen and (min-width widths.large)
+      align-self flex-start
+</style>

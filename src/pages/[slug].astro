@@ -1,7 +1,8 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
-import Markdown from "../layouts/Markdown.astro";
+
+import "@styles/md.styl"
 
 type Props = {
   entry: CollectionEntry<"blog">;

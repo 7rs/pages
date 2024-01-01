@@ -1,0 +1,109 @@
+/*
+Tailwind CSS (https://tailwindcss.com/docs/responsive-design)
+  - 640px
+  - 768px
+  - 1024px
+  - 1280px
+  - 1536px
+
+Bulma (https://bulma.io/documentation/overview/responsiveness/)
+  - 768px
+  - 1024px
+  - 1408px
+
+Bootstrap (https://getbootstrap.com/docs/5.3/layout/breakpoints)
+  - 576px
+  - 768px
+  - 992px
+  - 1200px
+  - 1400px
+
+Widths less than 320px and more than 1200px are not supported.
+*/
+widths = {  
+  small: 300px
+  medium: 600px
+  large: 900px
+  largest: 1200px
+}
+
+heights = {
+  header: {
+    small: 3rem,
+  },
+  icon: {
+    small: 1.7rem,
+    large: 2rem,
+  }
+}
+
+colors = {
+  link-colored: rgba(0, 0, 255, 1.0),
+  link-hovered-alpha: 0.5,
+  // @media (prefers-color-scheme light)
+  background: rgb(248, 248, 255),
+  widget: rgba(255, 255, 255, 0.7),
+  widget-hovered: rgb(0, 0, 0),
+  text: rgb(0, 0, 0),
+  link: rgb(0, 0, 0),
+  icon: rgb(0, 0, 0),
+  border: rgba(0, 0, 0, 0.5),
+  // @media (prefers-color-scheme dark)
+  dark: {
+    background: rgb(32, 32, 48),
+    widget: rgba(0, 0, 0, 0.7),
+    widget-hovered: rgb(255, 255, 255),
+    text: rgb(255, 255, 255),
+    link: rgb(255, 255, 255),
+    icon: rgb(255, 255, 255),
+    border: rgba(255, 255, 255, 0.5),
+  }
+}
+
+// https://www.w3schools.com/cssref/css_websafe_fonts.php
+sans-alternates = "Trebuchet MS", Verdana, Arial, sans-serif
+serif-alternates = "Times New Roman", "Georgia", "Garamond", serif
+mono-alternates = "Courier New", monospace
+
+// https://fonts.google.com/?preview.size=24&subset=latin
+fonts = {
+  sans: "Fira Sans",
+  mono: "Fira Code",
+  deco: "Cinzel Decorative",
+}
+
+// https://fonts.google.com/?preview.size=24&subset=japanese
+cjkfonts = {
+  sans: "BIZ UDGothic",
+  serif: "BIZ UDPMincho",
+  mono: "BIZ UDGothic",
+}
+
+bg-color = rgba(248, 248, 255, 1.0)
+section-color = rgba(255, 255, 255, 0.7)
+
+brand-height = 2rem
+item-height = 1.7rem
+
+sans(size, height)
+  font size/height fonts.sans, cjkfonts.sans, sans-alternates
+
+serif(size, height)
+  font size/height cjkfonts.serif, serif-alternates
+
+deco(size, height)
+  font size/height fonts.deco, cjkfonts.serif, serif-alternates
+
+mono(size, height)
+  font size/height fonts.mono, cjkfonts.mono, mono-alternates
+
+background-blur(strength)
+  backdrop-filter blur(strength)
+  -webkit-backdrop-filter blur(strength)
+
+hoverable(_color)
+  color _color
+  text-decoration none
+  &:hover
+    color rgba(_color, colors.link-hovered-alpha)
+    text-decoration underline

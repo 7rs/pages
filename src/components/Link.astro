@@ -1,0 +1,38 @@
+---
+export interface Props {
+  href?: string;
+  label?: string;
+  current?: boolean;
+  colored?: boolean;
+}
+
+const { href = "", label, current = false, colored = false } = Astro.props;
+const className = colored ? "colored" : "colorless";
+---
+
+{
+  current ? (
+    <a class={className} href={href} title={label}>
+      {label || <slot />}
+    </a>
+  ) : (
+    <a class={className} href={href} title={label} target="_blank" rel="noopener noreferrer">
+      {label || <slot />}
+    </a>
+  )
+}
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  a
+    sans(1.2rem, 1.5rem)
+
+  .colored
+    hoverable(colors.link-colored)
+
+  .colorless
+    hoverable(colors.link)
+    @media (prefers-color-scheme dark)
+      hoverable(colors.dark.link)
+</style>

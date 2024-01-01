@@ -1,36 +1,51 @@
 ---
 export interface Props {
-  classes?: string;
   src: string;
   href?: string;
   title?: string;
-  blank?: boolean;
+  current?: boolean;
 }
-const {
-  classes = "icon",
-  src,
-  href = "/",
-  title = "unknown",
-  blank = false,
-} = Astro.props;
 
-const iconURL = `url(${src})`
+const { src, href = "", title = "unknown", current = false } = Astro.props;
+
+const iconURL = `url(${src})`;
 ---
 
 {
-  blank ?
-    <a class={classes}
-       href={href}
-       title={title}
-       target="_blank"
-       rel="noopener noreferrer"></a>
-  :
-  <a class={classes}
-     href={href}
-     title={title}></a>
+  href ? (
+    current ? (
+      <a href={href} title={title}>
+        <div />
+      </a>
+    ) : (
+      <a href={href} title={title} target="_blank" rel="noopener noreferrer">
+        <div />
+      </a>
+    )
+  ) : (
+    <div />
+  )
 }
+
 <style lang="stylus" define:vars={{iconURL}}>
-  a
-    mask-image mask-image var(--iconURL)
+  @import "../styles/api.styl"
+
+  div
+    mask-image var(--iconURL)
     -webkit-mask-image var(--iconURL)
+    // For responsive
+    width heights.icon.small
+    height heights.icon.small
+    @media screen and (min-width widths.large)
+      width heights.icon.large
+      height heights.icon.large
+    // For dark mode
+    background colors.icon
+    @media (prefers-color-scheme dark)
+      background colors.dark.icon
+
+    &:hover
+      background rgba(colors.icon, 0.5)
+      @media (prefers-color-scheme dark)
+        background rgba(colors.dark.icon, 0.5)
 </style>

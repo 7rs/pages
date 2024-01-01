@@ -1,88 +1,82 @@
 ---
-layout: ../../layouts/Markdown.astro
-title: こんにちは！
+layout: ../../layouts/Layout.astro
+title: Who is Cbrnex?
 tags: [profile]
 slug: "0"
 ---
 
-こんにちは！まんじです。  
-私についてお話することは特にありませんので、このサイトの作成過程などを記します。  
+## ご挨拶
+
+  こんにちは！Cbrnexです。私について書きます。  
 
 
-## Astro  
+# 何者?  
 
-##### [Astroを選ぶ理由](https://docs.astro.build/ja/concepts/why-astro/)  
-> *__他のフレームワークでは不可能な機能__ を提供している点です。*
-*__何もせずとも驚くようなWebパフォーマンス__ を発揮することができるのです。*
-*私たちの目標は、Astroを使えば、 __遅いウェブサイトを作るのはほぼ不可能__ になることです。*  
-*Astroは、クライアントサイドのレンダリングよりも __サーバーサイドのレンダリングを可能な限り活用__ します。*  
+[cbrne]: https://ja.wikipedia.org/wiki/CBRNE
+[acronym]: https://ja.wikipedia.org/wiki/%E9%A0%AD%E5%AD%97%E8%AA%9E  
+[h-kenkreuz]: https://ja.wikipedia.org/wiki/%E3%83%8F%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%AF%E3%83%AD%E3%82%A4%E3%83%84  
+## 名前は?  
 
-要約すると __簡単に高速なWebサイトが作れる__ みたいです。  
-__Nuxt/Next等はSPA__ と呼ばれ、基本的には __クライアント側でレンダリング__ が行われ、  
-__WordPress, Laravel, Rails等はMPA__ と呼ばれ、基本的には __サーバー側でレンダリングされ送られるのはHTMLとCSSのみ__ らしい。  
+  Cbrnexがよく使う名前です。[CBRNE][cbrne]という、
+  - 化学 (Chemical)  
+  - 生物 (Biological)  
+  - 放射性物質 (Radiological)  
+  - 核 (Nuclear)  
+  - 爆発物 (Explosive)  
+  の[アクロニム][acronym]に由来します。  
 
-既にリポジトリを削除しているので正確には分かりませんが、以前Nuxt.jsを使ったことがあります。  
-~~地道にHTMLとCSS, JSをクソみたいなエディタで書く時代が終わった~~のは知っていましたが、更に一歩進んだようですね。  
-再びフロンドエンドに挑戦しようと、Next.jsについて調べていました。  
-すると、Astroというフレームワークがあることを知って、というのが経緯です。  
+  > [CBRNE - Wikipedia][cbrne]  
 
+  また、IDとして7rsという名前を使うこともあります。これはIDをなるべく短くしたいからです。なので、IDは7rsだけど表示名はCbrnexということがよくあります。7は誕生日に、rは昔使っていたRynon(rainon, らいのん, 雷音)に、sは昔使っていたSRSUという名前に由来します。また、よくまんじと呼ばれています。が、呼ばれることは多いものの表示名として使うことはほぼないです（海外では[ナチスのハxケンクロイツ][h-kenkreuz]と区別されないので、Swa*tikaと書いても認められないのです）。  
 
-## Porkbun  
+  > - [卍 - Wikipedia](https://ja.wikipedia.org/wiki/%E5%8D%8D)  
+  > - [Meaning of Swastika Symbol In Japan vs. The West #shorts](https://youtu.be/Di4pA8-gBY0)  
+  > - [Why Are There Swastikas In Japan?](https://www.tofugu.com/japan/japanese-swastika/)  
+  > - [The Past, Present, and Future of the Swastika in Japan](https://www.asianstudies.org/publications/eaa/archives/the-past-present-and-future-of-the-swastika-in-japan/)  
 
-Google Domainsでドメインを探していたのですが、どうやらサ終するようで。  
-そこでCloudflareがドメインを原価で売っているという情報を入手。  
-そのとき、サイトはCloudflare Pagesで作ることを予定していました。(~~勝手にGitHub Pagesはもう一番手でもないだろうと思っていただけですが~~)  
-全部Cloudflareなら楽じゃん！と思ってましたが、どうやら.devには対応していないらしい。。。  
-
-- [Request Cloudflair Registrar To Support .Dev Domain](https://community.cloudflare.com/t/request-cloudflair-registrar-to-support-dev-domain/330897/6)  
-- [.dev support](https://www.reddit.com/r/CloudFlare/comments/sznkea/dev_support/)  
-- [TLD Policies](https://www.cloudflare.com/en-gb/tld-policies/)  
-- [TLDポリシー](https://www.cloudflare.com/ja-jp/tld-policies/)  
-
-海外のお兄さんたちが話し合ってますが、CloudflareのTLDポリシーのページ、何か変です。  
-あったり消えたりよく分からない状況となっています。希望は薄いかな。。。  
-~~お〇前.comは好きではないので候補には挙がりません。~~  そこで挙がったのが、
-
-- [Gandi](https://www.gandi.net/ja)  
-- [porkbun](https://porkbun.com/)  
-
-の二つです。どちらでも良かったんですが、Gandiは検索結果を並べ替えできなかったのでPorkbunにしました。  
-$1が￥140くらいだったんですが、~~それでもお〇前の半額くらいで済みました。~~  
+  ならばCbrnexという名前もどうなんだ？と思うかもしれませんが、これはあくまで災害の総称であるので問題はない（はず）です。  
 
 
-## Cloudflare  
+[python]: https://www.python.org/  
+[java]: https://www.java.com/ja/  
+[typescript]: https://www.typescriptlang.org/  
+[go]: https://go.dev/  
+[lua]: https://www.lua.org/  
+[haskell]: https://www.haskell.org/  
+[rust]: https://www.rust-lang.org/ja  
+## プログラマ?
 
-あとはほぼCloudflareです。コードの管理をGitHubで行い、Cloudflare Pagesと連携しました。  
-DNSについてよく分からず苦戦しましたが、PorkbunのDNS設定をまるごとコピーしたらできました。  
-Cloudflare PagesのURLを送信先にしました。  
-ここで書いてる以上に苦戦しましたが、苦痛というほどではありませんでした。
-
-
-## Tailwind, Stylus  
-
-以前はMaterialなんとかっていうCSSフレームワークを使っていましたが、AstroのIntegrationsの一番上に出てきたので使ってみました。  
-コイツを使って開発していたわけですが、HTMLタグのclassが長すぎねえか？と最初に思いました。  
-あとからスタイルシートを使って楽しようとしたわけですが、  
-
-- [Reusing Styles](https://tailwindcss.com/docs/reusing-styles)    
-- [Adding Custom Styles](https://tailwindcss.com/docs/adding-custom-styles)  
-
-なるほど。~~もはやCSSではありません。~~ 欲しいスタイルをDocsで検索して、classを修正していく。。。  
-さらに初心者の為(?)にmarginなどが0になっているみたいで、上書きもTailwind経由じゃないとできないっぽい?  
-無論、私はTailwindを使わないことを決意しました。ただ、生のCSSも好きではないのでSCSSを使うことにしました。
-
-[Stylus](https://stylus-lang.com/)  
-
-詳しい説明は省きますが、入れ子やら変数やら使えるやつです。SASSよりもシンプルそうだったのでStylusにしました。  
+  はい。
+  - [Python][python]  
+  - [Java][java]  
+  - [JS/TS][typescript]  
+  - [Go][go]  
+  - [Lua][lua]  
+  の経験があります。個人的には[Rust][rust]と[Haskell][haskell]を学習したいと考えていますが、言い訳ですが、なかなか優先度が上がりません。  
 
 
-## その他  
+[tasvideos]: https://tasvideos.org/  
+[wiki-tas]: https://ja.wikipedia.org/wiki/TAS_(%E3%82%B2%E3%83%BC%E3%83%A0)  
+[romhacking.com]: https://romhacking.com/  
+[mupen64-rr-lua]: https://github.com/mkdasher/mupen64-rr-lua-  
+[wafel]: https://github.com/branpk/wafel  
+[libsm64]: https://github.com/libsm64/libsm64  
+[sm64_bruteforcers]: https://github.com/FramePerfection/sm64_bruteforcers  
+## [TAS][wiki-tas]er?
 
-なぜHugoやGatsbyではだめなのか。ダメというわけではありませんがそれなりにフロントエンドをしたかったというのと、  
-テンプレートで自分が気に入ったものが無かったからです。
+  はい。[TASVideos][tasvideos]に投稿したことはありませんし、周知もされていないはずです。
+    
+  [Super Mario 64のROMハック][romhacking.com]以外には[TAS Comp](https://discord.gg/sm64tas)しかやりません。[Lua][lua]を使えるようなったのはTASをするときに用いられるからです。  
 
+  > [mkdasher/SM64Lua](https://github.com/mkdasher/SM64Lua)  
 
-## 最後に  
+  [Mupen64-rr-lua][mupen64-rr-lua]の1.1.4からQSの機能が減ったので1.1.3で頑張っているのですが、そろそろbrute-forcing[^brute-forcing]も自動でやりたくなってきました。[Wafel][wafel]や[Bruteforcers][sm64_bruteforcers]が使えたらいいんでしょうけど、私の環境ではうまく動きませんでした。（[libsm64][libsm64]のビルドに失敗したのですが、あいにくC言語とかビルドに関しては知識が全くなく、やる気もそこまで起きないといった感じです。）  
 
-テンプレートを使わなかったのでそれなりに時間は要しましたが、それでもかなり楽をしたつもりです。  
-フロントエンジニアになる気はありませんが、触ってみるのも悪くないです。  
+  > [libsm64][libsm64]  
+
+  なら[Lua][lua]は簡単かと言われれば、そうでもないです。理由としてはスクリプト自体を作ることはそこまで難しくないのですが、画面として表示させるときに便利なものは一切ないことです。ボタンとか入力ボックスとか。すべて自分で作る必要があります。  
+
+  > [7rs/parfait](https://github.com/7rs/parfait)  
+  > [mupen64-rr-lua docs](https://wade7wastaken.github.io/MupenLuaDoc/)  
+
+[^brute-forcing]: 直訳すると、総当たりという意味ですが、ここではあらゆる方法を試すという意味になります。具体的に言えば、SM64は3Dゲームなのでスティックの向きや傾きの強さによってマリオの動きも変わるのですが、ここではあらゆる入力を試し、最も速い入力することにあたります。  

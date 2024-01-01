@@ -1,16 +1,23 @@
 ---
-import "@styles/main-layout.styl";
-import Footer from "./Footer.astro";
-import Header from "./Header.astro";
+import Header from "@layouts/Header.astro";
+import Footer from "@layouts/Footer.astro";
 
 import logo from "@assets/logo.svg";
 
+import "@styles/main.styl"
+
 export interface Props {
   title: string;
-  hiddenIcons?: boolean;
 }
 
-const { title, hiddenIcons = false } = Astro.props;
+const { title} = Astro.props;
+
+function createFontURL(fonts: Array<string>): string {
+  return `https://fonts.googleapis.com/css2?family=${fonts.join("&family=").replace(/\s/g, "+")}&display=swap`;
+}
+
+const fonts: Array<string> = ["Fira Sans", "Fira Code"];
+const cjkFonts: Array<string> = [...fonts, "BIZ UDPMincho", "BIZ UDPGothic", "Zen Kaku Gothic New", "BIZ UDGothic"];
 ---
 
 <!doctype html>
@@ -21,23 +28,16 @@ const { title, hiddenIcons = false } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" href={logo.src} type="image/svg+xml" />
     <title>{title}</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Fira+Code&display=swap"
-      as="style"
-      crossorigin
-    />
+    <link rel="stylesheet" href={createFontURL(cjkFonts)} rel="stylesheet" as="style" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&text=CbrneXpAgs" as="style" crossorigin="">
   </head>
+
   <body>
     <Header />
-    <slot />
-    {hiddenIcons ? <Footer hiddenIcons  /> : <Footer />}
+    <main><slot /></main>
+    <Footer />
   </body>
 </html>
