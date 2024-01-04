@@ -2,6 +2,7 @@
 Fuckin' billion waste properties have to be specified for markdown styling.
 Astro's markdown are harder than anything else. It takes 100 trillion years of study to fully master!
 */
+
 @import "./main.styl"
 @import "./footer.styl"
 
@@ -9,19 +10,14 @@ border = solid 1px colors.border
 table-border = solid 1px rgba(128, 128, 128, 0.1)
 brockquote-border = solid 3px rgba(128, 128, 255, 0.3)
 
-@import "../styles/api.styl"
-
-a, p, h1, h2, h3, h4, h5, h6, li
-  color colors.text
-  @media (prefers-color-scheme dark)
-    color colors.dark.text
-
 main
-  a, p > a, li > a, strong > a, sup > a
+  a
     font-weight 700
-    hoverable(colors.link-colored)
-    @media (prefers-color-scheme dark)
-      hoverable(colors.dark.link-colored)
+
+  img
+    margin auto
+    width 90%
+    height auto
 
   // Italic
   em, blockquote > p, blockquote > ul > li
@@ -132,13 +128,3 @@ main
 
   hr
     margin 3rem auto
-
-
-/* I fuckin' hate this. */
-body
-  background colors.background !important
-  @media (prefers-color-scheme dark)
-    background colors.dark.background !important
-
-footer > article
-  @extend .footer

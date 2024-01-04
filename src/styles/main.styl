@@ -1,4 +1,4 @@
-@import "../styles/api.styl"
+@import "./api.styl"
 
 *
   margin 0
@@ -39,29 +39,31 @@ main
   @media screen and (min-width widths.large)
     width 900px
 
+
 p, h1, h2, h3, h4, h5, h6, li
   color colors.text
   @media (prefers-color-scheme dark)
     color colors.dark.text
 
-p, em, del, u, li, table
-  sans(1rem, 1.5rem)
+main, div
+  p, em, del, u, li, table
+    sans(1rem, 1.5rem)
   a
     hoverable(colors.link-colored)
     @media (prefers-color-scheme dark)
       hoverable(colors.dark.link-colored)
 
-h1
-  sans(2rem, 2rem)
+  h1
+    sans(2rem, 2rem)
 
-h2, h3
-  sans(1.5rem, 2rem)
+  h2, h3
+    sans(1.5rem, 2rem)
 
-h4
-  sans(1.25rem, 1.5rem)
+  h4
+    sans(1.25rem, 1.5rem)
 
-h5
-  sans(1.1rem, 1.5rem)
+  h5
+    sans(1.1rem, 1.5rem)
 
-h6
-  sans(1rem, 1rem)
+  h6
+    sans(1rem, 1rem)

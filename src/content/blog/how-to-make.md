@@ -1,11 +1,16 @@
 ---
-layout: ../../layouts/Layout.astro
-title: How did you develop this website?
-tags: [frontend, cloudflare, astro, stylus]
-slug: "how-to-make"
+layout: "./src/layouts/Layout.astro"
+title: "How did you develop this website?"
+tags: ["frontend", "cloudflare", "astro", "stylus"]
+slug: "1"
 ---
 
 # どうやってサイトを作ったの?
+
+## どうして作ったの？  
+
+  この問いに対して明確に答えるのは難しいです。強いて言うならば、エンジニアだからでしょうか。フロントエンドが得意とか好きとか関係なく、やってみたくなったわけです。ゴリゴリのGUIツールが苦手だったり、低コストで済ませたいという思いもあります。  
+
 
 [nuxt]: https://nuxt.com/  
 [github-pages]: https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages  
@@ -17,35 +22,41 @@ slug: "how-to-make"
 ## 何を使ったの?  
 
   ### [Astro][astro]と[Cloudflare Pages][cloudflare-pages]を使っています  
-  以前は、[Nuxt.js][nuxt]と[GitHub Pages][github-pages]でウェブサイトを作りました。次は[Next.js][next]と[Vercel][vercel]を使う予定でした。静的ホスティングでいえば[Netlify][netlify]もありますね。しかし、[Astro][astro]と[Cloudflare Pages][cloudflare-pages]を知り、それらでウェブサイトを作ることにしました。  
+  以前、[Nuxt.js][nuxt]と[GitHub Pages][github-pages]でウェブサイトを作ったことがあります。次は[Next.js][next]と[Vercel][vercel]を使う予定でした。静的ホスティングなら[Netlify][netlify]もありますが、[Astro][astro]と[Cloudflare Pages][cloudflare-pages]を知り、それらでウェブサイトを作ることにしました。  
 
-  [integrations]: https://docs.astro.build/ja/guides/integrations-guide/  
-  [scoped-css]: https://ja.vuejs.org/api/sfc-css-features  
+
+[integrations]: https://docs.astro.build/ja/guides/integrations-guide/  
+[scoped-css]: https://ja.vuejs.org/api/sfc-css-features  
+[islands]: https://docs.astro.build/ja/concepts/islands/  
+[i18n]: https://i18n.docs.astro.build/  
 ## [Astro][astro]  
 
-  - [複数のコンポーネントライブラリ][integrations]を同じプロジェクトで使用可能    
-  - 名前空間のあるCSS ([Scoped CSS][scoped-css])  
-  - JavaScriptのコードを最小限にし、高速化  
-  - 充実した日本語のドキュメント  
+  - [複数のコンポーネントライブラリ][integrations]  
+  - [名前空間のあるCSS][scoped-css]  
+  - [最小限のスクリプト][islands]  
+  - [日本語のドキュメント][i18n]  
 
-  > - Astroはオールインワンのウェブフレームワークです。Astroには、ウェブサイトを作成するために必要なすべてが組み込まれています。  
-  > - デフォルトで高速: Astroで遅いウェブサイトを作成することは不可能であるべきです。私たちの目標は、Astroを使えば、遅いウェブサイトを作るのはほぼ不可能になることです。  
-  > - コミュニティの何百人ものコントリビューターによって積極的にメンテナンスされ14の言語で提供されているドキュメント  
+  > - Astroは**オールインワンのウェブフレームワーク**です。Astroには、ウェブサイトを作成するために必要なすべてが組み込まれています。  
+  > - デフォルトで高速: Astroで遅いウェブサイトを作成することは不可能であるべきです。私たちの目標は、Astroを使えば、**遅いウェブサイトを作るのはほぼ不可能になる**ことです。  
+  > - コミュニティの何百人ものコントリビューターによって積極的にメンテナンスされ**14の言語**で提供されているドキュメント  
   > [Astroを選ぶ理由](https://docs.astro.build/ja/concepts/why-astro/)  
 
-  しかし、日本の記事は全然無いので厳しい部分はあると思います。  
+  ドキュメントは充実してますが、**日本の記事は少ない**ので厳しいところはあります。また、新しい機能のドキュメントもすぐ翻訳されるわけではないので、英語のドキュメントを読む必要があります。  
 
-  [github]: https://ja.wikipedia.org/wiki/GitHub  
-  [cdn]: https://ja.wikipedia.org/wiki/Content_delivery_network  
-  [tls]: https://ja.wikipedia.org/wiki/Transport_Layer_Security  
-  [http3]: https://ja.wikipedia.org/wiki/HTTP/3  
-## [Cloudflare Pages][cloudflare-pages]  
 
-  - 自動のビルド設定（Astroの設定はほぼいらない） 
-  - [GitHub][github]との連携（メイン・プレビューの2つ）  
-  - 無制限の転送量（サーバーレスやバックエンドは含まれない）  
-  - 当然のようについてくる[CDN][cdn]  
-  - [TLS][tls]化はもちろん、[HTTP3(QUIC)][http3]に対応  
+[cf-github]: https://developers.cloudflare.com/pages/configuration/git-integration/#github-1  
+[github]: https://ja.wikipedia.org/wiki/GitHub  
+[cdn]: https://ja.wikipedia.org/wiki/Content_delivery_network  
+[cdn-usage]: https://kinsta.com/jp/cloudflare-market-share/  
+[tls]: https://ja.wikipedia.org/wiki/Transport_Layer_Security  
+[http3]: https://ja.wikipedia.org/wiki/HTTP/3  
+## [Cloudflare Pages][cloudflare-pages]    
+
+  - 簡単なビルド設定[^cloudflare-build]  
+  - [GitHub][github]との[連携][cf-github]  
+  - 無制限の転送量  
+  - [世界一][cdn-usage]の[CDN][cdn]  
+  - [TLS][tls]と[HTTP3(QUIC)][http3]  
 
   > - Pagesを使用すると、信頼できるフルスタックアプリケーションをわずかな時間で構築、デプロイ、配信できます。最低限の設定で、開発者、デザイナー、製品がコラボし、デプロイできます。  
   > - ビルドのキャッシュ機能により、プロジェクトの一部をキャッシュして以降の構築での時間の節約することで、強力なPages体験をお届けします。  
@@ -55,7 +66,10 @@ slug: "how-to-make"
   > - Cloudflareでは、Webサイト所有者がオリジンを変更することなく、HTTP/3のサポートを有効にすることができます。  
   > [HTTP/3とは？](https://www.cloudflare.com/ja-jp/learning/performance/what-is-http3/)  
  
-  しかし、 **[Cloudflare Pages][github-pages]** の[無料プランでは1ヶ月500デプロイの制限](https://www.cloudflare.com/ja-jp/plans/developer-platform/)があるので、更新頻度が高いウェブサイトは難しいです。また、 **[Astro][astro]** はドキュメントは翻訳されてるものの、情報は少ないので開発する上で英語の記事を読む必要はあります。  
+  **[Cloudflare Pages][github-pages]** の[無料プランでは1ヶ月500デプロイの制限](https://www.cloudflare.com/ja-jp/plans/developer-platform/)があるので、更新頻度が高いウェブサイトは厳しいです。また、Cloudflareの有料プランは普通に高いです。  
+
+[^cloudflare-build]: ![cf-build](./src/assets/blog/cf-build.png)
+
 
 
 [stylus]: https://stylus-lang.com  
@@ -71,11 +85,12 @@ slug: "how-to-make"
   - HTMLはマークアップ言語であり、スタイルを指定する言語ではないから[^opinion]  
   - [!important][important]が嫌い  
   
-  などが理由です。標準化されたスタイルがほしいだけなのです。[Astro][astro]のスタイル指定は特殊で、ほとんどの場合は[!important][important]を使う必要がないです。
+  などが理由です。標準化されたスタイルが欲しいだけで、私が設定したスタイルを上書きされるのは鬱陶しいです。また、[Astro][astro]のスタイルは[名前空間][scoped-css]を持つので、ほとんどの場合は[!important][important]を使う必要がないです。
+
 
 ## [Stylus][stylus]  
 
-  - 記述量が少なく、波括弧やコロン・セミコロンも省略可能
+  - 波括弧やコロン・セミコロンを省略可能
   - プログラミング言語の概念を使える  
   - CSS、[SCSS/SASS][sass]、[Less][less]の記法が使える  
   - ChatGPTが対応している  
@@ -84,15 +99,80 @@ slug: "how-to-make"
   > [Stylus][stylus] is Expressive, dynamic, and robust CSS  
   > [Implementation Comparisons](https://stylus-lang.com/docs/compare.html)  
 
-  記事もほぼなく、難易度は高いですが、需要はあります。  
-  [Astro][astro]では[PostCSS][postcss]を使いたければ、使いたいときに使いたい範囲だけ使えます。  
+  記事がほとんどないので苦労はしますが、非常に書きやすいです。[PostCSS][postcss]と連携も出来ます。試し書きとしては以下のようになりますが、機能はもっとあります。  
 
-[^css-framework]:  CSSフレームワークとは、繰り返し行うデザインを定義化して、車輪の再開発を減らすツールです。また、コンポーネントのような要素を簡単に再利用できるので、JavaScriptやCSSの詳しい知識が無くてもプロのようなウェブサイトデザインを実現できます。  
-  また、以下も参照することを推奨します。  
-  簡単に標準に準拠したWebデザインを可能にするライブラリ。 ([Wikipedia](https://en.wikipedia.org/wiki/CSS_framework))  
+  ```stylus
+  colors: {
+    background: white,
+    icon: black,
+    link: blue,
+    dark: {
+      background: black,
+      icon: white,
+      link: red,
+    }
+  }
+
+  snas-latin = "Fira Sans"
+
+  body
+    background colors.background
+    @media (prefers-color-scheme dark)
+      background colors.dark.background
+
+  hoverable(_color)
+    color _color
+    &:hover
+      color rgba(_color, 0.5)
+
+  sans(size, height)
+    font size/height snas-latin, "Trebuchet MS", Verdana, Arial, sans-serif
+
+  p
+    sans(1rem, 1.5rem)
+    a
+      hoverable(colors.link)
+      @media (prefers-color-scheme dark)
+        hoverable(colors.dark.link)
+
+  .title
+    sans(2rem, 2.5rem)
+
+  .brand
+    @extend .title
+    display flex
+    gap 0.75rem
+    img
+      mask-image var(--iconURL)
+      background colors.icon
+      @media (prefers-color-scheme dark)
+        background colors.dark.icon
+  ```  
+
+[^css-framework]: CSSフレームワークとは、標準化されたスタイルやコンポーネントを簡単に使えるツールのことです。  
+  また、以下も参照してください。  
+  [Wikipedia](https://en.wikipedia.org/wiki/CSS_framework)  
   デザインやスタイルを効果的かつ迅速に構築するためのツールセット。標準化されたデザインやコンポーネントを使ってスタイルを適用することができる。(ChatGPT 3.5)  
 
-[^opinion]: CSSフレームワークはファイルとして分離されているのですが、問題を発見したときに、調査するのはHTMLファイルです。その次はスタイルシートのファイルで、最後にCSSフレームワークでしょう。これは実に非効率です。スタイルに問題があるならスタイルシートのみに絞られている方が保守性は高いです。これは主観的な意見ですが、MDN Docsなどを参考にしてスタイルシートを記述できるのなら、我慢してCSSフレームワークを使う必要はありません。(当然、チームの場合は要相談だとは思いますが。)
+[^opinion]: 主観的な意見ですが、スタイルに問題があるとき、スタイルシートのファイルに限られたが保守性は高いです。無理なくスタイルシートを記述出来れば、CSSフレームワークは必須ではないのです。(無論、チームの場合は別。)  
+
+
+[modrinth]: https://modrinth.com/  
+[mdn-web-docs]: https://developer.mozilla.org/ja/docs/Web  
+[apple-color]: https://developer.apple.com/design/human-interface-guidelines/color  
+[iosevka]: https://typeof.net/Iosevka/  
+[discord]: https://discord.com/  
+[zenn]: https://zenn.dev/  
+## デザインはどうやって?  
+
+  - [Modrinth][modrinth]  
+  - [MDN Web Docs][mdn-web-docs]  
+  - [Zenn][zenn]  
+  - [Discord][discord]  
+  - [Iosevka][iosevka]
+  - [Color | Apple Developer Documentation][apple-color]  
+
+  以上のサイトを参考にしました。特に[Modrinth][modrinth]や[Zenn][zenn]のデザインが好きです。速度や使いやすさも重要ですが、かっこいいサイトは気持ちも上がります。  
 
 
 [porkbun]: https://porkbun.com/  
@@ -108,16 +188,16 @@ slug: "how-to-make"
 [tld]: https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%83%E3%83%97%E3%83%AC%E3%83%99%E3%83%AB%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3  
 ## ドメインはどこで?  
 
-  [Porkbun][porkbun]を使いました。当時、Google DomainsがSquareSpaceに移行する段階で安定しておらず、[Cloudflare][cloudflare-register]は.devに対応していませんでした。[お名前.com][onamae]や[Xserver Domain][xserver-domain]は知名度と信頼はありますが、安くはないのです。
+  [Porkbun][porkbun]を使いました。当時、[Google Domains][google-domains]が[SquareSpace][square-space]に移行する段階で安定しておらず、[Cloudflare][cloudflare-register]は.devに対応していませんでした。[お名前.com][onamae]や[Xserver Domain][xserver-domain]は知名度と信頼はありますが、安くはないのです。加えて大量のメールを送り付けてきたり、購入直前まで価格がはっきりしないのも気に食わないです（価格表示について[お名前.com][onamae]はマシな方だと思います）。ちなみに、移行先の[SquareSpace][square-space]はこの中で一番高いです。候補にすらなりません。また、[Cloudflare][cloudflare-register]は現在`.dev`に対応しています。  
 
 ## [Porkbun][porkbun]  
 
   - 良心価格  
-  - 隠さない値段(セール後の値段や更新費用など)  
-  - 充実した[ドキュメント(英語)][porkbun-kb]  
-  - 当然のようについてくる[WHOIS代行][porkbun-whois]と[SSL][porkbun-ssl]  
-  - [PayPal][porkbun-payment]が使える  
-  - 対応し過ぎな[TLD][tld]の数([Cloudflare][cloudflare-register]に勝っている点)  
+  - 価格表示  
+  - [ドキュメント(英語)][porkbun-kb]  
+  - 無料の[WHOIS代行][porkbun-whois]と[SSL][porkbun-ssl]  
+  - [PayPal][porkbun-payment]が使用可能  
+  - 対応している[TLD][tld]の数  
 
   > We are the #1 ranked registrar for lowest registration and renewal prices.  
   > 登録・更新価格の安さ1位のレジストラ  
@@ -125,11 +205,9 @@ slug: "how-to-make"
   > 支払いすぎてない？ドメインをPorkbunに移管して、費用を削減しよう。  
   > [Porkbun][porkbun]  
 
-  .jpはないですし、日本語は対応していません。.devや.appは買えますよ！  
+  Porkbunの良いと感じる部分はセール後の価格や更新価格を隠さないことです。安いのもそうですが、こういった意識があるのは好ましいです。ただ、`.jp`はないですし、日本語は対応してません。`.dev`や`.app`は買えます。ちなみに、Paypalなどを通して$で払うことになるので、価格が変動します。  
 
 
-[wsl2]: https://learn.microsoft.com/ja-jp/windows/wsl/compare-versions  
-[vscode]: https://code.visualstudio.com/  
 [vscode-astro]: https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode
 [vscode-change-case]: https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case
 [vscode-code-snap]: https://marketplace.visualstudio.com/items?itemName=adpyke.codesnap
@@ -152,169 +230,59 @@ slug: "how-to-make"
 [vscode-error-lens]: https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens
 [vscode-glass-it]: https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit
 [vscode-peacock]: https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock
-[fnm]: https://github.com/Schniz/fnm  
-[pnpm]: https://pnpm.io/ja/  
+
+[wsl2]: https://learn.microsoft.com/ja-jp/windows/wsl/compare-versions  
+[vscode]: https://code.visualstudio.com/  
 [alacritty]: https://alacritty.org/  
 [fish]: https://github.com/fish-shell/fish-shell  
 [starship]: https://starship.rs/ja-JP/  
+[fnm]: https://github.com/Schniz/fnm  
+[pnpm]: https://pnpm.io/ja/  
+[parallels]: https://www.parallels.com/jp/  
+[mac]: https://www.apple.com/jp/mac/  
+[apple-m-series]: https://ja.wikipedia.org/wiki/Apple%E3%82%B7%E3%83%AA%E3%82%B3%E3%83%B3#M%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA  
+[bootcamp]: https://support.apple.com/ja-jp/102622  
+[laptop]: https://jp.msi.com/Laptop/GF63-Thin-11UX  
+[arch]: https://www.archlinux.jp/  
 ## 開発環境は?   
 
   - [WSL 2][wsl2]    
+  - [fnm][fnm]  
+  - [pnpm][pnpm]  
+  - [Alacritty][alacritty]  
+  - [fish][fish]  
+  - [Starship][starship]  
   - [VSCode][vscode]  
     - [Dracula][vscode-dracula]  
-      One Dark ProとかMonokaiってよりはAyuに近いテーマ。  
     - [Astro][vscode-astro]  
     - [stylus][vscode-stylus]   
     - [JavaScript and TypeScript Nightly][vscode-js-and-ts]  
     - [Markdown All in One][vscode-markdown]  
     - [Prettier][vscode-prettier]  
-      様々な言語に対応してるフォーマッタ。空白削除を無効化する方法は無い。  
     - [EditorConfig for VS Code][vscode-editorconfig]  
-      色々なエディタに対応している記法統一エディタ。  
     - [GitLens][vscode-git-lens]  
-      コードにGitの情報が表示される。  
     - [Git Graph][vscode-git-graph]  
-      `git log`とかウェブサイトで見る必要が無くなる。  
     - [Git History][vscode-git-history]  
-      Graphと同じ。  
     - [GitHub Pull][vscode-github-pull]  
-      Graphと同じ。  
     - [indent-rainbow][vscode-indent-rainbow]  
-      インデントに色がつく。どれだけネストしているか分かる。  
     - [Error Lens][vscode-error-lens]  
-      エラーの行が強調表示される。  
     - [Bracket Lens][vscode-bracket-lens]  
-      括弧で囲ったとき、最初に記述された内容が最後の行にも表示される。  
     - [Gremlins tracker for Visual Studio Code][vscode-gremlins]  
     - [change-case][vscode-change-case]  
-      キャメルケースからスネークケースに自動で変更とかできる。  
     - [Path Intellisense][vscode-path-intellisense]  
     - [IntelliCode][vscode-intelli-code]  
     - [Tabnine][vscode-tabnine]  
     - [Peacock][vscode-peacock]  
-      ワークスペースごとにアクティビティーバーの色を変えられる。  
     - [CodeSnap][vscode-code-snap] 
     - [GlassIt-VSC][vscode-glass-it]  
-      背景を透過できる。  
-  - [fnm][fnm]  
-    Rust製のバージョンマネージャー。  
-  - [pnpm][pnpm]  
-    パッケージマネージャー。Yarnよりパフォーマンスが良い訳ではない。ストレージ使用量が減るらしい。  
-  - [Alacritty][alacritty]  
-    クロスプラットフォームでGPUレンダリングしてるRust製のターミナル。タブの機能がないので中級者向け。  
-  - [fish][fish]  
-    POSIX互換は無いが、高機能なシェル。  
-  - [Starship][starship]  
-    どんなシェルだろうがかっこよくなるプロンプト。Rust製。  
 
   また、[Stackshare](https://stackshare.io/7rs/pages)もご参照下さい。  
 
-[modrinth]: https://modrinth.com/  
-[mdn-web-docs]: https://developer.mozilla.org/ja/docs/Web  
-[apple-color]: https://developer.apple.com/design/human-interface-guidelines/color  
-[iosevka]: https://typeof.net/Iosevka/  
-[discord]: https://discord.com/  
-[zenn]: https://zenn.dev/  
-## デザインについて  
+  正直[Mac][mac]で開発する方が楽ではあるのですが、[M Series][apple-m-series]では[BootCamp][bootcamp]がほぼ使えない状態で、
+  [Parallels Desktop][parallels]で使うのも好ましくないので[Windowsのノート][laptop]を買いました。Windowsで開発する場合、[WSL][wsl2]を使うのが楽なのですが、[WSL][wsl2]はかなりゴミです。もちろん、[Linux][arch]をインストールすることは可能ですが、利便性は悪いです。  
 
-  以下のサイトを参考にしました。  
+  > [7rs/pages](https://github.com/7rs/pages)  
 
-  - [Modrinth][modrinth]  
-  - [MDN Web Docs][mdn-web-docs]  
-  - [Zenn][zenn]  
-  - [Discord][discord]  
-  - [Iosevka][iosevka]
-  - [Color | Apple Developer Documentation][apple-color]  
-
-
-
-[roadmap]: https://roadmap.sh/  
-[mdn]: https://developer.mozilla.org/ja/  
-[astro-docs]: https://docs.astro.build/ja/getting-started/  
-[ts-docs]: https://www.typescriptlang.org/docs/  
-[svelte]: https://svelte.jp/  
-[vite]: https://ja.vitejs.dev/  
-[sharp]: https://sharp.pixelplumbing.com/  
-[sharp-cli]: https://github.com/vseventer/sharp-cli  
-[ffmpeg]: https://ffmpeg.org/  
-[real-esrgan]: https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan  
-[zenn-web]: https://zenn.dev/topics/web  
-[cloudflare]: https://www.cloudflare.com/ja-jp/  
-[aws]: https://aws.amazon.com/jp/  
-[gcp]: https://console.cloud.google.com/  
-[unsplash]: https://unsplash.com/ja  
-[simple-icons]: https://simpleicons.org/  
-[google-icons]: https://fonts.google.com/icons  
-[google-fonts]: https://fonts.google.com/  
-[firefox]: https://www.mozilla.org/ja/firefox/  
-[chrome]: https://www.google.com/intl/ja_jp/chrome/  
-[edge]: https://www.microsoft.com/ja-jp/edge?form=MA13FJ  
-[chatgpt]: https://chat.openai.com/  
-[deepl]: https://www.deepl.com  
-[can-i-use]: https://caniuse.com/  
-[CSS Web Safe Fonts]: https://www.w3schools.com/cssref/css_websafe_fonts.php  
-[vps]: https://vpshikaku.com/  
-[nextui]: https://nextui.org  
-[yarn]: https://yarnpkg.com/  
-[tailwind]: https://tailwindcss.com/  
-# 終わりに   
-
-  ここで紹介したものは一部にすぎません。ウェブの世界はとても広いです。  
-  参考になりそうなページを掲載しておきます。
-
-  - [Roadmap][roadmap]  
-    エンジニアとして学ぶべきことが図で分かるサイト。  
-  - [MDN Web Docs][mdn]  
-    Mozillaが出してるWEB開発のドキュメント。  
-  - [Zenn][zenn-web]  
-    Qiitaに近いけど、段違いでシンプル。YahooJAPANみたいな機能性を求める人向けではない。  
-  - [Astro][astro-docs]  
-    オールインフレームワーク。NuxtやNextのように開拓されてはいない。使いやすいけど、初心者向けではないかも。  
-  - [TypeScript][ts-docs]  
-    JavaScriptに型がついた言語。TypeScriptが使えたらJavaScriptも使える（はず）。  
-  - [Svelte][svelte]  
-    Astroも対応しているが、AstroKitというフレームワークもある。  
-  - [Vite][vite]  
-    Astroの裏で動いてる。  あ
-  - [Tailwind CSS][tailwind]  
-    新しめのCSSフレームワーク。コンポーネントはない。  
-  - [PostCSS][postcss]  
-    新しいCSSメタ言語。プラグインを入れて色々なことが出来る。  
-  - [NextUI][nextui]  
-    UIライブラリ。コンポーネントを作りたくない人向け。  
-  - [pnpm][pnpm]  
-  - [Yarn][yarn]  
-    npmより速いパッケージマネージャー（pnpmよりも速いかも）。  
-  - [Mozilla FireFox][firefox]  
-  Mozillaが開発したブラウザ。プライバシーが気になる人向け。  
-  - [Google Chrome][chrome]  
-  Googleが開発したブラウザ。世界で一番使われてる。FLOSSなChromiumというブラウザがベース。  
-  - [Microsoft Edge][edge]  
-  Microsoftが開発したブラウザ。Windowsにプリインストールされている。実は世界で二番目に使われてる。  
-  - [Sharp][sharp]  
-    Squooshの後継？みたいなやつ。mozjpegという非常に小さなjpgに圧縮できる。AVIFやWEBPにも対応している。  
-  - [sharp-cli][sharp-cli]  
-  - [Real ESRGAN][real-esrgan]  
-    主に絵などの画像の解像度を上げ、ノイズを削除する。waifu2xの最終形態。  
-  - [ChatGPT][chatgpt]  
-    AIの中でもなかなか話せる。翻訳とコーディングが強い。  
-  - [DeepL][deepl]  
-    一番精度が高い翻訳。好ましくない単語も訳してくれる。  
-  - [Can I use?][can-i-use]  
-    技術がどのブラウザに対応してるとか載ってる。  
-  - [Cloudflare][cloudflare]  
-    速い、無料、プライバシー保護、神。有料プランは安くない。  
-  - [AWS][aws]  
-    一番需要高い。サービスめっちゃある。  
-  - [GCP][gcp]  
-    AWSの対抗。機械学習はこっちの方が強いかも。  
-  - [VPS比較.com][vps]  
-    日本のVPSは高い。そんな人向け。日本のVPSの情報もあるけど。
-  - [Google Fonts][google-fonts]  
-    ほとんどオープンソースのフォントがある。外部のフォント使うときはこれしかない。速すぎるから。  
-  - [Material Symbols and Icons][google-icons]  
-    シンプルでマテリアルなアイコン。画像としても使えるし、フォントとしても使えるみたい。  
-  - [Simple Icons][simple-icons]  
-    ブランドのアイコンとか。結構ある。解像度が高い。  
-  - [Unsplash][unsplash]  
-    背景がいっぱいある。著作権フリー。    
+  ちなみに、このウェブサイトはオープンソースです。貢献して頂けるのなら非常に助かりますが、私にやる気があるかはわかりません。現在は多言語化に頭を悩ませております。  
+  
+  本日は以上です。ありがとうございました。  

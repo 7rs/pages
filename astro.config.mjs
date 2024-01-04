@@ -25,4 +25,11 @@ export default defineConfig({
   image: {
     service: passthroughImageService(),
   },
+  i18n: {
+    defaultLocale: "ja",
+    locales: ["ja", "en"],
+    routing: {
+      prefixDefaultLocale: false
+    }
+  },
 });

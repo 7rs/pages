@@ -1,6 +1,6 @@
 ---
-layout: ../../layouts/Layout.astro
-title: This isn't article.
+layout: "../../layouts/Layout.astro"
+title: "This isn't article."
 tags: []
 slug: "_style-check"
 ---

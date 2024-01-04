@@ -38,7 +38,14 @@ const posts = await getCollection("blog");
     </Repository>
   </section>
   <section class="posts">
-    {posts.map((post) => !post.slug.startsWith("_") && <Post slug={post.slug} title={post.data.title} />)}
+    {
+      posts.map(post => {
+        if (!post.slug.startsWith("_") && post.slug.indexOf("/") === -1) {
+          "en/" + post.id.substring(0, post.id.length - 3);
+          return <Post slug={post.slug} title={post.data.title} />
+        }
+      })
+    }
   </section>
 </Layout>
 
