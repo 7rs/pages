@@ -1,11 +1,14 @@
 ---
-import { getPostMap } from "@lib/blog";
+// import { getPostMap } from "@lib/blog";
 import Titles from "@components/Titles.svelte";
+import {getPostMap} from "@lib/blog";
+
+const postMap = await getPostMap();
 ---
 
 <section>
   {
-    Array.from(getPostMap()).map(([postId, data]) => (
+    Array.from(postMap).map(([postId, data]) => (
       <article id={postId}>
         <Titles titles={data.titles} client:load />
       </article>

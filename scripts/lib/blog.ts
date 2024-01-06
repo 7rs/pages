@@ -1,8 +1,5 @@
 import { getCollection } from "astro:content";
 
-
-const posts = await getCollection("blog");
-
 export type Titles = {
     lang: string;
     title: string;
@@ -51,9 +48,10 @@ export function getPostId(filePath: string): string {
     return filePath;
 }
 
-export function getPostMap(): PostMap {
+export async function getPostMap(): Promise<PostMap> {
     const postMap: PostMap = new Map([]);
 
+    const posts = await getCollection("blog");
     posts.map((post) => {
         if (!post.data.published) {
             return;

@@ -1,9 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { Titles } from '@lib/blog'
-
-  export let titles: Array<Titles>;
-  console.log(titles)
+  import { Titles} from '@lib/blog';
 
   let index = 0;
   onMount(() => {
