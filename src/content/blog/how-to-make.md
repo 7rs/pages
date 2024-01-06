@@ -3,6 +3,7 @@ layout: "./src/layouts/Layout.astro"
 title: "How did you develop this website?"
 tags: ["frontend", "cloudflare", "astro", "stylus"]
 slug: "1"
+published: true
 ---
 
 # どうやってサイトを作ったの?

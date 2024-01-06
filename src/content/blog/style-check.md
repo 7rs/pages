@@ -2,7 +2,8 @@
 layout: "../../layouts/Layout.astro"
 title: "This isn't article."
 tags: []
-slug: "_style-check"
+slug: "style-check"
+published: false
 ---
 
 # マークダウンの記法まとめ  

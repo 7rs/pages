@@ -1,5 +1,5 @@
 {
-    "plugins": ["prettier-plugin-astro", "prettier-plugin-stylus"],
+    "plugins": ["prettier-plugin-astro", "prettier-plugin-stylus", "prettier-plugin-svelte"],
     "astroAllowShorthand": false,
     "printWidth": 120,
     "tabWidth": 2,
@@ -26,6 +26,12 @@
             "files": "*.styl",
             "options": {
                 "parser": "stylus"
+            }
+        },
+        {
+            "files": "*.svelte",
+            "options": {
+                "parser": "svelte"
             }
         }
     ]

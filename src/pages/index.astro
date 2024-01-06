@@ -1,11 +1,9 @@
 ---
-import { getCollection } from "astro:content";
-
 import Layout from "@layouts/Layout.astro";
 
 import Repository from "@components/Repository.astro";
 import Profile from "@components/Profile.astro";
-import Post from "@components/Post.astro";
+import PostList from "@components/PostList.astro";
 
 import gear from "@assets/repo-icons/gear.svg";
 import tools from "@assets/repo-icons/tools.svg";
@@ -14,7 +12,7 @@ import packageIcon from "@assets/repo-icons/package.svg";
 import mortarBoard from "@assets/repo-icons/mortar-board.svg";
 import typography from "@assets/repo-icons/typography.svg";
 
-const posts = await getCollection("blog");
+
 ---
 
 <Layout title="Main Page">
@@ -37,16 +35,7 @@ const posts = await getCollection("blog");
       A Legible monospace fonts for engineers.
     </Repository>
   </section>
-  <section class="posts">
-    {
-      posts.map(post => {
-        if (!post.slug.startsWith("_") && post.slug.indexOf("/") === -1) {
-          "en/" + post.id.substring(0, post.id.length - 3);
-          return <Post slug={post.slug} title={post.data.title} />
-        }
-      })
-    }
-  </section>
+  <PostList />
 </Layout>
 
 <style lang="stylus">
@@ -65,8 +54,5 @@ const posts = await getCollection("blog");
       grid-template-columns repeat(3, 1fr)
       width 45rem
 
-  .posts
-    display flex
-    gap 1rem
-    flex-direction column
+  
 </style>

@@ -1,0 +1,47 @@
+---
+import { getPostMap } from "@lib/blog";
+import Titles from "@components/Titles.svelte";
+---
+
+<section>
+  {
+    Array.from(getPostMap()).map(([postId, data]) => (
+      <article id={postId}>
+        <Titles titles={data.titles} client:load />
+      </article>
+    ))
+  }
+</section>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  section
+    display flex
+    flex-direction column
+    gap 1rem
+    // height 15rem
+    // overflow scroll
+
+  article
+    padding 0.5rem 1rem
+    display grid
+    background colors.widget
+    border-radius 1rem
+    grid-template-rows 2fr 1fr
+    grid-template-columns 6fr repeat(2, 1fr)
+    grid-template-areas \
+      "title        title title" \
+      "published-at en    ja   ";
+
+    &:hover
+      background rgba(colors.widget-hovered, 0.2)
+      @media (prefers-color-scheme dark)
+        background rgba(colors.dark.widget-hovered, 0.2)
+
+    .title
+      grid-area title
+
+    .published-at
+      grid-area published-at
+</style>

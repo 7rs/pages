@@ -1,8 +1,10 @@
 ---
 layout: "./src/layouts/Layout.astro"
-title: "Who is Cbrnex?"
+title: "Cbrnexって誰？"
 tags: ["profile"]
 slug: "0"
+published: true
+published_at: "2024-01-05"
 ---
 
 ## ご挨拶
