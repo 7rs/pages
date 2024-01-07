@@ -1,16 +1,19 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "module": "esnext",
+    "module": "ESNext",
     "strictNullChecks": true,
     "baseUrl": ".",
+    "allowJs": true,
+    "resolveJsonModule": true,
     "paths": {
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],
       "@styles/*": ["src/styles/*"],
       "@layouts/*": ["src/layouts/*"],
       "@scripts/*": ["scripts/*"],
-      "@lib/*": ["scripts/lib/*"]
+      "@lib/*": ["scripts/lib/*"],
+      "@public/*": ["public/*"]
     }
   }
 }

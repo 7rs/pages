@@ -5,6 +5,7 @@
     "sysoev.language-stylus",
     "esbenp.prettier-vscode",
     "yzhang.markdown-all-in-one",
-    "davidanson.vscode-markdownlint"
+    "davidanson.vscode-markdownlint",
+    "svelte.svelte-vscode"
   ]
 }

@@ -1,17 +1,20 @@
 ---
 import avatar from "@assets/avatar.webp";
+
+export interface Props {
+  src: string;
+  name: string;
+  alt?: string;
+}
+
+const { src, alt = "pfp", name } = Astro.props;
 ---
 
 <article>
-  <img class="avatar" src={avatar.src} />
-  <h1 class="name">CbrneX</h1>
-  <p class="bio">
-    I'm Japanese student and a SM64 Romhack TASer. <br />
-    The name "Cbrnex" comes from <a
-      href="https://simple.wikipedia.org/wiki/CBRNE"
-      target="_blank"
-      rel="noopener noreferrer">CBRNE</a
-    >.
+  <img src={src} alt={alt} />
+  <h1>CbrneX</h1>
+  <p>
+    <slot />
   </p>
 </article>
 

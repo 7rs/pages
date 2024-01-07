@@ -4,6 +4,7 @@ title: "How did you develop this website?"
 tags: ["frontend", "cloudflare", "astro", "stylus"]
 slug: "1"
 published: true
+published_at: "2024-01-07"
 ---
 
 # どうやってサイトを作ったの?

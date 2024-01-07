@@ -1,23 +1,19 @@
-# build output
+# Outputs
 dist/
-
-# generated types
-.astro/
-
-# dependencies
 node_modules/
+.astro/
+.git/
 
-# logs
+# Logs
 *.log*
 
-# environment variables
+# Environment variables
 .env*
 
-# specific files
+# Environment-dependent files
 .DS_Store
 *.Identifier
 
 # config files
-.git/
 .vscode/*
 !.vscode/extensions.json

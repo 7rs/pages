@@ -8,15 +8,18 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write . --plugin=prettier-plugin-astro"
+    "format": "prettier --write . --plugin=prettier-plugin-astro,prettier-plugin-stylus,prettier-plugin-svelte"
   },
   "dependencies": {
     "@astrojs/mdx": "^2.0.3",
+    "@astrojs/sitemap": "^3.0.4",
     "@astrojs/svelte": "^5.0.3",
     "@webcomponents/template-shadowroot": "^0.2.1",
     "astro": "^4.0.8",
     "astro-compress": "^2.2.5",
+    "astro-icon": "^1.0.2",
     "astro-purgecss": "^4.0.0",
+    "astro-robots-txt": "^1.0.0",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.32",
     "postcss-preset-env": "^9.3.0",
@@ -29,6 +32,7 @@
     "@types/node": "^20.10.5",
     "prettier": "^3.1.1",
     "prettier-plugin-astro": "^0.12.3",
-    "prettier-plugin-stylus": "^0.1.0"
+    "prettier-plugin-stylus": "^0.1.0",
+    "prettier-plugin-svelte": "^3.1.2"
   }
 }

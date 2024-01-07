@@ -1,40 +1,79 @@
-# Download -> PNG -> AVIF (Near lossless)  
 
-```bash
-wget "https://unsplash.com/photos/7bynNtRqu4E/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjkwMDQ1Mjc4fA&force=true" -O "temp.jpg" && ffmpeg -i "temp.jpg" -filter_complex scale=240:-1:flags=lanczos -y "temp.png" && ffmpeg -i "temp.png" -vf crop=240:240:0:0 -y "temp2.png" && sharp --input "temp2.png" --output "../public/avatar-nll.avif" --format "avif" --nearLossless --effort 6 --compression "zstd" --compressionLevel 9 --optimize && rm -rf temp*
-```  
+[sharp-cli]: https://github.com/vseventer/sharp-cli  
+[sharp-cli/resize.js]: https://github.com/vseventer/sharp-cli/blob/master/cmd/resizing/resize.js  
+[sharp-api-docs/resize]: https://sharp.pixelplumbing.com/api-resize  
 
+# Compress images  
 
-# Download -> PNG -> AVIF (Quality: 80)  
+## Defined command sets  
 
-```bash
-wget "https://unsplash.com/photos/7bynNtRqu4E/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjkwMDQ1Mjc4fA&force=true" -O "temp.jpg" && ffmpeg -i "temp.jpg" -filter_complex scale=240:-1:flags=lanczos -y "temp.png" && ffmpeg -i "temp.png" -vf crop=240:240:0:0 -y "temp2.png" && sharp --input "temp2.png" --output "../public/avatar-80.avif" --format "avif" --quality 80 --effort 6 --compression "zstd" --compressionLevel 9 --optimize && rm -rf temp*
-```  
+  ```sh
+  ```
 
+## Usage in CLI  
 
-# Download -> PNG -> mozjpeg (Near lossless)  
+  ```sh
+  # original -> 4256x2842
+  # 20:9     -> 4256x1915
+  # 16:9     -> 4256x2394
+  # 4:3      -> 3776x2842
+  # 9:20     -> 1279x2842
+  # 9:16     -> 1066x2842
+  # 3:4      -> 2131x2842
 
-```bash
-wget "https://unsplash.com/photos/7bynNtRqu4E/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjkwMDQ1Mjc4fA&force=true" -O "temp.jpg" && ffmpeg -i "temp.jpg" -filter_complex scale=240:-1:flags=lanczos -y "temp.png" && ffmpeg -i "temp.png" -vf crop=240:240:0:0 -y "temp2.png" && sharp --input "temp2.png" --output "../public/avatar-nll.jpg" --format "jpg" --mozjpeg --nearLossless --effort 6 --compression "zstd" --compressionLevel 9 --optimize && rm -rf temp*
-```  
+  sharp resize 3776 2842 -i "./src/assets/wallpapers/original_Q1p7bh3SHj8.jpg" -o "./src/assets/wallpapers/4-3_Q1p7bh3SHj8.jpg" --format "jpg"  --mozjpeg --nearLossless
+  ```
 
+### Commands  
 
-# Download -> PNG -> mozjpeg (Quality: 80)  
+  ```sh
+  # Resize image to width, height, or width × height.
+  sharp resize [width] [height]
 
-```bash
-wget "https://unsplash.com/photos/7bynNtRqu4E/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjkwMDQ1Mjc4fA&force=true" -O "temp.jpg" && ffmpeg -i "temp.jpg" -filter_complex scale=240:-1:flags=lanczos -y "temp.png" && ffmpeg -i "temp.png" -vf crop=240:240:0:0 -y "temp2.png" && sharp --input "temp2.png" --output "../public/avatar-80.jpg" --format "jpg" --mozjpeg --quality 80 --effort 6 --compression "zstd" --compressionLevel 9 --optimize && rm -rf temp*
-```  
+  # auto-scaled height.
+  sharp resize [width]
 
+  # auto-scaled width.
+  sharp resize --height [height]
 
-# Download -> PNG -> WEBP (Near lossless)  
+  # Rotate the output image.
+  sharp rotate [angle]
 
-```bash
-wget "https://unsplash.com/photos/7bynNtRqu4E/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjkwMDQ1Mjc4fA&force=true" -O "temp.jpg" && ffmpeg -i "temp.jpg" -filter_complex scale=240:-1:flags=lanczos -y "temp.png" && ffmpeg -i "temp.png" -vf crop=240:240:0:0 -y "temp2.png" && sharp --input "temp2.png" --output "../public/avatar-nll.webp" --format "webp" --nearLossless --effort 6 --compression "zstd" --compressionLevel 9 --optimize && rm -rf temp*
-```  
+  # Remove alpha channel, if any.
+  sharp removeAlpha
+  ```
 
+### Options  
 
-# Download -> PNG -> WEBP (Quality: 80)  
+  ```sh
+  # Path to (an) image file(s)
+  -i, --input [array | string]
 
-```bash
-wget "https://unsplash.com/photos/7bynNtRqu4E/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjkwMDQ1Mjc4fA&force=true" -O "temp.jpg" && ffmpeg -i "temp.jpg" -filter_complex scale=240:-1:flags=lanczos -y "temp.png" && ffmpeg -i "temp.png" -vf crop=240:240:0:0 -y "temp2.png" && sharp --input "temp2.png" --output "../public/avatar-80.webp" --format "webp" --quality 80 --effort 6 --compression "zstd" --compressionLevel 9 --optimize && rm -rf temp*
-```  
+  # Directory or URI template to write the image files to
+  -o, --output [string]
+
+  # Force output to a given format
+  -f, --format [string]
+    ["avif", "gif", "heif", "jpeg", "jpg", "png", "raw", "tiff", "webp"]
+
+  #  Use mozjpeg defaults
+  --mozjpeg
+
+  # Use lossless compression mode
+  --lossless
+
+  # Use near_lossless compression mode
+  --nearLossless
+
+  # Quality
+  -q, --quality [1-100]
+
+  # zlib compression level
+  -c, --compressionLevel [1-6?]
+  ```  
+
+### Refs  
+
+- [vseventer/sharp-cli][sharp-cli]  
+- [sharp-cli/cmd/resizing/resize.js][sharp-cli/resize.js]  
+- [api-resize][sharp-api-docs/resize]  

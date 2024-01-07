@@ -1,0 +1,10 @@
+{
+  "@context": "https://7rs.dev/",
+  "@type": "Website",
+  "name": "Pages",
+  "author": {
+    "@type": "Person",
+    "name": "Cbrnex"
+  },
+  "description": "Fast and simple website."
+}

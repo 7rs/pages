@@ -5,6 +5,8 @@ import Repository from "@components/Repository.astro";
 import Profile from "@components/Profile.astro";
 import PostList from "@components/PostList.astro";
 
+import avatar from "@assets/avatar.webp";
+
 import gear from "@assets/repo-icons/gear.svg";
 import tools from "@assets/repo-icons/tools.svg";
 import fileDirectory from "@assets/repo-icons/file-directory.svg";
@@ -16,7 +18,14 @@ import typography from "@assets/repo-icons/typography.svg";
 ---
 
 <Layout title="Main Page">
-  <Profile />
+  <Profile src={avatar.src} name="CbrneX">
+    I'm Japanese student and a SM64 Romhack TASer. <br />
+    The name "Cbrnex" comes from <a
+      href="https://simple.wikipedia.org/wiki/CBRNE"
+      target="_blank"
+      rel="noopener noreferrer">CBRNE</a
+    >.
+  </Profile>
   <section class="repositories">
     <Repository url="https://github.com/7rs/pages" src={gear.src} license="WTFPL" lang="astro">
       Fast and simple design website.
