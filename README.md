@@ -50,7 +50,11 @@
 [vscode]: https://code.visualstudio.com/
 [stylus]: https://stylus-lang.com/
 
-![banner](.github/assets/banner.png)  
+<picture>
+  <source srcset=".github/assets/banner.avif" />
+  <source srcset=".github/assets/banner.webp" />
+  <img src=".github/assets/banner.jpg" alt="banner" />
+</picture>
 
 # [Pages](https://7rs.dev/)  
 
