@@ -6,6 +6,8 @@
     "esbenp.prettier-vscode",
     "yzhang.markdown-all-in-one",
     "davidanson.vscode-markdownlint",
-    "svelte.svelte-vscode"
+    "svelte.svelte-vscode",
+    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint"
   ]
 }
