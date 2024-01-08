@@ -1,5 +1,5 @@
 ---
-layout: "../../layouts/Layout.astro"
+layout: "@layouts/Layout.astro"
 title: "This isn't article."
 tags: []
 slug: "style-check"

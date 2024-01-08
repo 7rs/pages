@@ -1,18 +1,18 @@
 ---
-layout: "./src/layouts/Layout.astro"
+layout: "@layouts/Layout.astro"
 title: "How did you develop this website?"
 tags: ["frontend", "cloudflare", "astro", "stylus"]
-slug: "1"
 published: true
 published_at: "2024-01-07"
 ---
 
-# どうやってサイトを作ったの?
+# どうやってサイトを作ったの?  
 
 ## どうして作ったの？  
 
-  この問いに対して明確に答えるのは難しいです。強いて言うならば、エンジニアだからでしょうか。フロントエンドが得意とか好きとか関係なく、やってみたくなったわけです。ゴリゴリのGUIツールが苦手だったり、低コストで済ませたいという思いもあります。  
-
+  この問いに対して明確に答えるのは難しいです。強いて言うならば、エンジニアだからでしょうか。
+  フロントエンドが得意とか好きとか関係なく、やってみたくなったわけです。
+  ゴリゴリのGUIツールが苦手だったり、低コストで済ませたいという思いもあります。  
 
 [nuxt]: https://nuxt.com/  
 [github-pages]: https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages  
@@ -21,22 +21,27 @@ published_at: "2024-01-07"
 [netlify]: https://www.netlify.com/  
 [astro]: https://astro.build/  
 [cloudflare-pages]: https://pages.cloudflare.com/  
+
 ## 何を使ったの?  
 
-  ### [Astro][astro]と[Cloudflare Pages][cloudflare-pages]を使っています  
-  以前、[Nuxt.js][nuxt]と[GitHub Pages][github-pages]でウェブサイトを作ったことがあります。次は[Next.js][next]と[Vercel][vercel]を使う予定でした。静的ホスティングなら[Netlify][netlify]もありますが、[Astro][astro]と[Cloudflare Pages][cloudflare-pages]を知り、それらでウェブサイトを作ることにしました。  
+### [Astro][astro]と[Cloudflare Pages][cloudflare-pages]を使っています  
 
+  以前、[Nuxt.js][nuxt]と[GitHub Pages][github-pages]でウェブサイトを作ったことがあります。
+  次は[Next.js][next]と[Vercel][vercel]を使う予定でした。
+  静的ホスティングなら[Netlify][netlify]もありますが、[Astro][astro]と[Cloudflare Pages][cloudflare-pages]を知り、
+  それらでウェブサイトを作ることにしました。  
 
 [integrations]: https://docs.astro.build/ja/guides/integrations-guide/  
 [scoped-css]: https://ja.vuejs.org/api/sfc-css-features  
 [islands]: https://docs.astro.build/ja/concepts/islands/  
 [i18n]: https://i18n.docs.astro.build/  
+
 ## [Astro][astro]  
 
-  - [複数のコンポーネントライブラリ][integrations]  
-  - [名前空間のあるCSS][scoped-css]  
-  - [最小限のスクリプト][islands]  
-  - [日本語のドキュメント][i18n]  
+- [複数のコンポーネントライブラリ][integrations]
+- [名前空間のあるCSS][scoped-css]
+- [最小限のスクリプト][islands]
+- [日本語のドキュメント][i18n]
 
   > - Astroは**オールインワンのウェブフレームワーク**です。Astroには、ウェブサイトを作成するために必要なすべてが組み込まれています。  
   > - デフォルトで高速: Astroで遅いウェブサイトを作成することは不可能であるべきです。私たちの目標は、Astroを使えば、**遅いウェブサイトを作るのはほぼ不可能になる**ことです。  
@@ -45,20 +50,20 @@ published_at: "2024-01-07"
 
   ドキュメントは充実してますが、**日本の記事は少ない**ので厳しいところはあります。また、新しい機能のドキュメントもすぐ翻訳されるわけではないので、英語のドキュメントを読む必要があります。  
 
-
 [cf-github]: https://developers.cloudflare.com/pages/configuration/git-integration/#github-1  
 [github]: https://ja.wikipedia.org/wiki/GitHub  
 [cdn]: https://ja.wikipedia.org/wiki/Content_delivery_network  
 [cdn-usage]: https://kinsta.com/jp/cloudflare-market-share/  
 [tls]: https://ja.wikipedia.org/wiki/Transport_Layer_Security  
 [http3]: https://ja.wikipedia.org/wiki/HTTP/3  
-## [Cloudflare Pages][cloudflare-pages]    
 
-  - 簡単なビルド設定[^cloudflare-build]  
-  - [GitHub][github]との[連携][cf-github]  
-  - 無制限の転送量  
-  - [世界一][cdn-usage]の[CDN][cdn]  
-  - [TLS][tls]と[HTTP3(QUIC)][http3]  
+## [Cloudflare Pages][cloudflare-pages]
+
+- 簡単なビルド設定[^cloudflare-build]  
+- [GitHub][github]との[連携][cf-github]  
+- 無制限の転送量  
+- [世界一][cdn-usage]の[CDN][cdn]  
+- [TLS][tls]と[HTTP3(QUIC)][http3]  
 
   > - Pagesを使用すると、信頼できるフルスタックアプリケーションをわずかな時間で構築、デプロイ、配信できます。最低限の設定で、開発者、デザイナー、製品がコラボし、デプロイできます。  
   > - ビルドのキャッシュ機能により、プロジェクトの一部をキャッシュして以降の構築での時間の節約することで、強力なPages体験をお届けします。  
@@ -67,12 +72,11 @@ published_at: "2024-01-07"
   > [Cloudflareのグローバルネットワーク](https://www.cloudflare.com/ja-jp/network/)  
   > - Cloudflareでは、Webサイト所有者がオリジンを変更することなく、HTTP/3のサポートを有効にすることができます。  
   > [HTTP/3とは？](https://www.cloudflare.com/ja-jp/learning/performance/what-is-http3/)  
- 
-  **[Cloudflare Pages][github-pages]** の[無料プランでは1ヶ月500デプロイの制限](https://www.cloudflare.com/ja-jp/plans/developer-platform/)があるので、更新頻度が高いウェブサイトは厳しいです。また、Cloudflareの有料プランは普通に高いです。  
 
-[^cloudflare-build]: ![cf-build](./src/assets/blog/cf-build.png)
+  **[Cloudflare Pages][github-pages]** の[無料プランでは1ヶ月500デプロイの制限](https://www.cloudflare.com/ja-jp/plans/developer-platform/)があるので、
+  更新頻度が高いウェブサイトは厳しいです。また、Cloudflareの有料プランは普通に高いです。  
 
-
+[^cloudflare-build]: ![cf-build](/images/cf-build.png)
 
 [stylus]: https://stylus-lang.com  
 [important]: https://developer.mozilla.org/ja/docs/Web/CSS/important  
@@ -80,23 +84,23 @@ published_at: "2024-01-07"
 [sass]: https://sass-lang.com/  
 [stylus-docs]: https://stylus-lang.com/docs/  
 [postcss]: https://postcss.org/  
+
 ## スタイルはどうしてる?  
 
-  #### [Stylus][stylus]を使ってます  
-  CSSフレームワーク[^css-framework]は使いません。  
-  - HTMLはマークアップ言語であり、スタイルを指定する言語ではないから[^opinion]  
-  - [!important][important]が嫌い  
+  [Stylus][stylus]を使ってます。CSSフレームワーク[^css-framework]は使いません。  
+
+- HTMLはマークアップ言語であり、スタイルを指定する言語ではないから[^opinion]  
+- [!important][important]が嫌い  
   
   などが理由です。標準化されたスタイルが欲しいだけで、私が設定したスタイルを上書きされるのは鬱陶しいです。また、[Astro][astro]のスタイルは[名前空間][scoped-css]を持つので、ほとんどの場合は[!important][important]を使う必要がないです。
 
-
 ## [Stylus][stylus]  
 
-  - 波括弧やコロン・セミコロンを省略可能
-  - プログラミング言語の概念を使える  
-  - CSS、[SCSS/SASS][sass]、[Less][less]の記法が使える  
-  - ChatGPTが対応している  
-  - [ドキュメント(英語)][stylus-docs]   
+- 波括弧やコロン・セミコロンを省略可能
+- プログラミング言語の概念を使える  
+- CSS、[SCSS/SASS][sass]、[Less][less]の記法が使える  
+- ChatGPTが対応している  
+- [ドキュメント(英語)][stylus-docs]
 
   > [Stylus][stylus] is Expressive, dynamic, and robust CSS  
   > [Implementation Comparisons](https://stylus-lang.com/docs/compare.html)  
@@ -158,24 +162,23 @@ published_at: "2024-01-07"
 
 [^opinion]: 主観的な意見ですが、スタイルに問題があるとき、スタイルシートのファイルに限られたが保守性は高いです。無理なくスタイルシートを記述出来れば、CSSフレームワークは必須ではないのです。(無論、チームの場合は別。)  
 
-
 [modrinth]: https://modrinth.com/  
 [mdn-web-docs]: https://developer.mozilla.org/ja/docs/Web  
 [apple-color]: https://developer.apple.com/design/human-interface-guidelines/color  
 [iosevka]: https://typeof.net/Iosevka/  
 [discord]: https://discord.com/  
 [zenn]: https://zenn.dev/  
+
 ## デザインはどうやって?  
 
-  - [Modrinth][modrinth]  
-  - [MDN Web Docs][mdn-web-docs]  
-  - [Zenn][zenn]  
-  - [Discord][discord]  
-  - [Iosevka][iosevka]
-  - [Color | Apple Developer Documentation][apple-color]  
+- [Modrinth][modrinth]  
+- [MDN Web Docs][mdn-web-docs]  
+- [Zenn][zenn]  
+- [Discord][discord]  
+- [Iosevka][iosevka]
+- [Color | Apple Developer Documentation][apple-color]  
 
   以上のサイトを参考にしました。特に[Modrinth][modrinth]や[Zenn][zenn]のデザインが好きです。速度や使いやすさも重要ですが、かっこいいサイトは気持ちも上がります。  
-
 
 [porkbun]: https://porkbun.com/  
 [google-domains]: https://support.google.com/domains/answer/13689670  
@@ -188,18 +191,23 @@ published_at: "2024-01-07"
 [porkbun-whois]: https://porkbun.com/products/whois_privacy  
 [porkbun-payment]: https://porkbun.com/support/payment_options  
 [tld]: https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%83%E3%83%97%E3%83%AC%E3%83%99%E3%83%AB%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3  
+
 ## ドメインはどこで?  
 
-  [Porkbun][porkbun]を使いました。当時、[Google Domains][google-domains]が[SquareSpace][square-space]に移行する段階で安定しておらず、[Cloudflare][cloudflare-register]は.devに対応していませんでした。[お名前.com][onamae]や[Xserver Domain][xserver-domain]は知名度と信頼はありますが、安くはないのです。加えて大量のメールを送り付けてきたり、購入直前まで価格がはっきりしないのも気に食わないです（価格表示について[お名前.com][onamae]はマシな方だと思います）。ちなみに、移行先の[SquareSpace][square-space]はこの中で一番高いです。候補にすらなりません。また、[Cloudflare][cloudflare-register]は現在`.dev`に対応しています。  
+  [Porkbun][porkbun]を使いました。
+  当時、[Google Domains][google-domains]が[SquareSpace][square-space]に移行する段階で安定しておらず、[Cloudflare][cloudflare-register]は.devに対応していませんでした。
+  [お名前.com][onamae]や[Xserver Domain][xserver-domain]は知名度と信頼はありますが、安くはないのです。加えて大量のメールを送り付けてきたり、購入直前まで価格がはっきりしないのも気に食わないです（価格表示について[お名前.com][onamae]はマシな方だと思います）。
+  ちなみに、移行先の[SquareSpace][square-space]はこの中で一番高いです。
+  候補にすらなりません。また、[Cloudflare][cloudflare-register]は現在`.dev`に対応しています。  
 
 ## [Porkbun][porkbun]  
 
-  - 良心価格  
-  - 価格表示  
-  - [ドキュメント(英語)][porkbun-kb]  
-  - 無料の[WHOIS代行][porkbun-whois]と[SSL][porkbun-ssl]  
-  - [PayPal][porkbun-payment]が使用可能  
-  - 対応している[TLD][tld]の数  
+- 良心価格  
+- 価格表示  
+- [ドキュメント(英語)][porkbun-kb]  
+- 無料の[WHOIS代行][porkbun-whois]と[SSL][porkbun-ssl]  
+- [PayPal][porkbun-payment]が使用可能  
+- 対応している[TLD][tld]の数  
 
   > We are the #1 ranked registrar for lowest registration and renewal prices.  
   > 登録・更新価格の安さ1位のレジストラ  
@@ -207,8 +215,10 @@ published_at: "2024-01-07"
   > 支払いすぎてない？ドメインをPorkbunに移管して、費用を削減しよう。  
   > [Porkbun][porkbun]  
 
-  Porkbunの良いと感じる部分はセール後の価格や更新価格を隠さないことです。安いのもそうですが、こういった意識があるのは好ましいです。ただ、`.jp`はないですし、日本語は対応してません。`.dev`や`.app`は買えます。ちなみに、Paypalなどを通して$で払うことになるので、価格が変動します。  
-
+  Porkbunの良いと感じる部分はセール後の価格や更新価格を隠さないことです。
+  安いのもそうですが、こういった意識があるのは好ましいです。
+  ただ、`.jp`はないですし、日本語は対応してません。`.dev`や`.app`は買えます。
+  ちなみに、Paypalなどを通して$で払うことになるので、価格が変動します。  
 
 [vscode-astro]: https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode
 [vscode-change-case]: https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case
@@ -246,42 +256,44 @@ published_at: "2024-01-07"
 [bootcamp]: https://support.apple.com/ja-jp/102622  
 [laptop]: https://jp.msi.com/Laptop/GF63-Thin-11UX  
 [arch]: https://www.archlinux.jp/  
-## 開発環境は?   
 
-  - [WSL 2][wsl2]    
-  - [fnm][fnm]  
-  - [pnpm][pnpm]  
-  - [Alacritty][alacritty]  
-  - [fish][fish]  
-  - [Starship][starship]  
-  - [VSCode][vscode]  
-    - [Dracula][vscode-dracula]  
-    - [Astro][vscode-astro]  
-    - [stylus][vscode-stylus]   
-    - [JavaScript and TypeScript Nightly][vscode-js-and-ts]  
-    - [Markdown All in One][vscode-markdown]  
-    - [Prettier][vscode-prettier]  
-    - [EditorConfig for VS Code][vscode-editorconfig]  
-    - [GitLens][vscode-git-lens]  
-    - [Git Graph][vscode-git-graph]  
-    - [Git History][vscode-git-history]  
-    - [GitHub Pull][vscode-github-pull]  
-    - [indent-rainbow][vscode-indent-rainbow]  
-    - [Error Lens][vscode-error-lens]  
-    - [Bracket Lens][vscode-bracket-lens]  
-    - [Gremlins tracker for Visual Studio Code][vscode-gremlins]  
-    - [change-case][vscode-change-case]  
-    - [Path Intellisense][vscode-path-intellisense]  
-    - [IntelliCode][vscode-intelli-code]  
-    - [Tabnine][vscode-tabnine]  
-    - [Peacock][vscode-peacock]  
-    - [CodeSnap][vscode-code-snap] 
-    - [GlassIt-VSC][vscode-glass-it]  
+## 開発環境は?
+
+- [WSL 2][wsl2]
+- [fnm][fnm]  
+- [pnpm][pnpm]  
+- [Alacritty][alacritty]  
+- [fish][fish]  
+- [Starship][starship]  
+- [VSCode][vscode]  
+  - [Dracula][vscode-dracula]  
+  - [Astro][vscode-astro]  
+  - [stylus][vscode-stylus]
+  - [JavaScript and TypeScript Nightly][vscode-js-and-ts]  
+  - [Markdown All in One][vscode-markdown]  
+  - [Prettier][vscode-prettier]  
+  - [EditorConfig for VS Code][vscode-editorconfig]  
+  - [GitLens][vscode-git-lens]  
+  - [Git Graph][vscode-git-graph]  
+  - [Git History][vscode-git-history]  
+  - [GitHub Pull][vscode-github-pull]  
+  - [indent-rainbow][vscode-indent-rainbow]  
+  - [Error Lens][vscode-error-lens]  
+  - [Bracket Lens][vscode-bracket-lens]  
+  - [Gremlins tracker for Visual Studio Code][vscode-gremlins]  
+  - [change-case][vscode-change-case]  
+  - [Path Intellisense][vscode-path-intellisense]  
+  - [IntelliCode][vscode-intelli-code]  
+  - [Tabnine][vscode-tabnine]  
+  - [Peacock][vscode-peacock]  
+  - [CodeSnap][vscode-code-snap]
+  - [GlassIt-VSC][vscode-glass-it]  
 
   また、[Stackshare](https://stackshare.io/7rs/pages)もご参照下さい。  
 
   正直[Mac][mac]で開発する方が楽ではあるのですが、[M Series][apple-m-series]では[BootCamp][bootcamp]がほぼ使えない状態で、
-  [Parallels Desktop][parallels]で使うのも好ましくないので[Windowsのノート][laptop]を買いました。Windowsで開発する場合、[WSL][wsl2]を使うのが楽なのですが、[WSL][wsl2]はかなりゴミです。もちろん、[Linux][arch]をインストールすることは可能ですが、利便性は悪いです。  
+  [Parallels Desktop][parallels]で使うのも好ましくないので[Windowsのノート][laptop]を買いました。
+  Windowsで開発する場合、[WSL][wsl2]を使うのが楽なのですが、[WSL][wsl2]はかなりゴミです。もちろん、[Linux][arch]をインストールすることは可能ですが、利便性は悪いです。  
 
   > [7rs/pages](https://github.com/7rs/pages)  
 

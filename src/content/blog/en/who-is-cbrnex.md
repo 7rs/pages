@@ -1,5 +1,5 @@
 ---
-layout: "./src/layouts/Layout.astro"
+layout: "@layouts/Layout.astro"
 title: "Who is Cbrnex?"
 tags: ["profile"]
 lang: "en"

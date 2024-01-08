@@ -1,5 +1,5 @@
 ---
-layout: "./src/layouts/Layout.astro"
+layout: "@layouts/Layout.astro"
 title: "Cbrnexって誰？"
 tags: ["profile"]
 published: true

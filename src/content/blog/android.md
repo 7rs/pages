@@ -1,8 +1,7 @@
 ---
-layout: "./src/layouts/Layout.astro"
+layout: "@layouts/Layout.astro"
 title: "Android Apps"
 tags: ["android"]
-slug: "2"
 ---
 
 
