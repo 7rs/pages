@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Use Discussions
+    url: https://github.com/7rs/pages/discussions
+    about: If you think an issue that is unhelpful, please use Discussions.

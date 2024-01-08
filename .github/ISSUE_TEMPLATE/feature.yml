@@ -1,0 +1,20 @@
+name: "Bug Report"
+description: "Suggestions and ideas for features."
+labels: ["contribute: ideas/request"]
+body:
+  - type: textarea
+    id: about
+    attributes:
+      label: "About ideas or features"
+      description: "Tell me about features or ideas. Images and diagrams are helpful."
+      render: Markdown
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: "References"
+      description: "Please include any reference you have."
+      render: Markdown
+    validations:
+      required: false
