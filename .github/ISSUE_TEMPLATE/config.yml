@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Empty Issue
+    url: https://github.com/7rs/pages/issues/new
+    about: Add a new issue without templates.
   - name: Use Discussions
     url: https://github.com/7rs/pages/discussions
     about: If you think an issue that is unhelpful, please use Discussions.

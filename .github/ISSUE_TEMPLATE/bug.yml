@@ -1,4 +1,4 @@
-name: "Bug Report"
+name: Report
 description: "Report an issue or possible bug."
 labels: ["hotfix: bug"]
 body:
@@ -10,13 +10,23 @@ body:
       render: Shell
     validations:
       required: true
-  - type: input
+  - type: dropdown
     id: browser
     attributes:
       label: "What browser were you using?"
       description: "FireFox, Chrome, and Safari are supported in that order. If you are using any other browser, won't do something other than what is mentioned in issues"
-      placeholder: Chrome, Bromite/Cromite, Chromium, Firefox, Safari, Edge, Opera, Vivaldi
-      value: Chrome
+      options:
+        - Chrome
+        - Bromite/Cromite
+        - Chromium
+        - Firefox
+        - Safari
+        - Edge
+        - Opera
+        - Vivaldi
+        - Other browsers
+        - Without browser
+      default: 0
     validations:
       required: true
   - type: textarea
