@@ -1,0 +1,26 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<nav>
+  <Icon name="material-symbols:wb-sunny-outline" />
+  <Icon name="material-symbols:search" />
+  <Icon name="material-symbols:menu" />
+</nav>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-icon]
+    font-size sizes.icon
+    color colors.icon
+    @media (prefers-color-scheme dark)
+      color colors.dark.icon
+
+  nav
+    width 100%
+    display flex
+    align-items center
+    justify-content flex-end
+    gap sizes.icon
+</style>

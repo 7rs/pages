@@ -1,59 +1,93 @@
 ---
-import github from "@assets/brand-icons/github.svg";
-import patreon from "@assets/brand-icons/patreon.svg";
-import pinterest from "@assets/brand-icons/pinterest.svg";
-import reddit from "@assets/brand-icons/reddit.svg";
-import twitch from "@assets/brand-icons/twitch.svg";
-import x from "@assets/brand-icons/x.svg";
-import youtube from "@assets/brand-icons/youtube.svg";
-import youtubegaming from "@assets/brand-icons/youtubegaming.svg";
-import zenn from "@assets/brand-icons/zenn.svg";
-import discord from "@assets/brand-icons/discord.svg";
-import telegram from "@assets/brand-icons/telegram.svg";
-
-import Icon from "@components/Icon.astro";
 import Brand from "@components/Brand.astro";
-import Link from "@components/Link.astro";
-
-import "@styles/footer.styl"
+import SocialList from "@components/footer/SocialList.astro";
+import NavigationItem from "@components/footer/NavigationItem.astro";
+import NavigationHeader from "@components/footer/NavigationHeader.astro";
 ---
 
 <footer>
-  <article class="footer">
-    <div class="pages-brand"><Brand /></div>
-    <p class="description">Fast and simple design website.</p>
-    <div class="socials">
-      <Icon src={github.src} href="https://7rs.dev/gh" />
-      <Icon src={pinterest.src} href="https://7rs.dev/p" />
-      <Icon src={x.src} href="https://7rs.dev/x" />
-      <Icon src={twitch.src} href="https://7rs.dev/ttv" />
-      <Icon src={youtube.src} href="https://7rs.dev/yt" />
-      <Icon src={youtubegaming.src} href="https://7rs.dev/yt2" />
-      <Icon src={patreon.src} href="https://7rs.dev/patreon" />
-      <Icon src={reddit.src} href="https://7rs.dev/r" />
-      <Icon src={zenn.src} href="https://7rs.dev/z" />
-      <Icon src={discord.src} href="https://7rs.dev/d" />
-      <Icon src={telegram.src} href="https://7rs.dev/t" />
-    </div>
-    <div class="informations">
-      <p>Pages is <a href="http://www.wtfpl.net/about/" target="_blank" rel="noopener noreferrer">open source</a>.</p>
-      <p>©2023 by Cbrnex</p>
-    </div>
-
-    <h2 class="pages-label">Pages</h2>
-    <div class="pages">
-      <Link href="/" label="Main" current />
-      <Link href="" label="Blog" current />
-      <Link href="" label="Links" current />
-    </div>
-
-    <h2 class="resources-label">Resources</h2>
-    <div class="resources">
-      <Link href="https://7rs.dev/repo" label="GitHub" />
-      <Link href="https://stackshare.io/7rs/pages" label="StackShare" />
-      <Link href="https://github.com/7rs/pages/wiki" label="Documentation" />
-      <Link href="https://zenn.dev/7rs/scraps/d31d814237ec1c" label="Scraps" />
-      <Link href="https://github.com/7rs/pages/blob/main/LICENSE" label="License" />
-    </div>
-  </article>
+  <div class="summary">
+    <Brand name="pAges" />
+    <p>Fast and simple design website.</p>
+    <p>©2024 by Cbrnex.</p>
+  </div>
+  <div class="social-list"><SocialList openWithNewTab /></div>
+  <nav class="pages-nav">
+    <NavigationHeader iconName="logo" description="Pages navigation">Pages</NavigationHeader>
+    <NavigationItem label="Main" url="/" description="Main page" />
+  </nav>
+  <nav class="resource-nav">
+    <NavigationHeader iconName="material-symbols:info-outline-rounded" description="Resource navigation">
+      Resources
+    </NavigationHeader>
+    <NavigationItem label="Repository" url="https://7rs.dev/repo" description="Main page" />
+    <NavigationItem label="Wiki" url="https://github.com/7rs/pages/wiki" description="Main page" />
+    <NavigationItem label="License" url="https://github.com/7rs/pages/blob/main/LICENSE" description="License" />
+    <NavigationItem label="Scraps" url="https://zenn.dev/7rs/scraps/d31d814237ec1c" description="License" />
+    <NavigationItem label="Stacks" url="https://stackshare.io/7rs/pages" description="License" />
+  </nav>
 </footer>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  footer
+    width 100vw
+    padding 1rem
+    display grid
+    gap 1rem 0
+    grid-template-areas \
+      "summary    " \
+      "social-list";
+    @media screen and (min-width widths.medium)
+      grid-template-rows 2fr 5fr
+      grid-template-columns 3fr 1fr
+      grid-template-areas \
+      "summary     resource-nav" \
+      "social-list resource-nav";
+    @media screen and (min-width widths.large)
+      grid-template-rows 2fr 5fr
+      grid-template-columns 3fr repeat(2, 1fr)
+      grid-template-areas \
+      "summary     pages-nav resource-nav" \
+      "social-list pages-nav resource-nav";
+
+    .summary
+      grid-area summary
+
+    .social-list
+      grid-area social-list
+      display grid
+      gap 1rem 2rem
+      justify-content center
+      grid-template-columns repeat(5, heights.icon.small)
+      @media screen and (min-width widths.medium)
+        grid-template-columns repeat(6, heights.icon.small)
+        justify-content start
+      @media screen and (min-width widths.large)
+        gap 0 1.75rem
+        grid-template-columns repeat(7, heights.icon.large)
+      @media screen and (min-width widths.largest)
+        grid-template-columns repeat(8, heights.icon.large)
+
+    .pages-nav, .resource-nav
+      display none
+      @media screen and (min-width widths.large)
+        display flex
+        flex-direction column
+        width 100%
+        height 100%
+        gap 1rem
+
+    .pages-nav
+      grid-area pages-nav
+
+    .resource-nav
+      grid-area resource-nav
+      @media screen and (min-width widths.medium)
+        display flex
+        flex-direction column
+        width 100%
+        height 100%
+        gap 1rem
+</style>

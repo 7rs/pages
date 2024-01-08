@@ -17,7 +17,10 @@ export default defineConfig({
     Image: false,
     JavaScript: true,
     SVG: false
-  }), mdx(), purgecss(), svelte(), robotsTxt(), sitemap(), icon()],
+  }), mdx(), purgecss(), svelte(), robotsTxt(), sitemap(), icon({
+    iconDir: "src/icons",
+  }
+  )],
   // https://docs.astro.build/guides/images/
   image: {
     service: passthroughImageService()

@@ -1,47 +1,43 @@
 ---
-import logo from "@assets/logo.svg";
+import { Icon } from "astro-icon/components";
 
-const iconURL = `url(${logo.src})`;
+export interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
 ---
 
-<a href="/">
-  <div>
-    <div></div>
-    <h1>pAges</h1>
-  </div>
-</a>
 
-<style lang="stylus" define:vars={{iconURL}}>
+<article>
+  <a href="/">
+    <Icon name="logo" />
+    <h1>{name}</h1>
+  </a>
+</article>
+
+
+<style lang="stylus">
   @import "../styles/api.styl"
 
-  div
+  article > a
+    width 100%
+    height 100%
+    text-decoration none
     display flex
     align-items center
-    gap 0.5rem
+    gap 0.25rem
 
-    div
-      display block
-      mask-image var(--iconURL)
-      -webkit-mask-image var(--iconURL)
-      // For dark mode
-      background colors.icon
+    [data-icon]
+      font-size sizes.brand-size
+      line-height sizes.brand-height
+      color colors.icon
       @media (prefers-color-scheme dark)
-        background colors.dark.icon
+        color colors.dark.icon
 
-  div > div, h1
-    // For responsive
-    width heights.icon.small
-    height heights.icon.small
-    @media screen and (min-width widths.large)
-      width heights.icon.large
-      height heights.icon.large
-
-  a
-    text-decoration none
-
-  h1
-    deco(item-height, brand-height)
-    color colors.text
-    @media (prefers-color-scheme dark)
-      color colors.dark.text
+    h1
+      deco(sizes.brand-size, sizes.brand-height)
+      color colors.text
+      @media (prefers-color-scheme dark)
+        color colors.dark.text
 </style>
