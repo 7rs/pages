@@ -6,20 +6,22 @@ import logo from "@assets/logo.svg";
 
 import "@styles/main.styl";
 
+import Head from "@layouts/Meta.astro";
+import { Metadata } from "@lib/meta";
+
 export interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
 
-function createFontURL(fonts: Array<string>): string {
-  return `https://fonts.googleapis.com/css2?family=${fonts.join("&family=").replace(/\s/g, "+")}&display=swap`;
-}
-
-const fonts: Array<string> = ["Fira Sans", "Fira Code"];
-const cjkFonts: Array<string> = [...fonts, "BIZ UDPMincho", "BIZ UDPGothic", "Zen Kaku Gothic New", "BIZ UDGothic"];
-
-const Informations = {
+const metadata: Metadata = {
+  name: "Pages",
+  description: "Fast and simple website.",
+  image: logo.src,
+  imageAlt: "Cbrnex Logo",
+  author: "Cbrnex",
+  url: "https://7rs.dev/",
   keywords: [
     "Pages",
     "Cbrnex",
@@ -33,46 +35,13 @@ const Informations = {
     "Cloudflare Pages",
     "FLOSS",
   ],
-  name: "Pages",
-  url: "https://7rs.dev/",
-  description: "Fast and simple website.",
-  author: "Cbrnex",
+  twitterId: "@cbrnex",
 };
-const keywords = Informations.keywords.join(", ");
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Website Metadata -->
-    <title>{title}</title>
-    <meta name="description" content={Informations.description} />
-    <link rel="icon" href={logo.src} type="image/svg+xml" />
-    <meta name="author" content={Informations.author} />
-    <meta name="keywords" content={keywords} />
-    <!-- Website Settings -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="referrer" content="no-referrer" />
-    <meta name="format-detection" content="telephone=no,email=no,address=no" />
-    <meta name="google" content="notranslate" />
-    <meta content="Pages" name="apple-mobile-web-app-title" />
-    <!-- Informations -->
-    <link rel="canonical" href={Informations.url} />
-
-    <link rel="sitemap" href="/sitemap.xml" />
-    <meta name="generator" content="Astro" />
-    <!-- Google Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com/" />
-    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href={createFontURL(cjkFonts)} rel="stylesheet" as="style" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&text=CbrneXpAgs"
-      as="style"
-      crossorigin
-    />
+  <Head title={title} favicon={logo.src} metadata={metadata}>
     <!-- https://developers.google.com/search/docs/appearance/structured-data/article -->
     <script type="application/ld+json">
       {
@@ -86,22 +55,7 @@ const keywords = Informations.keywords.join(", ");
         "description": "Fast and simple website."
       }
     </script>
-    <!-- Open Graph Data: https://ogp.me/ -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={Informations.name} />
-    <meta property="og:title" content={title} />
-    <meta property="og:image" content={logo.src} />
-    <meta property="og:keywords" content={keywords} />
-    <!-- Twitter Cards: https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards -->
-    <meta name="twitter:title" content={title} />
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:site" content="@cbrnex" />
-    <meta property="twitter:site:id" content="@cbrnex" />
-    <meta property="twitter:creator" content="@cbrnex" />
-    <meta property="twitter:creator:id" content="@cbrnex" />
-    <meta name="twitter:image" content={logo.src} />
-    <meta name="twitter:image:alt" content="Cbrnex Logo" />
-  </head>
+  </Head>
 
   <body>
     <Header />
