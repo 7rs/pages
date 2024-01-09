@@ -3,29 +3,83 @@ import Brand from "@components/Brand.astro";
 import SocialList from "@components/footer/SocialList.astro";
 import NavigationItem from "@components/footer/NavigationItem.astro";
 import NavigationHeader from "@components/footer/NavigationHeader.astro";
+
+import LabeledIcon from "@components/LabeledIcon.astro";
+import Navigation from "@components/footer/Navigation.astro";
+import Social from "@components/footer/Social.astro";
 ---
 
 <footer>
   <div class="summary">
-    <Brand name="pAges" />
+    <Brand>pAges</Brand>
     <p>Fast and simple design website.</p>
-    <p>©2024 by Cbrnex.</p>
   </div>
-  <div class="social-list"><SocialList openWithNewTab /></div>
-  <nav class="pages-nav">
-    <NavigationHeader iconName="logo" description="Pages navigation">Pages</NavigationHeader>
-    <NavigationItem label="Main" url="/" description="Main page" />
-  </nav>
-  <nav class="resource-nav">
-    <NavigationHeader iconName="material-symbols:info-outline-rounded" description="Resource navigation">
-      Resources
-    </NavigationHeader>
-    <NavigationItem label="Repository" url="https://7rs.dev/repo" description="Main page" />
-    <NavigationItem label="Wiki" url="https://github.com/7rs/pages/wiki" description="Main page" />
-    <NavigationItem label="License" url="https://github.com/7rs/pages/blob/main/LICENSE" description="License" />
-    <NavigationItem label="Scraps" url="https://zenn.dev/7rs/scraps/d31d814237ec1c" description="License" />
-    <NavigationItem label="Stacks" url="https://stackshare.io/7rs/pages" description="License" />
-  </nav>
+  <SocialList>
+    <Social alias="youtube" userId="QRZE" openInNewTab />
+    <Social alias="github" userId="7rs" openInNewTab />
+    <Social alias="zenn" userId="7rs" openInNewTab />
+    <Social alias="discord" userId="GQP8A5kDJV" openInNewTab />
+    <Social alias="telegram" userId="Cbrnex" openInNewTab />
+    <Social alias="youtube" userId="cbrnex" openInNewTab />
+    <Social alias="reddit" userId="r4zln" openInNewTab />
+    <Social alias="twitch" userId="cbrnex" openInNewTab />
+    <Social alias="patreon" userId="7rs" openInNewTab />
+    <Social alias="paypal" userId="7rbots" openInNewTab />
+    <Social alias="gitlab" userId="7rs" openInNewTab />
+    <!-- <Social alias="x" userId="cbrnex" openInNewTab\ /> -->
+    <Social alias="tiktok" userId="cbrnex" openInNewTab />
+    <Social alias="mastodon" userId="7rs" openInNewTab />
+    <Social alias="mastodon.cloud" userId="7rs" openInNewTab />
+    <Social alias="mstdn.jp" userId="7rs" openInNewTab />
+    <Social alias="qiita" userId="7rs" openInNewTab />
+    <Social alias="applemusic" userId="7rs" openInNewTab />
+    <Social alias="internetarchive" userId="7rs" openInNewTab />
+  </SocialList>
+  <Navigation icon="logo" categoryName="Pages" description="Pages item" name="pages-nav">
+    <LabeledIcon icon="material-symbols:other-houses" description="Main page" href="/">Main</LabeledIcon>
+  </Navigation>
+  <Navigation
+    icon="material-symbols:info-outline"
+    categoryName="Resources"
+    description="Resources of pages"
+    name="resources-nav"
+  >
+    <LabeledIcon
+      icon="simple-icons:github"
+      description="GitHub repository for pages"
+      href="https://7rs.dev/github"
+      openInNewTab
+      label="Repository"
+    />
+    <LabeledIcon
+      icon="material-symbols:book-2"
+      description="Documentations for pages"
+      href="https://7rs.dev/docs"
+      openInNewTab
+      label="Docs"
+    />
+    <LabeledIcon
+      icon="material-symbols:copyright-outline"
+      description="About license"
+      href="https://7rs.dev/license"
+      openInNewTab
+      label="License"
+    />
+    <LabeledIcon
+      icon="material-symbols:stylus-note"
+      description="Scraps in Zenn"
+      href="https://7rs.dev/scraps"
+      openInNewTab
+      label="Scraps"
+    />
+    <LabeledIcon
+      icon="simple-icons:stackshare"
+      description="Information in Stackshare"
+      href="https://7rs.dev/tech-stack"
+      openInNewTab
+      label="Stack"
+    />
+  </Navigation>
 </footer>
 
 <style lang="stylus">
@@ -36,6 +90,7 @@ import NavigationHeader from "@components/footer/NavigationHeader.astro";
     padding 1rem
     display grid
     gap 1rem 0
+    // For responsive
     grid-template-areas \
       "summary    " \
       "social-list";
@@ -43,51 +98,31 @@ import NavigationHeader from "@components/footer/NavigationHeader.astro";
       grid-template-rows 2fr 5fr
       grid-template-columns 3fr 1fr
       grid-template-areas \
-      "summary     resource-nav" \
-      "social-list resource-nav";
+      "summary     resources-nav" \
+      "social-list resources-nav";
     @media screen and (min-width widths.large)
       grid-template-rows 2fr 5fr
       grid-template-columns 3fr repeat(2, 1fr)
       grid-template-areas \
-      "summary     pages-nav resource-nav" \
-      "social-list pages-nav resource-nav";
+      "summary     pages-nav resources-nav" \
+      "social-list pages-nav resources-nav";
 
     .summary
       grid-area summary
 
-    .social-list
+    [social-list]
       grid-area social-list
-      display grid
-      gap 1rem 2rem
-      justify-content center
-      grid-template-columns repeat(5, heights.icon.small)
-      @media screen and (min-width widths.medium)
-        grid-template-columns repeat(6, heights.icon.small)
-        justify-content start
-      @media screen and (min-width widths.large)
-        gap 0 1.75rem
-        grid-template-columns repeat(7, heights.icon.large)
-      @media screen and (min-width widths.largest)
-        grid-template-columns repeat(8, heights.icon.large)
 
-    .pages-nav, .resource-nav
+    [footer-nav]
       display none
+
+    [footer-nav="pages-nav"]
+      grid-area pages-nav
       @media screen and (min-width widths.large)
         display flex
-        flex-direction column
-        width 100%
-        height 100%
-        gap 1rem
 
-    .pages-nav
-      grid-area pages-nav
-
-    .resource-nav
-      grid-area resource-nav
+    [footer-nav="resources-nav"]
+      grid-area resources-nav
       @media screen and (min-width widths.medium)
         display flex
-        flex-direction column
-        width 100%
-        height 100%
-        gap 1rem
 </style>

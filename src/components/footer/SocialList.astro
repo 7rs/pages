@@ -1,58 +1,26 @@
 ---
-import { Icon } from "astro-icon/components";
-import { createSocialList, SocialAlias } from "@scripts/lib/social";
-
 export interface Props {
-  openWithNewTab: boolean;
+  name?: string;
 }
-
-const { openWithNewTab = false } = Astro.props;
-const accounts = createSocialList([
-  { alias: "youtube", userId: "QRZE" },
-  { alias: "pinterest", userId: "cbrnex" },
-  { alias: "github", userId: "7rs" },
-  { alias: "zenn", userId: "7rs" },
-  { alias: "discord", userId: "GQP8A5kDJV" },
-  { alias: "telegram", userId: "Cbrnex" },
-  { alias: "youtube", userId: "cbrnex" },
-  { alias: "reddit", userId: "r4zln" },
-  { alias: "twitch", userId: "cbrnex" },
-  { alias: "patreon", userId: "7rs" },
-  { alias: "paypal", userId: "7rbots" },
-  { alias: "gitlab", userId: "7rs" },
-  { alias: "x", userId: "cbrnex" },
-  { alias: "tiktok", userId: "cbrnex" },
-  { alias: "mastodon", userId: "7rs" },
-  { alias: "mastodon.cloud", userId: "7rs" },
-  { alias: "mstdn.jp", userId: "7rs" },
-  { alias: "qiita", userId: "7rs" },
-  { alias: "applemusic", userId: "7rs" },
-  { alias: "internetarchive", userId: "7rs" },
-]);
+const { name = "", ...props } = Astro.props;
 ---
 
-{
-  accounts.map((account) => {
-    return openWithNewTab ? (
-      <a href={account.url} title={account.description} target="_blank" rel="noopener noreferrer">
-        <Icon name={account.iconName} title={account.description} />
-      </a>
-    ) : (
-      <a href={account.url} title={account.description}>
-        <Icon name={account.iconName} title={account.description} />
-      </a>
-    );
-  })
-}
+<article {...props} social-icons={name}><slot /></article>
 
 <style lang="stylus">
   @import "../../styles/api.styl"
-
-  [data-icon]
-    font-size heights.icon.small
-    color colors.icon
-    @media (prefers-color-scheme dark)
-      color colors.dark.icon
+  
+  article
+    display grid
+    gap 1rem 2rem
+    justify-content center
+    grid-template-columns repeat(5, heights.icon.small)
+    @media screen and (min-width widths.medium)
+      grid-template-columns repeat(6, heights.icon.small)
+      justify-content start
     @media screen and (min-width widths.large)
-      font-size heights.icon.large
+      gap 0 1.75rem
+      grid-template-columns repeat(7, heights.icon.large)
+    @media screen and (min-width widths.largest)
+      grid-template-columns repeat(8, heights.icon.large)
 </style>

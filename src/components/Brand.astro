@@ -1,43 +1,39 @@
 ---
-import { Icon } from "astro-icon/components";
-
-export interface Props {
-  name: string;
-}
-
-const { name } = Astro.props;
+import LabeledIcon from "./LabeledIcon.astro";
 ---
 
-
-<article>
-  <a href="/">
-    <Icon name="logo" />
-    <h1>{name}</h1>
-  </a>
-</article>
+<LabeledIcon icon="logo" description="Fast and simple website" href="/" name="brand"><slot /></LabeledIcon>
 
 
 <style lang="stylus">
   @import "../styles/api.styl"
 
-  article > a
-    width 100%
-    height 100%
-    text-decoration none
-    display flex
-    align-items center
+  [labeled-icon="brand"]
     gap 0.25rem
-
-    [data-icon]
-      font-size sizes.brand-size
-      line-height sizes.brand-height
-      color colors.icon
-      @media (prefers-color-scheme dark)
-        color colors.dark.icon
-
-    h1
+    font-size sizes.brand-size
+    &:hover
+      text-decoration none
+    p
       deco(sizes.brand-size, sizes.brand-height)
-      color colors.text
-      @media (prefers-color-scheme dark)
-        color colors.dark.text
+
+  // article > a
+  //   width 100%
+  //   height 100%
+  //   text-decoration none
+  //   display flex
+  //   align-items center
+  //   gap 0.25rem
+
+  //   [data-icon]
+  //     font-size sizes.brand-size
+  //     line-height sizes.brand-height
+  //     color colors.icon
+  //     @media (prefers-color-scheme dark)
+  //       color colors.dark.icon
+
+  //   h1
+  //     deco(sizes.brand-size, sizes.brand-height)
+  //     color colors.text
+  //     @media (prefers-color-scheme dark)
+  //       color colors.dark.text
 </style>

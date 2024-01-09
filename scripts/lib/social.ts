@@ -193,7 +193,7 @@ function generateURL(socialType: SocialType, userId: string): string {
     return `https://${socialType.originUrl}/${socialType.needAtSign ? "@" : ""}${userId}`
 }
 
-function createSocial(alias: string, userId: string): Social {
+export function createSocial(alias: string, userId: string): Social {
     const socialType = getSocialTypeWithAlias(alias);
 
     return {

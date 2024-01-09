@@ -1,40 +1,51 @@
 ---
+import { Icon } from "astro-icon/components";
+import LabeledIcon from "./LabeledIcon.astro";
+
 export interface Props {
-  href?: string;
-  label?: string;
-  current?: boolean;
-  colored?: boolean;
+  href: string;
+  description: string;
+  openInNewTab?: boolean;
+  iconName?: string;
 }
 
-const { href = "", label, current = false, colored = false } = Astro.props;
-const className = colored ? "colored" : "colorless";
+const { href, description, openInNewTab = false, iconName, ...props } = Astro.props;
+
+let target: string | undefined = undefined;
+let rel: string | undefined;
+
+if (openInNewTab) {
+  target = "_blank";
+  rel = "noopener noreferrer";
+}
 ---
 
-{
-  current ? (
-    <a class={className} href={href} title={label}>
-      {label || <slot />}
-    </a>
-  ) : (
-    <a class={className} href={href} title={label} target="_blank" rel="noopener noreferrer">
-      {label || <slot />}
-    </a>
-  )
-}
+<a
+  href={href}
+  title={description}
+  target={openInNewTab ? "_blank" : null}
+  rel={openInNewTab ? "noopener noreferrer" : null}
+  {...props}
+  link-style
+>
+  {
+    iconName ? (
+      <LabeledIcon icon={iconName} description={description}>
+        <slot />
+      </LabeledIcon>
+    ) : (
+      <slot />
+    )
+  }
+</a>
 
 <style lang="stylus">
   @import "../styles/api.styl"
 
-  a
-    sans(1.2rem, 1.5rem)
-
-  .colored
-    hoverable(colors.link-colored)
-    @media (prefers-color-scheme dark)
-      hoverable(colors.dark.link-colored)
-
-  .colorless
-    hoverable(colors.link)
-    @media (prefers-color-scheme dark)
-      hoverable(colors.dark.link)
+  [link-style]
+    display flex
+    // Need a semicolon. Is this a bug?
+    gap 0.5rem
+    align-items center
+    text-decoration none
 </style>

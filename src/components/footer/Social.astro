@@ -1,0 +1,39 @@
+---
+import { Icon } from "astro-icon/components";
+import { createSocial } from "@lib/social";
+import { Code } from "astro:components";
+
+export interface Props {
+  alias: string;
+  userId: string;
+  openInNewTab?: boolean;
+  name?: string;
+}
+
+const { alias, userId, openInNewTab = false, name = "", ...props } = Astro.props;
+
+const social = createSocial(alias, userId);
+---
+
+<a
+  href={social.url}
+  title={social.description}
+  target={openInNewTab ? "_blank" : null}
+  rel={openInNewTab ? "noopener noreferrer" : null}
+  {...props}
+  social-icon={name}
+>
+  <Icon name={social.iconName} title={social.description} {...props} />
+</a>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-icon]
+    font-size heights.icon.small
+    color colors.icon
+    @media (prefers-color-scheme dark)
+      color colors.dark.icon
+    @media screen and (min-width widths.large)
+      font-size heights.icon.large
+</style>
