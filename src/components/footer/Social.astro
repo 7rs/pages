@@ -31,9 +31,15 @@ const social = createSocial(alias, userId);
 
   [data-icon]
     font-size heights.icon.small
-    color colors.icon
+    color colors.icon;
+    &:hover
+      color rgba(colors.icon, 0.5);
+
     @media (prefers-color-scheme dark)
-      color colors.dark.icon
+      color colors.dark.icon;
+      &:hover
+        color rgba(colors.dark.icon, 0.5)
+
     @media screen and (min-width widths.large)
       font-size heights.icon.large
 </style>
