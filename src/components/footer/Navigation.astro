@@ -1,0 +1,26 @@
+---
+import LabeledIcon from "@components/LabeledIcon.astro";
+
+export interface Props {
+  icon: string;
+  categoryName: string;
+  description: string;
+  name: string;
+}
+
+const { icon, categoryName, description, name, ...props } = Astro.props;
+---
+
+<div {...props} footer-nav={name}>
+  <LabeledIcon icon={icon} description={description}>{categoryName}</LabeledIcon>
+  <slot />
+</div>
+
+<style lang="stylus">
+  [footer-nav]
+    display flex
+    flex-direction column
+    gap 1rem
+    width 100%
+    height 100%
+</style>

@@ -1,47 +1,18 @@
 ---
-import logo from "@assets/logo.svg";
-
-const iconURL = `url(${logo.src})`;
+import LabeledIcon from "./LabeledIcon.astro";
 ---
 
-<a href="/">
-  <div>
-    <div></div>
-    <h1>pAges</h1>
-  </div>
-</a>
+<LabeledIcon icon="logo" description="Fast and simple website" href="/" name="brand"><slot /></LabeledIcon>
 
-<style lang="stylus" define:vars={{iconURL}}>
+
+<style lang="stylus">
   @import "../styles/api.styl"
 
-  div
-    display flex
-    align-items center
-    gap 0.5rem
-
-    div
-      display block
-      mask-image var(--iconURL)
-      -webkit-mask-image var(--iconURL)
-      // For dark mode
-      background colors.icon
-      @media (prefers-color-scheme dark)
-        background colors.dark.icon
-
-  div > div, h1
-    // For responsive
-    width heights.icon.small
-    height heights.icon.small
-    @media screen and (min-width widths.large)
-      width heights.icon.large
-      height heights.icon.large
-
-  a
-    text-decoration none
-
-  h1
-    deco(item-height, brand-height)
-    color colors.text
-    @media (prefers-color-scheme dark)
-      color colors.dark.text
+  [labeled-icon="brand"]
+    gap 0.25rem
+    font-size sizes.brand-size
+    &:hover
+      text-decoration none
+    p
+      deco(sizes.brand-size, sizes.brand-height)
 </style>

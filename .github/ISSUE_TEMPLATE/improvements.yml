@@ -1,0 +1,11 @@
+name: Improvements
+description: "Issue for improvements (This is not for contributors!)."
+labels: ["develop: improvements"]
+body:
+  - type: textarea
+    id: info
+    attributes:
+      label: "About inprovements."
+      description: "Writes informations."
+    validations:
+      required: true

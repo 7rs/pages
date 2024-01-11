@@ -1,0 +1,62 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  icon: string;
+  description: string;
+  href?: string;
+  openInNewTab?: boolean;
+  label?: string;
+  name?: string;
+}
+
+const { icon, description, href, openInNewTab, label, name = "", ...props } = Astro.props;
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      title={description}
+      target={openInNewTab ? "_blank" : null}
+      rel={openInNewTab ? "noopener noreferrer" : null}
+      {...props}
+      labeled-icon={name}
+    >
+      <Icon name={icon} title={description} {...props} />
+      <p {...props}>{label ? label : <slot />}</p>
+    </a>
+  ) : (
+    <div {...props} labeled-icon={name}>
+      <Icon name={icon} title={description} />
+      <p>{label ? label : <slot />}</p>
+    </div>
+  )
+}
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  [labeled-icon]
+    display flex
+    gap 0.5rem
+    align-items center
+
+  [data-icon], p
+    font-size 1.5rem
+
+  [data-icon]
+    margin auto 0
+    color colors.icon
+    @media (prefers-color-scheme dark)
+      color colors.dark.icon
+
+  p
+    sans(1.5rem, 1.75rem)
+
+  a
+    text-decoration none
+    hoverable(colors.text)
+    @media (prefers-color-scheme dark)
+      hoverable(colors.dark.text)
+</style>
