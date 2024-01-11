@@ -19,6 +19,40 @@ export default defineConfig({
     SVG: false
   }), mdx(), purgecss(), svelte(), robotsTxt(), sitemap(), icon({
     iconDir: "src/icons",
+    include: {
+      simpleIcons: [
+        "youtube",
+        "twitch",
+        "tiktok",
+        "pinterest",
+        "applemusic",
+        "github",
+        "gitlab",
+        "internetarchive",
+        "patreon",
+        "paypal",
+        "reddit",
+        "zenn",
+        "qiita",
+        "x",
+        "mastodon",
+        "discord",
+        "telegram"
+      ],
+      materialSymbols: [
+        "wb-sunny-outline",
+        "search",
+        "copyright-outline",
+        "menu",
+      ],
+      cib: [
+        "creative-commons-pd",
+        "creative-commons-zero"
+      ],
+      octicon: [
+        "law-16",
+      ]
+    }
   }
   )],
   // https://docs.astro.build/guides/images/
