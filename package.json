@@ -2,7 +2,7 @@
   "name": "@7rs/pages",
   "description": "Fast and simple website.",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -53,7 +53,7 @@
   "bugs": {
     "url": "https://github.com/7rs/pages/issues"
   },
-  "license": "WTFPL",
+  "license": "CC0-1.0",
   "repository": "github:7rs/pages",
   "author": "Cbrnex <_@7rs.dev> (https://7rs.dev/)",
   "funding": {

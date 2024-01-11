@@ -1,4 +1,4 @@
-[wtfpl]: http://www.wtfpl.net/about/  
+[cc0]: https://creativecommons.org/publicdomain/zero/1.0/  
 [newton-howard]: https://www.dafont.com/newton-howard.font
 [himagsikan]: https://www.dafont.com/himagsikan.font
 [unsplash-license]: https://unsplash.com/license
@@ -9,13 +9,6 @@
 [57nMMJhh3ig]: https://unsplash.com/photos/57nMMJhh3ig
 [Q1p7bh3SHj8]: https://unsplash.com/photos/Q1p7bh3SHj8
 [7bynNtRqu4E]: https://unsplash.com/photos/7bynNtRqu4E
-[python-logo-guideline]: https://www.python.org/community/logos/
-[apache-logo-guideline]: https://www.apache.org/foundation/marks/
-[apache-lincense]: https://spdx.org/licenses/Apache-2.0
-[rust-logo-guideline]: https://foundation.rust-lang.org/policies/logo-policy-and-media-guide/
-[go-logo-guideline]: https://go.dev/blog/go-brand
-[cc-by-sa-4.0]: https://spdx.org/licenses/CC-BY-SA-4.0
-[lua-logo-guideline]: https://www.lua.org/images/
 [auto]: https://docs.astro.build/en/install/auto/
 [manual]: https://docs.astro.build/install/manual/
 [deepl]: https://www.deepl.com/translator
@@ -115,6 +108,9 @@ What are written here are **goals**, **not necessarily** implemented.
   npm install
   ```  
 
+- [Install Astro with the Automatic CLI][auto]  
+- [Install Astro manually][manual]  
+
 #### Activate a preview in a browser  
 
   ```sh
@@ -129,7 +125,7 @@ What are written here are **goals**, **not necessarily** implemented.
 
 ### License  
 
-  **Pages** is published under [WTFPL][wtfpl] except for asset files.  
+  **Pages** is published under [CC0][cc0] except for asset files.  
   Licensing information for files is as follows. **Some are not listed.**  
 
   | Name | Author | License |
@@ -143,9 +139,6 @@ What are written here are **goals**, **not necessarily** implemented.
   | [A close up of a wave in the ocean][OwOyvyqT1vg] | @moonshadowpress | [Unsplash License][unsplash-license] |
   | [Himagsikan (Banner description)][himagsikan] | EyeCone | Personal and commercial use. |
   | [Silhouette of trees and purple lightning][jh2KTqHLMjE] | @jeremythomasphoto | [Unsplash License][unsplash-license] |
-
-- [Install Astro with the Automatic CLI][auto]  
-- [Install Astro manually][manual]  
 
 ## Contributing  
 
