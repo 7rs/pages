@@ -1,0 +1,14 @@
+---
+import { LocaleData, getLangaugeLabel } from "@lib/blog.ts";
+
+export interface Props {
+  locale: LocaleData;
+}
+
+const { locale, ...props } = Astro.props;
+---
+
+<h1 {...props}>{locale.title}</h1>
+<div {...props}>
+  <a href={locale.slug} {...props}>{getLangaugeLabel(locale.lang)}</a>
+</div>

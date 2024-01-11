@@ -1,0 +1,11 @@
+name: Documentations
+description: "Issue for documentations (This isn't for contributors!)."
+labels: ["develop: documentation"]
+body:
+  - type: textarea
+    id: info
+    attributes:
+      label: "About documentations."
+      description: "Writes informations."
+    validations:
+      required: true

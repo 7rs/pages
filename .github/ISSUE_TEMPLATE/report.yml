@@ -1,0 +1,53 @@
+name: Report
+description: "Report an issue or possible bug (For contributors)."
+labels: ["hotfix: bug"]
+body:
+  - type: textarea
+    id: astro-info
+    attributes:
+      label: "Please write informations form astro."
+      description: "Run the command `pnpm astro info`."
+      placeholder: 
+        Astro                     v4.0.8
+        Node                      v18.19.0
+        System                    Windows (x64)
+        Package Manager           pnpm
+        Output                    static
+        Adapter                   none
+        Integrations              astro-compress
+                                  @astrojs/mdx
+                                  astro-purgecss
+                                  @astrojs/svelte
+                                  astro-robots-txt
+                                  @astrojs/sitemap
+                                  astro-icon
+      render: Shell
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: "What browser were you using?"
+      description: "FireFox, Chrome, and Safari are supported in that order. If you are using any other browser, won't do something other than what is mentioned in issues"
+      options:
+        - Chrome
+        - Bromite/Cromite
+        - Chromium
+        - Firefox
+        - Safari
+        - Edge
+        - Opera
+        - Vivaldi
+        - Other browsers
+        - Without browser
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: about
+    attributes:
+      label: "Please explain bugs whenever possible."
+      placeholder: "Please use English or Japanese."
+      description: "Please explain under what situation and what happend. Technical informations be helpful, but not required."
+    validations:
+      required: true

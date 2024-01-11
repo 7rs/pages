@@ -1,29 +1,42 @@
 import { getCollection } from "astro:content";
 
-export type Titles = {
-    lang: string;
-    title: string;
+const Langs = {
+    Japanese: "日本語",
+    English: "English",
 }
 
-export type Locales = {
-    lang: string;
+export function getLangaugeLabel(lang: string) {
+    switch (lang) {
+        case "en":
+        case "english":
+            return Langs.English;
+        case "ja":
+        case "japanese":
+            return Langs.Japanese;
+        default:
+            return "Unknown";
+    }
+}
+
+export type LocaleData = {
     slug: string;
-};
+    title: string;
+    lang: string;
+}
 
 export type PostData = {
-    titles: Array<Titles>;
-    locales: Array<Locales>;
-    publishedAt?: string;
+    localeDatas: Array<LocaleData>;
+    datas: Array<any>;
 };
 
-export type PostMap = Map<string, PostData>;
+type PostMap = Map<string, PostData>;
 
 /**
  * Normally, if a path is "src/content/blog/en/hello.md", an id is set as "en/hello.md",
  * but this function just returns a string "hello".
  * @param filePath getable path from `post.id` (getCollection).
  */
-export function getPostId(filePath: string): string {
+function getPostId(filePath: string): string {
     // Checks whether filePath is null or not.
     if (filePath == null) {
         throw new Error("filePath has to be a string.");
@@ -48,6 +61,7 @@ export function getPostId(filePath: string): string {
     return filePath;
 }
 
+// This function returns `Map` with keys and lists of multilingual posts.
 export async function getPostMap(): Promise<PostMap> {
     const postMap: PostMap = new Map([]);
 
@@ -62,16 +76,22 @@ export async function getPostMap(): Promise<PostMap> {
 
         if (!postData) {
             postMap.set(postId, {
-                titles: [{ lang: post.data.lang, title: post.data.title }],
-                locales: [{ lang: post.data.lang, slug: post.slug }],
-                publishedAt: post.data.published_at,
+                datas: [post.data],
+                localeDatas: [{
+                    slug: post.slug,
+                    title: post.data.title,
+                    lang: post.data.lang,
+                }],
             });
         } else {
-            postData.titles.push({ lang: post.data.lang, title: post.data.title });
-            postData.locales.push({ lang: post.data.lang, slug: post.slug });
-            if (postData.publishedAt === undefined) {
-                postData.publishedAt = post.data.published_at;
-            }
+            postData.datas.push(post.data);
+            postData.localeDatas.push(
+                {
+                    slug: post.slug,
+                    title: post.data.title,
+                    lang: post.data.lang,
+                }
+            );
         }
     });
 

@@ -1,0 +1,14 @@
+name: Security
+description: "Issues for security problem."
+labels: ["hotfix: bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: References
+      description: "Please be specific about what it has problems and how they affect any."
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: "Please include any reference you have."

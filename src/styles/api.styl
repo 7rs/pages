@@ -28,12 +28,32 @@ widths = {
 }
 
 heights = {
-  header: {
-    small: 3rem,
-  },
+  header: 3rem,
   icon: {
     small: 1.7rem,
     large: 2rem,
+  }
+}
+
+sizes = {
+  icon: 1.75rem,
+  brand-size: 1.75rem,
+  brand-height: 2rem,
+  footer-nav-size: 1.5rem,
+  footer-nav-height: 1.75rem,
+  footer-nav-gap: 0.75rem,
+}
+
+background = {
+  small: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
+  medium: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
+  large: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
+  largest: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
+  portrait: {
+    small: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
+    medium: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
+    large: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
+    largest: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
   }
 }
 
@@ -94,7 +114,6 @@ fonts = {
 // https://fonts.google.com/?preview.size=24&subset=japanese
 cjkfonts = {
   sans: "BIZ UDGothic",
-  serif: "BIZ UDPMincho",
   mono: "BIZ UDGothic",
 }
 
@@ -111,7 +130,7 @@ serif(size, height)
   font size/height cjkfonts.serif, serif-alternates
 
 deco(size, height)
-  font size/height fonts.deco, cjkfonts.serif, serif-alternates
+  font size/height fonts.deco, serif-alternates
 
 mono(size, height)
   font size/height fonts.mono, cjkfonts.mono, mono-alternates

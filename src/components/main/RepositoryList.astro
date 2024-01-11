@@ -1,0 +1,22 @@
+---
+export interface Props {
+  name?: string;
+}
+const { name = "", ...props } = Astro.props;
+---
+
+<section {...props} repository-list={name}><slot /></section>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  section
+    display grid
+    gap 1rem
+    justify-content center
+    grid-template-columns 1fr
+    @media screen and (min-width widths.medium)
+      grid-template-columns repeat(2, 1fr)
+    @media screen and (min-width widths.large)
+      grid-template-columns repeat(3, 1fr)
+</style>

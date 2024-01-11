@@ -1,0 +1,26 @@
+---
+export interface Props {
+  name?: string;
+}
+const { name = "", ...props } = Astro.props;
+---
+
+<article {...props} social-icons={name}><slot /></article>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+  
+  article
+    display grid
+    gap 1rem 2rem
+    justify-content center
+    grid-template-columns repeat(5, heights.icon.small)
+    @media screen and (min-width widths.medium)
+      grid-template-columns repeat(6, heights.icon.small)
+      justify-content start
+    @media screen and (min-width widths.large)
+      gap 0 1.75rem
+      grid-template-columns repeat(7, heights.icon.large)
+    @media screen and (min-width widths.largest)
+      grid-template-columns repeat(8, heights.icon.large)
+</style>
