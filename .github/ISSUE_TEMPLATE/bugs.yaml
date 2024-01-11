@@ -1,0 +1,11 @@
+name: Bugs
+description: "Issue for bugs (This isn't for contributors!)."
+labels: ["hotfix: bug"]
+body:
+  - type: textarea
+    id: info
+    attributes:
+      label: "About bugs."
+      description: "Writes informations."
+    validations:
+      required: true

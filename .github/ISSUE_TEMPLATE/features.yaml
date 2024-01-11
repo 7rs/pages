@@ -1,0 +1,11 @@
+name: Features
+description: "Issue for features (This is not for contributors!)."
+labels: ["develop: feature"]
+body:
+  - type: textarea
+    id: info
+    attributes:
+      label: "About features."
+      description: "Writes informations."
+    validations:
+      required: true

@@ -1,21 +1,35 @@
 ---
 import { getCollection } from "astro:content";
+import { getRelativeLocaleUrlList, getRelativeLocaleUrl } from "astro:i18n";
 
 import "@styles/md.styl";
 
-export async function getStaticPaths() {
-  const blogEntries = await getCollection("blog");
+// export async function getStaticPaths() {
+//   const blogEntries = await getCollection("blog");
 
-  return blogEntries.map((entry) => {
-    return {
-      params: { slug: entry.slug },
-      props: { entry },
-    };
+//   return blogEntries.map((entry) => {
+//     return {
+//       params: { slug: entry.slug },
+//       props: { entry },
+//     };
+//   });
+// }
+
+export async function getStaticPaths() {
+  const pages = await getCollection("blog");
+
+  const paths = pages.map((page) => {
+    const [lang, ...slug] = page.slug.split("/");
+    return { params: { lang: slug ? lang : undefined, slug: page.slug }, props: page };
   });
+
+  return paths;
 }
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { lang, slug } = Astro.params;
+const page = Astro.props;
+
+const { Content } = await page.render();
 ---
 
 <Content />

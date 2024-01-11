@@ -32,6 +32,9 @@ export default defineConfig({
     locales: ["ja", "en"],
     routing: {
       prefixDefaultLocale: false
+    },
+    fallback: {
+      en: "ja",
     }
   },
   // https://docs.astro.build/guides/markdown-content/

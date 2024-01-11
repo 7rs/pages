@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "allowJs": true,
     "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
     "paths": {
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],

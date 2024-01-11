@@ -9,32 +9,6 @@
 [57nMMJhh3ig]: https://unsplash.com/photos/57nMMJhh3ig
 [Q1p7bh3SHj8]: https://unsplash.com/photos/Q1p7bh3SHj8
 [7bynNtRqu4E]: https://unsplash.com/photos/7bynNtRqu4E
-[simple-icons]: https://simpleicons.org/
-[youtube-logo]: src/assets/brand-icons/youtube.svg
-[youtube-gaming-logo]: src/assets/brand-icons/youtubegaming.svg
-[patreon-logo]: src/assets/brand-icons/patreon.svg
-[github-logo]: src/assets/brand-icons/github.svg
-[discord-logo]: src/assets/brand-icons/discord.svg
-[x-logo]: src/assets/brand-icons/x.svg
-[twitch-logo]: src/assets/brand-icons/twitch.svg
-[pinterest-logo]: src/assets/brand-icons/pinterest.svg
-[reddit-logo]: src/assets/brand-icons/reddit.svg
-[zenn-logo]: src/assets/brand-icons/zenn.svg
-[telegram-logo]: src/assets/brand-icons/telegram.svg
-[python-logo]: src/assets/lang-icons/python.svg
-[go-logo]: src/assets/lang-icons/go.svg
-[lua-logo]: src/assets/lang-icons/lua.svg
-[rust-logo]: src/assets/lang-icons/rust.svg
-[apache-logo]: src/assets/lang-icons/apache.svg
-[astro-logo]: src/assets/lang-icons/astro.svg
-[youtube-logo-guideline]: https://www.youtube.com/howyoutubeworks/resources/brand-resources/#logos-icons-and-colors
-[patreon-logo-guideline]: https://www.patreon.com/brand
-[github-logo-guideline]: https://github.com/logos
-[discord-logo-guideline]: https://discord.com/branding
-[x-logo-guideline]: https://about.twitter.com/en/who-we-are/brand-toolkit
-[pinterest-logo-guideline]: https://business.pinterest.com/en/brand-guidelines
-[twitch-logo-guideline]: https://brand.twitch.tv/
-[reddit-logo-guideline]: https://www.redditinc.com/brand
 [python-logo-guideline]: https://www.python.org/community/logos/
 [apache-logo-guideline]: https://www.apache.org/foundation/marks/
 [apache-lincense]: https://spdx.org/licenses/Apache-2.0
@@ -58,7 +32,7 @@
 
 # [Pages](https://7rs.dev/)  
 
-  **Fast** and **simple design** website  
+  **Fast** and **simple design** website.  
 
   [![LICENSE](https://img.shields.io/github/license/7rs/pages?style=flat-square&labelColor=black&color=purple)](https://github.com/7rs/pages/blob/main/LICENSE)
   [![Activity](https://img.shields.io/github/commit-activity/t/7rs/pages?style=flat-square&labelColor=black&color=blue)](https://github.com/7rs/pages/commits/main)
@@ -70,14 +44,25 @@
 
 - [Open source](https://wikipedia.org/wiki/FLOSS).
 - Targeting a score of 90+ on [PageSpeed Insights](https://pagespeed.web.dev/).  
-- Compatible with many browsers (FireFox, Chrome, Safari).  
+- Compatible with many browsers (FireFox, Chrome, Safari, etc.).  
 - Supports [dark mode](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme).  
 - Supports [i18n](https://wikipedia.org/wiki/Internationalization_and_localization) (Japanese and English).  
-- Images compressed by [sharp](https://github.com/lovell/sharp).  
-- Awesome brand icons from [Simple Icons][simple-icons].  
-- Awesome pictures from [Unsplash](https://unsplash.com/).  
-- Easy setup with [VSCode][vscode].  
-- Using [TypeScript](https://www.typescriptlang.org/).  
+- Easy setup for [VSCode][vscode].  
+- Reusable components.  
+- Styling without classes.  
+- Separations of markups and styles.  
+
+and using:  
+
+- Astro  
+- Sharp with astro  
+- Iconify with astro-icon  
+- PurgeCSS with astro-purgecss  
+- Stylus  
+- PostCSS  
+- Svelte  
+
+What are written here are **goals**, **not necessarily** implemented.  
 
 ## Benchmark (Score)  
 
@@ -85,13 +70,13 @@
 
 ### Requirement  
 
-  | Package | Version |
-  |-|-|
-  | [Astro](https://www.npmjs.com/package/astro) | ![version](https://img.shields.io/node/v/astro?style=flat-square&label=%20) |
-  | [Sharp](https://www.npmjs.com/package/sharp) | ![version](https://img.shields.io/node/v/sharp?style=flat-square&label=%20) |
-  | [Stylus](https://www.npmjs.com/package/stylus) | ![version](https://img.shields.io/node/v/stylus?style=flat-square&label=%20) |
-  | [PostCSS](https://www.npmjs.com/package/postcss) | ![version](https://img.shields.io/node/v/postcss?style=flat-square&label=%20) |
-  | [Svelte](https://www.npmjs.com/package/svelte) | ![version](https://img.shields.io/node/v/svelte?style=flat-square&label=%20) |  
+  | Package | Node | Version |
+  |-|-|-|
+  | [Astro](https://www.npmjs.com/package/astro) | ![version](https://img.shields.io/node/v/astro?style=flat-square&label=%20) | ![version](https://img.shields.io/github/package-json/dependency-version/7rs/pages/astro?style=flat-square&label=%20) |
+  | [Sharp](https://www.npmjs.com/package/sharp) | ![version](https://img.shields.io/node/v/sharp?style=flat-square&label=%20) | ![version](https://img.shields.io/github/package-json/dependency-version/7rs/pages/sharp?style=flat-square&label=%20) |
+  | [Stylus](https://www.npmjs.com/package/stylus) | ![version](https://img.shields.io/node/v/stylus?style=flat-square&label=%20) | ![version](https://img.shields.io/github/package-json/dependency-version/7rs/pages/stylus?style=flat-square&label=%20) |
+  | [PostCSS](https://www.npmjs.com/package/postcss) | ![version](https://img.shields.io/node/v/postcss?style=flat-square&label=%20) | ![version](https://img.shields.io/github/package-json/dependency-version/7rs/pages/postcss?style=flat-square&label=%20) |
+  | [Svelte](https://www.npmjs.com/package/svelte) | ![version](https://img.shields.io/node/v/svelte?style=flat-square&label=%20) |   ![version](https://img.shields.io/github/package-json/dependency-version/7rs/pages/svelte?style=flat-square&label=%20) |
 
   Pages assumes Cloudflare Pages, but probably other hosting services be available.
   [Cloudflare Pages](https://pages.cloudflare.com/)  
@@ -158,23 +143,6 @@
   | [A close up of a wave in the ocean][OwOyvyqT1vg] | @moonshadowpress | [Unsplash License][unsplash-license] |
   | [Himagsikan (Banner description)][himagsikan] | EyeCone | Personal and commercial use. |
   | [Silhouette of trees and purple lightning][jh2KTqHLMjE] | @jeremythomasphoto | [Unsplash License][unsplash-license] |
-  | [YouTube logo][youtube-logo] | [Simple Icons][simple-icons] | [Guideline][youtube-logo-guideline] |
-  | [Youtube Gaming logo][youtube-gaming-logo] | [Simple Icons][simple-icons] | No information |
-  | [Patreon logo][patreon-logo] | [Simple Icons][simple-icons] | [Guideline][patreon-logo-guideline] |
-  | [GitHub logo][github-logo] | [Simple Icons][simple-icons] | [Guideline][github-logo-guideline] |
-  | [Discord logo][discord-logo] | [Simple Icons][simple-icons] | [Guideline][discord-logo-guideline] |
-  | [X logo][x-logo] | [Simple Icons][simple-icons] | [Guideline][x-logo-guideline] |
-  | [Pinterest logo][pinterest-logo] | [Simple Icons][simple-icons] | [Guideline][pinterest-logo-guideline] |
-  | [Twitch logo][twitch-logo] | [Simple Icons][simple-icons] | [Guideline][twitch-logo-guideline] |
-  | [Reddit logo][reddit-logo] | [Simple Icons][simple-icons] | [Guideline][reddit-logo-guideline] |
-  | [Zenn logo][zenn-logo] | [Simple Icons][simple-icons] | No Information |
-  | [Telegram logo][telegram-logo] | [Simple Icons][simple-icons] | No Information |
-  | [Python logo][python-logo] | [Simple Icons][simple-icons] | [Guideline][python-logo-guideline] |
-  | [Apache logo][apache-logo] | [Simple Icons][simple-icons] |  [Guideline][apache-logo-guideline], [Apache lincense][apache-lincense] |
-  | [Go logo][go-logo] | [Simple Icons][simple-icons] |  [Guideline][go-logo-guideline] |
-  | [Rust logo][rust-logo ] | [Simple Icons][simple-icons] | [Guideline][rust-logo-guideline], [CC by SA 4.0][cc-by-sa-4.0] |
-  | [Lua logo][lua-logo] | [Simple Icons][simple-icons] | [Guideline][lua-logo-guideline] |
-  | [Astro logo][astro-logo] | [Simple Icons][simple-icons] | No Information |
 
 - [Install Astro with the Automatic CLI][auto]  
 - [Install Astro manually][manual]  

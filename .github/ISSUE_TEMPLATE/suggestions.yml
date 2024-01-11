@@ -1,5 +1,5 @@
 name: Suggestions
-description: Suggestions and ideas for features.
+description: "Suggestions and ideas for features (For contributors)."
 labels: ["contribute: ideas/request"]
 body:
   - type: textarea

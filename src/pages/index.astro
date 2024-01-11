@@ -1,22 +1,16 @@
 ---
 import Layout from "@layouts/Layout.astro";
 
-import Repository from "@components/Repository.astro";
 import Profile from "@components/Profile.astro";
+import Post from "@components/LocaleInformation.svelte";
 import PostList from "@components/PostList.astro";
 
 import avatar from "@assets/avatar.webp";
 
-import gear from "@assets/repo-icons/gear.svg";
-import tools from "@assets/repo-icons/tools.svg";
-import fileDirectory from "@assets/repo-icons/file-directory.svg";
-import packageIcon from "@assets/repo-icons/package.svg";
-import mortarBoard from "@assets/repo-icons/mortar-board.svg";
-import typography from "@assets/repo-icons/typography.svg";
+import Repo from "@components/main/Repository.astro";
+import RepositoryList from "@components/main/RepositoryList.astro";
 
-import Link from "@components/Link.astro";
-
-
+import { getRelativeLocaleUrl } from 'astro:i18n';
 ---
 
 <Layout title="Main Page">
@@ -28,40 +22,34 @@ import Link from "@components/Link.astro";
       rel="noopener noreferrer">CBRNE</a
     >.
   </Profile>
-  <section class="repositories">
-    <Repository url="https://github.com/7rs/pages" src={gear.src} license="WTFPL" lang="astro">
-      Fast and simple design website.
-    </Repository>
-    <Repository url="https://github.com/7rs/parfait" src={tools.src} lang="lua">A fork of SM64 Lua Redux.</Repository>
-    <Repository url="https://github.com/7rs/sm64tas" src={fileDirectory.src} license="WTFPL">
-      An archive for publication and storage TASing files.
-    </Repository>
-    <Repository url="https://github.com/7rs/line4py" src={packageIcon.src} license="WTFPL" lang="python">
-      An closed LINE API for Python.
-    </Repository>
-    <Repository url="https://github.com/7rs/line" src={mortarBoard.src} license="WTFPL" lang="thrift">
+  <RepositoryList>
+    <Repo userId="7rs" repository="pages" icon="mdi:world-wide-web" lang="astro" license="wtfpl">
+      Fast and simple website.
+    </Repo>
+    <Repo userId="7rs" repository="parfait" icon="mdi:world-wide-web" lang="lua" license="nolicense">
+      A fork of SM64 Lua Redux.
+    </Repo>
+    <Repo userId="7rs" repository="sm64tas" icon="mdi:world-wide-web" lang="lua" license="wtfpl">
+      A fork of SM64 Lua Redux.
+    </Repo>
+    <Repo userId="7rs" repository="line4py" icon="mdi:world-wide-web" lang="python" license="wtfpl">
+      A closed LINE API for Python.
+    </Repo>
+    <Repo userId="7rs" repository="line" icon="mdi:world-wide-web" lang="thrift" license="wtfpl">
       A repository for collection closed LINE api information and publishing thrift files.
-    </Repository>
-    <Repository url="https://github.com/7rs/legible-fonts" src={typography.src} license="OFL v1.1" lang="python">
+    </Repo>
+    <Repo userId="7rs" repository="legible-fonts" icon="mdi:world-wide-web" lang="python" license="ofl">
       A Legible monospace fonts for engineers.
-    </Repository>
-  </section>
+    </Repo>
+  </RepositoryList>
   <PostList />
 </Layout>
 
 <style lang="stylus">
   @import "../styles/api.styl"
 
-  .repositories
-    margin 3rem auto
-    display grid
-    gap 1rem
-    justify-content center
-    @media screen and (min-width widths.medium)
-      grid-template-columns repeat(2, 1fr)
-      width 30rem
-      gap 1rem
-    @media screen and (min-width widths.large)
-      grid-template-columns repeat(3, 1fr)
-      width 45rem
+  main
+    display flex
+    flex-direction column
+    gap 3rem
 </style>

@@ -1,5 +1,6 @@
 {
-  "name": "pages",
+  "name": "@7rs/pages",
+  "description": "Fast and simple website.",
   "type": "module",
   "version": "0.1.0",
   "scripts": {
@@ -14,7 +15,10 @@
     "@astrojs/mdx": "^2.0.3",
     "@astrojs/sitemap": "^3.0.4",
     "@astrojs/svelte": "^5.0.3",
+    "@iconify-json/cib": "^1.1.8",
     "@iconify-json/material-symbols": "^1.1.69",
+    "@iconify-json/mdi": "^1.1.64",
+    "@iconify-json/octicon": "^1.1.52",
     "@iconify-json/simple-icons": "^1.1.87",
     "@webcomponents/template-shadowroot": "^0.2.1",
     "astro": "^4.0.8",
@@ -36,5 +40,24 @@
     "prettier-plugin-astro": "^0.12.3",
     "prettier-plugin-stylus": "^0.1.0",
     "prettier-plugin-svelte": "^3.1.2"
+  },
+  "keywords": [
+    "7rs",
+    "cbrnex",
+    "pages",
+    "7rs.dev",
+    "astro",
+    "stylus",
+    "svelte"
+  ],
+  "bugs": {
+    "url": "https://github.com/7rs/pages/issues"
+  },
+  "license": "WTFPL",
+  "repository": "github:7rs/pages",
+  "author": "Cbrnex <_@7rs.dev> (https://7rs.dev/)",
+  "funding": {
+    "type": "patreon",
+    "url": "https://www.patreon.com/7rs"
   }
 }

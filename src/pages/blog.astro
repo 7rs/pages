@@ -1,0 +1,30 @@
+---
+import { string } from "astro/zod";
+import { getCollection, getEntry } from "astro:content";
+import { getRelativeLocaleUrl, getRelativeLocaleUrlList } from "astro:i18n";
+
+const posts = await getCollection("blog");
+
+const locales = new Map<string, string>();
+---
+
+{
+  posts.map((post) => {
+    if (post.data.lang == "en") {
+      return;
+    }
+    return (
+      <article>
+        <div>
+          <h2>{post.data.title}</h2>
+        </div>
+      </article>
+    );
+  })
+}
+
+<style lang="stylus">
+  article
+    display flex
+    flex-direction column
+</style>
