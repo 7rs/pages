@@ -16,7 +16,7 @@ export default defineConfig({
     HTML: true,
     Image: false,
     JavaScript: true,
-    SVG: false
+    SVG: true,
   }), mdx(), purgecss(), svelte(), robotsTxt(), sitemap(), icon({
     iconDir: "src/icons",
     include: {

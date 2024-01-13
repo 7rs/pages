@@ -11,16 +11,13 @@ const { name = "", ...props } = Astro.props;
   @import "../../styles/api.styl"
   
   article
+    background rgba(0, 0, 0, 0.0)
     display grid
+    align-content start
     gap 1rem 2rem
+    // For responsive
+    grid-template-columns repeat(5, sizes.icon)
     justify-content center
-    grid-template-columns repeat(5, heights.icon.small)
     @media screen and (min-width widths.medium)
-      grid-template-columns repeat(6, heights.icon.small)
       justify-content start
-    @media screen and (min-width widths.large)
-      gap 0 1.75rem
-      grid-template-columns repeat(7, heights.icon.large)
-    @media screen and (min-width widths.largest)
-      grid-template-columns repeat(8, heights.icon.large)
 </style>

@@ -1,5 +1,4 @@
 ---
-import { Metadata } from "@lib/meta";
 
 import Head from "@layouts/Meta.astro";
 import Header from "@layouts/Header.astro";
@@ -7,19 +6,15 @@ import Footer from "@layouts/Footer.astro";
 
 import logo from "@assets/logo.svg";
 import "@styles/main.styl";
-
-export interface Props {
-  title: string;
-}
-
-const { title, ...props } = Astro.props;
+import { Metadata } from "@scripts/lib/meta";
 
 const metadata: Metadata = {
   name: "Pages",
   description: "Fast and simple website.",
   image: logo.src,
   imageAlt: "Cbrnex Logo",
-  author: "Cbrnex",
+  authorName: "Cbrnex",
+  authorAlternateName: "7rs",
   url: "https://7rs.dev/",
   keywords: [
     "Pages",
@@ -36,29 +31,58 @@ const metadata: Metadata = {
   ],
   twitterId: "@cbrnex",
 };
+
+type Frontmatter = {
+  title: string;
+  tags: Array<string>;
+  url: string;
+  [key: string]: any;
+};
+
+export interface Props {
+  title: string;
+  schemaMarkup?: string;
+  frontmatter?: Frontmatter;
+}
+
+const { title, schemaMarkup, frontmatter, ...props } = Astro.props;
+
+const author = {
+  "@type": "Person",
+  name: metadata.authorName,
+  alternateName: metadata.authorAlternateName,
+  description: "Just a toxic.",
+  image: "https://www.gravatar.com/avatar/1b6f182a11eba357a5b85085b74acccd",
+  url: metadata.url,
+  mainEntityOfPage: "https://github.com/7rs"
+};
+
+const defaultSchemaMarkup = JSON.stringify(
+  frontmatter
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: frontmatter.title,
+        author: author,
+      }
+    : {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        mainEntity: author,
+      },
+);
 ---
 
 <!doctype html>
 <html lang="en">
-  <Head title={title} favicon={logo.src} metadata={metadata}>
+  <Head title={frontmatter?.title || title} favicon={logo.src} metadata={metadata}>
     <!-- https://developers.google.com/search/docs/appearance/structured-data/article -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://7rs.dev/",
-        "@type": "Website",
-        "name": "Pages",
-        "author": {
-          "@type": "Person",
-          "name": "Cbrnex"
-        },
-        "description": "Fast and simple website."
-      }
-    </script>
+    <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
   </Head>
 
   <body>
-    <Header />
+    <Header transition:persist />
     <main {...props}><slot /></main>
-    <Footer />
+    <Footer transition:persist />
   </body>
 </html>

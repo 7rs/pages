@@ -56,7 +56,6 @@ const licenseInfo = createLicense(license);
 
   [repository-box]
     padding 1rem
-    background rgba(255, 0, 0, 0.2)
     display grid
     grid-template-columns repeat(2, 1fr)
     grid-template-rows 7rem 2rem
@@ -68,10 +67,7 @@ const licenseInfo = createLicense(license);
     background colors.widget
     @media (prefers-color-scheme dark)
       background colors.dark.widget
-    &:hover
-      background rgba(colors.widget-hovered, 0.2)
-      @media (prefers-color-scheme dark)
-        background rgba(colors.dark.widget-hovered, 0.2)
+    hoverable-background(colors.widget-hovered, colors.dark.widget-hovered, 0.2)
 
   [repo-info]
     grid-area info
