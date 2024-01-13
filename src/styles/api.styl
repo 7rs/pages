@@ -27,21 +27,18 @@ widths = {
   largest: 1200px
 }
 
-heights = {
-  header: 3rem,
-  icon: {
-    small: 1.7rem,
-    large: 2rem,
-  }
-}
-
 sizes = {
   icon: 1.75rem,
   brand-size: 1.75rem,
   brand-height: 2rem,
+  header-height: 3.5rem,
   footer-nav-size: 1.5rem,
   footer-nav-height: 1.75rem,
   footer-nav-gap: 0.75rem,
+  // @media screen and (min-width widths.large)
+  large: {
+    icon: 2rem,
+  }
 }
 
 background = {
@@ -57,14 +54,9 @@ background = {
   }
 }
 
-/*
-https://cssgradient.io/
-*/
+// https://cssgradient.io/
 bg-alpha = 0.3
 colors = {
-  link-colored: rgba(0, 0, 255, 1.0),
-  link-hovered-alpha: 0.5,
-  // @media (prefers-color-scheme light)
   background: linear-gradient(135deg,
     rgba(240, 255, 255, bg-alpha) 0%,
     rgba(240, 224, 255, bg-alpha) 20%,
@@ -74,11 +66,10 @@ colors = {
     rgba(255, 224, 240, bg-alpha) 80%,
     rgba(255, 255, 240, bg-alpha) 100%
   ),
+  content: rgb(0, 0, 0),
+  link: rgba(0, 0, 255, 1.0),
   widget: rgba(255, 255, 255, 0.7),
   widget-hovered: rgb(0, 0, 0),
-  text: rgb(0, 0, 0),
-  link: rgb(0, 0, 0),
-  icon: rgb(0, 0, 0),
   border: rgba(0, 0, 0, 0.5),
   // @media (prefers-color-scheme dark)
   dark: {
@@ -89,20 +80,13 @@ colors = {
       rgb(16, 8,  24) 75%,
       rgb(8,  0,  16) 100%
     ),
-    link-colored: rgba(255, 0, 0, 1.0),
+    content: rgb(255, 255, 255),
+    link: rgba(255, 0, 0, 1.0),
     widget: rgba(0, 0, 0, 0.7),
     widget-hovered: rgb(255, 255, 255),
-    text: rgb(255, 255, 255),
-    link: rgb(255, 255, 255),
-    icon: rgb(255, 255, 255),
     border: rgba(255, 255, 255, 0.5),
   }
 }
-
-// https://www.w3schools.com/cssref/css_websafe_fonts.php
-sans-alternates = "Trebuchet MS", Verdana, Arial, sans-serif
-serif-alternates = "Times New Roman", "Georgia", "Garamond", serif
-mono-alternates = "Courier New", monospace
 
 // https://fonts.google.com/?preview.size=24&subset=latin
 fonts = {
@@ -111,37 +95,47 @@ fonts = {
   deco: "Cinzel Decorative",
 }
 
-// https://fonts.google.com/?preview.size=24&subset=japanese
-cjkfonts = {
-  sans: "BIZ UDGothic",
-  mono: "BIZ UDGothic",
-}
-
-bg-color = rgba(248, 248, 255, 1.0)
-section-color = rgba(255, 255, 255, 0.7)
-
-brand-height = 2rem
-item-height = 1.7rem
+// https://www.w3schools.com/cssref/css_websafe_fonts.php
+sans-alternates = "Trebuchet MS", Verdana, Arial, sans-serif
+serif-alternates = "Times New Roman", "Georgia", "Garamond", serif
+mono-alternates = "Courier New", monospace
 
 sans(size, height)
-  font size/height fonts.sans, cjkfonts.sans, sans-alternates
+  font size/height fonts.sans, sans-alternates
 
 serif(size, height)
-  font size/height cjkfonts.serif, serif-alternates
+  font size/height serif-alternates
+
+mono(size, height)
+  font size/height fonts.mono, mono-alternates
 
 deco(size, height)
   font size/height fonts.deco, serif-alternates
-
-mono(size, height)
-  font size/height fonts.mono, cjkfonts.mono, mono-alternates
 
 background-blur(strength)
   backdrop-filter blur(strength)
   -webkit-backdrop-filter blur(strength)
 
-hoverable(_color)
-  color _color
+hoverable(light-color, dark-color = null, alpha = 0.5, under = false)
+  color light-color
   text-decoration none
   &:hover
-    color rgba(_color, colors.link-hovered-alpha)
-    text-decoration underline
+    color rgba(light-color, alpha)
+    if under
+      text-decoration underline
+    
+  if dark-color
+    @media (prefers-color-scheme dark)
+      color dark-color
+      &:hover
+        color rgba(dark-color, alpha)
+
+hoverable-background(light-color, dark-color = null, alpha = 0.5)
+  text-decoration none
+  &:hover
+    background rgba(light-color, alpha)
+
+  if dark-color
+    @media (prefers-color-scheme dark)
+      &:hover
+        background rgba(dark-color, alpha)

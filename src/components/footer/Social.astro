@@ -29,17 +29,16 @@ const social = createSocial(alias, userId);
 <style lang="stylus">
   @import "../../styles/api.styl"
 
-  [data-icon]
-    font-size heights.icon.small
-    color colors.icon;
-    &:hover
-      color rgba(colors.icon, 0.5);
-
-    @media (prefers-color-scheme dark)
-      color colors.dark.icon;
-      &:hover
-        color rgba(colors.dark.icon, 0.5)
-
+  a
+    width sizes.icon
+    height sizes.icon
     @media screen and (min-width widths.large)
-      font-size heights.icon.large
+      width sizes.large.icon
+      height sizes.large.icon
+
+  [data-icon]
+    hoverable(colors.content, colors.dark.content)
+    font-size sizes.icon
+    @media screen and (min-width widths.large)
+      font-size sizes.large.icon
 </style>

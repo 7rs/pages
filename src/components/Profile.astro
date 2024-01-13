@@ -1,18 +1,21 @@
 ---
-import avatar from "@assets/avatar.webp";
+import { Picture } from 'astro:assets';
 
 export interface Props {
-  src: string;
+  image: ImageMetadata;
+  formats?: Array<string>;
   name: string;
   alt?: string;
 }
 
-const { src, alt = "pfp", name } = Astro.props;
+const { image, formats = [], alt = "pfp", name } = Astro.props;
 ---
 
 <article>
-  <img src={src} alt={alt} />
-  <h1>CbrneX</h1>
+  <div>
+    <Picture src={image} formats={formats} alt={alt} />
+  </div>
+  <h1>{name}</h1>
   <p>
     <slot />
   </p>
@@ -21,69 +24,64 @@ const { src, alt = "pfp", name } = Astro.props;
 <style lang="stylus">
   @import "../styles/api.styl"
 
-  gap = {
-    small: 1rem 0,
-    large: 0.25rem 2rem,
-    largest: 0.5rem 2rem,
-  }
-
-  sizes = {
-    name: {
-      small: 2.5rem,
-      largest: 3.5rem,
-    },
-    bio: {
-      small: 1rem,
-      largest: 1.25rem,
-    },
-    avatar: {
-      small: 10rem,
-      largest: 12.5rem,
-    },
+  profile-sizes = {
+    avatar: 10rem,
+    name: 2rem,
+    name-height: 2.25rem,
+    bio: 1rem,
+    bio-height: 1.25rem,
+    large: {
+      name: 2.5rem,
+      name-height: 2.75rem,
+      bio: 1.25rem,
+      bio-height: 1.75rem,
+    }
   }
 
   article
-    margin auto
+    background rgba(0, 0, 0, 0.0)
     display grid
     justify-items center
-    gap gap.small
+    align-items center
+    grid-template-rows profile-sizes.avatar profile-sizes.name auto
     grid-template-areas \
       "avatar" \
       "name" \
       "bio";
+    gap 1rem
     @media screen and (min-width widths.large)
-      gap gap.large
+      justify-items flex-start
       grid-template-rows repeat(2, 1fr)
-      grid-template-columns 2fr 3fr
+      grid-template-columns profile-sizes.avatar auto
       grid-template-areas \
         "avatar name" \
         "avatar bio";
-
-  img
-    grid-area avatar
-    border-radius 100%
-    width sizes.avatar.small
-    height sizes.avatar.small
-    @media screen and (min-width widths.large)
-      justify-self flex-end
-
-  h1, p
-    text-align center
-    width 16rem
-    @media screen and (min-width widths.medium)
-      width 25rem
-    @media screen and (min-width widths.large)
-      justify-self flex-start
+      gap 0.5rem 2rem
 
   h1
-    deco(sizes.name.small, sizes.name.small)
     grid-area name
+    deco(profile-sizes.name, profile-sizes.name-height)
     @media screen and (min-width widths.large)
+      deco(profile-sizes.large.name, profile-sizes.large.name-height)
       align-self flex-end
 
   p
     grid-area bio
-    sans(sizes.bio.small, sizes.bio.small + 0.5rem)
+    sans(profile-sizes.bio, profile-sizes.bio-height)
+    text-align center
     @media screen and (min-width widths.large)
+      sans(profile-sizes.large.bio, profile-sizes.large.bio-height)
+      text-align start
       align-self flex-start
+
+  div
+    grid-area avatar
+    @media screen and (min-width widths.large)
+      justify-self flex-end
+
+  // Why no style specification like astro-icon?
+  div, div > :global(picture), div > :global(picture) > img
+    border-radius 100%
+    width profile-sizes.avatar
+    height profile-sizes.avatar
 </style>

@@ -52,9 +52,9 @@ const postMap = await getPostMap();
         sans(1.1rem, 1.5rem)
         @media screen and (min-width widths.large)
           sans(1.75rem, 2rem)
-        color colors.text
+        color colors.content
         @media (prefers-color-scheme dark)
-          color colors.dark.text
+          color colors.dark.content
 
       // A language button list.
       div
@@ -68,16 +68,12 @@ const postMap = await getPostMap();
 
         // A language button.
         a
-          color colors.text
+          color colors.content
           @media (prefers-color-scheme dark)
-            color colors.dark.text
-
+            color colors.dark.content
+          hoverable-background(colors.widget-hovered, colors.dark.widget-hovered, 0.2)
           &:hover
             border-radius 0.5rem
-            text-decoration none
-            background rgba(colors.widget-hovered, 0.2)
-            @media (prefers-color-scheme dark)
-              background rgba(colors.dark.widget-hovered, 0.2)
 
           sans(0.9rem, 1.25rem)
           @media screen and (min-width widths.medium)

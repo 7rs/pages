@@ -34,24 +34,24 @@ header, footer
     background colors.dark.widget
 
 main
-  margin 5rem auto
+  margin 2rem auto
   box-sizing border-box
+  @media screen and (min-width widths.medium)
+    margin 3rem auto
   @media screen and (min-width widths.large)
     width 900px
 
-
 p, h1, h2, h3, h4, h5, h6, li
-  color colors.text
+  color colors.content
   @media (prefers-color-scheme dark)
-    color colors.dark.text
+    color colors.dark.content
+
 
 main, div
   p, em, del, u, li, table
     sans(1rem, 1.5rem)
   a
-    hoverable(colors.link-colored)
-    @media (prefers-color-scheme dark)
-      hoverable(colors.dark.link-colored)
+    hoverable(colors.link, colors.dark.link, under: true)
 
   h1
     sans(2rem, 2rem)
@@ -67,3 +67,8 @@ main, div
 
   h6
     sans(1rem, 1rem)
+
+article
+  background colors.widget
+  @media (prefers-color-scheme dark)
+    background colors.dark.widget
