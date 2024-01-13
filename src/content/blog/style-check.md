@@ -29,7 +29,7 @@ published: false
   直接入力しても、リンクとして認識されます。  
   https://7rs.dev/  
 
-  ![画像](../../assets/avatar.webp "avatar")  
+  ![画像](../../assets/avatar.jpg "avatar")  
   画像も利用可能です。  
 
 
