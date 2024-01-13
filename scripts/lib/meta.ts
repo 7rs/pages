@@ -3,7 +3,8 @@ export type Metadata = {
     description: string;
     image: string;
     imageAlt: string;
-    author: string;
+    authorName: string;
+    authorAlternateName: string,
     url: string;
     keywords: Array<string>;
     twitterId?: string;

@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import { Metadata, createFontURL } from "@lib/meta";
 
 export interface Props {
@@ -17,22 +18,22 @@ const keywords = metadata.keywords.join(", ");
 ---
 
 <head>
+  <ViewTransitions />
   <!-- Website Metadata -->
   <title>{title}</title>
   <meta name="description" content={metadata.description} />
   <link rel="icon" href={favicon} type="image/svg+xml" />
-  <meta name="author" content={metadata.author} />
+  <meta name="author" content={metadata.authorName} />
   <meta name="keywords" content={keywords} />
   <!-- Website Settings -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
   <meta name="referrer" content="no-referrer" />
   <meta name="format-detection" content="telephone=no,email=no,address=no" />
-  <meta name="google" content="notranslate" />
+  <meta name="googlebot" content="notranslate" />
   <meta content="Pages" name="apple-mobile-web-app-title" />
   <!-- Informations -->
   <link rel="canonical" href={metadata.url} />
-
   <link rel="sitemap" href="/sitemap.xml" />
   <meta name="generator" content="Astro" />
   <!-- Google Fonts -->

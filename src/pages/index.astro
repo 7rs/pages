@@ -5,17 +5,15 @@ import Profile from "@components/Profile.astro";
 import Post from "@components/LocaleInformation.svelte";
 import PostList from "@components/PostList.astro";
 
-import avatar from "@assets/avatar.webp";
-
 import Repo from "@components/main/Repository.astro";
 import RepositoryList from "@components/main/RepositoryList.astro";
 
-import { getRelativeLocaleUrl } from 'astro:i18n';
+import Avatar from "@assets/avatar.jpg";
 ---
 
 <Layout title="Main Page">
-  <Profile src={avatar.src} name="CbrneX">
-    I'm Japanese student and a SM64 Romhack TASer. <br />
+  <Profile image={Avatar} formats={["avif"]} name="CbrneX">
+    I'm Japanese and a SM64 Romhack TASer. <br />
     The name "Cbrnex" comes from <a
       href="https://simple.wikipedia.org/wiki/CBRNE"
       target="_blank"
@@ -29,8 +27,8 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
     <Repo userId="7rs" repository="parfait" icon="mdi:world-wide-web" lang="lua" license="nolicense">
       A fork of SM64 Lua Redux.
     </Repo>
-    <Repo userId="7rs" repository="sm64tas" icon="mdi:world-wide-web" lang="lua" license="wtfpl">
-      A fork of SM64 Lua Redux.
+    <Repo userId="7rs" repository="sm64tas" icon="mdi:world-wide-web" lang="unknown" license="wtfpl">
+      An archive for publication and storage TASing files. 
     </Repo>
     <Repo userId="7rs" repository="line4py" icon="mdi:world-wide-web" lang="python" license="wtfpl">
       A closed LINE API for Python.

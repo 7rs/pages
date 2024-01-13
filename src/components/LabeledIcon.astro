@@ -47,16 +47,14 @@ const { icon, description, href, openInNewTab, label, name = "", ...props } = As
 
   [data-icon]
     margin auto 0
-    color colors.icon
+    color colors.content
     @media (prefers-color-scheme dark)
-      color colors.dark.icon
+      color colors.dark.content
 
   p
     sans(1.5rem, 1.75rem)
 
   a
     text-decoration none
-    hoverable(colors.text)
-    @media (prefers-color-scheme dark)
-      hoverable(colors.dark.text)
+    hoverable(colors.content, colors.dark.content)
 </style>
