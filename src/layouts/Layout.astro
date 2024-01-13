@@ -8,6 +8,12 @@ import logo from "@assets/logo.svg";
 import "@styles/main.styl";
 import { Metadata } from "@scripts/lib/meta";
 
+import background from "@assets/background.jpg";
+import darkBackground from "@assets/dark-background.jpg";
+
+const backgroundURL = `url(${background.src})`;
+const darkBackgroundURL = `url(${darkBackground.src})`;
+
 const metadata: Metadata = {
   name: "Pages",
   description: "Fast and simple website.",
@@ -81,10 +87,14 @@ const defaultSchemaMarkup = JSON.stringify(
       ?
         <Head title={frontmatter?.title || title} favicon={logo.src} metadata={metadata} programmingFonts>
           <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
+          <link rel="preload" as="image" fetchpriority="low" href={background.src} type="image/jpeg" />
+          <link rel="preload" as="image" fetchpriority="low" href={darkBackground.src} type="image/jpeg" />
         </Head> 
       :
         <Head title={title} favicon={logo.src} metadata={metadata}>
           <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
+          <link rel="preload" as="image" fetchpriority="low" href={background.src} type="image/jpeg" />
+          <link rel="preload" as="image" fetchpriority="low" href={darkBackground.src} type="image/jpeg" />
         </Head>
   }
   <body>
@@ -93,3 +103,13 @@ const defaultSchemaMarkup = JSON.stringify(
     <Footer transition:persist />
   </body>
 </html>
+
+<style lang="stylus" define:vars={{backgroundURL, darkBackgroundURL}} is:global>
+  @import "../styles/api.styl"
+
+  html
+    @media (prefers-color-scheme light)
+      background var(--backgroundURL) center/cover no-repeat fixed, colors.background
+    @media (prefers-color-scheme dark)
+      background var(--darkBackgroundURL) center/cover no-repeat fixed, colors.dark.background
+</style>

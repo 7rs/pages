@@ -47,7 +47,6 @@ const keywords = metadata.keywords.join(", ");
     as="style"
     crossorigin
   />
-  <slot />
   <!-- Open Graph Data: https://ogp.me/ -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content={metadata.name} />
@@ -63,4 +62,6 @@ const keywords = metadata.keywords.join(", ");
   <meta property="twitter:creator:id" content={metadata.twitterId} />
   <meta name="twitter:image" content={metadata.image} />
   <meta name="twitter:image:alt" content={metadata.imageAlt} />
+  <!-- Additional metadata -->
+  <slot />
 </head>

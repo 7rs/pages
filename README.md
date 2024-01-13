@@ -9,8 +9,6 @@
 [57nMMJhh3ig]: https://unsplash.com/photos/57nMMJhh3ig
 [Q1p7bh3SHj8]: https://unsplash.com/photos/Q1p7bh3SHj8
 [7bynNtRqu4E]: https://unsplash.com/photos/7bynNtRqu4E
-[auto]: https://docs.astro.build/en/install/auto/
-[manual]: https://docs.astro.build/install/manual/
 [deepl]: https://www.deepl.com/translator
 [google-translator]: https://translate.google.com
 [chatgpt]: https://chat.openai.com/
@@ -38,12 +36,13 @@
 - [Open source](https://wikipedia.org/wiki/FLOSS).
 - Targeting a score of 90+ on [PageSpeed Insights](https://pagespeed.web.dev/).  
 - Compatible with many browsers (FireFox, Chrome, Safari, etc.).  
-- Supports [dark mode](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme).  
+- [Supports dark mode](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme).  
 - Supports [i18n](https://wikipedia.org/wiki/Internationalization_and_localization) (Japanese and English).  
 - Easy setup for [VSCode][vscode].  
 - Reusable components.  
-- Styling without classes.  
+- Styling without classes [(Scoped CSS).](https://docs.astro.build/guides/styling/#scoped-styles)  
 - Separations of markups and styles.  
+- [Optimization SEO.](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)  
 
 and using:  
 
@@ -59,9 +58,13 @@ What are written here are **goals**, **not necessarily** implemented.
 
 ## Benchmark (Score)  
 
-## Getting Started  
+| Mobile | Desktop |
+| -: | -: |
+| 99 | 100 |  
 
-### Requirement  
+> [PageSpeed Insights (2024-01-13 21:25:12)](https://pagespeed.web.dev/analysis/https-7rs-dev/x0q7ws96dt?form_factor=desktop)
+
+## Requirement  
 
   | Package | Node | Version |
   |-|-|-|
@@ -74,52 +77,57 @@ What are written here are **goals**, **not necessarily** implemented.
   Pages assumes Cloudflare Pages, but probably other hosting services be available.
   [Cloudflare Pages](https://pages.cloudflare.com/)  
 
-### Installation  
+## Installation  
 
   These are descriptions of how to do it using a shell.  
 
-#### Clone the pages project  
+### Clone the pages project (SSH)  
 
   ```sh
   git clone git@github.com:7rs/pages.git --depth 1
-
-  # If using HTTPS
-  git clone https://github.com/7rs/pages.git --depth 1
-
-  # Navigate to the pages project.
-  cd pages
   ```  
 
-  > Create a shallow clone with a history truncated to the specified number of commits.
-  > Implies `--single-branch unless` unless `--no-single-branch` is given to fetch the histories near the tips of all branches.
-  > If you want to clone submodules shallowly, also pass `--shallow-submodules`.  
-  >  
+#### HTTPS  
+
+  ```sh  
+  git clone https://github.com/7rs/pages.git --depth 1
+  ```  
+
   > [Git - git-clone Documentation](https://git-scm.com/docs/git-clone)  
 
-#### Install dependencies  
+### Install dependencies (pnpm)  
 
   ```sh
   pnpm install
+  ```  
 
-  # If using yarn
+#### yarn  
+
+  ```sh
   yarn install
+  ```  
 
-  # If using npm
+#### npm  
+
+  ```sh
   npm install
   ```  
 
-- [Install Astro with the Automatic CLI][auto]  
-- [Install Astro manually][manual]  
-
-#### Activate a preview in a browser  
+### Activate a preview in a browser (pnpm)  
 
   ```sh
   pnpm run dev
+  ```  
 
-  # If using yarn
+#### yarn  
+
+  ```sh
   yarn run dev
+  ```  
 
-  # If using npm
+#### npm  
+
+  ```sh
   npm run dev
   ```  
 
