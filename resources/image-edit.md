@@ -20,8 +20,21 @@
   # 9:20     -> 1279x2842
   # 9:16     -> 1066x2842
   # 3:4      -> 2131x2842
+  wget "https://unsplash.com/photos/7bynNtRqu4E/download?force=true" -O "./src/assets/7bynNtRqu4E.jpg"
+  sharp resize 240 240 --position "top" -i "./src/assets/7bynNtRqu4E.jpg" -o "./src/assets/avatar.jpg" --format "jpg" --mozjpeg --nearLossless
+  sharp resize 240 240 --position "top" -i "./src/assets/7bynNtRqu4E.jpg" -o "./src/assets/avatar.avif" --format "avif" --nearLossless
 
-  sharp resize 3776 2842 -i "./src/assets/wallpapers/original_Q1p7bh3SHj8.jpg" -o "./src/assets/wallpapers/4-3_Q1p7bh3SHj8.jpg" --format "jpg"  --mozjpeg --nearLossless
+  --format "jpg"
+  --mozjpeg
+  --nearLossless --alphaQuality "0"
+  --compressionLevel "9"
+  --optimize
+  --progressive --optimizeScans
+  --overshootDeringing
+  --trellisQuantisation 
+
+
+  sharp resize 3776 2842 -i "./src/assets/wallpapers/original_Q1p7bh3SHj8.jpg" -o "./src/assets/wallpapers/4-3_Q1p7bh3SHj8.jpg" --format "jpg"  --mozjpeg
   ```
 
 ### Commands  
