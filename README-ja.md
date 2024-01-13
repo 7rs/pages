@@ -14,7 +14,7 @@
 
 # [Pages](https://7rs.dev/)  
 
-  **Fast** and **simple design** website.  
+  高速でシンプルなウェブサイト。  
 
   [![LICENSE](https://img.shields.io/github/license/7rs/pages?style=flat-square&labelColor=black&color=purple)](https://github.com/7rs/pages/blob/main/LICENSE)
   [![Activity](https://img.shields.io/github/commit-activity/t/7rs/pages?style=flat-square&labelColor=black&color=blue)](https://github.com/7rs/pages/commits/main)
@@ -22,20 +22,20 @@
   [![issues](https://img.shields.io/github/issues-raw/7rs/pages?style=flat-square&label=issues&labelColor=black&color=red)](https://github.com/7rs/pages/issues)
   [![closed issues](https://img.shields.io/github/issues-closed-raw/7rs/pages?style=flat-square&label=%20&color=green)](https://github.com/7rs/pages/issues?q=is%3Aissue+is%3Aclosed)
 
-## Features  
+## 機能  
 
-- [Open source](https://wikipedia.org/wiki/FLOSS).
-- Targeting a score of 90+ on [PageSpeed Insights](https://pagespeed.web.dev/).  
-- Compatible with many browsers (FireFox, Chrome, Safari, etc.).  
-- [Supports dark mode](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme).  
-- [Supports i18n](https://wikipedia.org/wiki/Internationalization_and_localization) (Japanese and English).  
-- Easy setup for [VSCode][vscode].  
-- Reusable components.  
-- Styling without classes [(Scoped CSS).](https://docs.astro.build/en/guides/styling/#scoped-styles)  
-- Separations of markups and styles.  
-- [Optimization SEO.](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)  
+- [オープンソース](https://wikipedia.org/wiki/FLOSS)
+- [PageSpeed Insights](https://pagespeed.web.dev/)にて、90点以上を目標としている  
+- 様々なブラウザへの対応 (FireFox、Chrome、Safariなど)  
+- [ダークモードへの対応](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme).  
+- [多言語化](https://wikipedia.org/wiki/Internationalization_and_localization) (日本語と英語のみ).  
+- [VSCode][vscode]用の簡略化されたセットアップ  
+- 再利用可能なコンポーネント  
+- クラスレスのスタイル指定 [(スコープ付きCSS).](https://docs.astro.build/ja/guides/styling/#%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%81%95%E3%82%8C%E3%81%9F%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB)  
+- マークアップとスタイルシートの分離  
+- [SEO最適化](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)  
 
-and using:  
+また、使用したツール等を以下に示す  
 
 - [Astro](https://astro.build/)  
   - [Stylus](https://docs.astro.build/en/guides/styling/#stylus)  
@@ -53,9 +53,9 @@ and using:
 - [FFmpeg](https://ffmpeg.org/)  
 - [sharp-cli](https://github.com/vseventer/sharp-cli)  
 
-What are written here are **goals**, **not necessarily** implemented.  
+ここに書かれているのはあくまで目標であり、必ずしも実装されているわけではありません。  
 
-## Benchmark (Score)  
+## ベンチマーク  
 
 | Mobile | Desktop |
 | -: | -: |
@@ -63,7 +63,7 @@ What are written here are **goals**, **not necessarily** implemented.
 
 > [PageSpeed Insights (2024-01-13 21:25:12)](https://pagespeed.web.dev/analysis/https-7rs-dev/x0q7ws96dt?form_factor=desktop)
 
-## Requirement  
+## 動作環境  
 
   | Package | Node | Version |
   |-|-|-|
@@ -73,14 +73,12 @@ What are written here are **goals**, **not necessarily** implemented.
   | [PostCSS](https://www.npmjs.com/package/postcss) | ![version](https://img.shields.io/node/v/postcss?style=flat-square&label=%20) | ![version](https://img.shields.io/github/package-json/dependency-version/7rs/pages/postcss?style=flat-square&label=%20) |
   | [Svelte](https://www.npmjs.com/package/svelte) | ![version](https://img.shields.io/node/v/svelte?style=flat-square&label=%20) |   ![version](https://img.shields.io/github/package-json/dependency-version/7rs/pages/svelte?style=flat-square&label=%20) |
 
-  Pages assumes Cloudflare Pages, but probably other hosting services be available.
+  PagesはCloudflare Pagesでの運用を想定していますが、その他のホスティングサービスでも恐らく動作するはずです。  
   [Cloudflare Pages](https://pages.cloudflare.com/)  
 
-## Installation  
+## 導入（インストール）  
 
-  These are descriptions of how to do it using a shell.  
-
-### Clone the pages project (SSH)  
+### Pagesプロジェクトをクローンする (SSH)  
 
   ```sh
   git clone git@github.com:7rs/pages.git --depth 1
@@ -92,9 +90,9 @@ What are written here are **goals**, **not necessarily** implemented.
   git clone https://github.com/7rs/pages.git --depth 1
   ```  
 
-  > [Git - git-clone Documentation](https://git-scm.com/docs/git-clone)  
+  > [Git - git-clone Documentation (英語)](https://git-scm.com/docs/git-clone)  
 
-### Install dependencies (pnpm)  
+### 依存環境のインストール (pnpm)  
 
   ```sh
   pnpm install
@@ -112,7 +110,7 @@ What are written here are **goals**, **not necessarily** implemented.
   npm install
   ```  
 
-### Activate a preview in a browser (pnpm)  
+### ブラウザでプレビューを起動する (pnpm)  
 
   ```sh
   pnpm run dev
@@ -133,32 +131,31 @@ What are written here are **goals**, **not necessarily** implemented.
 [7bynNtRqu4E]: https://unsplash.com/photos/7bynNtRqu4E
 [unsplash-license]: https://unsplash.com/license
 
-### License  
+### ライセンス  
 
-  **Pages** is published under [CC0][cc0] except for asset files.  
-  Licensing information for files is as follows. **Some are not listed.**  
+  **Pages** は [CC0][cc0] の下、公開されていますが、アセットファイル（画像など）については含まれません。  
+  以下にある程度のライセンスの情報を記します。ここに書いてあるものが全てではありません。  
 
-  [Banner](resources/banner.md)  
+  [バナー画像について](resources/banner.md)  
 
-  | Name | Author | License |
+  | タイトル | 作者 | ライセンス |
   |-|-|-|
   | [Person sitting on top of building during daytime (pfp)][7bynNtRqu4E] | @smnzhu | [Unsplash License][unsplash-license] |
 
-## Contributing  
+## 貢献（コントリビュート）  
 
-### Languages  
+### 言語について  
 
-  Please use **Japanese** or **English**.  
-  If you have difficulty using those languages, I recommend using the following tools.  
+  日本語か英語を使用してください。  
 
 - [DeepL Translator][deepl]  
 - [Google Translator][google-translator]
 - [ChatGPT][chatgpt]  
 
-### Style Guides  
+### スタイルガイド（コーディング規約）  
 
-  Styleguides are controlled by tools. [VSCode][vscode] makes it so easy to complete the setup.  
-  I'll define the styleguide for [Stylus][stylus] later.  
+  これらはツールによって制御することとします。 [VSCode][vscode] を使えば、そのほとんどが自動で設定されるはずです。  
+  また、 [Stylus][stylus] については後程定義する予定です。  
 
 #### Tools  
 
@@ -173,7 +170,7 @@ What are written here are **goals**, **not necessarily** implemented.
 - [Svelte](https://svelte.dev/docs/introduction#editor-tooling)  
 - [Markdownlint](https://github.com/DavidAnson/markdownlint)  
 
-#### [VSCode][vscode] extensions  
+#### [VSCode][vscode] 拡張機能  
 
 - [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)  
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)  
@@ -184,6 +181,6 @@ What are written here are **goals**, **not necessarily** implemented.
 - [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode)  
 - [Markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)  
 
-## Author  
+## 作者  
 
 - [Cbrnex](https://github.com/7rs)  
