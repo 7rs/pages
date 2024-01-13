@@ -43,9 +43,10 @@ export interface Props {
   title: string;
   schemaMarkup?: string;
   frontmatter?: Frontmatter;
+  programmingFonts?: boolean;
 }
 
-const { title, schemaMarkup, frontmatter, ...props } = Astro.props;
+const { title, schemaMarkup, frontmatter, programmingFonts = false, ...props } = Astro.props;
 
 const author = {
   "@type": "Person",
@@ -75,11 +76,17 @@ const defaultSchemaMarkup = JSON.stringify(
 
 <!doctype html>
 <html lang="en">
-  <Head title={frontmatter?.title || title} favicon={logo.src} metadata={metadata}>
-    <!-- https://developers.google.com/search/docs/appearance/structured-data/article -->
-    <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
-  </Head>
-
+  {
+    frontmatter || programmingFonts
+      ?
+        <Head title={frontmatter?.title || title} favicon={logo.src} metadata={metadata} programmingFonts>
+          <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
+        </Head> 
+      :
+        <Head title={title} favicon={logo.src} metadata={metadata}>
+          <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
+        </Head>
+  }
   <body>
     <Header transition:persist />
     <main {...props}><slot /></main>

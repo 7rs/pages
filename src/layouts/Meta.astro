@@ -6,14 +6,14 @@ export interface Props {
   title: string;
   favicon: string;
   metadata: Metadata;
+  programmingFonts?: boolean;
 }
 
-const { title, favicon, metadata } = Astro.props;
+const { title, favicon, metadata, programmingFonts = false } = Astro.props;
 
 // https://fonts.google.com/specimen/Fira+Sans
 // https://fonts.google.com/specimen/Fira+Code?query=fira+code
-// https://fonts.google.com/specimen/BIZ+UDGothic
-const fonts: Array<string> = ["Fira Sans", "Fira Code", "BIZ UDGothic"];
+const fonts: Array<string> = programmingFonts ? ["Fira Sans", "Fira Code"] : ["Fira Sans"];
 const keywords = metadata.keywords.join(", ");
 ---
 
