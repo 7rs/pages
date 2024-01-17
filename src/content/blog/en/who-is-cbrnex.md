@@ -5,6 +5,7 @@ tags: ["profile"]
 lang: "en"
 published: true
 published_at: "2024-01-08"
+updated_at: "2024-01-14"
 ---
 
 ## Greetings  
@@ -14,7 +15,7 @@ published_at: "2024-01-08"
 # Who are you?  
 
 [cbrne]: https://simple.wikipedia.org/wiki/CBRNE
-[h-kenkreuz]: https://en.wikipedia.org/wiki/Swastika#Use_in_Nazism  
+[hakenkreuz]: https://en.wikipedia.org/wiki/Swastika#Use_in_Nazism  
 
 ## What your name?  
 
@@ -30,7 +31,7 @@ published_at: "2024-01-08"
 
   I wanna be my userid to short, so I use userid "7rs".
   I'm always called "manji" by everyone, but I didn't use it as my display name.
-  (Swaxtika and [Hxrknkreuz][h-kenkreuz] aren't distinction by everyone exceprt for Japanese people.)
+  (Swaxtika and [Hakenkreuz][hakenkreuz] aren't distinction by everyone exceprt for Japanese people.)
 
   > - [Swastika - Wikipedia](https://en.wikipedia.org/wiki/Swastika)  
   > - [Meaning of Swastika Symbol In Japan vs. The West #shorts](https://youtu.be/Di4pA8-gBY0)  
@@ -56,7 +57,7 @@ published_at: "2024-01-08"
 - [Lua][lua]  
 
   I used those.
-  I wanna learn to [Rust][rust]と[Haskell][haskell] but I can't seem to do that.  
+  I wanna learn to [Rust][rust] and [Haskell][haskell] but I can't seem to do that.  
 
 [youtube]: https://7rs.dev/yt2  
 [tasvideos]: https://tasvideos.org/  

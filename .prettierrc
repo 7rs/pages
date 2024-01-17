@@ -10,7 +10,7 @@
     "options.editorconfig": true,
     "overrides": [
         {
-            "files": ".prettierrc, *.json",
+            "files": [".prettierrc", "*.json"],
             "options": {
                 "parser": "json",
                 "tabWidth": 4

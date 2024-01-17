@@ -1,12 +1,14 @@
 import { z, defineCollection } from "astro:content";
 
+import { defaultBlogLocale } from "@scripts/lib/meta";
+
 const schema = z.object({
     // A blog title
     title: z.string(),
 
-    default_lang: z.string().default("ja"),
+    default_lang: z.string().default(defaultBlogLocale),
 
-    lang: z.string().default("ja"),
+    lang: z.string().default(defaultBlogLocale),
 
     // The author names
     authors: z.array(z.string()).default(["Cbrnex"]),

@@ -1,110 +1,67 @@
 ---
+import {
+  Metadata,
+  Frontmatter,
+  getLocale,
+  defaultLocale,
+  defaultBlogLocale,
+  setMetadataFromJSON,
+} from "@lib/meta";
+import { SchemaTypes, createSchema } from "@lib/schema";
 
-import Head from "@layouts/Meta.astro";
+import Meta from "@layouts/Meta.astro";
 import Header from "@layouts/Header.astro";
 import Footer from "@layouts/Footer.astro";
 
-import logo from "@assets/logo.svg";
-import "@styles/main.styl";
-import { Metadata } from "@scripts/lib/meta";
+import { pages } from "pages.json";
 
+import "@styles/main.styl";
+import logo from "@assets/logo.svg";
 import background from "@assets/background.jpg";
 import darkBackground from "@assets/dark-background.jpg";
 
-const backgroundURL = `url(${background.src})`;
-const darkBackgroundURL = `url(${darkBackground.src})`;
-
-const metadata: Metadata = {
-  name: "Pages",
-  description: "Fast and simple website.",
-  image: logo.src,
-  imageAlt: "Cbrnex Logo",
-  authorName: "Cbrnex",
-  authorAlternateName: "7rs",
-  url: "https://7rs.dev/",
-  keywords: [
-    "Pages",
-    "Cbrnex",
-    "7rs",
-    "Rynon",
-    "卍",
-    "卍SRSU",
-    "Astro",
-    "Stylus",
-    "Svelte",
-    "Cloudflare Pages",
-    "FLOSS",
-  ],
-  twitterId: "@cbrnex",
-};
-
-type Frontmatter = {
-  title: string;
-  tags: Array<string>;
-  url: string;
-  [key: string]: any;
-};
-
 export interface Props {
   title: string;
+  locale?: string;
   schemaMarkup?: string;
   frontmatter?: Frontmatter;
-  programmingFonts?: boolean;
+  fonts?: Array<string>;
 }
 
-const { title, schemaMarkup, frontmatter, programmingFonts = false, ...props } = Astro.props;
+const { title, locale = defaultLocale, schemaMarkup, frontmatter, fonts = [], ...props } = Astro.props;
 
-const author = {
-  "@type": "Person",
-  name: metadata.authorName,
-  alternateName: metadata.authorAlternateName,
-  description: "Just a toxic.",
-  image: "https://www.gravatar.com/avatar/1b6f182a11eba357a5b85085b74acccd",
-  url: metadata.url,
-  mainEntityOfPage: "https://github.com/7rs"
-};
+// https://fonts.google.com/specimen/Fira+Sans
+// https://fonts.google.com/specimen/Fira+Code
+fonts.push(...(frontmatter ? ["Fira Sans", "Fira Code"] : ["Fira Sans"]));
 
-const defaultSchemaMarkup = JSON.stringify(
-  frontmatter
-    ? {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        headline: frontmatter.title,
-        author: author,
-      }
-    : {
-        "@context": "https://schema.org",
-        "@type": "ProfilePage",
-        mainEntity: author,
-      },
-);
+let metadata: Metadata = setMetadataFromJSON(pages, logo.src, logo.src, "Cbrnex Logo", frontmatter ? !frontmatter.published: false);
+
+let lang = locale;
+let defaultSchemaMarkup: string;
+if (frontmatter) {
+  lang = frontmatter.lang || defaultBlogLocale;
+  defaultSchemaMarkup = createSchema(SchemaTypes.Article, metadata, frontmatter);
+} else {
+  defaultSchemaMarkup = createSchema(SchemaTypes.Profile, metadata);
+}
+
+const backgroundURL = `url(${background.src})`;
+const darkBackgroundURL = `url(${darkBackground.src})`;
 ---
 
 <!doctype html>
-<html lang="en">
-  {
-    frontmatter || programmingFonts
-      ?
-        <Head title={frontmatter?.title || title} favicon={logo.src} metadata={metadata} programmingFonts>
-          <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
-          <link rel="preload" as="image" fetchpriority="low" href={background.src} type="image/jpeg" />
-          <link rel="preload" as="image" fetchpriority="low" href={darkBackground.src} type="image/jpeg" />
-        </Head> 
-      :
-        <Head title={title} favicon={logo.src} metadata={metadata}>
-          <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
-          <link rel="preload" as="image" fetchpriority="low" href={background.src} type="image/jpeg" />
-          <link rel="preload" as="image" fetchpriority="low" href={darkBackground.src} type="image/jpeg" />
-        </Head>
-  }
+<html lang={getLocale(lang) || locale}>
+  <Meta title={frontmatter?.title || title} metadata={metadata} fonts={fonts}>
+    <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
+    <link rel="preload" as="image" fetchpriority="low" href={background.src} type="image/jpeg" />
+    <link rel="preload" as="image" fetchpriority="low" href={darkBackground.src} type="image/jpeg" />
+  </Meta>
   <body>
     <Header transition:persist />
     <main {...props}><slot /></main>
     <Footer transition:persist />
-  </body>
-</html>
-
-<style lang="stylus" define:vars={{backgroundURL, darkBackgroundURL}} is:global>
+    <!-- The "Prettier" is stupid. Where's prettier?????? -->
+    <style lang="stylus" define:vars={{backgroundURL, darkBackgroundURL}} is:global>
   @import "../styles/api.styl"
 
   html
@@ -113,3 +70,5 @@ const defaultSchemaMarkup = JSON.stringify(
     @media (prefers-color-scheme dark)
       background var(--darkBackgroundURL) center/cover no-repeat fixed, colors.dark.background
 </style>
+  </body>
+</html>
