@@ -15,31 +15,25 @@ body
   @media (prefers-color-scheme dark)
     background colors.dark.main-background
 
-header, main, footer
-  box-sizing border-box
-  max-width 100vw
-  width 100vw
-
 header, footer
-  padding 0 1rem
+  width 100%
+  background-blur(8px)
+
+div.header, div.footer
+  margin 0 auto
+
+div.header, div.footer, main
+  @media screen and (min-width widths.largest)
+    width widths.large
 
 main
   padding 1rem
+  margin 2rem auto
 
-header, footer
-  background-blur(8px)
-  z-index 1
-  background colors.widget
+header, footer, article
+  background colors.widget; // Why need this
   @media (prefers-color-scheme dark)
     background colors.dark.widget
-
-main
-  margin 2rem auto
-  box-sizing border-box
-  @media screen and (min-width widths.medium)
-    margin 3rem auto
-  @media screen and (min-width widths.large)
-    width 900px
 
 p, h1, h2, h3, h4, h5, h6, li
   color colors.content
@@ -52,23 +46,13 @@ main, div
     sans(1rem, 1.5rem)
   a
     hoverable(colors.link, colors.dark.link, under: true)
-
   h1
     sans(2rem, 2rem)
-
   h2, h3
     sans(1.5rem, 2rem)
-
   h4
     sans(1.25rem, 1.5rem)
-
   h5
     sans(1.1rem, 1.5rem)
-
   h6
     sans(1rem, 1rem)
-
-article
-  background colors.widget
-  @media (prefers-color-scheme dark)
-    background colors.dark.widget

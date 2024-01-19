@@ -1,22 +1,24 @@
 ---
-
 import Navigation from "@components/header/Navigation.astro";
-
 import Brand from "@components/Brand.astro";
 ---
-
 <header>
-  <Brand>pAges</Brand>
-  <Navigation />
+  <div class="header">
+    <Brand>pAges</Brand>
+    <Navigation />
+  </div>
 </header>
 
 <style lang="stylus">
   @import "../styles/api.styl"
 
-  header
-    max-width 100vw
-    height sizes.header-height
-    position sticky
+  header, div
+    z-index 1
     top 0
+    position sticky
+    height sizes.header-height
+
+  div.header
     display flex
+    padding 0 1rem
 </style>

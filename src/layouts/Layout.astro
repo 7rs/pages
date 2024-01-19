@@ -65,6 +65,7 @@ const darkBackgroundURL = `url(${darkBackground.src})`;
   @import "../styles/api.styl"
 
   html
+    overflow hidden auto
     @media (prefers-color-scheme light)
       background var(--backgroundURL) center/cover no-repeat fixed, colors.background
     @media (prefers-color-scheme dark)
