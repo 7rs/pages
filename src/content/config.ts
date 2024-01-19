@@ -20,7 +20,7 @@ const schema = z.object({
     published: z.boolean().default(false),
 
     // A published date
-    published_at: z.string().optional(),
+    published_at: z.date(),
 
     // A updated date
     updated_at: z.string().optional(),

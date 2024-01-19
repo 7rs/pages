@@ -13,6 +13,7 @@
     },
     "dependencies": {
         "@astrojs/mdx": "^2.0.3",
+        "@astrojs/rss": "^4.0.2",
         "@astrojs/sitemap": "^3.0.4",
         "@astrojs/svelte": "^5.0.3",
         "@iconify-json/cib": "^1.1.8",
@@ -41,7 +42,15 @@
         "prettier-plugin-stylus": "^0.1.0",
         "prettier-plugin-svelte": "^3.1.2"
     },
-    "keywords": ["7rs", "cbrnex", "pages", "7rs.dev", "astro", "stylus", "svelte"],
+    "keywords": [
+        "7rs",
+        "cbrnex",
+        "pages",
+        "7rs.dev",
+        "astro",
+        "stylus",
+        "svelte"
+    ],
     "bugs": {
         "url": "https://github.com/7rs/pages/issues"
     },
