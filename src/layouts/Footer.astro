@@ -10,8 +10,8 @@ import Social from "@components/footer/Social.astro";
 <footer>
   <div class="footer">
     <div class="summary">
-      <Brand>pAges</Brand>
-      <p>Fast and simple design website.</p>
+      <Brand />
+      <p>Fast and simple website.</p>
     </div>
     <SocialList>
       <Social alias="youtube" userId="QRZE" openInNewTab />
@@ -28,6 +28,8 @@ import Social from "@components/footer/Social.astro";
       <Social alias="qiita" userId="7rs" openInNewTab />
       <Social alias="applemusic" userId="7rs" openInNewTab />
       <Social alias="internetarchive" userId="cbrnex" openInNewTab />
+      <Social customSocial={{ iconName: "simple-icons:rss", description: "My blog RSS feed", url: "/rss.xml" }} openInNewTab />
+      <!-- simple-icons:rss /rss.xml -->
       <!--
       <Social alias="x" userId="cbrnex" openInNewTab />
       <Social alias="tiktok" userId="cbrnex" openInNewTab />

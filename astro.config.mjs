@@ -37,7 +37,8 @@ export default defineConfig({
         "x",
         "mastodon",
         "discord",
-        "telegram"
+        "telegram",
+        "rss"
       ],
       materialSymbols: [
         "wb-sunny-outline",

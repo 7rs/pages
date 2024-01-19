@@ -1,18 +1,19 @@
 ---
 import { Icon } from "astro-icon/components";
-import { createSocial } from "@lib/social";
+import { createSocial, Social } from "@lib/social";
 import { Code } from "astro:components";
 
 export interface Props {
-  alias: string;
-  userId: string;
+  alias?: string;
+  userId?: string;
   openInNewTab?: boolean;
   name?: string;
+  customSocial?: Social;
 }
 
-const { alias, userId, openInNewTab = false, name = "", ...props } = Astro.props;
+const { alias = "", userId = "", openInNewTab = false, name = "", customSocial, ...props } = Astro.props;
 
-const social = createSocial(alias, userId);
+const social = customSocial != null ? customSocial : createSocial(alias, userId);
 ---
 
 <a

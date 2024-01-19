@@ -1,18 +1,23 @@
 ---
 import LabeledIcon from "./LabeledIcon.astro";
+import { Icon } from "astro-icon/components";
 ---
 
-<LabeledIcon icon="logo" description="Fast and simple website" href="/" name="brand"><slot /></LabeledIcon>
-
+<a href="/" title="Main page">
+  <Icon name="brand" title="Logo for pages" />
+</a>
 
 <style lang="stylus">
   @import "../styles/api.styl"
 
-  [labeled-icon="brand"]
-    gap 0.25rem
-    font-size sizes.brand-size
-    &:hover
-      text-decoration none
-    p
-      deco(sizes.brand-size, sizes.brand-height)
+  a
+    margin auto
+
+    [data-icon]
+      margin auto
+      font-size sizes.brand-size
+      line-height sizes.brand-height
+      color colors.content
+      @media (prefers-color-scheme dark)
+        color colors.dark.content
 </style>
