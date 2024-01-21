@@ -28,7 +28,7 @@ export interface Props {
   fonts?: Array<string>;
 }
 
-const { title, locale = defaultLocale, schemaMarkup, frontmatter, fonts = [], ...props } = Astro.props;
+const { title, locale, schemaMarkup, frontmatter, fonts = [], ...props } = Astro.props;
 
 // https://fonts.google.com/specimen/Fira+Sans
 // https://fonts.google.com/specimen/Fira+Code
@@ -39,7 +39,7 @@ let metadata: Metadata = setMetadataFromJSON(pages, logo.src, logo.src, "Cbrnex 
 let lang = locale;
 let defaultSchemaMarkup: string;
 if (frontmatter) {
-  lang = frontmatter.lang || defaultBlogLocale;
+  lang = getLocale(frontmatter.lang || defaultBlogLocale);
   defaultSchemaMarkup = createSchema(SchemaTypes.Article, metadata, frontmatter);
 } else {
   defaultSchemaMarkup = createSchema(SchemaTypes.Profile, metadata);
@@ -50,7 +50,7 @@ const darkBackgroundURL = `url(${darkBackground.src})`;
 ---
 
 <!doctype html>
-<html lang={getLocale(lang) || locale}>
+<html lang={lang}>
   <Meta title={frontmatter?.title || title} metadata={metadata} fonts={fonts}>
     <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
     <link rel="preload" as="image" fetchpriority="low" href={background.src} type="image/jpeg" />

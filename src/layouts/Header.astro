@@ -3,10 +3,14 @@ import Navigation from "@components/header/Navigation.astro";
 import Brand from "@components/Brand.astro";
 
 import { Icon } from "astro-icon/components";
+
+import Search from "@components/Search.astro"
 ---
+
 <header>
   <div class="header">
     <Brand />
+    <Search />
     <Navigation />
   </div>
 </header>
@@ -23,4 +27,6 @@ import { Icon } from "astro-icon/components";
   div.header
     display flex
     padding 0 1rem
+    gap 1rem
+    justify-content space-between
 </style>
