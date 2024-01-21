@@ -4,17 +4,6 @@ import { getRelativeLocaleUrlList, getRelativeLocaleUrl } from "astro:i18n";
 
 import "@styles/md.styl";
 
-// export async function getStaticPaths() {
-//   const blogEntries = await getCollection("blog");
-
-//   return blogEntries.map((entry) => {
-//     return {
-//       params: { slug: entry.slug },
-//       props: { entry },
-//     };
-//   });
-// }
-
 export async function getStaticPaths() {
   const pages = await getCollection("blog");
 

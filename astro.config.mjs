@@ -1,11 +1,13 @@
 import { defineConfig, passthroughImageService } from 'astro/config';
-import Compress from "astro-compress";
+
 import mdx from "@astrojs/mdx";
-import purgecss from "astro-purgecss";
 import svelte from "@astrojs/svelte";
-import robotsTxt from "astro-robots-txt";
 import sitemap from "@astrojs/sitemap";
 
+import purgecss from "astro-purgecss";
+import Compress from "astro-compress";
+import robotsTxt from "astro-robots-txt";
+import pagefind from "astro-pagefind";
 import icon from "astro-icon";
 
 // https://astro.build/config
@@ -17,7 +19,7 @@ export default defineConfig({
     Image: false,
     JavaScript: true,
     SVG: true,
-  }), mdx(), purgecss(), svelte(), robotsTxt(), sitemap(), icon({
+  }), mdx(), purgecss(), svelte(), robotsTxt(), sitemap(), pagefind(), icon({
     iconDir: "src/icons",
     include: {
       simpleIcons: [
@@ -37,7 +39,8 @@ export default defineConfig({
         "x",
         "mastodon",
         "discord",
-        "telegram"
+        "telegram",
+        "rss"
       ],
       materialSymbols: [
         "wb-sunny-outline",
@@ -81,5 +84,5 @@ export default defineConfig({
   },
   // https://github.com/alextim/astro-lib
   // https://github.com/alextim/astro-lib/tree/main/packages/astro-robots-txt
-  site: "https://7rs.dev"
+  site: "https://7rs.dev",
 });

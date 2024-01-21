@@ -13,7 +13,7 @@ const { image, formats = [], alt = "pfp", name } = Astro.props;
 
 <article>
   <div>
-    <Picture src={image} formats={formats} alt={alt} />
+    <Picture src={image} formats={formats} alt={alt} loading="eager" />
   </div>
   <h1>{name}</h1>
   <p>
@@ -22,7 +22,7 @@ const { image, formats = [], alt = "pfp", name } = Astro.props;
 </article>
 
 <style lang="stylus">
-  @import "../styles/api.styl"
+  @import "../../styles/api.styl"
 
   profile-sizes = {
     avatar: 10rem,

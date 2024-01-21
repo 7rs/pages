@@ -8,85 +8,88 @@ import Social from "@components/footer/Social.astro";
 ---
 
 <footer>
-  <div class="summary">
-    <Brand>pAges</Brand>
-    <p>Fast and simple design website.</p>
+  <div class="footer">
+    <div class="summary">
+      <Brand />
+      <p>Fast and simple website.</p>
+    </div>
+    <SocialList>
+      <Social alias="youtube" userId="QRZE" openInNewTab />
+      <Social alias="github" userId="7rs" openInNewTab />
+      <Social alias="zenn" userId="7rs" openInNewTab />
+      <Social alias="discord" userId="GQP8A5kDJV" openInNewTab />
+      <Social alias="telegram" userId="Cbrnex" openInNewTab />
+      <Social alias="youtube" userId="cbrnex" openInNewTab />
+      <Social alias="reddit" userId="r4zln" openInNewTab />
+      <Social alias="twitch" userId="cbrnex" openInNewTab />
+      <Social alias="patreon" userId="7rs" openInNewTab />
+      <Social alias="paypal" userId="7rbots" openInNewTab />
+      <Social alias="gitlab" userId="7rs" openInNewTab />
+      <Social alias="qiita" userId="7rs" openInNewTab />
+      <Social alias="applemusic" userId="7rs" openInNewTab />
+      <Social alias="internetarchive" userId="cbrnex" openInNewTab />
+      <Social customSocial={{ iconName: "simple-icons:rss", description: "My blog RSS feed", url: "/rss.xml" }} openInNewTab />
+      <!-- simple-icons:rss /rss.xml -->
+      <!--
+      <Social alias="x" userId="cbrnex" openInNewTab />
+      <Social alias="tiktok" userId="cbrnex" openInNewTab />
+      <Social alias="mastodon" userId="7rs" openInNewTab />
+      <Social alias="mastodon.cloud" userId="7rs" openInNewTab />
+      <Social alias="mstdn.jp" userId="7rs" openInNewTab />
+      -->
+    </SocialList>
+    <Navigation icon="logo" categoryName="Pages" description="Pages item" name="pages-nav">
+      <LabeledIcon icon="material-symbols:other-houses" description="Main page" href="/">Main</LabeledIcon>
+    </Navigation>
+    <Navigation
+      icon="material-symbols:info-outline"
+      categoryName="Resources"
+      description="Resources of pages"
+      name="resources-nav"
+    >
+      <LabeledIcon
+        icon="simple-icons:github"
+        description="GitHub repository for pages"
+        href="https://7rs.dev/github"
+        openInNewTab
+        label="Repository"
+      />
+      <LabeledIcon
+        icon="material-symbols:book-2"
+        description="Documentations for pages"
+        href="https://7rs.dev/docs"
+        openInNewTab
+        label="Docs"
+      />
+      <LabeledIcon
+        icon="material-symbols:copyright-outline"
+        description="About license"
+        href="https://7rs.dev/license"
+        openInNewTab
+        label="License"
+      />
+      <LabeledIcon
+        icon="material-symbols:stylus-note"
+        description="Scraps in Zenn"
+        href="https://7rs.dev/scraps"
+        openInNewTab
+        label="Scraps"
+      />
+      <LabeledIcon
+        icon="simple-icons:stackshare"
+        description="Information in Stackshare"
+        href="https://7rs.dev/tech-stack"
+        openInNewTab
+        label="Stack"
+      />
+    </Navigation>
   </div>
-  <SocialList>
-    <Social alias="youtube" userId="QRZE" openInNewTab />
-    <Social alias="github" userId="7rs" openInNewTab />
-    <Social alias="zenn" userId="7rs" openInNewTab />
-    <Social alias="discord" userId="GQP8A5kDJV" openInNewTab />
-    <Social alias="telegram" userId="Cbrnex" openInNewTab />
-    <Social alias="youtube" userId="cbrnex" openInNewTab />
-    <Social alias="reddit" userId="r4zln" openInNewTab />
-    <Social alias="twitch" userId="cbrnex" openInNewTab />
-    <Social alias="patreon" userId="7rs" openInNewTab />
-    <Social alias="paypal" userId="7rbots" openInNewTab />
-    <Social alias="gitlab" userId="7rs" openInNewTab />
-    <!--
-    <Social alias="x" userId="cbrnex" openInNewTab />
-    <Social alias="tiktok" userId="cbrnex" openInNewTab />
-    <Social alias="mastodon" userId="7rs" openInNewTab />
-    <Social alias="mastodon.cloud" userId="7rs" openInNewTab />
-    <Social alias="mstdn.jp" userId="7rs" openInNewTab />
-    -->
-    <Social alias="qiita" userId="7rs" openInNewTab />
-    <Social alias="applemusic" userId="7rs" openInNewTab />
-    <Social alias="internetarchive" userId="7rs" openInNewTab />
-  </SocialList>
-  <Navigation icon="logo" categoryName="Pages" description="Pages item" name="pages-nav">
-    <LabeledIcon icon="material-symbols:other-houses" description="Main page" href="/">Main</LabeledIcon>
-  </Navigation>
-  <Navigation
-    icon="material-symbols:info-outline"
-    categoryName="Resources"
-    description="Resources of pages"
-    name="resources-nav"
-  >
-    <LabeledIcon
-      icon="simple-icons:github"
-      description="GitHub repository for pages"
-      href="https://7rs.dev/github"
-      openInNewTab
-      label="Repository"
-    />
-    <LabeledIcon
-      icon="material-symbols:book-2"
-      description="Documentations for pages"
-      href="https://7rs.dev/docs"
-      openInNewTab
-      label="Docs"
-    />
-    <LabeledIcon
-      icon="material-symbols:copyright-outline"
-      description="About license"
-      href="https://7rs.dev/license"
-      openInNewTab
-      label="License"
-    />
-    <LabeledIcon
-      icon="material-symbols:stylus-note"
-      description="Scraps in Zenn"
-      href="https://7rs.dev/scraps"
-      openInNewTab
-      label="Scraps"
-    />
-    <LabeledIcon
-      icon="simple-icons:stackshare"
-      description="Information in Stackshare"
-      href="https://7rs.dev/tech-stack"
-      openInNewTab
-      label="Stack"
-    />
-  </Navigation>
 </footer>
 
 <style lang="stylus">
   @import "../styles/api.styl"
 
-  footer
-    width 100vw
+  div.footer
     padding 1rem
     display grid
     gap 1rem 0
@@ -107,7 +110,7 @@ import Social from "@components/footer/Social.astro";
       "summary     pages-nav resources-nav" \
       "social-list pages-nav resources-nav";
 
-    .summary
+    div.summary
       grid-area summary
 
     [social-list]

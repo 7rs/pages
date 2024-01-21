@@ -1,8 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 
-import Profile from "@components/Profile.astro";
-import Post from "@components/LocaleInformation.svelte";
+import Profile from "@components/main/Profile.astro";
 import PostList from "@components/PostList.astro";
 
 import Repo from "@components/main/Repository.astro";
@@ -12,7 +11,7 @@ import Avatar from "@assets/avatar.jpg";
 ---
 
 <Layout title="Main Page">
-  <Profile image={Avatar} formats={["avif"]} name="CbrneX">
+  <Profile image={Avatar} name="CbrneX">
     I'm Japanese and a SM64 Romhack TASer. <br />
     The name "Cbrnex" comes from <a
       href="https://simple.wikipedia.org/wiki/CBRNE"

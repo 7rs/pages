@@ -211,3 +211,4 @@ export function createSocialList(aliasList: Array<SocialAlias>): Array<Social> {
 
     return socialList;
 }
+
