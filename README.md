@@ -100,13 +100,13 @@ What are written here are **goals**, **not necessarily** implemented.
   pnpm install
   ```  
 
-#### yarn  
+#### Install dependencies (yarn)  
 
   ```sh
   yarn install
   ```  
 
-#### npm  
+#### Install dependencies (npm)  
 
   ```sh
   npm install
@@ -118,13 +118,13 @@ What are written here are **goals**, **not necessarily** implemented.
   pnpm run dev
   ```  
 
-#### yarn  
+#### Activate a preview in a browser (yarn)  
 
   ```sh
   yarn run dev
   ```  
 
-#### npm  
+#### Activate a preview in a browser (npm)  
 
   ```sh
   npm run dev

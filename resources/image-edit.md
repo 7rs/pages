@@ -18,13 +18,15 @@
   sharp resize 240 240 --position "top" -i "./src/assets/7bynNtRqu4E.jpg" -o "./src/assets/avatar.jpg" --format "jpg" --mozjpeg --nearLossless
 
   # background
-  wget "https://unsplash.com/photos/yZygONrUBe8/download?force=true" -O "./src/assets/yZygONrUBe8.jpg"
-  sharp resize 1280 720 --fit "cover" --position "bottom" -i "./src/assets/yZygONrUBe8.jpg" -o "./src/assets/background.jpg" --format "jpg"  --mozjpeg --nearLossless
-  #123kb
+  wget "https://unsplash.com/photos/Q1p7bh3SHj8/download?force=true" -O "./src/assets/dark.jpg"
+  sharp resize 900 --fit "cover" -i "./src/assets/dark.jpg" -o "./src/assets/dark900.jpg" --format "jpg"  --mozjpeg --nearLossless
+  sharp resize 900 --fit "cover" -i "./src/assets/dark.jpg" -o "./src/assets/dark900.avif" --format "avif" --nearLossless  --compression "zstd"
+  sharp removeAlpha -i "./src/assets/dark900.avif" -o "./src/assets/dark900.avif"
 
-  # dark background
-  wget "https://unsplash.com/photos/Q1p7bh3SHj8/download?force=true" -O "./src/assets/Q1p7bh3SHj8.jpg"
-  sharp resize 1280 720 --fit "cover" -i "./src/assets/Q1p7bh3SHj8.jpg" -o "./src/assets/dark-background.jpg" --format "jpg"  --mozjpeg --nearLossless
+  wget "https://unsplash.com/photos/yZygONrUBe8/download?force=true" -O "./src/assets/light.jpg"
+  sharp resize 900 --fit "cover" --position "left bottom" -i "./src/assets/light.jpg" -o "./src/assets/light900.jpg" --format "jpg"  --mozjpeg --nearLossless
+  sharp resize 900 --fit "cover" --position "left bottom" -i "./src/assets/light.jpg" -o "./src/assets/light900.avif" --format "avif" --nearLossless --compression "zstd"
+  sharp removeAlpha -i "./src/assets/light900.avif" -o "./src/assets/light900.avif"
   ```
 
 ### Commands  

@@ -4,6 +4,7 @@ import Search from "astro-pagefind/components/Search";
 export const prerender = false;
 
 const q = Astro.url.searchParams.get("q") ?? undefined;
+
 ---
 <Search
   id="search"
@@ -28,7 +29,7 @@ const q = Astro.url.searchParams.get("q") ?? undefined;
     --pagefind-ui-border transparent
     --pagefind-ui-tag #eeeeee
     --pagefind-ui-border-width 0px
-    --pagefind-ui-border-radius 10px
+    --pagefind-ui-border-radius 0px
     // --pagefind-ui-image-border-radius
     --pagefind-ui-image-box-ratio 3 / 2
     --pagefind-ui-font fonts.sans, sans-alternates
