@@ -1,4 +1,4 @@
-@import "./api.styl"
+@import './api.styl'
 
 *
   margin 0
@@ -12,40 +12,61 @@ body
   justify-content space-between
   background-blur(1px)
 
-header, footer
+header
+footer
   width 100%
   background-blur(8px)
 
-div.header, div.footer
+div.header
+div.footer
   margin 0 auto
 
-div.header, div.footer, main
-  @media screen and (min-width widths.largest)
+div.header
+div.footer
+main
+  @media screen and (min-width: widths.largest)
     width widths.large
 
 main
   padding 1rem
   margin 2rem auto
 
-header, footer, article
-  background colors.widget; // Why need this
-  @media (prefers-color-scheme dark)
+header
+footer
+article
+  background colors.widget
+  // Why need this
+  @media (prefers-color-scheme: dark)
     background colors.dark.widget
 
-p, h1, h2, h3, h4, h5, h6, li
+p
+h1
+h2
+h3
+h4
+h5
+h6
+li
   color colors.content
-  @media (prefers-color-scheme dark)
+  @media (prefers-color-scheme: dark)
     color colors.dark.content
 
 
-main, div
-  p, em, del, u, li, table
+main
+div
+  p
+  em
+  del
+  u
+  li
+  table
     sans(1rem, 1.5rem)
   a
-    hoverable(colors.link, colors.dark.link, under: true)
+    hoverable(colors.link, colors.dark.link)
   h1
     sans(2rem, 2rem)
-  h2, h3
+  h2
+  h3
     sans(1.5rem, 2rem)
   h4
     sans(1.25rem, 1.5rem)
