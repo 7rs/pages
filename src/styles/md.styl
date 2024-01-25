@@ -26,9 +26,7 @@ main
     height auto
 
   // Italic
-  em
-  blockquote > p
-  blockquote > ul > li
+  em, blockquote > p, blockquote > ul > li
     font-style italic
 
   // Strikethrough
@@ -40,18 +38,10 @@ main
   u
     text-decoration underline
 
-  strong
-  h1
-  h2
-  h3
-  h4
-  h5
-  h6
-  thead
+  strong, h1, h2, h3, h4, h5, h6, thead
     font-weight 700
 
-  h1
-  h2
+  h1, h2
     position relative
     &::after
       position absolute
@@ -77,8 +67,7 @@ main
   h1
     text-align center
 
-  h2
-  h1
+  h2, h1
     margin 3rem auto 1rem
     sans(1.2rem, 2rem)
     @media screen and (min-width: widths.medium)
@@ -90,15 +79,11 @@ main
   h4
     margin 1.5rem auto 1rem
 
-  h5
-  h6
+  h5, h6
     margin 1rem auto
 
 
-  ul > ul
-  ol > ol
-  ul > ol
-  ol > ul
+  ul > ul, ol > ol, ul > ol, ol > ul
     list-style inside
 
   ul
@@ -108,8 +93,7 @@ main
     list-style-type decimal
 
   li
-    ul
-    ol
+    ul, ol
       padding-left 1.25rem
 
   table
@@ -118,8 +102,7 @@ main
     border-spacing 0
     table-layout fixed
 
-  th
-  td
+  th, td
     margin 0
     padding 0 0.5rem
     border table-border
