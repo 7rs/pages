@@ -10,7 +10,8 @@
         "preview": "astro preview",
         "astro": "astro",
         "format": "prettier --write . --plugin=prettier-plugin-astro,prettier-plugin-stylus,prettier-plugin-svelte",
-        "search": "npx pagefind --site dist"
+        "search": "npx pagefind --site dist",
+        "test": "lighthouse http://localhost:4321/"
     },
     "dependencies": {
         "@astrojs/mdx": "^2.1.0",
