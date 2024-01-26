@@ -48,7 +48,7 @@ const keywords = metadata.site.keywords?.join(", ");
   <!-- Twitter Cards: https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards -->
   {
     metadata.twitterId && (
-      <>
+      <Fragment>
         <meta name="twitter:title" content={title} />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:site" content={metadata.twitterId} />
@@ -57,7 +57,7 @@ const keywords = metadata.site.keywords?.join(", ");
         <meta property="twitter:creator:id" content={metadata.twitterId} />
         {metadata.site.image && <meta name="twitter:image" content={metadata.site.image} />}
         {metadata.site.alt && <meta name="twitter:image:alt" content={metadata.site.alt} />}
-      </>
+      </Fragment>
     )
   }
   <slot />
