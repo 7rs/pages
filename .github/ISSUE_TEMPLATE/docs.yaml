@@ -8,4 +8,4 @@ body:
       label: "About documentations."
       description: "Writes informations."
     validations:
-      required: true
+      required: false

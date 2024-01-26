@@ -16,49 +16,53 @@ const keywords = metadata.site.keywords?.join(", ");
 
 <head>
   <ViewTransitions />
+
   <!-- Website Metadata -->
   <title>{title}</title>
   <meta name="description" content={metadata.site.description} />
-  {metadata.site.favicon && <link rel="icon" href={metadata.site.favicon} type="image/svg+xml" />}
   <meta name="author" content={metadata.author.name} />
-  {keywords && <meta name="keywords" content={keywords} />}
+  <link rel="sitemap" href="/sitemap-0.xml" />
+  {metadata.site.url && <link rel="canonical" href={metadata.site.url} />}
+  <meta content={metadata.site.name} name="apple-mobile-web-app-title" />
+  <meta name="generator" content="Astro" />
+  {/* keywords && <meta name="keywords" content={keywords} /> */}
+
   <!-- Website Settings -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
-  <meta name="referrer" content="no-referrer" />
+  {metadata.site.favicon && <link rel="icon" href={metadata.site.favicon} type="image/svg+xml" />}
+  {metadata.noIndex && <meta name="robots" content="noindex" />}
   <meta name="format-detection" content="telephone=no,email=no,address=no" />
   <meta name="googlebot" content="notranslate" />
-  <meta content={metadata.site.name} name="apple-mobile-web-app-title" />
-  {metadata.noIndex && <meta name="robots" content="noindex" />}
-  <!-- Informations -->
-  {metadata.site.url && <link rel="canonical" href={metadata.site.url} />}
-  <link rel="sitemap" href="/sitemap.xml" />
-  <meta name="generator" content="Astro" />
+  <meta name="referrer" content="no-referrer" />
+
   <!-- Google Fonts -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href={createFontURL(fonts)} as="style" crossorigin />
-  <!-- Open Graph Data: https://ogp.me/ -->
+
+  <!-- Open Graph Data -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content={metadata.site.name} />
   <meta property="og:title" content={title} />
   {metadata.site.image && <meta property="og:image" content={metadata.site.image} />}
   {keywords && <meta property="og:keywords" content={keywords} />}
-  <!-- Twitter Cards: https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards -->
+
+  <!-- Twitter card -->
   {
     metadata.twitterId && (
-      <>
+      <Fragment>
         <meta name="twitter:title" content={title} />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:site" content={metadata.twitterId} />
         <meta property="twitter:site:id" content={metadata.twitterId} />
         <meta property="twitter:creator" content={metadata.twitterId} />
         <meta property="twitter:creator:id" content={metadata.twitterId} />
-        {metadata.site.image && <meta name="twitter:image" content={metadata.site.image} />}
-        {metadata.site.alt && <meta name="twitter:image:alt" content={metadata.site.alt} />}
-      </>
+      </Fragment>
     )
   }
+  {metadata.site.image && <meta name="twitter:image" content={metadata.site.image} />}
+  {metadata.site.alt && <meta name="twitter:image:alt" content={metadata.site.alt} />}
   <slot />
 </head>

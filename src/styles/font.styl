@@ -1,0 +1,35 @@
+/* The font functions for unification.
+
+The 3 font types used in Pages are `sans-serif`, `serif`, and `monospace`.
+
+Alternates:
+  - serif
+  - sans-serif
+  - monospace
+  - cursive
+  - fantasy
+  - system-ui
+  - ui-serif
+  - ui-sans-serif
+  - ui-monospace
+  - ui-rounded
+  - math
+  - emoji
+  - fangsong
+
+References:
+  https://developer.mozilla.org/en/docs/Web/CSS/font-family
+  https://www.w3schools.com/cssref/css_websafe_fonts.php
+*/
+
+// https://fonts.google.com/?stroke=Sans+Serif&subset=latin
+main-sans = "Fira Sans"
+alternative-sans = "Trebuchet MS", "Verdana", "Arial", ui-sans-serif, sans-serif
+
+// https://fonts.google.com/?stroke=Serif&subset=latin
+main-serif = ""
+alternative-serif = "Times New Roman", "Georgia", "Garamond", ui-serif, serif
+
+// https://fonts.google.com/?subset=latin&classification=Monospace
+main-mono = "Fira Code"
+alternative-mono = "Courier New", ui-monospace, monospace

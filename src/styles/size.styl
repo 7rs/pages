@@ -1,0 +1,39 @@
+/* Widths property for responsive support.
+
+Stop hard-coding to specify widths. Do not use `widths.small`.
+
+Usage:
+  ```
+  p
+    font-size 1rem
+    @media screen and (min-width widths.medium)
+      font-size 1.25rem
+    @media screen and (min-width widths.large)
+      font-size 1.5rem
+    @media screen and (min-width widths.largest)
+      font-size 2rem
+  ```
+
+References:
+  https://developer.mozilla.org/en/docs/Web/CSS/min-width
+*/
+widths = {  
+  small: 300px,
+  medium: 600px,
+  large: 900px,
+  largest: 1200px,
+}
+
+sizes = {
+  icon: 1.75rem,
+  brand-size: 2.75rem,
+  brand-height: 3rem,
+  header-height: 3.5rem,
+  footer-nav-size: 1.5rem,
+  footer-nav-height: 1.75rem,
+  footer-nav-gap: 0.75rem,
+  // widths.large
+  large: {
+    icon: 2rem,
+  },
+}
