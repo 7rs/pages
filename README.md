@@ -33,7 +33,7 @@
   <img src=".github/assets/banner.jpg" alt="banner" />
 </picture>
 
-[English](./README) | [日本語](./README_ja)
+[English](./README.md) | [日本語](./README_ja.md)
 
 [stylus]: https://img.shields.io/badge/Stylus-333333?style=for-the-badge&logo=stylus
 [svelte]: https://img.shields.io/badge/Svelte-FF3E00?style=for-the-badge&logo=svelte&logoColor=white
