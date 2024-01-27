@@ -10,28 +10,10 @@
     "options.editorconfig": true,
     "overrides": [
         {
-            "files": ".prettierrc, *.json",
+            "files": [".prettierrc", "*.json"],
             "options": {
                 "parser": "json",
                 "tabWidth": 4
-            }
-        },
-        {
-            "files": "*.astro",
-            "options": {
-                "parser": "astro"
-            }
-        },
-        {
-            "files": "*.styl",
-            "options": {
-                "parser": "stylus"
-            }
-        },
-        {
-            "files": "*.svelte",
-            "options": {
-                "parser": "svelte"
             }
         }
     ]

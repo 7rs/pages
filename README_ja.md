@@ -33,7 +33,7 @@
   <img src=".github/assets/banner.jpg" alt="banner" />
 </picture>
 
-[English](./README) | [日本語](./README_ja)
+[English](./README) | [日本語](./README_ja)  
 
 [stylus]: https://img.shields.io/badge/Stylus-333333?style=for-the-badge&logo=stylus
 [svelte]: https://img.shields.io/badge/Svelte-FF3E00?style=for-the-badge&logo=svelte&logoColor=white
@@ -43,7 +43,7 @@
 
 # [Pages](https://7rs.dev/)  
 
-  **Fast** and **simple** website.  
+  **高速**で**シンプル**なウェブサイト。  
 
   [![License][license]][license-raw]
   [![Issues][open-issue]![Closed Issues][closed-issue]][issue]
@@ -62,49 +62,49 @@
 
   [![Built with Astro](https://astro.badg.es/v2/built-with-astro/large.svg)](https://astro.build/)  
 
-## Features (Goals)  
+## 機能 (目標)  
 
-- [Open source](https://wikipedia.org/wiki/FLOSS).
-- Targeting a score of 90+ on [PageSpeed Insights](https://pagespeed.web.dev/).  
-- Compatible with many browsers (FireFox, Chrome, Safari, etc.).  
-- [Supports dark mode](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme).  
-- [Supports i18n](https://wikipedia.org/wiki/Internationalization_and_localization) (Japanese and English).  
-- Easy setup for [VSCode][vscode].  
-- Reusable components.  
-- Styling without classes [(Scoped CSS).](https://docs.astro.build/en/guides/styling/#scoped-styles)  
-- Separations of markups and styles.  
-- [Optimization SEO.](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)  
-- Search articles with [Pagefind](https://pagefind.app/)  
+- [オープンソース](https://wikipedia.org/wiki/FLOSS)
+- [PageSpeed Insights](https://pagespeed.web.dev/)で90点以上  
+- 多くのブラウザに対応 (FireFox, Chrome, Safari, etc.)  
+- [ダークモードに対応](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme)  
+- [多言語化](https://wikipedia.org/wiki/Internationalization_and_localization) (日本語と英語)  
+- [VSCode][vscode]での簡単なセットアップ  
+- 再利用可能なコンポーネント  
+- クラスレスのスタイリング [(Scoped CSS).](https://docs.astro.build/en/guides/styling/#scoped-styles)  
+- マークアップとスタイルシートのファイルを分割  
+- [SEOの最適化](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)  
+- [Pagefind](https://pagefind.app/)による検索  
 
 [2024-01-13_2]: https://pagespeed.web.dev/analysis/https-7rs-dev/x0q7ws96dt?form_factor=mobile
 [2024-01-13_1]: https://pagespeed.web.dev/analysis/https-7rs-dev/bflti9eum0?form_factor=mobile
 [2024-01-12]: https://pagespeed.web.dev/analysis/https-7rs-dev/azm6eyfj4m?form_factor=mobile
 [2024-01-08]: https://pagespeed.web.dev/analysis/https-7rs-dev/govex9jx2k?form_factor=mobile
 
-## Benchmarks  
+## ベンチマーク  
 
-  | Mobile | Desktop | Date |
+  | モバイル | デスクトップ | 日時 |
   | - | - | - |
   | 99 | 100 | [2024-01-13][2024-01-13_2] |
   | 91 | 98  | [2024-01-13][2024-01-13_1] |
   | 88 | 96  | [2024-01-12][2024-01-12] |
   | 82 | 94  | [2024-01-08][2024-01-08] |
 
-## Installation  
+## インストール  
 
-### Requirement (Recommended)  
+### 要求事項 (推奨)  
 
 - [fnm](https://github.com/Schniz/fnm)
 - [pnpm](https://pnpm.io/)
 
-### Install Node.js with [codename]((https://nodejs.org/en/about/previous-releases)) (fnm)  
+### [コードネーム]((https://nodejs.org/en/about/previous-releases))を使ったNode.jsのインストール (fnm)  
 
   ```sh
   fnm install lts/hydrogen
   fnm use lts/hydrogen
   ```
 
-#### Clone the pages project (SSH)  
+#### Pagesプロジェクトをクローン (SSH)  
 
   ```sh
   git clone git@github.com:7rs/pages.git --depth 1
@@ -116,34 +116,31 @@
   git clone https://github.com/7rs/pages.git --depth 1
   ```  
 
-#### Install dependencies  
+#### 依存関係をインストール  
 
   ```sh
   pnpm install
   ```  
 
-#### Activate preview in your browser  
+#### ブラウザでプレビュー  
 
   ```sh
   pnpm run dev  
   ```  
 
-[unsplash-badge]: https://img.shields.io/badge/Unsplash-black?style=for-the-badge&logo=unsplash
-[unsplash-license]: https://unsplash.com/license
+### ライセンス  
 
-### License  
-
-  **Pages** is published under [CC0](https://creativecommons.org/publicdomain/zero/1.0/) except for asset files.  
-  Licensing information for files is as follows. **Some are not listed.**  
+  **Pages**はアセットファイルを除き、[CC0](https://creativecommons.org/publicdomain/zero/1.0/)ので公開されています。  
+  ライセンスの情報は以下に示します。 **載っていないものもあります。**  
 
 - [7bynNtRqu4E](https://unsplash.com/photos/7bynNtRqu4E)  
 - [Q1p7bh3SHj8](https://unsplash.com/photos/Q1p7bh3SHj8)  
 - [yZygONrUBe8](https://unsplash.com/photos/yZygONrUBe8)  
-- [Banner](resources/banner.md)  
+- [バナー画像](resources/banner.md)  
 
-[![Unsplash][unsplash-badge]][unsplash-license]  
+  > [Unsplashライセンス](https://unsplash.com/license)  
 
-## Contributing  
+## コントリビュート  
 
 [deepl]: https://www.deepl.com/translator
 [deepl-badge]: https://img.shields.io/badge/DeepL-0F2B46?style=for-the-badge&logo=deepl
@@ -152,22 +149,22 @@
 [chatgpt]: https://chat.openai.com/
 [chatgpt-badge]: https://img.shields.io/badge/Chat_GPT-412991?style=for-the-badge&logo=openai
 
-### Languages  
+### 言語  
 
-  Please use **Japanese** or **English**.  
+  日本語か英語を使ってください。  
 
   [![Static Badge][deepl-badge]][deepl]
   [![Static Badge][google-translate-badge]][google-translate]
   [![Static Badge][chatgpt-badge]][chatgpt]
 
-### Style Guides  
+### スタイルガイド  
 
-  Styleguides are controlled by tools. [VSCode][vscode] makes it so easy to complete the setup.  
+  フォーマッタによって自動で整形されます。 [VSCode][vscode]で簡単にフォーマッタをセットアップできます。  
 
-### Community  
+### コミュニティ  
 
   [![Static Badge](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://7rs.dev/d)
 
-## Author  
+## 作者・コントリビューター  
 
 - [Cbrnex](https://github.com/7rs)  

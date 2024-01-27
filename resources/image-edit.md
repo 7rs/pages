@@ -13,28 +13,20 @@
 ## Usage in CLI  
 
   ```sh
-  # original -> 4256x2842
-  # 20:9     -> 4256x1915
-  # 16:9     -> 4256x2394
-  # 4:3      -> 3776x2842
-  # 9:20     -> 1279x2842
-  # 9:16     -> 1066x2842
-  # 3:4      -> 2131x2842
+  # avatar
   wget "https://unsplash.com/photos/7bynNtRqu4E/download?force=true" -O "./src/assets/7bynNtRqu4E.jpg"
   sharp resize 240 240 --position "top" -i "./src/assets/7bynNtRqu4E.jpg" -o "./src/assets/avatar.jpg" --format "jpg" --mozjpeg --nearLossless
-  sharp resize 240 240 --position "top" -i "./src/assets/7bynNtRqu4E.jpg" -o "./src/assets/avatar.avif" --format "avif" --nearLossless
 
-  --format "jpg"
-  --mozjpeg
-  --nearLossless --alphaQuality "0"
-  --compressionLevel "9"
-  --optimize
-  --progressive --optimizeScans
-  --overshootDeringing
-  --trellisQuantisation 
+  # background
+  wget "https://unsplash.com/photos/Q1p7bh3SHj8/download?force=true" -O "./src/assets/dark.jpg"
+  sharp resize 900 --fit "cover" -i "./src/assets/dark.jpg" -o "./src/assets/dark900.jpg" --format "jpg"  --mozjpeg --nearLossless
+  sharp resize 900 --fit "cover" -i "./src/assets/dark.jpg" -o "./src/assets/dark900.avif" --format "avif" --nearLossless  --compression "zstd"
+  sharp removeAlpha -i "./src/assets/dark900.avif" -o "./src/assets/dark900.avif"
 
-
-  sharp resize 3776 2842 -i "./src/assets/wallpapers/original_Q1p7bh3SHj8.jpg" -o "./src/assets/wallpapers/4-3_Q1p7bh3SHj8.jpg" --format "jpg"  --mozjpeg
+  wget "https://unsplash.com/photos/yZygONrUBe8/download?force=true" -O "./src/assets/light.jpg"
+  sharp resize 900 --fit "cover" --position "left bottom" -i "./src/assets/light.jpg" -o "./src/assets/light900.jpg" --format "jpg"  --mozjpeg --nearLossless
+  sharp resize 900 --fit "cover" --position "left bottom" -i "./src/assets/light.jpg" -o "./src/assets/light900.avif" --format "avif" --nearLossless --compression "zstd"
+  sharp removeAlpha -i "./src/assets/light900.avif" -o "./src/assets/light900.avif"
   ```
 
 ### Commands  
@@ -82,7 +74,13 @@
   -q, --quality [1-100]
 
   # zlib compression level
-  -c, --compressionLevel [1-6?]
+  -c, --compressionLevel [0-9]
+
+  # TODO
+  --optimize
+  --progressive --optimizeScans
+  --overshootDeringing
+  --trellisQuantisation
   ```  
 
 ### Refs  

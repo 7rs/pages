@@ -1,20 +1,21 @@
 {
-  "compilerOptions": {
-    "target": "es2022",
-    "module": "ESNext",
-    "strictNullChecks": true,
-    "baseUrl": ".",
-    "allowJs": true,
-    "resolveJsonModule": true,
-    "allowImportingTsExtensions": true,
-    "paths": {
-      "@components/*": ["src/components/*"],
-      "@assets/*": ["src/assets/*"],
-      "@styles/*": ["src/styles/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@scripts/*": ["scripts/*"],
-      "@lib/*": ["scripts/lib/*"],
-      "@public/*": ["public/*"]
+    "compilerOptions": {
+        "target": "es2022",
+        "module": "ESNext",
+        "strictNullChecks": true,
+        "baseUrl": ".",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "allowImportingTsExtensions": true,
+        "paths": {
+            "@components/*": ["src/components/*"],
+            "@assets/*": ["src/assets/*"],
+            "@styles/*": ["src/styles/*"],
+            "@layouts/*": ["src/layouts/*"],
+            "@scripts/*": ["scripts/*"],
+            "@lib/*": ["scripts/lib/*"],
+            "@public/*": ["public/*"]
+        }
     }
-  }
 }

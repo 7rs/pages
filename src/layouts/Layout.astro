@@ -1,95 +1,86 @@
 ---
+import { Metadata, Frontmatter, getLocale, defaultLocale, defaultBlogLocale, setMetadataFromJSON } from "@lib/meta";
+import { SchemaTypes, createSchema } from "@lib/schema";
 
-import Head from "@layouts/Meta.astro";
+import { fade } from "astro:transitions";
+
+import Meta from "@layouts/Meta.astro";
 import Header from "@layouts/Header.astro";
 import Footer from "@layouts/Footer.astro";
 
-import logo from "@assets/logo.svg";
+import { pages } from "pages.json";
+
 import "@styles/main.styl";
-import { Metadata } from "@scripts/lib/meta";
+import logo from "@assets/logo.svg";
 
-const metadata: Metadata = {
-  name: "Pages",
-  description: "Fast and simple website.",
-  image: logo.src,
-  imageAlt: "Cbrnex Logo",
-  authorName: "Cbrnex",
-  authorAlternateName: "7rs",
-  url: "https://7rs.dev/",
-  keywords: [
-    "Pages",
-    "Cbrnex",
-    "7rs",
-    "Rynon",
-    "卍",
-    "卍SRSU",
-    "Astro",
-    "Stylus",
-    "Svelte",
-    "Cloudflare Pages",
-    "FLOSS",
-  ],
-  twitterId: "@cbrnex",
-};
+import dark from "@assets/dark900.avif";
+import light from "@assets/light900.avif";
 
-type Frontmatter = {
-  title: string;
-  tags: Array<string>;
-  url: string;
-  [key: string]: any;
-};
+const darkBackground = `url(${dark.src})`;
+const lightBackground = `url(${light.src})`;
 
 export interface Props {
   title: string;
+  locale?: string;
   schemaMarkup?: string;
   frontmatter?: Frontmatter;
-  programmingFonts?: boolean;
+  fonts?: Array<string>;
 }
 
-const { title, schemaMarkup, frontmatter, programmingFonts = false, ...props } = Astro.props;
+const { title, locale = defaultLocale, schemaMarkup, frontmatter, fonts = [], ...props } = Astro.props;
 
-const author = {
-  "@type": "Person",
-  name: metadata.authorName,
-  alternateName: metadata.authorAlternateName,
-  description: "Just a toxic.",
-  image: "https://www.gravatar.com/avatar/1b6f182a11eba357a5b85085b74acccd",
-  url: metadata.url,
-  mainEntityOfPage: "https://github.com/7rs"
-};
+// https://fonts.google.com/specimen/Fira+Sans
+// https://fonts.google.com/specimen/Fira+Code
+const firaSans = "Fira+Sans:ital,wght@0,400;0,700;1,400;1,700";
+fonts.push(...(frontmatter ? [firaSans, "Fira Code"] : [firaSans]));
 
-const defaultSchemaMarkup = JSON.stringify(
-  frontmatter
-    ? {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        headline: frontmatter.title,
-        author: author,
-      }
-    : {
-        "@context": "https://schema.org",
-        "@type": "ProfilePage",
-        mainEntity: author,
-      },
+let metadata: Metadata = setMetadataFromJSON(
+  pages,
+  logo.src,
+  logo.src,
+  "Cbrnex Logo",
+  frontmatter ? !frontmatter.published : false,
 );
+
+let lang = locale;
+let defaultSchemaMarkup: string;
+let search: string | undefined = "";
+if (frontmatter) {
+  search = frontmatter.published ? "" : undefined;
+  lang = getLocale(frontmatter.lang || defaultBlogLocale);
+  defaultSchemaMarkup = createSchema(SchemaTypes.Article, metadata, frontmatter);
+} else {
+  defaultSchemaMarkup = createSchema(SchemaTypes.Profile, metadata);
+}
 ---
 
 <!doctype html>
-<html lang="en">
-  {
-    frontmatter || programmingFonts
-      ?
-        <Head title={frontmatter?.title || title} favicon={logo.src} metadata={metadata} programmingFonts>
-          <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
-        </Head> 
-      :
-        <Head title={title} favicon={logo.src} metadata={metadata}>
-          <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
-        </Head>
-  }
+<html lang={lang}>
+  <Meta title={frontmatter?.title || title} metadata={metadata} fonts={fonts}>
+    <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
+    <link rel="prefetch" fetchpriority="low" as="image" type="image/jpeg" href={light.src} />
+    <link rel="prefetch" fetchpriority="low" as="image" type="image/jpeg" href={dark.src} />
+  </Meta>
   <body>
     <Header transition:persist />
-    <main {...props}><slot /></main>
+    <main
+      {...props}
+      transition:animate={fade({ duration: "0.1s" })}
+      data-pagefind-body={search}
+    >
+      <slot />
+    </main>
     <Footer transition:persist />
+    <!-- The "Prettier" is stupid. Where's prettier?????? -->
+    <style lang="stylus" define:vars={{darkBackground, lightBackground}} is:global>
+  @import "../styles/api.styl"
+
+  html
+    overflow hidden auto
+    @media (prefers-color-scheme light)
+      background var(--lightBackground) center/cover no-repeat fixed, colors.background
+    @media (prefers-color-scheme dark)
+      background var(--darkBackground) center/cover no-repeat fixed, colors.dark.background
+</style>
   </body>
 </html>

@@ -1,120 +1,35 @@
-/*
-Tailwind CSS (https://tailwindcss.com/docs/responsive-design)
-  - 640px
-  - 768px
-  - 1024px
-  - 1280px
-  - 1536px
+@import "color.styl"
+@import "size.styl"
+@import "font.styl"
 
-Bulma (https://bulma.io/documentation/overview/responsiveness/)
-  - 768px
-  - 1024px
-  - 1408px
 
-Bootstrap (https://getbootstrap.com/docs/5.3/layout/breakpoints)
-  - 576px
-  - 768px
-  - 992px
-  - 1200px
-  - 1400px
+default-font-size = 1rem
+default-line-height = 1.5rem
 
-Widths less than 320px and more than 1200px are not supported.
+/* This function applys and resize `sans-serif`, `serif` or `monospace` fonts.
+
+Arguments:
+  size: Character size. (Default: 1rem)
+        https://developer.mozilla.org/en/docs/Web/CSS/font-size
+  height: Height of character display area. (Default: 1.5rem)
+        https://developer.mozilla.org/en/docs/Web/CSS/line-height
 */
-widths = {  
-  small: 300px
-  medium: 600px
-  large: 900px
-  largest: 1200px
-}
+sans(size = default-font-size, height = default-line-height)
+  font size/height main-sans, alternative-sans
 
-sizes = {
-  icon: 1.75rem,
-  brand-size: 1.75rem,
-  brand-height: 2rem,
-  header-height: 3.5rem,
-  footer-nav-size: 1.5rem,
-  footer-nav-height: 1.75rem,
-  footer-nav-gap: 0.75rem,
-  // @media screen and (min-width widths.large)
-  large: {
-    icon: 2rem,
-  }
-}
+serif(size = default-font-size, height = default-line-height)
+  font size/height alternative-serif
 
-background = {
-  small: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
-  medium: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
-  large: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
-  largest: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
-  portrait: {
-    small: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
-    medium: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
-    large: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
-    largest: url(.src/assets/wallpapers/20-9_Q1p7bh3SHj8.jpg),
-  }
-}
+mono(size = default-font-size, height = default-line-height)
+  font size/height main-mono, alternative-mono
 
-// https://cssgradient.io/
-bg-alpha = 0.3
-colors = {
-  background: linear-gradient(135deg,
-    rgba(240, 255, 255, bg-alpha) 0%,
-    rgba(240, 224, 255, bg-alpha) 20%,
-    rgba(208, 192, 255, bg-alpha) 40%,
-    rgba(240, 176, 240, bg-alpha) 50%,
-    rgba(255, 192, 208, bg-alpha) 60%,
-    rgba(255, 224, 240, bg-alpha) 80%,
-    rgba(255, 255, 240, bg-alpha) 100%
-  ),
-  content: rgb(0, 0, 0),
-  link: rgba(0, 0, 255, 1.0),
-  widget: rgba(255, 255, 255, 0.7),
-  widget-hovered: rgb(0, 0, 0),
-  border: rgba(0, 0, 0, 0.5),
-  // @media (prefers-color-scheme dark)
-  dark: {
-    background: linear-gradient(135deg,
-      rgb(16, 0,  8) 0%,
-      rgb(24, 0,  16) 25%,
-      rgb(32, 8,  32) 50%,
-      rgb(16, 8,  24) 75%,
-      rgb(8,  0,  16) 100%
-    ),
-    content: rgb(255, 255, 255),
-    link: rgba(255, 0, 0, 1.0),
-    widget: rgba(0, 0, 0, 0.7),
-    widget-hovered: rgb(255, 255, 255),
-    border: rgba(255, 255, 255, 0.5),
-  }
-}
+/* The function to blur the bottom elements.
 
-// https://fonts.google.com/?preview.size=24&subset=latin
-fonts = {
-  sans: "Fira Sans",
-  mono: "Fira Code",
-  deco: "Cinzel Decorative",
-}
-
-// https://www.w3schools.com/cssref/css_websafe_fonts.php
-sans-alternates = "Trebuchet MS", Verdana, Arial, sans-serif
-serif-alternates = "Times New Roman", "Georgia", "Garamond", serif
-mono-alternates = "Courier New", monospace
-
-sans(size, height)
-  font size/height fonts.sans, sans-alternates
-
-serif(size, height)
-  font size/height serif-alternates
-
-mono(size, height)
-  font size/height fonts.mono, mono-alternates
-
-deco(size, height)
-  font size/height fonts.deco, serif-alternates
-
-background-blur(strength)
+Arguments:
+  strength: Blur strength. (Default: 8px)
+*/
+background-blur(strength = 8px)
   backdrop-filter blur(strength)
-  -webkit-backdrop-filter blur(strength)
 
 hoverable(light-color, dark-color = null, alpha = 0.5, under = false)
   color light-color

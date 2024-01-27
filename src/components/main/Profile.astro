@@ -22,7 +22,7 @@ const { image, formats = [], alt = "pfp", name } = Astro.props;
 </article>
 
 <style lang="stylus">
-  @import "../styles/api.styl"
+  @import "../../styles/api.styl"
 
   profile-sizes = {
     avatar: 10rem,
@@ -60,9 +60,9 @@ const { image, formats = [], alt = "pfp", name } = Astro.props;
 
   h1
     grid-area name
-    deco(profile-sizes.name, profile-sizes.name-height)
+    sans(profile-sizes.name, profile-sizes.name-height)
     @media screen and (min-width widths.large)
-      deco(profile-sizes.large.name, profile-sizes.large.name-height)
+      sans(profile-sizes.large.name, profile-sizes.large.name-height)
       align-self flex-end
 
   p

@@ -1,66 +1,68 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+
 import { Metadata, createFontURL } from "@lib/meta";
 
 export interface Props {
   title: string;
-  favicon: string;
   metadata: Metadata;
-  programmingFonts?: boolean;
+  fonts?: Array<string>;
 }
 
-const { title, favicon, metadata, programmingFonts = false } = Astro.props;
+const { title, metadata, fonts = [] } = Astro.props;
 
-// https://fonts.google.com/specimen/Fira+Sans
-// https://fonts.google.com/specimen/Fira+Code?query=fira+code
-const fonts: Array<string> = programmingFonts ? ["Fira Sans", "Fira Code"] : ["Fira Sans"];
-const keywords = metadata.keywords.join(", ");
+const keywords = metadata.site.keywords?.join(", ");
 ---
 
 <head>
   <ViewTransitions />
+
   <!-- Website Metadata -->
   <title>{title}</title>
-  <meta name="description" content={metadata.description} />
-  <link rel="icon" href={favicon} type="image/svg+xml" />
-  <meta name="author" content={metadata.authorName} />
-  <meta name="keywords" content={keywords} />
+  <meta name="description" content={metadata.site.description} />
+  <meta name="author" content={metadata.author.name} />
+  <link rel="sitemap" href="/sitemap-0.xml" />
+  {metadata.site.url && <link rel="canonical" href={metadata.site.url} />}
+  <meta content={metadata.site.name} name="apple-mobile-web-app-title" />
+  <meta name="generator" content="Astro" />
+  {/* keywords && <meta name="keywords" content={keywords} /> */}
+
   <!-- Website Settings -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
-  <meta name="referrer" content="no-referrer" />
+  {metadata.site.favicon && <link rel="icon" href={metadata.site.favicon} type="image/svg+xml" />}
+  {metadata.noIndex && <meta name="robots" content="noindex" />}
   <meta name="format-detection" content="telephone=no,email=no,address=no" />
   <meta name="googlebot" content="notranslate" />
-  <meta content="Pages" name="apple-mobile-web-app-title" />
-  <!-- Informations -->
-  <link rel="canonical" href={metadata.url} />
-  <link rel="sitemap" href="/sitemap.xml" />
-  <meta name="generator" content="Astro" />
+  <meta name="referrer" content="no-referrer" />
+
   <!-- Google Fonts -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href={createFontURL(fonts)} rel="stylesheet" as="style" crossorigin />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&text=CbrneXpAgs"
-    as="style"
-    crossorigin
-  />
-  <slot />
-  <!-- Open Graph Data: https://ogp.me/ -->
+  <link rel="stylesheet" href={createFontURL(fonts)} as="style" crossorigin />
+
+  <!-- Open Graph Data -->
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content={metadata.name} />
+  <meta property="og:site_name" content={metadata.site.name} />
   <meta property="og:title" content={title} />
-  <meta property="og:image" content={metadata.image} />
-  <meta property="og:keywords" content={keywords} />
-  <!-- Twitter Cards: https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards -->
-  <meta name="twitter:title" content={title} />
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:site" content={metadata.twitterId} />
-  <meta property="twitter:site:id" content={metadata.twitterId} />
-  <meta property="twitter:creator" content={metadata.twitterId} />
-  <meta property="twitter:creator:id" content={metadata.twitterId} />
-  <meta name="twitter:image" content={metadata.image} />
-  <meta name="twitter:image:alt" content={metadata.imageAlt} />
+  {metadata.site.image && <meta property="og:image" content={metadata.site.image} />}
+  {keywords && <meta property="og:keywords" content={keywords} />}
+
+  <!-- Twitter card -->
+  {
+    metadata.twitterId && (
+      <Fragment>
+        <meta name="twitter:title" content={title} />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:site" content={metadata.twitterId} />
+        <meta property="twitter:site:id" content={metadata.twitterId} />
+        <meta property="twitter:creator" content={metadata.twitterId} />
+        <meta property="twitter:creator:id" content={metadata.twitterId} />
+      </Fragment>
+    )
+  }
+  {metadata.site.image && <meta name="twitter:image" content={metadata.site.image} />}
+  {metadata.site.alt && <meta name="twitter:image:alt" content={metadata.site.alt} />}
+  <slot />
 </head>
