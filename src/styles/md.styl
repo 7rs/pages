@@ -11,10 +11,18 @@ brockquote-border = solid 3px rgba(128, 128, 255, 0.3)
 
 main
   background-blur(8px)
-  padding 1rem
   border-radius 1rem
+  // For responsive
+  padding 1rem
+  @media screen and (min-width widths.medium)
+    padding 1rem
+  @media screen and (min-width widths.large)
+    padding 1.5rem
+  @media screen and (min-width widths.largest)
+    padding 3rem
+  // For darkmode
   background colors.background
-  @media (prefers-color-scheme: dark)
+  @media (prefers-color-scheme dark)
     background colors.dark.background
 
   a

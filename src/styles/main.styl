@@ -4,17 +4,25 @@
   margin 0
   padding 0
 
+html
+
 body
-  z-index -1
   min-height 100vh
   display flex
   flex-direction column
   justify-content space-between
-  background-blur(1px)
+  background rgba(255, 255, 255 0.1)
+  @media (prefers-color-scheme dark)
+    background rgba(0, 0, 0, 0.1)
+  // Humans will ruin before fuckin' chrome fixes this bug.
+  // background-blur(8px)
 
 header, footer
   width 100%
   background-blur(8px)
+
+header::before, footer::before
+  position absolute
 
 div.header, div.footer
   margin 0 auto

@@ -35,7 +35,6 @@
 
 [English](./README) | [日本語](./README_ja)  
 
-[astro]: https://img.shields.io/badge/Astro-BC52EE?style=for-the-badge&logo=astro&logoColor=white
 [stylus]: https://img.shields.io/badge/Stylus-333333?style=for-the-badge&logo=stylus
 [svelte]: https://img.shields.io/badge/Svelte-FF3E00?style=for-the-badge&logo=svelte&logoColor=white
 [typescript]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white
@@ -55,12 +54,13 @@
   [![Version][pre-version]![Last commit][pre-modified]![Commit count][pre-commits]][pre]
   [![Version][dev-version]![Last commit][dev-modified]![Commit count][dev-commits]][dev]  
 
-  ![astro][astro]
-  ![svelte][svelte]
-  ![stylus][stylus]
-  ![PostCSS][postcss]
-  ![pnpm][pnpm]
-  ![typescript][typescript]
+  [![svelte][svelte]](https://svelte.dev/)
+  [![stylus][stylus]](https://stylus-lang.com/)
+  [![PostCSS][postcss]](https://postcss.org/)
+  [![pnpm][pnpm]](https://pnpm.io/)
+  [![typescript][typescript]](https://www.typescriptlang.org/)
+
+  [![Built with Astro](https://astro.badg.es/v2/built-with-astro/large.svg)](https://astro.build/)  
 
 ## 機能 (目標)  
 
