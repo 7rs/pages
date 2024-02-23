@@ -1,0 +1,216 @@
+/*
+THIS IS NOT A STABLE.
+
+So why did I make this? Because I don't like default UI.
+https://pagefind.app/docs/ui-usage/
+
+Pagefind provides CSS variables for customization, but this is complicated.
+https://pagefind.app/docs/ui-usage/#customising-the-styles
+
+I know I should use search API...
+https://pagefind.app/docs/api/
+*/
+
+@import "api.styl"
+
+clear-button = 3rem
+clear-button-icon = url("/clear.svg")
+clear-button-render-size = 75%
+
+// Search Bar
+div.pagefind[data-pagefind-ui]
+  height 100%
+  width 100%
+
+  display none
+  @media screen and (min-width widths.large)
+    display block
+
+  div.pagefind-ui.pagefind-ui--reset
+    margin auto 0
+    height inherit
+
+    form.pagefind-ui__form
+      position relative
+      padding 0
+      height inherit
+      display flex
+      align-items center
+
+      *
+        font-family main-sans, alternative-sans
+        color black
+        @media (prefers-color-scheme dark)
+          color white
+
+      // Icon
+      &::before
+        display none
+
+      // Input field
+      input.pagefind-ui__search-input[type="text"]
+        position static
+        padding 0 clear-button 0 1rem !important
+        // Reset default styles
+        height inherit
+        display block
+        outline none
+        border none
+        border-radius 0
+        // Dark mode
+        color black
+        @media (prefers-color-scheme dark)
+          background rgba(white, .1)
+          color white
+        &:focus
+          set-backgrounds()
+
+      // Clear button
+      button.pagefind-ui__search-clear // button.pagefind-ui__suppressed
+        position absolute
+        padding 0
+        width clear-button
+        height clear-button
+        border-radius 0
+        mask clear-button-icon center/clear-button-render-size no-repeat
+        // Dark mode
+        background black
+        @media (prefers-color-scheme dark)
+          background white
+
+// Search Result Box
+div.pagefind-ui.pagefind-ui--reset > form.pagefind-ui__form > div.pagefind-ui__drawer
+  position absolute
+  top 100%
+  margin-top 0.5rem
+  padding 1rem
+  min-width 100%
+  max-width 100%
+  display block
+  // Dark mode
+  // backdrop-filter blur(8px) grayscale(100%)  // Can't use this with Chrome
+  background rgba(white, .2)
+  @media (prefers-color-scheme dark)
+    background rgba(black, .2)
+
+  &::before
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    content ""
+    backdrop-filter blur(8px) grayscale(100%)
+    z-index -1
+
+  // Scroll
+  div.pagefind-ui__results-area
+    margin 0
+    overflow hidden scroll
+
+    &::-webkit-scrollbar
+      width 3px
+      background transparent
+
+    &::-webkit-scrollbar-thumb
+      background rgba(black, 0.5)
+      @media (prefers-color-scheme dark)
+        background rgba(white, 0.5)
+
+    // Search status message
+    p.pagefind-ui__message
+      margin-bottom 1.5rem
+      padding 0
+      height auto
+      width 100%
+      overflow clip
+      display block
+      sans(2rem, 3rem)
+
+    // Results
+    ol.pagefind-ui__results
+      padding 0
+      max-height 30vh
+      display flex
+      flex-direction column
+      gap 1rem
+
+// An item
+div.pagefind-ui__drawer > div.pagefind-ui__results-area > ol.pagefind-ui__results > li.pagefind-ui__result
+  display block
+  padding 0
+  margin 0
+  border none
+
+  div.pagefind-ui__result-inner, div.pagefind-ui__result-nested
+    p.pagefind-ui__result-title > a.pagefind-ui__result-link
+      font-weight 700
+      &:hover
+        color red
+        text-decoration none
+    p.pagefind-ui__result-excerpt > mark
+      background rgba(255, 128, 255, 0.8)
+
+  div.pagefind-ui__result-inner
+    margin 0
+    gap 0.5rem
+    margin 0
+
+    p.pagefind-ui__result-title
+      display block
+      sans(2rem, 2.5rem)
+
+    a.pagefind-ui__result-link
+      display block
+      width 100%
+      height 2.5rem
+
+    p.pagefind-ui__result-excerpt
+      margin 0
+
+    div.pagefind-ui__result-nested
+      margin 0
+      padding 0 0 0 3rem !important
+      display block
+
+      p.pagefind-ui__result-title
+        display block
+        sans(1.5rem, 2rem)
+
+      a.pagefind-ui__result-link
+        display block
+        width 100%
+        height 2rem
+
+// :root
+//   --pagefind-ui-scale 0.8
+//   --pagefind-ui-primary #393939
+//   --pagefind-ui-text #393939
+//   --pagefind-ui-background #ffffff
+//   --pagefind-ui-border #eeeeee
+//   --pagefind-ui-tag #eeeeee
+//   --pagefind-ui-border-width 2px
+//   --pagefind-ui-border-radius 8px
+//   --pagefind-ui-image-border-radius 8px
+//   --pagefind-ui-image-box-ratio 3 / 2
+//   --pagefind-ui-font main-sans, alternative-sans !important
+// .pagefind-ui__loading
+// .pagefind-ui__result-tags
+// .pagefind-ui__result-tag
+// .pagefind-ui__result-inner
+// legend
+// .pagefind-ui__filter-panel
+// .pagefind-ui__filter-group
+// .pagefind-ui__filter-block
+// .pagefind-ui__filter-name
+// .pagefind-ui__filter-name::-webkit-details-marker
+// .pagefind-ui__filter-name::after
+// .pagefind-ui__filter-block[open], .pagefind-ui__filter-name::after
+// .pagefind-ui__filter-group
+// .pagefind-ui__filter-value
+// .pagefind-ui__filter-value::before
+// .pagefind-ui__filter-value.pagefind-ui__filter-value--checked::before
+// .pagefind-ui__filter-checkbox
+// .pagefind-ui__filter-checkbox:checked
+// .pagefind-ui__filter-label
+//.pagefind-ui__hidden

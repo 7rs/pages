@@ -1,0 +1,53 @@
+---
+import { Metadata, getLocale, defaultBlogLocale, setMetadataFromJSON } from "@lib/meta";
+import { SchemaTypes, createSchema } from "@lib/schema";
+
+import { fade } from "astro:transitions";
+
+import Meta from "@layouts/Meta.astro";
+import Header from "@layouts/old/Header.astro";
+import Footer from "@layouts/old/Footer.astro";
+
+import { pages } from "pages.json";
+
+import "@styles/main.styl";
+import logo from "@icons/logo.svg";
+
+export interface Props {
+  frontmatter: any;
+}
+
+const { frontmatter, ...props } = Astro.props;
+
+// https://fonts.google.com/specimen/Fira+Sans
+// https://fonts.google.com/specimen/Fira+Code
+const fonts = ["Fira+Sans:ital,wght@0,400;0,700;1,400;1,700", "Fira Code"];
+let metadata: Metadata = setMetadataFromJSON(pages, logo.src, logo.src, "Cbrnex Logo", !frontmatter.published);
+---
+
+<!doctype html>
+<html lang={getLocale(frontmatter.lang || defaultBlogLocale)}>
+  <Meta title={frontmatter.title} metadata={metadata} fonts={fonts}>
+    <script type="application/ld+json" set:html={createSchema(SchemaTypes.Article, metadata, frontmatter)} />
+  </Meta>
+  <body>
+    <Header transition:persist />
+    <main {...props} transition:animate={fade({ duration: "0.1s" })} data-pagefind-body={frontmatter.published ? "" : undefined}>
+      <slot />
+    </main>
+    <Footer transition:persist />
+    <!-- The "Prettier" is stupid. Where's prettier?????? -->
+    <style lang="stylus" is:global>
+  @import "../styles/api.styl"
+
+  html
+    overflow hidden auto
+    @media (prefers-color-scheme light)
+      background  colors.background
+    @media (prefers-color-scheme dark)
+      background  colors.dark.background
+  main
+    background none
+</style>
+  </body>
+</html>

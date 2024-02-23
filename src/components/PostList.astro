@@ -29,12 +29,7 @@ const postMap = await getPostMap();
     gap 1rem
 
     article
-      padding 1rem
-      border-radius 1rem
-      background-blur(8px)
-      background colors.widget
-      @media (prefers-color-scheme dark)
-        background colors.dark.widget
+      glassmorphism()
       display grid
       grid-template-areas \
         "title buttons"

@@ -1,0 +1,61 @@
+---
+import { Icon } from "astro-icon/components";
+
+import Link from "@components/V2/Link.astro";
+import { Hostings } from "@scripts/lib/repository";
+
+export interface Props {
+  authors: string;
+  name: string;
+  icon?: string;
+  service?: string;
+}
+
+const { authors, name, icon, service = Hostings.GitHub, ...props } = Astro.props;
+
+const url = `https://${service}/${authors}/${name}`;
+---
+
+<Link href={url} title=`${authors}/${name} (${service})` openInNewTab {...props}>
+  <article repository-card>
+    {icon && <Icon name={icon} />}
+    <h2>{name}</h2>
+    <p><slot /></p>
+  </article>
+</Link>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [repository-card]
+    box-sizing border-box
+    height 100%
+    glassmorphism(hovered: true)
+    padding 0.5rem // Overwrite
+    // Grid Layout
+    display grid
+    grid-template-columns 3rem auto
+    grid-template-rows repeat(2, 1fr)
+    grid-template-areas \
+      "icon name" \
+      "icon description";
+    align-items center
+    gap 0 0.5rem
+
+    // Image
+    [data-icon]
+      grid-area icon
+      font-size 3rem
+
+    // Name
+    h2
+      grid-area name
+      sans(1.45rem, 1.7rem)
+
+    // Description
+    p
+      grid-area description
+      sans(1rem, 1.2rem)
+      overflow clip
+      max-height 2.4rem
+</style>

@@ -1,0 +1,168 @@
+@import "api.styl"
+
+// :root
+//   --pagefind-ui-scale 0.8
+//   --pagefind-ui-primary #393939
+//   --pagefind-ui-text #393939
+//   --pagefind-ui-background #ffffff
+//   --pagefind-ui-border #eeeeee
+//   --pagefind-ui-tag #eeeeee
+//   --pagefind-ui-border-width 2px
+//   --pagefind-ui-border-radius 8px
+//   --pagefind-ui-image-border-radius 8px
+//   --pagefind-ui-image-box-ratio 3 / 2
+//   --pagefind-ui-font main-sans, alternative-sans !important
+
+// Search Bar
+div.pagefind[data-pagefind-ui]
+  height 100%
+  width 100%
+
+  div.pagefind-ui.pagefind-ui--reset
+    margin auto 0
+    height inherit
+
+    form.pagefind-ui__form
+      padding 0
+      width 100%
+      height inherit
+      display flex
+      justify-items center
+      align-items center
+      position relative
+
+      *
+        font-family main-sans, alternative-sans
+
+      // Icon
+      &::before
+        display none
+
+      // Input field
+      input.pagefind-ui__search-input[type="text"]
+        width 100%
+        height 3rem
+        background rgba(0, 0, 0, 0.1)
+        outline none
+        // fuckin shit on fuckin styles
+        padding 0 3rem 0 1rem !important
+        display block
+        border-radius 0
+        border none
+        position static
+        &:focus
+          set-backgrounds()
+
+      // Clear button
+      button.pagefind-ui__search-clear // button.pagefind-ui__suppressed
+        background black
+        width 3rem
+        height 3rem
+        position absolute
+        top 0.5rem
+        right 0
+        // fuck
+        display block
+        border-radius 0
+        padding 0
+        //
+        mask url("/clear.svg") center/75% no-repeat
+
+div.pagefind-ui.pagefind-ui--reset > form.pagefind-ui__form > div.pagefind-ui__drawer
+  background white
+  margin-top 0.5rem
+  padding 1rem
+  position absolute
+  top 100%
+  z-index 3
+  max-width 100%
+  width 100%
+  display block
+
+  div.pagefind-ui__results-area
+    margin 0
+    overflow hidden scroll
+
+    p.pagefind-ui__message
+      display block
+      padding 0
+      margin-bottom 1.5rem
+      width 100%
+      height auto
+      overflow clip
+      sans(2rem, 3rem)
+
+    ol.pagefind-ui__results
+      padding 0
+      max-height 30vh
+      display flex
+      flex-direction column
+      gap 1rem
+
+// An item
+div.pagefind-ui__drawer > div.pagefind-ui__results-area > ol.pagefind-ui__results > li.pagefind-ui__result
+  display block
+  padding 0
+  margin 0
+  border none
+
+  div.pagefind-ui__result-inner, div.pagefind-ui__result-nested
+    p.pagefind-ui__result-title > a.pagefind-ui__result-link
+      font-weight 700
+      &:hover
+        color red
+        text-decoration none
+    p.pagefind-ui__result-excerpt > mark
+      background rgba(255, 128, 255, 0.8)
+
+  div.pagefind-ui__result-inner
+    margin 0
+    gap 0.5rem
+    margin 0
+
+    p.pagefind-ui__result-title
+      display block
+      sans(2rem, 2.5rem)
+
+    a.pagefind-ui__result-link
+      display block
+      width 100%
+      height 2.5rem
+
+    p.pagefind-ui__result-excerpt
+      margin 0
+
+    div.pagefind-ui__result-nested
+      margin 0
+      padding 0 0 0 3rem !important
+      display block
+
+      p.pagefind-ui__result-title
+        display block
+        sans(1.5rem, 2rem)
+
+      a.pagefind-ui__result-link
+        display block
+        width 100%
+        height 2rem
+
+// .pagefind-ui__loading
+// .pagefind-ui__result-tags
+// .pagefind-ui__result-tag
+// .pagefind-ui__result-inner
+// legend
+// .pagefind-ui__filter-panel
+// .pagefind-ui__filter-group
+// .pagefind-ui__filter-block
+// .pagefind-ui__filter-name
+// .pagefind-ui__filter-name::-webkit-details-marker
+// .pagefind-ui__filter-name::after
+// .pagefind-ui__filter-block[open], .pagefind-ui__filter-name::after
+// .pagefind-ui__filter-group
+// .pagefind-ui__filter-value
+// .pagefind-ui__filter-value::before
+// .pagefind-ui__filter-value.pagefind-ui__filter-value--checked::before
+// .pagefind-ui__filter-checkbox
+// .pagefind-ui__filter-checkbox:checked
+// .pagefind-ui__filter-label
+//.pagefind-ui__hidden

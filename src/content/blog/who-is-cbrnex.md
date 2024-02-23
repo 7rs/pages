@@ -1,10 +1,10 @@
 ---
-layout: "@layouts/Layout.astro"
+layout: "@layouts/Blog.astro"
 title: "Cbrnexって誰？"
 tags: ["profile"]
 published: true
 published_at: "2024-01-05"
-updated_at: "2024-01-27"
+updated_at: "2024-01-29"
 ---
 
 [cbrne]: https://ja.wikipedia.org/wiki/CBRNE
@@ -36,7 +36,6 @@ updated_at: "2024-01-27"
 [sm64]: https://ja.wikipedia.org/wiki/%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC%E3%83%9E%E3%83%AA%E3%82%AA64  
 [romhacking]: https://romhacking.com/
 [tascomp]: https://discord.gg/yTnEgvY
-[kimovil]: https://www.kimovil.com/en/
 
 ## TASerです  
 

@@ -1,0 +1,107 @@
+---
+import { fade } from "astro:transitions";
+
+import { defaultLocale, setMetadataFromJSON } from "@lib/meta";
+import { SchemaTypes, createSchema } from "@lib/schema";
+import Meta from "@layouts/Meta.astro";
+import Header from "@layouts/V2/Header.astro";
+import Footer from "@layouts/V2/Footer.astro";
+
+// Receives props
+export interface Props {
+  title: string;
+  locale?: string;
+  schemaMarkup?: string;
+  noIndex?: boolean;
+}
+const { title, locale = defaultLocale, schemaMarkup, noIndex = false, ...props } = Astro.props;
+
+// Loads configrations
+import { pages } from "pages.json";
+import logo from "@icons/logov2.svg";
+let metadata = setMetadataFromJSON(pages, logo.src, logo.src, "Cbrnex Logo");
+
+// Loads wallpapers
+import dark from "@assets/dark900.avif";
+import light from "@assets/light900.avif";
+const darkBackground = `url(${dark.src})`;
+const lightBackground = `url(${light.src})`;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <Meta title={title} metadata={metadata} fonts={["Fira Sans"]}>
+    <script type="application/ld+json" set:html={schemaMarkup || createSchema(SchemaTypes.Profile, metadata)} />
+    <link rel="prefetch" fetchpriority="low" as="image" type="image/avif" href={light.src} />
+    <link rel="prefetch" fetchpriority="low" as="image" type="image/avif" href={dark.src} />
+  </Meta>
+  <body>
+    <Header />
+    <main {...props} transition:animate={fade({ duration: "0.1s" })} data-pagefind-body={noIndex ? undefined : ""}>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style lang="stylus" define:vars={{darkBackground, lightBackground}} is:global>
+  @import "../../styles/api.styl"
+
+  bg-z = -999
+  body-z = bg-z + 1
+  main-z = bg-z + 2
+
+  *
+    margin 0
+    padding 0
+
+  svg[data-icon], h1, h2, h3, h5, h6, p
+    color colors.content
+    @media (prefers-color-scheme dark)
+      color colors.dark.content
+
+  body
+    z-index body-z
+    position relative
+    // Size
+    box-sizing border-box
+    min-height 100vh
+    max-width 100%
+    // Flex
+    display flex
+    flex-direction column
+    // Chrome & Edge
+    thin-scrollbar(5px)
+
+  main
+    z-index main-z
+    position relative
+    flex-grow 1
+    box-sizing border-box
+    min-height 100%
+    display flex
+    flex-direction column
+    gap 3rem
+    // Responsive
+    width 100%
+    padding 0.5rem
+    padding-bottom 2rem
+    @media screen and (min-width widths.large)
+      padding 0.5rem calc((100% - var(--widths-large)) / 2 + 0.5rem)
+      padding-bottom 3rem
+
+    &::before
+      z-index bg-z
+      position fixed
+      top 0
+      left 0
+      content ""
+      // Size
+      width 100%
+      height 100vh
+      // Dark mode
+      @media (prefers-color-scheme light)
+        background var(--lightBackground) center/cover no-repeat fixed, colors.background
+      @media (prefers-color-scheme dark)
+        background var(--darkBackground) center/cover no-repeat fixed, colors.dark.background
+</style>

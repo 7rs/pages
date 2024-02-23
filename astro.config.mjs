@@ -47,6 +47,7 @@ export default defineConfig({
         "search",
         "copyright-outline",
         "menu",
+        "package-2-outline-sharp",
       ],
       cib: [
         "creative-commons-pd",

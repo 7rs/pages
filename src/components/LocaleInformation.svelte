@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { writable } from "svelte/store";
-  import { onDestroy } from "svelte";
-  import { fade } from "svelte/transition";
+  import { writable } from 'svelte/store';
+  import { onDestroy } from 'svelte';
+  import { fade } from 'svelte/transition';
 
   // import { Titles } from "@scripts/lib/blog"
   // I have no idea why not, but the above code cannot be used.
   // Editor display fuckin' annoying errors, but works the all.
-  import * as blog from "@lib/blog.ts";
+  import * as blog from '@lib/blog.ts';
   const { LocaleData, getLangaugeLabel } = blog;
 
   export let locales: Array<LocaleData>;
@@ -45,7 +45,8 @@
         enableHovering(i);
       }}
       on:mouseleave={() => ($hovering = false)}
-      href={locales[i].slug} {...$$restProps}>{getLangaugeLabel(locales[i].lang)}</a
+      href={locales[i].slug}
+      {...$$restProps}>{getLangaugeLabel(locales[i].lang)}</a
     >
   {/each}
 </div>

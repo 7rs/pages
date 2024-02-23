@@ -37,3 +37,70 @@ sizes = {
     icon: 2rem,
   },
 }
+
+:root
+  --widths-small widths.small
+  --widths-medium widths.medium
+  --widths-large widths.large
+  --widths-largest widths.largest
+
+set-widths(small, medium = null, large = null, largest = null)
+  width small
+  if medium
+    @media screen and (min-width widths.medium)
+      width medium
+  if large
+    @media screen and (min-width widths.large)
+      width large
+  if largest
+    @media screen and (min-width widths.largest)
+      width largest
+
+set-heights(small, medium = null, large = null, largest = null)
+  height small
+  if medium
+    @media screen and (min-width widths.medium)
+      height medium
+  if large
+    @media screen and (min-width widths.large)
+      height large
+  if largest
+    @media screen and (min-width widths.largest)
+      height largest
+
+set-font-sizes(small, medium = null, large = null, largest = null)
+  font-size small
+  if medium
+    @media screen and (min-width widths.medium)
+      font-size medium
+  if large
+    @media screen and (min-width widths.large)
+      font-size large
+  if largest
+    @media screen and (min-width widths.largest)
+      font-size largest
+
+set-line-heights(small, medium = null, large = null, largest = null)
+  line-height small
+  if medium
+    @media screen and (min-width widths.medium)
+      line-height medium
+  if large
+    @media screen and (min-width widths.large)
+      line-height large
+  if largest
+    @media screen and (min-width widths.largest)
+      line-height largest
+
+set-string-size(small, medium = null, large = null, largest = null, spacing = null)
+  set-font-sizes(small, medium, large, largest)
+
+  if spacing
+    spacing = spacing * 2
+
+    small = small + spacing
+    medium = medium + spacing
+    large = large + spacing
+    largest = largest + spacing
+
+  set-line-heights(small, medium, large, largest)

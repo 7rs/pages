@@ -1,0 +1,136 @@
+---
+import { Icon } from "astro-icon/components";
+
+import Link from "@components/V2/Link.astro";
+import SocialIcon from "@components/V2/SocialIcon.astro";
+---
+
+<footer>
+  <!-- Branding Logo -->
+  <Icon name="pages" />
+  <!-- Social link list -->
+  <section social-list>
+    <SocialIcon service="youtube" identify="@qrze" />
+    <SocialIcon service="zenn" identify="7rs" />
+    <SocialIcon service="patreon" identify="7rs" />
+    <SocialIcon service="github" identify="7rs" />
+    <SocialIcon service="pinterest" identify="Cbrnex" />
+    <SocialIcon service="x" identify="qlzegg" />
+  </section>
+  <!-- Profile for authors and teams -->
+  <section profile-links>
+    <Link href="https://github.com/7rs" title="GitHub Profile" openInNewTab>Cbrnex</Link>
+    <Link href="https://github.com/74gg" title="Organization" openInNewTab>74</Link>
+    <Link href="https://github.com/7rs/pages" title="Source code" openInNewTab>Pages</Link>
+  </section>
+  <!-- Navigation link list -->
+  <nav navigation-links>
+    <Link href="https://github.com/7rs" title="GitHub Profile">Main</Link>
+    <Link href="https://github.com/74gg" title="Organization">Blog</Link>
+    <Link href="https://github.com/7rs/pages" title="Source code">TAS</Link>
+  </nav>
+</footer>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  footer
+    z-index 1
+    position relative
+    bottom 0
+    box-sizing border-box
+    width 100%
+    // Grid layout
+    display grid
+    gap 1rem 0.5rem
+    // Responsive
+    padding 0.5rem
+    grid-template-columns repeat(2, 1fr)
+    grid-template-rows auto auto 1fr
+    grid-template-areas \
+      "brand brand" \
+      "socials socials" \
+      "links nav" \
+      "links nav";
+    @media screen and (min-width widths.medium)
+      padding 1.25rem 1rem
+      grid-template-columns 2fr repeat(2, 1fr)
+      grid-template-rows auto 1fr
+      grid-template-areas \
+        "brand   links nav" \
+        "socials links nav";
+    @media screen and (min-width widths.large)
+      padding 1.5rem calc((100% - var(--widths-large)) / 2 + 0.5rem)
+
+    &::before
+      background-filter()
+
+    // Branding Logo
+    [data-icon="pages"]
+      grid-area brand
+      font-size 3rem
+      margin auto
+      @media screen and (min-width widths.medium)
+        align-content flex-start
+        margin 0
+
+    // Social link list
+    [social-list]
+      grid-area socials
+      display grid
+      grid-auto-rows min-content
+      padding 0 0.5rem
+      // Responsive
+      grid-template-columns repeat(6, auto)
+      gap 1rem
+      justify-items center
+      @media screen and (min-width widths.medium)
+        gap 0.75rem
+        justify-content flex-start
+        align-content flex-end
+      @media screen and (min-width widths.large)
+        gap 1rem
+        grid-template-columns repeat(7, min-content)
+
+      [data-icon]
+        font-size 1.5rem
+        @media screen and (min-width widths.medium)
+          font-size 1.5rem
+        @media screen and (min-width widths.large)
+          font-size 1.75rem
+
+          &:hover
+            font-size 2rem
+            transition all 100ms linear
+            filter drop-shadow(0px 0px 8px colors.dark.content)
+
+    // Profile for authors and teams
+    section[profile-links]
+      grid-area links
+
+    // Navigation link list
+    nav[navigation-links]
+      grid-area nav
+
+    section[profile-links], nav[navigation-links]
+      display flex
+      flex-direction column
+      gap 0.2rem
+
+      [data-link]
+        width 100%
+        display block
+        // Dark mode
+        color colors.content
+        @media (prefers-color-scheme dark)
+          color colors.dark.content
+        // Responsive
+        sans(1.2rem, 1.5rem)
+        @media screen and (min-width widths.large)
+          sans(1.5rem, 1.75rem)
+
+          &:hover
+            sans(1.75rem, 2rem)
+            transition all 100ms linear
+            filter drop-shadow(0px 0px 8px colors.dark.content)
+</style>

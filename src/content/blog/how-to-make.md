@@ -1,5 +1,5 @@
 ---
-layout: "@layouts/Layout.astro"
+layout: "@layouts/Blog.astro"
 title: "Cloudflare PagesとAstroとStylusとSvelteでウェブサイトを作る"
 tags: ["frontend", "cloudflare", "astro", "stylus"]
 published: true

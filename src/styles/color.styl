@@ -59,3 +59,38 @@ colors =  {
     border: rgba(255, 255, 255, 0.5),
   },
 }
+
+set-colors(light = colors.content, _dark = colors.dark.content)
+  color light
+  @media (prefers-color-scheme dark)
+    color _dark
+
+set-backgrounds(light = colors.background, _dark = colors.dark.background)
+  background light
+  @media (prefers-color-scheme dark)
+    background _dark
+
+glassmorphism(_light = colors.widget, _dark = colors.dark.widget, hovered = false)
+  z-index 0
+  padding 1rem
+
+  // glassmorphism
+  border 1px solid rgba(colors.widget, alphas.widget)
+  border-radius 16px
+  filter drop-shadow(0px 0px 8px rgba(black, alphas.widget))
+  backdrop-filter blur(8px)
+
+  // Light mode
+  background _light
+
+  // Dark mode
+  @media (prefers-color-scheme dark)
+    background _dark
+
+  // Hover
+  if hovered
+    text-decoration none
+    &:hover
+      background rgba(colors.widget-hovered, alphas.widget)
+      @media (prefers-color-scheme dark)
+        background rgba(colors.dark.widget-hovered, alphas.widget)

@@ -1,0 +1,28 @@
+<p gradient-text><slot /></p>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [gradient-text]
+    font-weight 900
+    text-align center
+    filter drop-shadow(0 0 8px black)
+    -webkit-text-stroke 1px rgba(white, 0.25)
+
+    // Color
+    background linear-gradient(135deg,
+      rgba(255,240,255,1) 0%,
+      rgba(255,160,255,1) 20%,
+      rgba(224,128,255,1) 50%,
+      rgba(128,128,255,1) 75%
+    );
+    color transparent
+    background-clip text
+
+    // Responsive
+    sans(2rem, 2rem)
+    @media screen and (min-width widths.medium)
+      sans(3.5rem, 3.5rem)
+    @media screen and (min-width widths.largest)
+      sans(4.5rem, 4.5rem)
+</style>

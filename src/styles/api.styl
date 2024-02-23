@@ -22,14 +22,13 @@ serif(size = default-font-size, height = default-line-height)
 
 mono(size = default-font-size, height = default-line-height)
   font size/height main-mono, alternative-mono
-
 /* The function to blur the bottom elements.
 
 Arguments:
   strength: Blur strength. (Default: 8px)
 */
 background-blur(strength = 8px)
-  backdrop-filter blur(strength)
+  backdrop-filter blur(strength) // grayscale(100%)
 
 hoverable(light-color, dark-color = null, alpha = 0.5, under = false)
   color light-color
@@ -54,3 +53,37 @@ hoverable-background(light-color, dark-color = null, alpha = 0.5)
     @media (prefers-color-scheme dark)
       &:hover
         background rgba(dark-color, alpha)
+
+set-absolute()
+  position absolute
+  left 0
+  top 0
+  width 100%
+  height 100%
+  content ""
+
+background-filter(strength = 8px)
+  z-index -1
+  position absolute
+  left 0
+  top 0
+  width 100%
+  height 100%
+  content ""
+  // Dark mode
+  backdrop-filter blur(strength)
+  background colors.widget
+  @media (prefers-color-scheme dark)
+    background colors.dark.widget
+
+scrollbar = 15px
+
+thin-scrollbar(_width = 3px)
+  &::-webkit-scrollbar
+    width _width
+    background transparent
+
+  &::-webkit-scrollbar-thumb
+    background rgba(black, 0.5)
+    @media (prefers-color-scheme dark)
+      background rgba(white, 0.5)

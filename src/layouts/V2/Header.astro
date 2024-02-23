@@ -1,0 +1,57 @@
+---
+import { Icon } from "astro-icon/components";
+
+import Search from "@components/V2/Search.astro"
+---
+
+<header>
+  <Icon name="pages" />
+  <Search />
+  <nav>
+    <Icon name="material-symbols:wb-sunny-outline" />
+    <Icon name="material-symbols:menu" />
+  </nav>
+</header>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  header
+    z-index 1
+    position sticky
+    top 0
+    // Size
+    box-sizing border-box
+    width 100%
+    // Grid layout
+    display grid
+    grid-template-columns auto 1fr auto
+    gap 3rem
+    // Responsive
+    padding 0.5rem
+    @media screen and (min-width widths.large)
+      padding 0.5rem calc((100% - var(--widths-large)) / 2 + 0.5rem)
+
+    &::before
+      background-filter()
+      width 100%
+
+  svg[data-icon]
+    line-height 100%
+
+  svg[data-icon="pages"]
+    font-size 3rem
+
+  nav
+    display flex
+    align-items center
+    justify-content flex-end
+    gap 1.5rem
+    @media screen and (min-width widths.medium)
+      gap 2rem
+
+    svg[data-icon]
+      font-size 1.75rem
+      @media screen and (min-width widths.medium)
+        font-size 2rem
+</style>
