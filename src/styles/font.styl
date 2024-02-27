@@ -22,6 +22,9 @@ References:
   https://www.w3schools.com/cssref/css_websafe_fonts.php
 */
 
+default-font-size = 1rem
+default-line-height = 1.5rem
+
 // https://fonts.google.com/?stroke=Sans+Serif&subset=latin
 main-sans = "Fira Sans"
 alternative-sans = "Trebuchet MS", "Verdana", "Arial", ui-sans-serif, sans-serif
@@ -33,3 +36,26 @@ alternative-serif = "Times New Roman", "Georgia", "Garamond", ui-serif, serif
 // https://fonts.google.com/?subset=latin&classification=Monospace
 main-mono = "Fira Code"
 alternative-mono = "Courier New", ui-monospace, monospace
+
+/* This function applys and resize `sans-serif`, `serif` or `monospace` fonts.
+
+Arguments:
+  size: Character size. (Default: 1rem)
+        https://developer.mozilla.org/en/docs/Web/CSS/font-size
+  height: Height of character display area. (Default: 1.5rem)
+        https://developer.mozilla.org/en/docs/Web/CSS/line-height
+*/
+sans(size = default-font-size, height = default-line-height)
+  font-family main-sans, alternative-sans
+  font-size size
+  line-height height
+
+serif(size = default-font-size, height = default-line-height)
+  font-family alternative-serif
+  font-size size
+  line-height height
+
+mono(size = default-font-size, height = default-line-height)
+  font-family main-mono, alternative-mono
+  font-size size
+  line-height height

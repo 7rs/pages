@@ -21,10 +21,10 @@ updated_at: "2024-01-29"
 
   [CBRNE][cbrne]は兵器と災害の総称なので問題はないはずです。  
 
-  > - [卍 - Wikipedia][manji]  
-  > - [Meaning of Swastika Symbol In Japan vs. The West #shorts](https://youtu.be/Di4pA8-gBY0)  
-  > - [Why Are There Swastikas In Japan?](https://www.tofugu.com/japan/japanese-swastika/)  
-  > - [The Past, Present, and Future of the Swastika in Japan](https://www.asianstudies.org/publications/eaa/archives/the-past-present-and-future-of-the-swastika-in-japan/)  
+  > - [卍 - Wikipedia][manji]
+  > - [Meaning of Swastika Symbol In Japan vs. The West #shorts](https://youtu.be/Di4pA8-gBY0)
+  > - [Why Are There Swastikas In Japan?](https://www.tofugu.com/japan/japanese-swastika/)
+  > - [The Past, Present, and Future of the Swastika in Japan](https://www.asianstudies.org/publications/eaa/archives/the-past-present-and-future-of-the-swastika-in-japan/)
 
 ## プログラマーです  
 

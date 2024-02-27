@@ -19,7 +19,7 @@ updated_at: "2024-01-27"
   My friends call me **"Manji"**, but I don't use it as a display name.
   Because **"Manji"** means bad symbol.  
   However, It isn't used as a bad symbol in Japan, but as a map symbol for temples.
-  Japanese call that symbol "Harkenkreuz".  
+  Japanese call nazi*m symbol "Harkenkreuz".  
 
   Cbrne is a generic term for weapons and disasters, so probably "Cbrnex" doesn't have problems...  
 

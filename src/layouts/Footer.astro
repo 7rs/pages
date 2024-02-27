@@ -1,0 +1,92 @@
+---
+import { Icon } from "astro-icon/components";
+
+import SocialList from "@components/footer/SocialList.astro"
+
+import Link from "@components/Link.astro";
+---
+
+<footer>
+  <Icon name="pages" />
+  <SocialList />
+  <nav profile-links>
+    <Link href="https://github.com/7rs" title="GitHub Profile" openInNewTab>Cbrnex</Link>
+    <Link href="https://github.com/74gg" title="Organization" openInNewTab>74</Link>
+    <Link href="https://github.com/7rs/pages" title="Source code" openInNewTab>Pages</Link>
+  </nav>
+  <nav navigation-links>
+    <Link href="/" title="Main Page">Main</Link>
+    <Link href="/blog" title="Blod search">Blog</Link>
+    <Link href="/tas" title="TAS contents">TAS</Link>
+  </nav>
+</footer>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  footer
+    z-index 1
+    position relative
+    bottom 0
+    box-sizing border-box
+    width 100%
+    // Grid layout
+    display grid
+    gap 1rem 0.5rem
+    // Responsive
+    padding 0.5rem
+    grid-template-columns repeat(2, 1fr)
+    grid-template-rows auto auto 1fr
+    grid-template-areas \
+      "brand brand" \
+      "socials socials" \
+      "links nav" \
+      "links nav";
+    @media screen and (min-width widths.medium)
+      padding 1.25rem 1rem
+      grid-template-columns 2fr repeat(2, 1fr)
+      grid-template-rows auto 1fr
+      grid-template-areas \
+        "brand   links nav" \
+        "socials links nav";
+    @media screen and (min-width widths.large)
+      padding 1.5rem calc((100% - var(--widths-large)) / 2 + 0.5rem)
+
+    &::before
+      z-index -1
+      background-blur()
+
+    // Branding Logo
+    [data-icon="pages"]
+      grid-area brand
+      font-size 3rem
+      margin auto
+      @media screen and (min-width widths.medium)
+        align-content flex-start
+        margin 0
+
+    [social-list]
+      grid-area socials
+
+    [profile-links]
+      grid-area links
+
+    [navigation-links]
+      grid-area nav
+
+    [profile-links], [navigation-links]
+      flex(column, 0.2rem)
+
+      [data-link]
+        width 100%
+        display block
+        // Responsive
+        sans(1.2rem, 1.5rem)
+        @media screen and (min-width widths.large)
+          sans(1.5rem, 1.75rem)
+
+          &:hover
+            sans(1.75rem, 2rem)
+            transition all 100ms linear
+            filter drop-shadow(0px 0px 8px colors.dark.content)
+</style>

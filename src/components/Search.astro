@@ -1,114 +1,19 @@
 ---
+import "@styles/pagefind.styl"
+
 import Search from "astro-pagefind/components/Search";
 
 export const prerender = false;
-
 const q = Astro.url.searchParams.get("q") ?? undefined;
-
 ---
+
 <Search
   id="search"
   query={q}
-  className="pagefind-ui"
+  className="pagefind"
   uiOptions={{
     showImages: false,
-    translations: { placeholder: "Powered by Pagefind", zero_results: "Couldn't find [SEARCH_TERM]" },
+    translations: { placeholder: "Powered by Pagefind", zero_results: "Couldn't find [SEARCH_TERM]", clear_search: "" },
     showSubResults: true,
   }}
 />
-
-<style lang="stylus" is:global>
-  @import "../styles/api.styl"
-
-  :root
-    // What is this fuckin variable?
-    --pagefind-ui-scale 0.7
-    --pagefind-ui-primary rgba(0, 0, 0, 1.0)
-    --pagefind-ui-text colors.content
-    --pagefind-ui-background transparent 
-    --pagefind-ui-border transparent
-    --pagefind-ui-tag #eeeeee
-    --pagefind-ui-border-width 0px
-    --pagefind-ui-border-radius 0px
-    // --pagefind-ui-image-border-radius
-    --pagefind-ui-image-box-ratio 3 / 2
-    --pagefind-ui-font main-sans, alternative-sans
-    @media (prefers-color-scheme dark)
-      --pagefind-ui-text colors.dark.content
-
-  div#search.pagefind-ui[data-pagefind-ui]
-    display none
-    @media screen and (min-width widths.large)
-      display block
-
-  div#search.pagefind-ui[data-pagefind-ui],
-  div.pagefind-ui.pagefind-ui--reset,
-  form.pagefind-ui__form,
-  form.pagefind-ui__form::before,
-  form.pagefind-ui__form > input.pagefind-ui__search-input
-  form.pagefind-ui__form > button.pagefind-ui__search-clear
-    height 3rem
-
-  // Search bar
-  div#search.pagefind-ui[data-pagefind-ui]
-    margin auto
-    flex-grow 1
-    width 100%
-    div.pagefind-ui.pagefind-ui--reset
-      form.pagefind-ui__form
-        input.pagefind-ui__search-input
-          margin-top auto
-          margin-bottom auto
-          font-weight 400
-        button.pagefind-ui__search-clear
-          padding 0 0.5rem
-  // Search result
-  div.pagefind-ui__drawer
-    grid-area search-result
-    background-blur(8px)
-    border-radius 0 0 1rem 1rem
-    padding 1rem
-    margin 0.25rem 0 0
-    // :global(div.pagefind-ui__results-area)
-    background colors.widget
-    @media (prefers-color-scheme dark)
-      background colors.dark.widget
-
-    // Message
-    p.pagefind-ui__message
-      font-size 1.5rem
-      font-weight 400
-      padding 0 0 1rem
-
-    // Results
-    ol.pagefind-ui__results
-      padding 0
-      max-height 50vh
-      overflow hidden scroll
-
-    // Result
-    li.pagefind-ui__result
-      padding 1rem 0 0
-      div.pagefind-ui__result-inner
-
-        // Pages
-        p.pagefind-ui__result-title
-          width 100%
-          a.pagefind-ui__result-link
-            hoverable-background(colors.widget-hovered)
-            @media (prefers-color-scheme dark)
-              hoverable-background(colors.dark.widget-hovered)
-            display inline-block
-            font-size 1.5rem
-            width 100%
-
-        // Headers
-        div.pagefind-ui__result-nested
-          padding-top 1rem
-          width 100%
-          p.pagefind-ui__result-title
-            a.pagefind-ui__result-link
-              font-size 1.25rem
-            p.pagefind-ui__result-excerpt
-              font-size 0.9rem
-</style>

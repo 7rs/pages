@@ -1,23 +1,45 @@
 ---
-export interface Props {
-  name?: string;
-}
-const { name = "", ...props } = Astro.props;
+import SocialIcon from "@components/SocialIcon.astro";
+
+const props = Astro.props;
 ---
 
-<article {...props} social-icons={name}><slot /></article>
+<section social-list {...props}>
+  <SocialIcon service="youtube" identify="@qrze" />
+  <SocialIcon service="zenn" identify="7rs" />
+  <SocialIcon service="patreon" identify="7rs" />
+  <SocialIcon service="github" identify="7rs" />
+  <SocialIcon service="pinterest" identify="Cbrnex" />
+  <SocialIcon service="x" identify="qlzegg" />
+</section>
 
 <style lang="stylus">
   @import "../../styles/api.styl"
-  
-  article
-    background rgba(0, 0, 0, 0.0)
+  [social-list]
     display grid
-    align-content start
-    gap 1rem 2rem
-    // For responsive
-    grid-template-columns repeat(5, sizes.icon)
-    justify-content center
+    grid-auto-rows min-content
+    padding 0 0.5rem
+    // Responsive
+    grid-template-columns repeat(6, auto)
+    gap 1rem
+    justify-items center
     @media screen and (min-width widths.medium)
-      justify-content start
+      gap 0.75rem
+      justify-content flex-start
+      align-content flex-end
+    @media screen and (min-width widths.large)
+      gap 1rem
+      grid-template-columns repeat(7, min-content)
+
+    [data-icon]
+      font-size 1.5rem
+      @media screen and (min-width widths.medium)
+        font-size 1.5rem
+      @media screen and (min-width widths.large)
+        font-size 1.75rem
+
+        &:hover
+          font-size 2rem
+          transition all 100ms linear
+          filter drop-shadow(0px 0px 8px colors.dark.content)
 </style>

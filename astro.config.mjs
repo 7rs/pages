@@ -81,7 +81,8 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       theme: "dracula"
-    }
+    },
+    gfm: false,
   },
   // https://github.com/alextim/astro-lib
   // https://github.com/alextim/astro-lib/tree/main/packages/astro-robots-txt

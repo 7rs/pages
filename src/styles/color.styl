@@ -24,6 +24,7 @@ References:
 alphas =  {
   background: 0.5,
   widget: 0.3,
+  link: 0.5,
 }
 
 colors =  {
@@ -60,15 +61,29 @@ colors =  {
   },
 }
 
-set-colors(light = colors.content, _dark = colors.dark.content)
-  color light
-  @media (prefers-color-scheme dark)
-    color _dark
+hoverable(light-color, dark-color = null, alpha = 0.5, under = false)
+  color light-color
+  text-decoration none
+  &:hover
+    color rgba(light-color, alpha)
+    if under
+      text-decoration underline
+    
+  if dark-color
+    @media (prefers-color-scheme dark)
+      color dark-color
+      &:hover
+        color rgba(dark-color, alpha)
 
-set-backgrounds(light = colors.background, _dark = colors.dark.background)
-  background light
-  @media (prefers-color-scheme dark)
-    background _dark
+hoverable-background(light-color, dark-color = null, alpha = 0.5)
+  text-decoration none
+  &:hover
+    background rgba(light-color, alpha)
+
+  if dark-color
+    @media (prefers-color-scheme dark)
+      &:hover
+        background rgba(dark-color, alpha)
 
 glassmorphism(_light = colors.widget, _dark = colors.dark.widget, hovered = false)
   z-index 0

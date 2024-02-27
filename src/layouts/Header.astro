@@ -1,7 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import Search from "@components/V2/Search.astro"
+// Pagefind
+import Search from "@components/Search.astro"
 ---
 
 <header>
@@ -14,26 +15,21 @@ import Search from "@components/V2/Search.astro"
 </header>
 
 <style lang="stylus">
-  @import "../../styles/api.styl"
+  @import "../styles/api.styl"
 
   header
     z-index 1
     position sticky
     top 0
-    // Size
-    box-sizing border-box
-    width 100%
+    responsive-padding(x: 0.5rem, y: 0.5rem)
     // Grid layout
     display grid
     grid-template-columns auto 1fr auto
     gap 3rem
-    // Responsive
-    padding 0.5rem
-    @media screen and (min-width widths.large)
-      padding 0.5rem calc((100% - var(--widths-large)) / 2 + 0.5rem)
 
     &::before
-      background-filter()
+      z-index -1
+      background-blur()
       width 100%
 
   svg[data-icon]

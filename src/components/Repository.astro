@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import Link from "@components/V2/Link.astro";
+import Link from "@components/Link.astro";
 import { Hostings } from "@scripts/lib/repository";
 
 export interface Props {
@@ -25,7 +25,7 @@ const url = `https://${service}/${authors}/${name}`;
 </Link>
 
 <style lang="stylus">
-  @import "../../styles/api.styl"
+  @import "../styles/api.styl"
 
   [repository-card]
     box-sizing border-box

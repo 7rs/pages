@@ -5,12 +5,11 @@ import { SchemaTypes, createSchema } from "@lib/schema";
 import { fade } from "astro:transitions";
 
 import Meta from "@layouts/Meta.astro";
-import Header from "@layouts/old/Header.astro";
-import Footer from "@layouts/old/Footer.astro";
+import Header from "@layouts/Header.astro";
+import Footer from "@layouts/Footer.astro";
 
 import { pages } from "pages.json";
 
-import "@styles/main.styl";
 import logo from "@icons/logo.svg";
 
 export interface Props {
@@ -33,21 +32,9 @@ let metadata: Metadata = setMetadataFromJSON(pages, logo.src, logo.src, "Cbrnex 
   <body>
     <Header transition:persist />
     <main {...props} transition:animate={fade({ duration: "0.1s" })} data-pagefind-body={frontmatter.published ? "" : undefined}>
+      <h1>{frontmatter.title}</h1>
       <slot />
     </main>
     <Footer transition:persist />
-    <!-- The "Prettier" is stupid. Where's prettier?????? -->
-    <style lang="stylus" is:global>
-  @import "../styles/api.styl"
-
-  html
-    overflow hidden auto
-    @media (prefers-color-scheme light)
-      background  colors.background
-    @media (prefers-color-scheme dark)
-      background  colors.dark.background
-  main
-    background none
-</style>
   </body>
 </html>

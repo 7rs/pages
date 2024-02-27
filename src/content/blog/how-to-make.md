@@ -1,18 +1,14 @@
 ---
 layout: "@layouts/Blog.astro"
-title: "Cloudflare PagesとAstroとStylusとSvelteでウェブサイトを作る"
-tags: ["frontend", "cloudflare", "astro", "stylus"]
+title: "新しいウェブサイトを作る"
+tags: ["frontend", "cloudflare", "astro", "stylus", "typescript", "svelte"]
 published: true
-published_at: "2024-01-07"
+published_at: "2024-02-25"
 ---
 
-# どうやってサイトを作ったの?  
+## どうして作ったのか  
 
-## どうして作ったの？  
-
-  この問いに対して明確に答えるのは難しいです。強いて言うならば、エンジニアだからでしょうか。
-  フロントエンドが得意とか好きとか関係なく、やってみたくなったわけです。
-  ゴリゴリのGUIツールが苦手だったり、低コストで済ませたいという思いもあります。  
+  大したきっかけがあるわけでもなく、**作ってみたかったから**です。また、**費用を掛けたくなかった**という理由もあります。  
 
 [nuxt]: https://nuxt.com/  
 [github-pages]: https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages  
@@ -22,33 +18,114 @@ published_at: "2024-01-07"
 [astro]: https://astro.build/  
 [cloudflare-pages]: https://pages.cloudflare.com/  
 
-## 何を使ったの?  
+## ホスティング・技術選定  
 
-### [Astro][astro]と[Cloudflare Pages][cloudflare-pages]を使っています  
-
-  以前、[Nuxt.js][nuxt]と[GitHub Pages][github-pages]でウェブサイトを作ったことがあります。
-  次は[Next.js][next]と[Vercel][vercel]を使う予定でした。
-  静的ホスティングなら[Netlify][netlify]もありますが、[Astro][astro]と[Cloudflare Pages][cloudflare-pages]を知り、
+  [Nuxt.js][nuxt]と[GitHub Pages][github-pages]でウェブサイトを作ったことがあり、
+  次は[Next.js][next]と[Vercel][vercel]をで作るつもりでした。  
+  しかし、[Astro][astro]と[Cloudflare Pages][cloudflare-pages]を知り、
   それらでウェブサイトを作ることにしました。  
+  静的ホスティングなら[Netlify][netlify]もありますが、個人的にCloudflareに信頼があったためです。
 
-[integrations]: https://docs.astro.build/ja/guides/integrations-guide/  
-[scoped-css]: https://ja.vuejs.org/api/sfc-css-features  
-[islands]: https://docs.astro.build/ja/concepts/islands/  
-[i18n]: https://i18n.docs.astro.build/  
+[integrations]:  https://astro.build/integrations/
+[@astrojs/react]: https://docs.astro.build/ja/guides/integrations-guide/react/
+[@astrojs/vue]: https://docs.astro.build/ja/guides/integrations-guide/vue/
+[@astrojs/tailwind]: https://docs.astro.build/en/guides/integrations-guide/tailwind/
+[official-integrations]: https://docs.astro.build/ja/guides/integrations-guide/#%E5%85%AC%E5%BC%8F%E3%82%A4%E3%83%B3%E3%83%86%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3
+[integration-add]: https://docs.astro.build/ja/guides/integrations-guide/#%E3%82%A4%E3%83%B3%E3%83%86%E3%82%B0%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E8%87%AA%E5%8B%95%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97
+[integration-update]: https://docs.astro.build/ja/guides/integrations-guide/#%E8%87%AA%E5%8B%95%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89
+
+[astro-development]: https://docs.astro.build/ja/concepts/why-astro/#%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E3%81%A7%E9%AB%98%E9%80%9F
+[zero-js]: https://docs.astro.build/ja/basics/astro-components/
+[client-directives]: https://docs.astro.build/ja/reference/directives-reference/#client-directives
+[astro-components]: https://docs.astro.build/ja/basics/astro-components/#%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E6%A7%8B%E9%80%A0
+[astro-is-easy]: https://docs.astro.build/ja/concepts/why-astro/#%E7%B0%A1%E5%8D%98%E3%81%AB%E4%BD%BF%E3%81%88%E3%82%8B
+
+[tutorial]: https://docs.astro.build/ja/tutorial/0-introduction/
 
 ## [Astro][astro]  
 
-- [複数のコンポーネントライブラリ][integrations]
-- [名前空間のあるCSS][scoped-css]
-- [最小限のスクリプト][islands]
-- [日本語のドキュメント][i18n]
+  Astroの素晴らしい点は沢山ありますが、代表的なのは以下となります。  
 
-  > - Astroは**オールインワンのウェブフレームワーク**です。Astroには、ウェブサイトを作成するために必要なすべてが組み込まれています。  
-  > - デフォルトで高速: Astroで遅いウェブサイトを作成することは不可能であるべきです。私たちの目標は、Astroを使えば、**遅いウェブサイトを作るのはほぼ不可能になる**ことです。  
-  > - コミュニティの何百人ものコントリビューターによって積極的にメンテナンスされ**14の言語**で提供されているドキュメント  
-  > [Astroを選ぶ理由](https://docs.astro.build/ja/concepts/why-astro/)  
+### インテグレーション  
 
-  ドキュメントは充実してますが、**日本の記事は少ない**ので厳しいところはあります。また、新しい機能のドキュメントもすぐ翻訳されるわけではないので、英語のドキュメントを読む必要があります。  
+  `package.json`に追加されるので、Astro専用のパッケージという立ち位置です。  
+  [React][@astrojs/react]や[Vue][@astrojs/vue]などのUIフレームワークや、
+  [TailwindCSS][@astrojs/tailwind]などのCSSフレームワークに加えて、
+  [SSRアダプターや便利なインテグレーションが多くあります。][official-integrations]  
+
+  ```sh
+    pnpm astro add react
+  ```  
+
+  ```sh
+    pnpm astro add react tailwind partytown
+  ```  
+
+  [１コマンドでインストールから設定まで自動で行ってくれます。][integration-add]  
+
+  ```sh
+    pnpm dlx @astrojs/upgrade
+  ```  
+
+  [アップグレード（アップデート）も一括で行ってくれます。][integration-update]  
+
+  [詳しくはドキュメントをご覧ください。](https://docs.astro.build/ja/guides/integrations-guide/)  
+
+  Astro公式が開発していないインテグレーションを含む[リストはこちらになります。][integrations]  
+  私が使用しているインテグレーションは以下になります。
+
+- [@astrojs/svelte](https://docs.astro.build/ja/guides/integrations-guide/svelte/)
+- [@astrojs/mdx](https://docs.astro.build/ja/guides/integrations-guide/mdx/)
+- [@astrojs/sitemap](https://docs.astro.build/ja/guides/integrations-guide/sitemap/)
+- [@astrojs/rss](https://docs.astro.build/ja/guides/rss/)
+- [astro-robots-txt](https://github.com/alextim/astro-lib/tree/main/packages/astro-robots-txt)
+- [astro-compress](https://github.com/astro-community/AstroCompress)
+- [astro-purgecss](https://github.com/codiume/orbit/tree/main/packages/astro-purgecss)
+- [astro-icon](https://www.astroicon.dev/)
+- [astro-pagefind](https://github.com/shishkin/astro-pagefind)  
+
+### 高速  
+
+  [パフォーマンスを重視して開発されている][astro-development]ので、とにかく速いです。
+  [JavaScriptのコードが全てHTMLとCSSに変換されます][zero-js]（出来上がった形としてクライアントに送信される）。  
+  しかし、そんなことをすれば動的なコンテンツは全てCSSで制御することになります。
+  その対応策として[クライアントディレクティブ][client-directives]があります。
+  これを使えば一部（コンポーネント）のみがJavaScriptで制御されることになります。  
+
+  この一部が[Astroコンポーネント][astro-components]になるわけですが、
+  [React][@astrojs/react]や[Vue][@astrojs/vue]などで作ったコンポーネントも呼び出せます。
+  これにより、複数のUIフレームワークを混合的に使えます。  
+  [Qwik](https://qwik.dev/)をぶち込めばより高速になりそうですが、この辺は不明です。今後試していくつもりです。
+
+  この高速化は複雑な設定をすることなくできる点が非常に良いです。
+  もっといろいろなことをしようとすれば複雑にはなりますが、これについても解説されています。  
+  **単純なJSXのみで記述することも出来るし**（UIフレームワークなしで）、
+  必要ならば、**より踏み込んだ機能**（新しい機能やAPI、UIフレームワークなど）**にも手を出せる。**
+  [これらをAstroの開発陣は「複雑さへのオプトイン」と呼んでいるそうです。][astro-is-easy]  
+
+### ドキュメント  
+
+  [公式ドキュメントが日本語に対応しています。](https://docs.astro.build/ja/getting-started/)
+  日本語化が進んでいない部分がありますが、基本的な機能や技術については書かれています。
+  [チュートリアル][tutorial]は**ブログの作成**が日本語化されています。
+
+  <u>日本語の記事もそれなりに書かれていますが、**技術に偏りがあるのは事実です。**</u>  
+  <u>変わったことをする場合は**英語の記事を読む必要はあります。**</u>
+
+- [Qiita](https://qiita.com/tags/astro)
+- [Zenn](https://zenn.dev/topics/astro)
+
+### 所感  
+
+  学習コストは低いですが、新しい機能などはドキュメントが英語なので厳しい部分もあります。
+  追加されて間もない機能は英語の記事もほとんどありません。  
+
+  特定のUIフレームワークに依存しない点は、移行について考える必要が少なくなりますし、
+  技術的に不可能なことが出来る場合もあります。  
+
+  高速化については簡単に行えるわけですが、あえて簡単だとは言いません。  
+  理由としては、コンテンツやUIフレームワーク・ホスティングサービス（サーバ）に依存するからです。  
+  その点を除けば、簡単に速いウェブサイトが作れると断言できるでしょう。  
 
 [cf-github]: https://developers.cloudflare.com/pages/configuration/git-integration/#github-1  
 [github]: https://ja.wikipedia.org/wiki/GitHub  
@@ -57,13 +134,32 @@ published_at: "2024-01-07"
 [tls]: https://ja.wikipedia.org/wiki/Transport_Layer_Security  
 [http3]: https://ja.wikipedia.org/wiki/HTTP/3  
 
-## [Cloudflare Pages][cloudflare-pages]
+## [Cloudflare Pages][cloudflare-pages]  
 
-- 簡単なビルド設定[^cloudflare-build]  
-- [GitHub][github]との[連携][cf-github]  
-- 無制限の転送量  
-- [世界一][cdn-usage]の[CDN][cdn]  
-- [TLS][tls]と[HTTP3(QUIC)][http3]  
+### メリット  
+
+  CloudflareのCDNが使える点にあります。
+  Cloudflareが提供するセキュリティもできます。また、セキュリティの設定もSaaSで非常に簡単に行えます。  
+
+  静的ホスティングサービスとしては、無制限の転送量が挙げられます。
+  SSRについてはVercelのようなサーバーレス関数が用意されています。
+  これは無制限ではありませんが、１日１０万リクエストというそれなりの制限があります。  
+
+  ビルドや高速化の設定もSaaSで簡単に行えます。様々なフレームワークに最適化することも出来ます。
+  ビルドにかかる時間はフレームワークに依存しますが、キャッシュの機能がついています。  
+
+### デメリット  
+
+  一か月に500デプロイまでの制限があることです。
+  有料プランは決して安くは無いため、更新頻度か高いウェブサイトや複数のウェブサイトの運用には向いていないでしょうか・・・。  
+
+- 簡単なビルド設定[^cloudflare-build]
+- [GitHub][github]との[連携][cf-github]
+- 無制限の転送量
+- [世界一][cdn-usage]の[CDN][cdn]
+- [TLS][tls]と[HTTP3(QUIC)][http3]
+
+<!--divide -->
 
   > - Pagesを使用すると、信頼できるフルスタックアプリケーションをわずかな時間で構築、デプロイ、配信できます。最低限の設定で、開発者、デザイナー、製品がコラボし、デプロイできます。  
   > - ビルドのキャッシュ機能により、プロジェクトの一部をキャッシュして以降の構築での時間の節約することで、強力なPages体験をお届けします。  
@@ -89,17 +185,17 @@ published_at: "2024-01-07"
 
   [Stylus][stylus]を使ってます。CSSフレームワーク[^css-framework]は使いません。  
 
-- HTMLはマークアップ言語であり、スタイルを指定する言語ではないから[^opinion]  
-- [!important][important]が嫌い  
+- HTMLはマークアップ言語であり、スタイルを指定する言語ではないから[^opinion]
+- [!important][important]が嫌い
   
   などが理由です。標準化されたスタイルが欲しいだけで、私が設定したスタイルを上書きされるのは鬱陶しいです。また、[Astro][astro]のスタイルは[名前空間][scoped-css]を持つので、ほとんどの場合は[!important][important]を使う必要がないです。
 
 ## [Stylus][stylus]  
 
 - 波括弧やコロン・セミコロンを省略可能
-- プログラミング言語の概念を使える  
-- CSS、[SCSS/SASS][sass]、[Less][less]の記法が使える  
-- ChatGPTが対応している  
+- プログラミング言語の概念を使える
+- CSS、[SCSS/SASS][sass]、[Less][less]の記法が使える
+- ChatGPTが対応している
 - [ドキュメント(英語)][stylus-docs]
 
   > [Stylus][stylus] is Expressive, dynamic, and robust CSS  
@@ -171,10 +267,10 @@ published_at: "2024-01-07"
 
 ## デザインはどうやって?  
 
-- [Modrinth][modrinth]  
-- [MDN Web Docs][mdn-web-docs]  
-- [Zenn][zenn]  
-- [Discord][discord]  
+- [Modrinth][modrinth]
+- [MDN Web Docs][mdn-web-docs]
+- [Zenn][zenn]
+- [Discord][discord]
 - [Iosevka][iosevka]
 - [Color | Apple Developer Documentation][apple-color]  
 
@@ -202,12 +298,12 @@ published_at: "2024-01-07"
 
 ## [Porkbun][porkbun]  
 
-- 良心価格  
-- 価格表示  
-- [ドキュメント(英語)][porkbun-kb]  
-- 無料の[WHOIS代行][porkbun-whois]と[SSL][porkbun-ssl]  
-- [PayPal][porkbun-payment]が使用可能  
-- 対応している[TLD][tld]の数  
+- 良心価格
+- 価格表示
+- [ドキュメント(英語)][porkbun-kb]
+- 無料の[WHOIS代行][porkbun-whois]と[SSL][porkbun-ssl]
+- [PayPal][porkbun-payment]が使用可能
+- 対応している[TLD][tld]の数
 
   > We are the #1 ranked registrar for lowest registration and renewal prices.  
   > 登録・更新価格の安さ1位のレジストラ  

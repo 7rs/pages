@@ -38,69 +38,36 @@ sizes = {
   },
 }
 
-:root
-  --widths-small widths.small
-  --widths-medium widths.medium
-  --widths-large widths.large
-  --widths-largest widths.largest
+responsive-padding(_width = widths.large, x = 0.5rem, y = null)
+  --large-width _width
+  --padding-x x
 
-set-widths(small, medium = null, large = null, largest = null)
-  width small
-  if medium
-    @media screen and (min-width widths.medium)
-      width medium
-  if large
-    @media screen and (min-width widths.large)
-      width large
-  if largest
-    @media screen and (min-width widths.largest)
-      width largest
+  box-sizing border-box
+  width 100%
+  padding-left x
+  padding-right x
+  @media screen and (min-width widths.large)
+    padding-left calc((100% - var(--large-width)) / 2 + var(--padding-x))
+    padding-right calc((100% - var(--large-width)) / 2 + var(--padding-x))
 
-set-heights(small, medium = null, large = null, largest = null)
-  height small
-  if medium
-    @media screen and (min-width widths.medium)
-      height medium
-  if large
-    @media screen and (min-width widths.large)
-      height large
-  if largest
-    @media screen and (min-width widths.largest)
-      height largest
+  if y
+    padding-top y
+    padding-bottom y
 
-set-font-sizes(small, medium = null, large = null, largest = null)
-  font-size small
-  if medium
-    @media screen and (min-width widths.medium)
-      font-size medium
-  if large
-    @media screen and (min-width widths.large)
-      font-size large
-  if largest
-    @media screen and (min-width widths.largest)
-      font-size largest
+full-size-before()
+  position fixed
+  top 0
+  left 0
+  width 100% // Don't change to 100vw. Because scrollbar have width in Chrome.
+  height 100vh
+  content ""
 
-set-line-heights(small, medium = null, large = null, largest = null)
-  line-height small
-  if medium
-    @media screen and (min-width widths.medium)
-      line-height medium
-  if large
-    @media screen and (min-width widths.large)
-      line-height large
-  if largest
-    @media screen and (min-width widths.largest)
-      line-height largest
+flex(direction = row, _gap = null)
+  display flex
+  flex-direction direction
 
-set-string-size(small, medium = null, large = null, largest = null, spacing = null)
-  set-font-sizes(small, medium, large, largest)
-
-  if spacing
-    spacing = spacing * 2
-
-    small = small + spacing
-    medium = medium + spacing
-    large = large + spacing
-    largest = largest + spacing
-
-  set-line-heights(small, medium, large, largest)
+  if _gap
+    if direction is column || direction is column-reverse
+      row-gap _gap
+    else
+      column-gap _gap

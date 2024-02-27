@@ -1,3 +1,4 @@
 *.md
 *.mdx
 Layout.astro
+Blog.astro

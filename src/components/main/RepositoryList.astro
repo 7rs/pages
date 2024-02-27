@@ -1,19 +1,32 @@
 ---
-export interface Props {
-  name?: string;
-}
-const { name = "", ...props } = Astro.props;
+import Repository from "@components/Repository.astro";
 ---
 
-<section {...props} repository-list={name}><slot /></section>
+<section repository-list>
+  <Repository authors="7rs" name="line4py" icon="material-symbols:package-2-outline-sharp">
+    Unofficially LINE library for Python.
+  </Repository>
+  <Repository authors="7rs" name="logos" icon="material-symbols:package-2-outline-sharp">Logos by Cbrnex.</Repository>
+  <Repository authors="7rs" name="parfait" icon="material-symbols:package-2-outline-sharp">
+    A GUI tool for SM64 TASing.
+  </Repository>
+  <Repository authors="7rs" name="line" icon="material-symbols:package-2-outline-sharp">
+    LINE API information and thrift files.
+  </Repository>
+  <Repository authors="7rs" name="legible-fonts" icon="material-symbols:package-2-outline-sharp">
+    Legible monospace fonts for engineers.
+  </Repository>
+  <Repository authors="74gg" name="74gg.github.io" icon="material-symbols:package-2-outline-sharp">
+    An website for an organization @74gg.
+  </Repository>
+</section>
 
 <style lang="stylus">
   @import "../../styles/api.styl"
 
-  section
+  [repository-list]
     display grid
     gap 1rem
-    justify-content center
     grid-template-columns 1fr
     @media screen and (min-width widths.medium)
       grid-template-columns repeat(2, 1fr)

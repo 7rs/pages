@@ -2,7 +2,7 @@
 import type { ImageMetadata } from "astro";
 import { Icon } from "astro-icon/components";
 
-import Link from "@components/V2/Link.astro";
+import Link from "@components/Link.astro";
 
 export interface Props {
   icon: string | ImageMetadata;
@@ -26,7 +26,7 @@ const { icon, alt, name, href, title, lang, openInNewTab, ...props } = Astro.pro
 </Link>
 
 <style lang="stylus">
-  @import "../../styles/api.styl"
+  @import "../styles/api.styl"
 
   article[profile-card]
     box-sizing border-box

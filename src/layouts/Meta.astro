@@ -1,7 +1,13 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 
-import { Metadata, createFontURL } from "@lib/meta";
+import { Metadata } from "@lib/meta";
+
+import OpenGraphData from "@components/meta/OpenGraphData.astro";
+import TwitterCard from "@components/meta/TwitterCards.astro";
+import Fonts from "@components/meta/Fonts.astro";
+import Settings from "@components/meta/Settings.astro";
+import Data from "@components/meta/Data.astro";
 
 export interface Props {
   title: string;
@@ -10,59 +16,25 @@ export interface Props {
 }
 
 const { title, metadata, fonts = [] } = Astro.props;
-
-const keywords = metadata.site.keywords?.join(", ");
 ---
 
 <head>
   <ViewTransitions />
-
-  <!-- Website Metadata -->
-  <title>{title}</title>
-  <meta name="description" content={metadata.site.description} />
-  <meta name="author" content={metadata.author.name} />
-  <link rel="sitemap" href="/sitemap-0.xml" />
-  {metadata.site.url && <link rel="canonical" href={metadata.site.url} />}
-  <meta content={metadata.site.name} name="apple-mobile-web-app-title" />
-  <meta name="generator" content="Astro" />
-  {/* keywords && <meta name="keywords" content={keywords} /> */}
-
-  <!-- Website Settings -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  {metadata.site.favicon && <link rel="icon" href={metadata.site.favicon} type="image/svg+xml" />}
-  {metadata.noIndex && <meta name="robots" content="noindex" />}
-  <meta name="format-detection" content="telephone=no,email=no,address=no" />
-  <meta name="googlebot" content="notranslate" />
-  <meta name="referrer" content="no-referrer" />
-
-  <!-- Google Fonts -->
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com/" />
-  <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href={createFontURL(fonts)} as="style" crossorigin />
-
-  <!-- Open Graph Data -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content={metadata.site.name} />
-  <meta property="og:title" content={title} />
-  {metadata.site.image && <meta property="og:image" content={metadata.site.image} />}
-  {keywords && <meta property="og:keywords" content={keywords} />}
-
-  <!-- Twitter card -->
-  {
-    metadata.twitterId && (
-      <Fragment>
-        <meta name="twitter:title" content={title} />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:site" content={metadata.twitterId} />
-        <meta property="twitter:site:id" content={metadata.twitterId} />
-        <meta property="twitter:creator" content={metadata.twitterId} />
-        <meta property="twitter:creator:id" content={metadata.twitterId} />
-      </Fragment>
-    )
-  }
-  {metadata.site.image && <meta name="twitter:image" content={metadata.site.image} />}
-  {metadata.site.alt && <meta name="twitter:image:alt" content={metadata.site.alt} />}
+  <Data
+    title={title}
+    description={metadata.site.description}
+    authorName={metadata.author.name}
+    siteName={metadata.site.name}
+    url={metadata.site.url}
+  />
+  <Settings favicon={metadata.site.favicon} noIndex={metadata.noIndex} />
+  <Fonts fonts={fonts} />
+  <OpenGraphData
+    title={title}
+    siteName={metadata.site.name}
+    image={metadata.site.image}
+    keywords={metadata.site.keywords}
+  />
+  <TwitterCard title={title} twitterId={metadata.twitterId} image={metadata.site.image} alt={metadata.site.alt} />
   <slot />
 </head>
