@@ -1,0 +1,60 @@
+---
+import Link from "@components/Link.astro";
+import LabeledList from "@components/main/LabeledList.astro";
+---
+
+<section license-info>
+  <h2>License</h2>
+
+  <article summary-view>
+    <LabeledList
+      label="Permissions"
+      icon="material-symbols:check"
+      items={["Distribution", "Modification", "Private use", "Commercial use"]}
+    />
+    <LabeledList
+      label="Limitations"
+      icon="material-symbols:close"
+      items={["Liability", "Warranty", "Patent use", "Trademark use"]}
+    />
+    <LabeledList label="Conditions" icon="idk" items={[]} />
+  </article>
+
+  <p license-description>
+    Pages is licensed under the Creative Commons Zero v1.0 Universal.
+    <br />
+    Anything is allowed, except patent and trademark use.
+    <br />
+    Contents provided by https://7rs.dev/ are also distributed under the CC0.
+  </p>
+
+  <div information-links>
+    <Link href="https://github.com/7rs/pages/blob/main/LICENSE" title="License file" openInNewTab>LICENSE</Link>
+    <Link href="https://creativecommons.org/public-domain/cc0/" title="About CC0" openInNewTab>Information</Link>
+  </div>
+</section>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [license-info]
+    glassmorphism()
+    sans(1.3rem, 1.5rem)
+    flex(column, 1.5rem)
+
+    h2
+      sans(2rem, 2.25rem)
+
+  [summary-view]
+    flex()
+
+  [information-links]
+    flex()
+    justify-content space-around
+    sans(1.5rem, 2rem)
+
+    [data-link]:hover
+      font-size 2rem
+      transition all 100ms linear
+      filter drop-shadow(0px 0px 8px colors.dark.content)
+</style>

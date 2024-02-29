@@ -40,7 +40,8 @@ export default defineConfig({
         "mastodon",
         "discord",
         "telegram",
-        "rss"
+        "rss",
+        "porkbun",
       ],
       materialSymbols: [
         "wb-sunny-outline",

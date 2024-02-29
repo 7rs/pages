@@ -19,10 +19,12 @@
         "@astrojs/sitemap": "^3.0.5",
         "@astrojs/svelte": "^5.0.3",
         "@iconify-json/cib": "^1.1.8",
+        "@iconify-json/devicon": "^1.1.35",
+        "@iconify-json/logos": "^1.1.42",
         "@iconify-json/material-symbols": "^1.1.69",
         "@iconify-json/mdi": "^1.1.64",
         "@iconify-json/octicon": "^1.1.52",
-        "@iconify-json/simple-icons": "^1.1.87",
+        "@iconify-json/simple-icons": "^1.1.93",
         "@pagefind/default-ui": "^1.0.4",
         "@webcomponents/template-shadowroot": "^0.2.1",
         "astro": "^4.2.4",
@@ -48,7 +50,15 @@
         "prettier-plugin-stylus": "^0.1.0",
         "prettier-plugin-svelte": "^3.1.2"
     },
-    "keywords": ["7rs", "cbrnex", "pages", "7rs.dev", "astro", "stylus", "svelte"],
+    "keywords": [
+        "7rs",
+        "cbrnex",
+        "pages",
+        "7rs.dev",
+        "astro",
+        "stylus",
+        "svelte"
+    ],
     "bugs": {
         "url": "https://github.com/7rs/pages/issues"
     },

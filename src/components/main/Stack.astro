@@ -1,0 +1,91 @@
+---
+import { Icon } from "astro-icon/components";
+import LinkIcon from "@components/LinkIcon.astro";
+import StackList from "@components/main/StackList.astro";
+import { createStack } from "@lib/stack";
+---
+
+<section>
+  <StackList
+    label="Hosting"
+    stacks={[
+      createStack("Porkbun", "https://porkbun.com/", "simple-icons:porkbun"),
+      createStack("Cloudflare Pages", "https://pages.cloudflare.com/", "simple-icons:cloudflarepages"),
+      createStack("Cloudflare", "https://cloudflare.com/", "logos:cloudflare"),
+    ]}
+  />
+  <StackList
+    label="Development"
+    stacks={[
+      createStack("Visual Studio Code", "https://code.visualstudio.com/", "devicon:vscode-wordmark"),
+      createStack("Git", "https://git-scm.com/", "logos:git"),
+      createStack("GitHub", "https://github.com/", "logos:github"),
+    ]}
+  />
+  <StackList
+    label="Environments"
+    stacks={[
+      createStack("Microsoft Windows", "https://www.microsoft.com/windows", "logos:microsoft-windows"),
+      createStack("Node.js", "https://nodejs.org/", "logos:nodejs"),
+      createStack("pnpm", "https://pnpm.io/", "logos:pnpm"),
+      createStack("Mozilla FireFox", "https://www.mozilla.org/firefox/new/", "logos:firefox"),
+      createStack("Google Chrome", "https://www.google.com/chrome/", "logos:chrome"),
+      createStack("Microsoft Edge", "", "logos:microsoft-edge"),
+    ]}
+  />
+  <StackList
+    label="Development"
+    stacks={[
+      createStack("TypeScript", "https://www.typescriptlang.org/", "logos:typescript"),
+      createStack("Vite", "https://vitejs.dev/", "logos:vitejs"),
+      createStack("Astro", "https://astro.build/", "logos:astro"),
+      createStack("Svelte", "https://svelte.dev/", "logos:svelte"),
+      createStack("PostCSS", "https://postcss.org/", "logos:postcss"),
+      createStack("Stylus", "https://stylus-lang.com/", "logos:stylus"),
+      createStack("Markdown", "https://github.github.com/gfm/", "logos:markdown"),
+      // createStack("Pagefind", "", "pagefind")
+    ]}
+  />
+  <StackList
+    label="Resource"
+    stacks={[
+      createStack("Autoprefixer", "https://github.com/postcss/autoprefixer", "logos:autoprefixer"),
+      createStack("Iconify", "https://iconify.design/", "simple-icons:iconify"),
+      createStack("PurgeCSS", "https://purgecss.com/", "simple-icons:purgecss"),
+      createStack("Unsplash", "", "simple-icons:unsplash"),
+      createStack("Google Fonts", "", "simple-icons:googlefonts")
+    ]}
+  />
+  <StackList
+    label="Development Tools"
+    stacks={[
+      createStack("Prettier", "https://prettier.io/", "logos:prettier"),
+      createStack("ESLint", "https://eslint.org/", "devicon:eslint-wordmark"),
+      createStack("Sharp", "https://sharp.pixelplumbing.com/", "simple-icons:sharp"),
+      createStack("Lighthouse", "https://github.com/GoogleChrome/lighthouse", "logos:lighthouse"),
+      createStack("PageSpeed Insights", "https://pagespeed.web.dev/", "simple-icons:pagespeedinsights"),
+      createStack("EditorConfig", "", "logos:editorconfig")
+    ]}
+  />
+</section>
+<div fuck-astro></div>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  border-pad = 1rem
+  :root
+    --border-pad border-pad
+
+  section, section::before
+    border-radius 1rem
+
+  section
+    z-index 1
+    position relative
+    padding border-pad
+    flex(column, 3rem)
+    background white
+    filter drop-shadow(0px 0px 1rem white)
+    box-shadow 0 0 5rem white
+</style>

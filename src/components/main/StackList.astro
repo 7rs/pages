@@ -1,0 +1,43 @@
+---
+import { Icon } from "astro-icon/components";
+import LinkIcon from "@components/LinkIcon.astro";
+
+import { Stack } from "@lib/stack";
+
+export interface Props {
+  label: string;
+  stacks: Array<Stack>;
+}
+
+const { label, stacks = [], ...props } = Astro.props;
+---
+
+<div stack-list>
+  <p list-label>{label}</p>
+  {
+    stacks.map((stack) => {
+      return <LinkIcon icon={stack.icon} href={stack.url} title={stack.name} openInNewTab />;
+    })
+  }
+</div>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [stack-list]
+    display flex
+    justify-content space-around
+    flex-wrap wrap
+    padding 1rem
+
+  [list-label]
+    width 100%
+    sans(2.25rem, 3rem)
+    text-align center
+    padding 1rem 0
+
+  [data-icon]
+    line-height 5rem
+    font-size 5rem
+    padding 2rem
+</style>
