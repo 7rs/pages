@@ -5,11 +5,13 @@ import StackList from "@components/main/StackList.astro";
 import { createStack } from "@lib/stack";
 ---
 
+
+
 <section>
   <StackList
     label="Hosting"
     stacks={[
-      createStack("Porkbun", "https://porkbun.com/", "simple-icons:porkbun"),
+      createStack("Porkbun (7rs.dev)", "https://porkbun.com/", "simple-icons:porkbun"),
       createStack("Cloudflare Pages", "https://pages.cloudflare.com/", "simple-icons:cloudflarepages"),
       createStack("Cloudflare", "https://cloudflare.com/", "logos:cloudflare"),
     ]}
@@ -25,33 +27,47 @@ import { createStack } from "@lib/stack";
   <StackList
     label="Environments"
     stacks={[
-      createStack("Microsoft Windows", "https://www.microsoft.com/windows", "logos:microsoft-windows"),
-      createStack("Node.js", "https://nodejs.org/", "logos:nodejs"),
+      createStack("Node.js (v18)", "https://nodejs.org/", "logos:nodejs"),
       createStack("pnpm", "https://pnpm.io/", "logos:pnpm"),
+      createStack("Microsoft Windows (Windows 11)", "https://www.microsoft.com/windows", "logos:microsoft-windows"),
+      createStack("PowerShell", "https://microsoft.com/powershell", "simple-icons:powershell"),
       createStack("Mozilla FireFox", "https://www.mozilla.org/firefox/new/", "logos:firefox"),
       createStack("Google Chrome", "https://www.google.com/chrome/", "logos:chrome"),
-      createStack("Microsoft Edge", "", "logos:microsoft-edge"),
+      createStack("Microsoft Edge", "https://www.microsoft.com/edge", "logos:microsoft-edge"),
     ]}
   />
   <StackList
-    label="Development"
+    label="Languages"
     stacks={[
+      createStack("HTML (HTML Living Standard)", "https://html.spec.whatwg.org/multipage/", "logos:html-5"),
+      createStack("Stylus (in Vite)", "https://stylus-lang.com/", "logos:stylus"),
+      createStack("PostCSS (in Vite)", "https://postcss.org/", "logos:postcss"),
+      createStack("JavaScript", "https://ecma-international.org/technical-committees/tc39", "logos:javascript"),
       createStack("TypeScript", "https://www.typescriptlang.org/", "logos:typescript"),
-      createStack("Vite", "https://vitejs.dev/", "logos:vitejs"),
+      createStack("Markdown (in Astro)", "https://github.github.com/gfm/", "logos:markdown"),
+    ]}
+  />
+  <StackList
+    label="Building"
+    stacks={[
+      createStack("Vite (in Astro)", "https://vitejs.dev/", "logos:vitejs"),
       createStack("Astro", "https://astro.build/", "logos:astro"),
       createStack("Svelte", "https://svelte.dev/", "logos:svelte"),
-      createStack("PostCSS", "https://postcss.org/", "logos:postcss"),
-      createStack("Stylus", "https://stylus-lang.com/", "logos:stylus"),
-      createStack("Markdown", "https://github.github.com/gfm/", "logos:markdown"),
-      // createStack("Pagefind", "", "pagefind")
     ]}
   />
   <StackList
-    label="Resource"
+    label="Tools"
+    stacks={[
+      createStack("Zod (in Astro)", "https://zod.dev/", "logos:zod"),
+      createStack("PurgeCSS", "https://purgecss.com/", "simple-icons:purgecss"),
+      createStack("Pagefind", "https://pagefind.app/", "src:pagefind"),
+    ]}
+  />
+  <StackList
+    label="Resources"
     stacks={[
       createStack("Autoprefixer", "https://github.com/postcss/autoprefixer", "logos:autoprefixer"),
-      createStack("Iconify", "https://iconify.design/", "simple-icons:iconify"),
-      createStack("PurgeCSS", "https://purgecss.com/", "simple-icons:purgecss"),
+      createStack("Iconify (Used by astro-icon)", "https://iconify.design/", "simple-icons:iconify"),
       createStack("Unsplash", "", "simple-icons:unsplash"),
       createStack("Google Fonts", "", "simple-icons:googlefonts")
     ]}
@@ -73,19 +89,22 @@ import { createStack } from "@lib/stack";
 <style lang="stylus">
   @import "../../styles/api.styl"
 
-  border-pad = 1rem
-  :root
-    --border-pad border-pad
-
-  section, section::before
-    border-radius 1rem
-
   section
     z-index 1
     position relative
-    padding border-pad
-    flex(column, 3rem)
-    background white
+    box-sizing border-box
+    flex(column, 5rem)
     filter drop-shadow(0px 0px 1rem white)
     box-shadow 0 0 5rem white
+    // Responsive
+    padding 2rem 0
+    @media screen and (min-width widths.medium)
+      padding 4rem 1rem
+
+    &::before
+      z-index -1
+      set-absolute()
+      left calc(-50vw + 50%)
+      width 100vw
+      background-color white
 </style>

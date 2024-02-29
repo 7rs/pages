@@ -21,7 +21,9 @@ const { label, icon, items = [], ...props } = Astro.props;
   [labeled-list]
     width 100%
     flex(column, 0.1rem)
-    sans(1.25rem, 1.5rem)
+
+    [data-icon], p
+      sans(1.25rem, 1.5rem)
 
     [list-label]
       sans(1.5rem, 2rem)

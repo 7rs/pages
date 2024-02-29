@@ -1,6 +1,9 @@
 ---
+import { Image } from "astro:assets";
+
 import { Icon } from "astro-icon/components";
 import LinkIcon from "@components/LinkIcon.astro";
+import Link from "@components/Link.astro";
 
 import { Stack } from "@lib/stack";
 
@@ -12,32 +15,71 @@ export interface Props {
 const { label, stacks = [], ...props } = Astro.props;
 ---
 
-<div stack-list>
+<article stack-list>
   <p list-label>{label}</p>
-  {
-    stacks.map((stack) => {
-      return <LinkIcon icon={stack.icon} href={stack.url} title={stack.name} openInNewTab />;
-    })
-  }
-</div>
+  <div icon-list>
+    {
+      stacks.map((stack) => {
+        if (!stack.icon.startsWith("src:")) {
+          return <LinkIcon icon={stack.icon} href={stack.url} title={stack.name} openInNewTab />;
+        } else {
+          // if astro-icon fixes the bug where local svg loading fails after 1000 years,
+          // Remove this line.
+          return (
+            <Link href={stack.url} title={stack.name}>
+              <img src={`src/icons/${stack.icon.slice(4)}.svg`} alt={stack.name} />
+            </Link>
+          );
+        }
+      })
+    }
+  </div>
+</article>
 
 <style lang="stylus">
   @import "../../styles/api.styl"
 
-  [stack-list]
-    display flex
-    justify-content space-around
-    flex-wrap wrap
-    padding 1rem
+  p, [data-icon]
+    color black
 
   [list-label]
     width 100%
-    sans(2.25rem, 3rem)
     text-align center
-    padding 1rem 0
+    border-bottom 1px solid black
+    // Responsive
+    margin-bottom 3rem
+    padding-bottom 0.25rem
+    sans(1.75rem, 2.5rem) 
+    @media screen and (min-width widths.medium)
+      margin-bottom 3rem
+      padding-bottom 0.5rem
+      sans(2.25rem, 3rem)
+
+  [icon-list]
+    display flex
+    justify-content space-around
+    flex-wrap wrap
+    // Responsive
+    gap 3rem
+    @media screen and (min-width widths.medium)
+      gap 4rem
+
+  // Responsive
 
   [data-icon]
-    line-height 5rem
-    font-size 5rem
-    padding 2rem
+    max-width 100%
+    line-height 2.5rem
+    font-size 2.5rem
+
+  img
+    max-width 100%
+
+  @media screen and (min-width widths.medium)
+    icon-height = 5rem
+    [data-icon]
+      line-height icon-height
+      font-size icon-height
+
+    img
+      height icon-height
 </style>

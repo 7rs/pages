@@ -20,7 +20,9 @@ background-blur(strength = 8px)
 scrollbar(_width = 3px)
   &::-webkit-scrollbar
     width _width
-    background transparent
+    background white
+    @media (prefers-color-scheme dark)
+      background black
 
   &::-webkit-scrollbar-thumb
     background rgba(black, 0.5)

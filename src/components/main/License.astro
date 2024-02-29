@@ -26,11 +26,14 @@ import LabeledList from "@components/main/LabeledList.astro";
     Anything is allowed, except patent and trademark use.
     <br />
     Contents provided by https://7rs.dev/ are also distributed under the CC0.
+    <br />
+    However, image and assets aren't distribute with cc0
+    (Example: Pagefind branding logo, the background picture from Unsplash, etc.).
   </p>
 
   <div information-links>
-    <Link href="https://github.com/7rs/pages/blob/main/LICENSE" title="License file" openInNewTab>LICENSE</Link>
-    <Link href="https://creativecommons.org/public-domain/cc0/" title="About CC0" openInNewTab>Information</Link>
+    <Link href="https://github.com/7rs/pages/blob/main/LICENSE" title="License file" openInNewTab>file</Link>
+    <Link href="https://creativecommons.org/public-domain/cc0/" title="About CC0" openInNewTab>Info</Link>
   </div>
 </section>
 
@@ -39,14 +42,18 @@ import LabeledList from "@components/main/LabeledList.astro";
 
   [license-info]
     glassmorphism()
-    sans(1.3rem, 1.5rem)
     flex(column, 1.5rem)
+    sans(1rem, 1.5rem)
+    @media screen and (min-width widths.medium)
+      sans(1.3rem, 1.5rem)
 
     h2
       sans(2rem, 2.25rem)
 
   [summary-view]
-    flex()
+    flex(column, 1rem)
+    @media screen and (min-width widths.medium)
+      flex()
 
   [information-links]
     flex()
