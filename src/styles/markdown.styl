@@ -54,10 +54,15 @@ main
       margin-bottom 0
 
   p, a, li
-    sans(letter-size, calc(var(--letter-size) + 0.5rem))
+    sans(letter-size, calc(var(--letter-size) + 0.5rem)) 
 
   a
     hoverable(colors.link, colors.dark.link, alphas.link, under: true)
+
+  p, li, h1, h2, h3, h4, h5, h6
+    color colors.content
+    @media (prefers-color-scheme dark)
+      color colors.dark.content
 
   li
     padding-bottom 0.25rem

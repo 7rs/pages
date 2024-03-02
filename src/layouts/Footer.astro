@@ -1,13 +1,13 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import SocialList from "@components/footer/SocialList.astro"
+import SocialList from "@layouts-components/footer/SocialList.astro"
 
 import Link from "@components/Link.astro";
 ---
 
 <footer>
-  <Icon name="pages" />
+  <Icon name="pages-logo" />
   <SocialList />
   <nav profile-links>
     <Link href="https://github.com/7rs" title="GitHub Profile" openInNewTab>Cbrnex</Link>
@@ -57,7 +57,7 @@ import Link from "@components/Link.astro";
       background-blur()
 
     // Branding Logo
-    [data-icon="pages"]
+    [data-icon="pages-logo"]
       grid-area brand
       font-size 3rem
       margin auto

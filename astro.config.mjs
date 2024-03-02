@@ -1,14 +1,14 @@
 import { defineConfig, passthroughImageService } from 'astro/config';
-
 import mdx from "@astrojs/mdx";
 import svelte from "@astrojs/svelte";
 import sitemap from "@astrojs/sitemap";
-
 import purgecss from "astro-purgecss";
 import Compress from "astro-compress";
 import robotsTxt from "astro-robots-txt";
 import pagefind from "astro-pagefind";
 import icon from "astro-icon";
+
+import qwikdev from "@qwikdev/astro";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,48 +18,16 @@ export default defineConfig({
     HTML: true,
     Image: false,
     JavaScript: true,
-    SVG: true,
+    SVG: true
   }), mdx(), purgecss(), svelte(), robotsTxt(), sitemap(), pagefind(), icon({
     iconDir: "src/icons",
     include: {
-      simpleIcons: [
-        "youtube",
-        "twitch",
-        "tiktok",
-        "pinterest",
-        "applemusic",
-        "github",
-        "gitlab",
-        "internetarchive",
-        "patreon",
-        "paypal",
-        "reddit",
-        "zenn",
-        "qiita",
-        "x",
-        "mastodon",
-        "discord",
-        "telegram",
-        "rss",
-        "porkbun",
-      ],
-      materialSymbols: [
-        "wb-sunny-outline",
-        "search",
-        "copyright-outline",
-        "menu",
-        "package-2-outline-sharp",
-      ],
-      cib: [
-        "creative-commons-pd",
-        "creative-commons-zero"
-      ],
-      octicon: [
-        "law-16",
-      ]
+      simpleIcons: ["youtube", "twitch", "tiktok", "pinterest", "applemusic", "github", "gitlab", "internetarchive", "patreon", "paypal", "reddit", "zenn", "qiita", "x", "mastodon", "discord", "telegram", "rss", "porkbun"],
+      materialSymbols: ["wb-sunny-outline", "search", "copyright-outline", "menu", "package-2-outline-sharp"],
+      cib: ["creative-commons-pd", "creative-commons-zero"],
+      octicon: ["law-16"]
     }
-  }
-  )],
+  }), qwikdev()],
   // https://docs.astro.build/guides/images/
   image: {
     service: passthroughImageService()
@@ -73,7 +41,7 @@ export default defineConfig({
       prefixDefaultLocale: false
     },
     fallback: {
-      en: "ja",
+      en: "ja"
     }
   },
   // https://docs.astro.build/guides/markdown-content/
@@ -83,9 +51,9 @@ export default defineConfig({
     shikiConfig: {
       theme: "dracula"
     },
-    gfm: false,
+    gfm: false
   },
   // https://github.com/alextim/astro-lib
   // https://github.com/alextim/astro-lib/tree/main/packages/astro-robots-txt
-  site: "https://7rs.dev",
+  site: "https://7rs.dev"
 });

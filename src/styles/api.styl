@@ -17,9 +17,12 @@ background-blur(strength = 8px)
   @media (prefers-color-scheme dark)
     background colors.dark.widget
 
-scrollbar(_width = 3px)
+scrollbar(_width = 3px, axis = "x")
   &::-webkit-scrollbar
-    width _width
+    if axis == "x"
+      width _width
+    else
+      height _width
     background white
     @media (prefers-color-scheme dark)
       background black

@@ -2,7 +2,7 @@
 import GradientLogo from "@components/GradientLogo.astro";
 import GradientText from "@components/GradientText.astro";
 
-import logo from "@icons/logo.svg";
+import logo from "@icons/pages-icon.svg";
 
 const landingLogo = `url(${logo.src})`;
 ---
@@ -14,7 +14,7 @@ const landingLogo = `url(${logo.src})`;
 </section>
 
 <style lang="stylus" define:vars={{landingLogo}}>
-  @import "../../styles/api.styl"
+  @import "../../../styles/api.styl"
 
   [landing-box]
     set-absolute()

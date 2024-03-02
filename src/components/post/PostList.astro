@@ -1,6 +1,6 @@
 ---
-import LocaleInformation from "@components/LocaleInformation.svelte";
-import PostInformation from "@components/PostInformation.astro";
+import LocaleInformation from "@components/post/LocaleInformation.svelte";
+import PostInformation from "@components/post/PostInformation.astro";
 import { getPostMap } from "@lib/blog";
 
 const postMap = await getPostMap();
@@ -21,7 +21,7 @@ const postMap = await getPostMap();
 </section>
 
 <style lang="stylus">
-  @import "../styles/api.styl"
+  @import "../../styles/api.styl"
 
   section
     display flex

@@ -1,5 +1,5 @@
 ---
-import LabeledIcon from "@components/LabeledIcon.astro";
+import LabeledIcon from "@components/icon/LabeledIcon.astro";
 
 export interface Props {
   label: string;
@@ -16,7 +16,7 @@ const { label, icon, items = [], ...props } = Astro.props;
 </div>
 
 <style lang="stylus">
-  @import "../../styles/api.styl"
+  @import "../../../styles/api.styl"
 
   [labeled-list]
     width 100%
