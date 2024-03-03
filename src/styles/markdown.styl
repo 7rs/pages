@@ -1,5 +1,7 @@
-@import "api.styl"
 @import "default.styl"
+
+// Shittest specification
+@import "waste.styl"
 
 @keyframes under
   0%
@@ -21,16 +23,12 @@ $underline
       border-bottom 1px solid colors.dark.content
 
 body
-  display flex
-  flex-direction column
+  flex(column)
   box-sizing border-box
   min-height 100vh
   align-items center
   scrollbar(5px)
-  @media (prefers-color-scheme light)
-    background rgb(240, 240, 248)
-  @media (prefers-color-scheme dark)
-    background black
+  background var(--background)
 
 
 left-spacing = 1rem
@@ -57,12 +55,10 @@ main
     sans(letter-size, calc(var(--letter-size) + 0.5rem)) 
 
   a
-    hoverable(colors.link, colors.dark.link, alphas.link, under: true)
+    @extend $hoverable-link
 
   p, li, h1, h2, h3, h4, h5, h6
-    color colors.content
-    @media (prefers-color-scheme dark)
-      color colors.dark.content
+    color var(--content)
 
   li
     padding-bottom 0.25rem
@@ -84,7 +80,7 @@ main
     padding 0
 
   h1
-    margin 5rem 0
+    margin 2.5rem 0
 
   h1, h1 > *
     sans(3rem, 3rem)

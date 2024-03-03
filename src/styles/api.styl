@@ -13,9 +13,10 @@ set-absolute()
 background-blur(strength = 8px)
   set-absolute()
   backdrop-filter blur(strength)
-  background colors.widget
-  @media (prefers-color-scheme dark)
-    background colors.dark.widget
+
+$simple-blur
+  background-blur(8px)
+  background var(--widget)
 
 scrollbar(_width = 3px, axis = "x")
   &::-webkit-scrollbar

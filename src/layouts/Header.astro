@@ -1,15 +1,18 @@
 ---
 import { Icon } from "astro-icon/components";
 
-// Pagefind
+import ThemeSvelte from "@layouts-components/header/Theme.svelte"
+import ThemeQwik from "@layouts-components/header/theme"
+
+import LinkIcon from "@components/icon/LinkIcon.astro";
 import Search from "@components/Search.astro"
 ---
 
 <header>
-  <Icon name="pages-logo" />
+  <LinkIcon icon="pages-logo" href="/" title="Main page" />
   <Search />
   <nav>
-    <Icon name="material-symbols:wb-sunny-outline" />
+    <ThemeQwik />
     <Icon name="material-symbols:menu" />
   </nav>
 </header>
@@ -28,9 +31,8 @@ import Search from "@components/Search.astro"
     gap 3rem
 
     &::before
+      @extend $simple-blur
       z-index -1
-      background-blur()
-      width 100%
 
   svg[data-icon]
     line-height 100%
@@ -46,8 +48,29 @@ import Search from "@components/Search.astro"
     @media screen and (min-width widths.medium)
       gap 2rem
 
-    svg[data-icon]
+    svg[data-icon], svg
       font-size 1.75rem
       @media screen and (min-width widths.medium)
         font-size 2rem
+
+    div
+      height 1.75rem
+      width 1.75rem
+      @media screen and (min-width widths.medium)
+        height 2rem
+        width 2rem
+
+      background var(--content)
+      mask-size 100%
+      mask-repeat no-repeat
+      mask-position center
+
+    div.system
+      mask-image url("system.svg")
+
+    div.light-mode
+      mask-image url("light-mode.svg")
+
+    div.dark-mode
+      mask-image url("dark-mode.svg")
 </style>

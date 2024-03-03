@@ -1,6 +1,8 @@
 ---
-import LocaleInformation from "@components/post/LocaleInformation.svelte";
-import PostInformation from "@components/post/PostInformation.astro";
+import LocalesSvelte from "@components/post/Locales.svelte";
+import LocalesQwik from "@components/post/locales"
+import LocalesAstro from "@components/post/Locales.astro";
+
 import { getPostMap } from "@lib/blog";
 
 const postMap = await getPostMap();
@@ -11,9 +13,10 @@ const postMap = await getPostMap();
     Array.from(postMap).map(([_, data]) => (
       <article>
         {data.localeDatas.length > 1 ? (
-          <LocaleInformation locales={data.localeDatas} client:visible />
+          <LocalesSvelte locales={data.localeDatas} client:visible />
+          // <LocalesQwik locales={data.localeDatas} />
         ) : (
-          <PostInformation locale={data.localeDatas[0]} />
+          <LocalesAstro locale={data.localeDatas[0]} />
         )}
       </article>
     ))
@@ -29,7 +32,7 @@ const postMap = await getPostMap();
     gap 1rem
 
     article
-      glassmorphism()
+      @extend $widget
       display grid
       grid-template-areas \
         "title buttons"
@@ -38,19 +41,17 @@ const postMap = await getPostMap();
       @media screen and (min-width widths.medium)
         grid-template-columns auto 5rem
 
-      h1, div > a
+      p, div > a
         margin auto 0
 
       // A post title.
-      h1
+      p
         grid-area title
         color black
         sans(1.1rem, 1.5rem)
         @media screen and (min-width widths.large)
           sans(1.75rem, 2rem)
-        color colors.content
-        @media (prefers-color-scheme dark)
-          color colors.dark.content
+        color var(--content)
 
       // A language button list.
       div
@@ -64,9 +65,7 @@ const postMap = await getPostMap();
 
         // A language button.
         a
-          color colors.content
-          @media (prefers-color-scheme dark)
-            color colors.dark.content
+          color var(--content)
           hoverable-background(colors.widget-hovered, colors.dark.widget-hovered, 0.2)
           &:hover
             border-radius 0.5rem

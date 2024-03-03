@@ -1,23 +1,23 @@
 <script lang="ts">
-  import { writable } from 'svelte/store';
   import { onDestroy } from 'svelte';
+  import { writable } from 'svelte/store';
   import { fade } from 'svelte/transition';
 
   // import { Titles } from "@scripts/lib/blog"
   // I have no idea why not, but the above code cannot be used.
   // Editor display fuckin' annoying errors, but works the all.
-  import * as blog from '@lib/blog.ts';
-  const { LocaleData, getLangaugeLabel } = blog;
+  import * as locale from '@lib/locale';
+  const { Locale, getLangaugeLabel, IntervalTime } = locale;
+  // import { Locale, getLangaugeLabel, IntervalTime } from '@lib/locales';
 
-  export let locales: Array<LocaleData>;
+  export let locales: Array<typeof Locale>;
 
-  const intervalTime = 7500;
   const hovering = writable(false);
-  const index = writable(0);
+  const activeLocaleIndex = writable(0);
 
   const enableHovering = (i) => {
     $hovering = true;
-    $index = i;
+    $activeLocaleIndex = i;
   };
 
   if (locales.length > 1) {
@@ -26,16 +26,16 @@
         return;
       }
 
-      $index = $index == 1 ? 0 : 1;
+      $activeLocaleIndex = $activeLocaleIndex == 1 ? 0 : 1;
       // $index = $index == langs.length - 1 ? 0 : $index + 1;
-    }, intervalTime);
+    }, IntervalTime);
 
     onDestroy(() => clearInterval(interval));
   }
 </script>
 
-{#key $index}
-  <h1 in:fade={{ duration: 300 }} {...$$restProps}>{locales[$index].title}</h1>
+{#key $activeLocaleIndex}
+  <p in:fade={{ duration: 300 }} {...$$restProps}>{locales[$activeLocaleIndex].title}</p>
 {/key}
 
 <div {...$$restProps}>

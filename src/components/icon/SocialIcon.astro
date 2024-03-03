@@ -13,7 +13,7 @@ const { service, identify, ...props } = Astro.props;
 const social = createSocialLink(service);
 ---
 
-<Link href={social && `https://${social?.url}/${identify}`} {...props} openInNewTab>
-  <Icon name={social?.icon} {...props} />
+<Link href={social && `https://${social?.url}/${identify}`} title={service} {...props} openInNewTab>
+  <Icon name={social?.icon} title={service} {...props} />
 </Link>
 

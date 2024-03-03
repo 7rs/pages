@@ -75,6 +75,13 @@ hoverable(light-color, dark-color = null, alpha = 0.5, under = false)
       &:hover
         color rgba(dark-color, alpha)
 
+$hoverable-link
+  color var(--link)
+  text-decoration none
+  &:hover
+    color var(--link-hover)
+    text-decoration underline
+
 hoverable-background(light-color, dark-color = null, alpha = 0.5)
   text-decoration none
   &:hover
@@ -85,7 +92,7 @@ hoverable-background(light-color, dark-color = null, alpha = 0.5)
       &:hover
         background rgba(dark-color, alpha)
 
-glassmorphism(_light = colors.widget, _dark = colors.dark.widget, hovered = false)
+glassmorphism()
   z-index 0
   padding 1rem
 
@@ -95,17 +102,19 @@ glassmorphism(_light = colors.widget, _dark = colors.dark.widget, hovered = fals
   filter drop-shadow(0px 0px 8px rgba(black, alphas.widget))
   backdrop-filter blur(8px)
 
-  // Light mode
-  background _light
+  text-decoration none
 
-  // Dark mode
-  @media (prefers-color-scheme dark)
-    background _dark
+$widget
+  glassmorphism()
+  background var(--widget)
+  color var(--content)
 
-  // Hover
-  if hovered
-    text-decoration none
-    &:hover
-      background rgba(colors.widget-hovered, alphas.widget)
-      @media (prefers-color-scheme dark)
-        background rgba(colors.dark.widget-hovered, alphas.widget)
+$hoverable-widget
+  @extend $widget
+  &:hover
+    background var(--widget-hover)
+
+expand-text(_size, _height)
+  sans(_size, _height)
+  transition all 100ms linear
+  filter drop-shadow(0px 0px 8px white)

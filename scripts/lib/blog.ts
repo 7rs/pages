@@ -1,31 +1,9 @@
 import { getCollection } from "astro:content";
 
-const Langs = {
-    Japanese: "日本語",
-    English: "English",
-}
-
-export function getLangaugeLabel(lang: string) {
-    switch (lang) {
-        case "en":
-        case "english":
-            return Langs.English;
-        case "ja":
-        case "japanese":
-            return Langs.Japanese;
-        default:
-            return "Unknown";
-    }
-}
-
-export type LocaleData = {
-    slug: string;
-    title: string;
-    lang: string;
-}
+import { Langs, Locale } from "@lib/locale"
 
 export type PostData = {
-    localeDatas: Array<LocaleData>;
+    localeDatas: Array<Locale>;
     datas: Array<any>;
 };
 

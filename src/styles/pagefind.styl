@@ -58,6 +58,9 @@ div.pagefind[data-pagefind-ui]
         border none
         border-radius 0
         background transparent
+        &::placeholder
+          color var(--content)
+          opacity 0.5
 
       // Clear button
       button.pagefind-ui__search-clear // button.pagefind-ui__suppressed
@@ -67,10 +70,7 @@ div.pagefind[data-pagefind-ui]
         height clear-button
         border-radius 0
         mask clear-button-icon center/clear-button-render-size no-repeat
-        // Dark mode
-        background black
-        @media (prefers-color-scheme dark)
-          background white
+        background var(--content)
 
 // Search Result Box
 div.pagefind-ui.pagefind-ui--reset > form.pagefind-ui__form > div.pagefind-ui__drawer
@@ -81,11 +81,7 @@ div.pagefind-ui.pagefind-ui--reset > form.pagefind-ui__form > div.pagefind-ui__d
   min-width 100%
   max-width 100%
   display block
-  // Dark mode
-  // backdrop-filter blur(8px) grayscale(100%)  // Can't use this with Chrome
-  background rgba(white, .2)
-  @media (prefers-color-scheme dark)
-    background rgba(black, .2)
+  background var(--search-background)
 
   &::before
     position absolute
@@ -135,6 +131,7 @@ div.pagefind-ui__drawer > div.pagefind-ui__results-area > ol.pagefind-ui__result
   padding 0
   margin 0
   border none
+  color var(--content)
 
   div.pagefind-ui__result-inner, div.pagefind-ui__result-nested
     p.pagefind-ui__result-title > a.pagefind-ui__result-link

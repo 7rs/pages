@@ -1,0 +1,60 @@
+light-color = {
+  background: rgb(240, 240, 248),
+  content: black,
+  link: blue,
+  link-hover: rgba(blue, 0.5),
+  widget: rgba(white, 0.4),
+  widget-hover: rgba(black, 0.5),
+  search-background: rgba(white, 0.2),
+  border: black,
+}
+
+dark-color = {
+  background: rgb(8, 8, 16),
+  content: white,
+  link: red,
+  link-hover: rgba(red, 0.5),
+  widget: rgba(black, 0.4),
+  widget-hover: rgba(white, 0.5),
+  search-background: rgba(black, 0.2),
+  border: white,
+}
+
+:root
+  --background light-color.background
+  --content light-color.content
+  --link light-color.link
+  --link-hover light-color.link-hover
+  --widget light-color.widget
+  --widget-hover light-color.widget-hover
+  --search-background light-color.search-background
+  --border light-color.border
+  @media (prefers-color-scheme dark)
+    --background dark-color.background
+    --content dark-color.content
+    --link dark-color.link
+    --link-hover dark-color.link-hover
+    --widget dark-color.widget
+    --widget-hover dark-color.widget-hover
+    --search-background dark-color.search-background
+    --border dark-color.border
+
+.light-mode
+  --background light-color.background
+  --content light-color.content
+  --link light-color.link
+  --link-hover light-color.link-hover
+  --widget light-color.widget
+  --widget-hover light-color.widget-hover
+  --search-background light-color.search-background
+  --border light-color.border
+
+.dark-mode
+  --background dark-color.background
+  --content dark-color.content
+  --link dark-color.link
+  --link-hover dark-color.link-hover
+  --widget dark-color.widget
+  --widget-hover dark-color.widget-hover
+  --search-background dark-color.search-background
+  --border dark-color.border

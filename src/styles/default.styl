@@ -1,4 +1,5 @@
 @import "api.styl"
+@import "theme.styl"
 
 :root
   --widths-small widths.small
@@ -17,6 +18,4 @@
   padding-right 0
 
 p, a, h1, h2, h3, h4, h5, h6, [data-icon], [data-link]
-  color colors.content
-  @media (prefers-color-scheme dark)
-    color colors.dark.content
+  color var(--content)

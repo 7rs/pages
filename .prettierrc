@@ -17,7 +17,7 @@
             }
         },
         {
-            "files": ["*.js", "*.ts", "*.svelte"],
+            "files": ["*.js", "*.ts", "*.svelte", "*.jsx", "*.tsx"],
             "options": {
                 "singleQuote": true
             }

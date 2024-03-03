@@ -1,30 +1,42 @@
 ---
 layout: "@layouts/Blog.astro"
 title: "新しいウェブサイトを作る"
-tags: ["frontend", "cloudflare", "astro", "stylus", "typescript", "svelte"]
+tags: ["frontend", "cloudflare", "porkbun", "astro", "stylus", "typescript", "svelte", "qwik"]
 published: true
-published_at: "2024-02-25"
+published_at: "2024-01-07"
+updated_at: "2024-03-03"
 ---
 
-## どうして作ったのか  
+## どうして作ったか  
 
-  大したきっかけがあるわけでもなく、**作ってみたかったから**です。また、**費用を掛けたくなかった**という理由もあります。  
+  大したきっかけがあるわけでもなく、**作ってみたかったから**です。
+  また、苦手なフロントエンドを克服しようとも考えたからです。
+  <!-- また、**費用を掛けたくなかった**という理由もあります。   -->
 
-[nuxt]: https://nuxt.com/  
-[github-pages]: https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages  
-[next]: https://nextjs.org/  
-[vercel]: https://vercel.com/  
-[netlify]: https://www.netlify.com/  
-[astro]: https://astro.build/  
-[cloudflare-pages]: https://pages.cloudflare.com/  
+[nuxt]: https://nuxt.com/
+[github-pages]: https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages
+[next]: https://nextjs.org/
+[vercel]: https://vercel.com/
+[gatsby]: https://www.gatsbyjs.com/
+[hugo]: https://gohugo.io/
+[netlify]: https://www.netlify.com/
+[astro]: https://astro.build/
+[cloudflare-pages]: https://pages.cloudflare.com/
 
 ## ホスティング・技術選定  
 
-  [Nuxt.js][nuxt]と[GitHub Pages][github-pages]でウェブサイトを作ったことがあり、
+  以前、[Nuxt.js][nuxt]と[GitHub Pages][github-pages]でウェブサイトを作ったことがあります。
   次は[Next.js][next]と[Vercel][vercel]をで作るつもりでした。  
   しかし、[Astro][astro]と[Cloudflare Pages][cloudflare-pages]を知り、
   それらでウェブサイトを作ることにしました。  
-  静的ホスティングなら[Netlify][netlify]もありますが、個人的にCloudflareに信頼があったためです。
+
+  フロントエンドフレームワークやSSGで挙げるならば[Gatsby][gatsby]や[Hugo][hugo]がありますが、
+  パフォーマンスの点でそれらと比べると[Astro][astro]は一つ抜けている感じはします。  
+  静的ホスティングなら[Netlify][netlify]もありますが、
+  CloudflareのCDNを使えるというだけでも[Cloudflare Pages][cloudflare-pages]には大きな価値があります。  
+
+  選定の基準としては、
+  **パフォーマンス** >= **メンテナンスの状態** >= **使いやすさ**といった感じです。  
 
 [integrations]:  https://astro.build/integrations/
 [@astrojs/react]: https://docs.astro.build/ja/guides/integrations-guide/react/
@@ -35,6 +47,7 @@ published_at: "2024-02-25"
 [integration-update]: https://docs.astro.build/ja/guides/integrations-guide/#%E8%87%AA%E5%8B%95%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89
 
 [astro-development]: https://docs.astro.build/ja/concepts/why-astro/#%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E3%81%A7%E9%AB%98%E9%80%9F
+[astro-island]: https://docs.astro.build/ja/concepts/islands/
 [zero-js]: https://docs.astro.build/ja/basics/astro-components/
 [client-directives]: https://docs.astro.build/ja/reference/directives-reference/#client-directives
 [astro-components]: https://docs.astro.build/ja/basics/astro-components/#%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E6%A7%8B%E9%80%A0
@@ -61,56 +74,46 @@ published_at: "2024-02-25"
     pnpm astro add react tailwind partytown
   ```  
 
-  [１コマンドでインストールから設定まで自動で行ってくれます。][integration-add]  
+  １コマンドで[インストールから設定まで自動で行ってくれます。][integration-add]  
 
   ```sh
     pnpm dlx @astrojs/upgrade
   ```  
 
-  [アップグレード（アップデート）も一括で行ってくれます。][integration-update]  
+  １コマンドで[アップグレード（アップデート）も一括で行ってくれます。][integration-update]  
 
-  [詳しくはドキュメントをご覧ください。](https://docs.astro.build/ja/guides/integrations-guide/)  
-
+  詳しくは[ドキュメントをご覧ください。](https://docs.astro.build/ja/guides/integrations-guide/)  
   Astro公式が開発していないインテグレーションを含む[リストはこちらになります。][integrations]  
-  私が使用しているインテグレーションは以下になります。
-
-- [@astrojs/svelte](https://docs.astro.build/ja/guides/integrations-guide/svelte/)
-- [@astrojs/mdx](https://docs.astro.build/ja/guides/integrations-guide/mdx/)
-- [@astrojs/sitemap](https://docs.astro.build/ja/guides/integrations-guide/sitemap/)
-- [@astrojs/rss](https://docs.astro.build/ja/guides/rss/)
-- [astro-robots-txt](https://github.com/alextim/astro-lib/tree/main/packages/astro-robots-txt)
-- [astro-compress](https://github.com/astro-community/AstroCompress)
-- [astro-purgecss](https://github.com/codiume/orbit/tree/main/packages/astro-purgecss)
-- [astro-icon](https://www.astroicon.dev/)
-- [astro-pagefind](https://github.com/shishkin/astro-pagefind)  
 
 ### 高速  
 
   [パフォーマンスを重視して開発されている][astro-development]ので、とにかく速いです。
   [JavaScriptのコードが全てHTMLとCSSに変換されます][zero-js]（出来上がった形としてクライアントに送信される）。  
-  しかし、そんなことをすれば動的なコンテンツは全てCSSで制御することになります。
+  しかし、そんなことをすれば動的なコンテンツは動かなくなります。
   その対応策として[クライアントディレクティブ][client-directives]があります。
-  これを使えば一部（コンポーネント）のみがJavaScriptで制御されることになります。  
+  これを使えば[一部（コンポーネント）のみがJavaScriptで制御される][astro-island]ことになります。  
 
   この一部が[Astroコンポーネント][astro-components]になるわけですが、
   [React][@astrojs/react]や[Vue][@astrojs/vue]などで作ったコンポーネントも呼び出せます。
-  これにより、複数のUIフレームワークを混合的に使えます。  
-  [Qwik](https://qwik.dev/)をぶち込めばより高速になりそうですが、この辺は不明です。今後試していくつもりです。
+  更に、複数のUIフレームワークを混合的に使えます。
+  もちろん、完全に静的なコンポーネントを作ることも可能で、その場合は通常通り変換が行われます。  
 
-  この高速化は複雑な設定をすることなくできる点が非常に良いです。
-  もっといろいろなことをしようとすれば複雑にはなりますが、これについても解説されています。  
-  **単純なJSXのみで記述することも出来るし**（UIフレームワークなしで）、
-  必要ならば、**より踏み込んだ機能**（新しい機能やAPI、UIフレームワークなど）**にも手を出せる。**
-  [これらをAstroの開発陣は「複雑さへのオプトイン」と呼んでいるそうです。][astro-is-easy]  
+  この高速化に複雑な設定は必要ありません。
+  もっと多くのことをしようとすれば複雑にはなりますが、これについても言及されています。  
+
+  > **単純なJSXのみで記述することも出来るし**（UIフレームワークなしで）、
+  必要ならば、**より踏み込んだ機能**（新しい機能やAPI、UIフレームワークなど）**にも手を出せる。**  
+
+  これらをAstroの開発陣は[「複雑さへのオプトイン」][astro-is-easy]と呼んでいるそうです。  
 
 ### ドキュメント  
 
   [公式ドキュメントが日本語に対応しています。](https://docs.astro.build/ja/getting-started/)
   日本語化が進んでいない部分がありますが、基本的な機能や技術については書かれています。
-  [チュートリアル][tutorial]は**ブログの作成**が日本語化されています。
+  [チュートリアルは**ブログの作成**][tutorial]が日本語化されています。
 
   <u>日本語の記事もそれなりに書かれていますが、**技術に偏りがあるのは事実です。**</u>  
-  <u>変わったことをする場合は**英語の記事を読む必要はあります。**</u>
+  <u>より多くのことをしたいなら、**英語の記事を読む必要はあります。**</u>
 
 - [Qiita](https://qiita.com/tags/astro)
 - [Zenn](https://zenn.dev/topics/astro)
@@ -125,272 +128,176 @@ published_at: "2024-02-25"
 
   高速化については簡単に行えるわけですが、あえて簡単だとは言いません。  
   理由としては、コンテンツやUIフレームワーク・ホスティングサービス（サーバ）に依存するからです。  
-  その点を除けば、簡単に速いウェブサイトが作れると断言できるでしょう。  
+  その点を除けば、簡単に速いウェブサイトが作れると言えるでしょうか。  
 
-[cf-github]: https://developers.cloudflare.com/pages/configuration/git-integration/#github-1  
-[github]: https://ja.wikipedia.org/wiki/GitHub  
-[cdn]: https://ja.wikipedia.org/wiki/Content_delivery_network  
-[cdn-usage]: https://kinsta.com/jp/cloudflare-market-share/  
-[tls]: https://ja.wikipedia.org/wiki/Transport_Layer_Security  
-[http3]: https://ja.wikipedia.org/wiki/HTTP/3  
+[cloudflare-cdn]: https://www.cloudflare.com/ja-jp/application-services/products/cdn/
+[cloudflare-security]: https://www.cloudflare.com/ja-jp/security/
+[cloudflare-transfar]: https://www.cloudflare.com/ja-jp/plans/developer-platform/
+[cloudflare-workers]: https://www.cloudflare.com/ja-jp/developer-platform/workers/
 
 ## [Cloudflare Pages][cloudflare-pages]  
 
 ### メリット  
 
-  CloudflareのCDNが使える点にあります。
-  Cloudflareが提供するセキュリティもできます。また、セキュリティの設定もSaaSで非常に簡単に行えます。  
+  [CloudflareのCDN][cloudflare-cdn]が使える点にあります。
+  [Cloudflareが提供するセキュリティの機能][cloudflare-security]も利用可能で、
+  設定はSaaSで非常に簡単に行えます。  
+  また、[無制限の転送量][cloudflare-transfar]が挙げられます。  
 
-  静的ホスティングサービスとしては、無制限の転送量が挙げられます。
-  SSRについてはVercelのようなサーバーレス関数が用意されています。
-  これは無制限ではありませんが、１日１０万リクエストというそれなりの制限があります。  
+  SSRについては[Vercelのようなサーバーレス関数][cloudflare-workers]が用意されています。
+  これは無制限ではありませんが、**1日10万リクエストまで**とそれなりの制限があります。  
 
-  ビルドや高速化の設定もSaaSで簡単に行えます。様々なフレームワークに最適化することも出来ます。
-  ビルドにかかる時間はフレームワークに依存しますが、キャッシュの機能がついています。  
+  ビルドや高速化の設定もSaaSで簡単に行えます。様々なフレームワークに最適化することも出来ます([Astro][astro]や[Next.js][next]、[Nuxt][nuxt]など)。
+  ビルドにかかる時間は**フレームワークに依存**しますが、**キャッシュ機能**があるのでさほどストレスは無いかもしれません。  
 
 ### デメリット  
 
-  一か月に500デプロイまでの制限があることです。
-  有料プランは決して安くは無いため、更新頻度か高いウェブサイトや複数のウェブサイトの運用には向いていないでしょうか・・・。  
-
-- 簡単なビルド設定[^cloudflare-build]
-- [GitHub][github]との[連携][cf-github]
-- 無制限の転送量
-- [世界一][cdn-usage]の[CDN][cdn]
-- [TLS][tls]と[HTTP3(QUIC)][http3]
-
-<!--divide -->
-
-  > - Pagesを使用すると、信頼できるフルスタックアプリケーションをわずかな時間で構築、デプロイ、配信できます。最低限の設定で、開発者、デザイナー、製品がコラボし、デプロイできます。  
-  > - ビルドのキャッシュ機能により、プロジェクトの一部をキャッシュして以降の構築での時間の節約することで、強力なPages体験をお届けします。  
-  > [Cloudflare Pagesで次のビッグアイデアを実現しよう](https://www.cloudflare.com/ja-jp/developer-platform/pages/)  
-  > - Cloudflareが提供する世界最速クラスの広範なグローバルネットワークは、世界のインターネット人口のおよそ95%から約50ミリ秒圏内にあります。  
-  > [Cloudflareのグローバルネットワーク](https://www.cloudflare.com/ja-jp/network/)  
-  > - Cloudflareでは、Webサイト所有者がオリジンを変更することなく、HTTP/3のサポートを有効にすることができます。  
-  > [HTTP/3とは？](https://www.cloudflare.com/ja-jp/learning/performance/what-is-http3/)  
-
-  **[Cloudflare Pages][github-pages]** の[無料プランでは1ヶ月500デプロイの制限](https://www.cloudflare.com/ja-jp/plans/developer-platform/)があるので、
-  更新頻度が高いウェブサイトは厳しいです。また、Cloudflareの有料プランは普通に高いです。  
-
-[^cloudflare-build]: ![cf-build](/images/cf-build.png)
+  1か月に500デプロイまでの制限があります。
+  有料プランは決して安く無いため、更新頻度か高いウェブサイトや複数のウェブサイトの運用には向いていないでしょうか・・・。  
 
 [stylus]: https://stylus-lang.com  
-[important]: https://developer.mozilla.org/ja/docs/Web/CSS/important  
-[less]: https://lesscss.org/  
 [sass]: https://sass-lang.com/  
-[stylus-docs]: https://stylus-lang.com/docs/  
 [postcss]: https://postcss.org/  
 
-## スタイルはどうしてる?  
-
-  [Stylus][stylus]を使ってます。CSSフレームワーク[^css-framework]は使いません。  
-
-- HTMLはマークアップ言語であり、スタイルを指定する言語ではないから[^opinion]
-- [!important][important]が嫌い
-  
-  などが理由です。標準化されたスタイルが欲しいだけで、私が設定したスタイルを上書きされるのは鬱陶しいです。また、[Astro][astro]のスタイルは[名前空間][scoped-css]を持つので、ほとんどの場合は[!important][important]を使う必要がないです。
+[boilerplate-code]: https://ja.wikipedia.org/wiki/%E3%83%9C%E3%82%A4%E3%83%A9%E3%83%BC%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%B3%E3%83%BC%E3%83%89
+[stylus-vitejs]: https://ja.vitejs.dev/guide/features.html#css-pre-processors
+[stylus-syntax]: https://github.com/stylus/stylus/issues/2293
 
 ## [Stylus][stylus]  
 
-- 波括弧やコロン・セミコロンを省略可能
-- プログラミング言語の概念を使える
-- CSS、[SCSS/SASS][sass]、[Less][less]の記法が使える
-- ChatGPTが対応している
-- [ドキュメント(英語)][stylus-docs]
+  [Stylus][stylus]の特徴的な点は[ボイラープレートコード][boilerplate-code]が最小限であることです。  
 
-  > [Stylus][stylus] is Expressive, dynamic, and robust CSS  
-  > [Implementation Comparisons](https://stylus-lang.com/docs/compare.html)  
-
-  記事がほとんどないので苦労はしますが、非常に書きやすいです。[PostCSS][postcss]と連携も出来ます。試し書きとしては以下のようになりますが、機能はもっとあります。  
-
-  ```stylus
-  colors: {
-    background: white,
-    icon: black,
-    link: blue,
-    dark: {
-      background: black,
-      icon: white,
-      link: red,
-    }
+  ```css
+  div {
+    display: flex;
   }
 
-  snas-latin = "Fira Sans"
+  div > a {
+    text-decoration: none;
+  }
 
-  body
-    background colors.background
-    @media (prefers-color-scheme dark)
-      background colors.dark.background
-
-  hoverable(_color)
-    color _color
-    &:hover
-      color rgba(_color, 0.5)
-
-  sans(size, height)
-    font size/height snas-latin, "Trebuchet MS", Verdana, Arial, sans-serif
-
-  p
-    sans(1rem, 1.5rem)
-    a
-      hoverable(colors.link)
-      @media (prefers-color-scheme dark)
-        hoverable(colors.dark.link)
-
-  .title
-    sans(2rem, 2.5rem)
-
-  .brand
-    @extend .title
-    display flex
-    gap 0.75rem
-    img
-      mask-image var(--iconURL)
-      background colors.icon
-      @media (prefers-color-scheme dark)
-        background colors.dark.icon
+  div > a:hover {
+    text-decoration: underline;
+  }
   ```  
 
-[^css-framework]: CSSフレームワークとは、標準化されたスタイルやコンポーネントを簡単に使えるツールのことです。  
-  また、以下も参照してください。  
-  [Wikipedia](https://en.wikipedia.org/wiki/CSS_framework)  
-  デザインやスタイルを効果的かつ迅速に構築するためのツールセット。標準化されたデザインやコンポーネントを使ってスタイルを適用することができる。(ChatGPT 3.5)  
+  ```scss
+  div {
+    display: flex;
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  ```
 
-[^opinion]: 主観的な意見ですが、スタイルに問題があるとき、スタイルシートのファイルに限られたが保守性は高いです。無理なくスタイルシートを記述出来れば、CSSフレームワークは必須ではないのです。(無論、チームの場合は別。)  
+  ```stylus
+  div
+    display flex
+    a
+      text-decoration none
+      &:hover
+        text-decoration underline
+  ```  
 
-[modrinth]: https://modrinth.com/  
-[mdn-web-docs]: https://developer.mozilla.org/ja/docs/Web  
-[apple-color]: https://developer.apple.com/design/human-interface-guidelines/color  
-[iosevka]: https://typeof.net/Iosevka/  
-[discord]: https://discord.com/  
-[zenn]: https://zenn.dev/  
+  このように、波括弧やコロン・セミコロンが省略されていることが分かります。
+  上のコードも[Stylus][stylus]ではエラーになりません。
+  CSSには完全に下位互換があり、[SASS/SCSS][sass]には一部下位互換があります。  
+  [SASS/SCSS][sass]ほど情報が充実しておらず、機能も[SASS/SCSS][sass]の方がありますが、[Stylus][stylus]はその構文及び言語仕様に価値があります。  
 
-## デザインはどうやって?  
+  しかし、[セミコロン等を記述しなければ正しく構文を理解しなかったり][stylus-syntax]、
+  [importエイリアスに対応していない（対応しない？）][stylus-vitejs]などもあるので、
+  まだまだ[SASS/SCSS][sass]からポジションを奪取するほどの強さは感じられません。  
 
-- [Modrinth][modrinth]
-- [MDN Web Docs][mdn-web-docs]
-- [Zenn][zenn]
-- [Discord][discord]
-- [Iosevka][iosevka]
-- [Color | Apple Developer Documentation][apple-color]  
+  ちなみに、[PostCSS][postcss]と[Stylus][stylus]は併用することが出来ます。  
 
-  以上のサイトを参考にしました。特に[Modrinth][modrinth]や[Zenn][zenn]のデザインが好きです。速度や使いやすさも重要ですが、かっこいいサイトは気持ちも上がります。  
-
-[porkbun]: https://porkbun.com/  
-[google-domains]: https://support.google.com/domains/answer/13689670  
-[square-space]: https://domains.squarespace.com/  
-[cloudflare-register]: https://www.cloudflare.com/ja-jp/products/registrar/  
-[onamae]: https://www.onamae.com/  
-[xserver-domain]: https://www.xdomain.ne.jp/  
-[porkbun-kb]: https://kb.porkbun.com/  
-[porkbun-ssl]: https://porkbun.com/products/ssl  
-[porkbun-whois]: https://porkbun.com/products/whois_privacy  
-[porkbun-payment]: https://porkbun.com/support/payment_options  
-[tld]: https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%83%E3%83%97%E3%83%AC%E3%83%99%E3%83%AB%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3  
-
-## ドメインはどこで?  
-
-  [Porkbun][porkbun]を使いました。
-  当時、[Google Domains][google-domains]が[SquareSpace][square-space]に移行する段階で安定しておらず、[Cloudflare][cloudflare-register]は.devに対応していませんでした。
-  [お名前.com][onamae]や[Xserver Domain][xserver-domain]は知名度と信頼はありますが、安くはないのです。加えて大量のメールを送り付けてきたり、購入直前まで価格がはっきりしないのも気に食わないです（価格表示について[お名前.com][onamae]はマシな方だと思います）。
-  ちなみに、移行先の[SquareSpace][square-space]はこの中で一番高いです。
-  候補にすらなりません。また、[Cloudflare][cloudflare-register]は現在`.dev`に対応しています。  
+[google-domains]: https://support.google.com/domains/answer/13689670?hl=ja
+[squarespace]: https://www.squarespace.com/
+[onamae]: https://www.onamae.com/
+[xdomain]: https://www.xdomain.ne.jp/
+[muumuu]: https://muumuu-domain.com/
+[cloudflare-dev]: https://www.reddit.com/r/CloudFlare/comments/134267y/for_those_who_havent_seen_it_yet_cloudflare_added/
+[cloudflare-x]: https://twitter.com/CloudflareDev/status/1686812617153593355
+[porkbun-paypal]: https://porkbun.com/support/payment_options
+[cloudflare-registrar]: https://www.cloudflare.com/ja-jp/products/registrar/
+[porkbun]: https://porkbun.com/
+[porkbun-ssl]: https://porkbun.com/products/ssl
 
 ## [Porkbun][porkbun]  
 
-- 良心価格
-- 価格表示
-- [ドキュメント(英語)][porkbun-kb]
-- 無料の[WHOIS代行][porkbun-whois]と[SSL][porkbun-ssl]
-- [PayPal][porkbun-payment]が使用可能
-- 対応している[TLD][tld]の数
+  ドメインを買おうとしたのは2023年の夏頃だったと記憶してますが、
+  その当時[Google Domains][google-domains]が移行するという話がありました。
+  移行先の[Squarespace][squarespace]は全く知らない企業で、
+  購入先は別の企業からと考えていました。  
+  [お名前.com][onamae]や[Xserver domain][xdomain]、[ムームードメイン][muumuu]など日本の企業は沢山ありますが、
+  これらは更新費が簡単にチェックできないため非常に面倒です（それも戦略なのでしょうが・・・）。  
 
-  > We are the #1 ranked registrar for lowest registration and renewal prices.  
-  > 登録・更新価格の安さ1位のレジストラ  
-  > Paying too much? Transfer your domain to us and get the best multi-year value.  
-  > 支払いすぎてない？ドメインをPorkbunに移管して、費用を削減しよう。  
-  > [Porkbun][porkbun]  
+  調べていると、[Cloudflareがかなり安価でドメインを販売している][cloudflare-registrar]ようでした。
+  しかし、その当時は[.devドメインは販売しておらず、追加も怪しい状況][cloudflare-dev]にありました（[後日、追加されたようです][cloudflare-x]）。  
+  調査の末、[Porkbun][porkbun]という企業を見つけました。  
+  この[Porkbun][porkbun]は安価で、更新費を包み隠さないところや、
+  Whois代行を当然のようにタダでつけてくれます。
+  支払いの手段も多く、
+  [Paypal][porkbun-paypal]が使えます。  
+  [SSLも無料で使えます][porkbun-ssl]が、
+  私はCloudflareで管理しているのでこの恩恵特に受けていません。
+  どうしてもCloudflareを使えない・使いたくない人は使うといったところでしょうか。  
 
-  Porkbunの良いと感じる部分はセール後の価格や更新価格を隠さないことです。
-  安いのもそうですが、こういった意識があるのは好ましいです。
-  ただ、`.jp`はないですし、日本語は対応してません。`.dev`や`.app`は買えます。
-  ちなみに、Paypalなどを通して$で払うことになるので、価格が変動します。  
+[svelte]: https://svelte.jp/
+[react]: https://ja.react.dev/
+[pagefind-default-ui]: https://pagefind.app/docs/ui-usage/
 
-[vscode-astro]: https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode
-[vscode-change-case]: https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case
-[vscode-code-snap]: https://marketplace.visualstudio.com/items?itemName=adpyke.codesnap
-[vscode-editorconfig]: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
-[vscode-git-graph]: https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph
-[vscode-git-history]: https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory
-[vscode-github-pull]: https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github
-[vscode-git-lens]: https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
-[vscode-gremlins]: https://marketplace.visualstudio.com/items?itemName=nhoizey.gremlins
-[vscode-indent-rainbow]: https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow
-[vscode-intelli-code]: https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode
-[vscode-js-and-ts]: https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next
-[vscode-markdown]: https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one
-[vscode-path-intellisense]: https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense
-[vscode-prettier]: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
-[vscode-stylus]: https://marketplace.visualstudio.com/items?itemName=sysoev.language-stylus
-[vscode-tabnine]: https://marketplace.visualstudio.com/items?itemName=TabNine.tabnine-vscode
-[vscode-dracula]: https://marketplace.visualstudio.com/items?itemName=dracula-theme.theme-dracula
-[vscode-bracket-lens]: https://marketplace.visualstudio.com/items?itemName=wraith13.bracket-lens
-[vscode-error-lens]: https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens
-[vscode-glass-it]: https://marketplace.visualstudio.com/items?itemName=s-nlf-fh.glassit
-[vscode-peacock]: https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock
+## [Svelte][svelte]  
 
-[wsl2]: https://learn.microsoft.com/ja-jp/windows/wsl/compare-versions  
-[vscode]: https://code.visualstudio.com/  
-[alacritty]: https://alacritty.org/  
-[fish]: https://github.com/fish-shell/fish-shell  
-[starship]: https://starship.rs/ja-JP/  
-[fnm]: https://github.com/Schniz/fnm  
-[pnpm]: https://pnpm.io/ja/  
-[parallels]: https://www.parallels.com/jp/  
-[mac]: https://www.apple.com/jp/mac/  
-[apple-m-series]: https://ja.wikipedia.org/wiki/Apple%E3%82%B7%E3%83%AA%E3%82%B3%E3%83%B3#M%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA  
-[bootcamp]: https://support.apple.com/ja-jp/102622  
-[laptop]: https://jp.msi.com/Laptop/GF63-Thin-11UX  
-[arch]: https://www.archlinux.jp/  
+  [Svelte][svelte]も[ボイラープレートコード][boilerplate-code]が少なく、
+  [React][react]などと比べて学習コストが低いです（日本語のドキュメントとチュートリアルがあります）。
+  ただし、[React][react]を使い続けてきたエンジニアにとっては
+  言語仕様の点で異なる点があるので少しとっつきにくい部分はあります。  
+
+  パフォーマンスが高く、アニメーションの機能を標準で搭載していたり、便利で高速というのが[Svelte][svelte]のメリットです。
+  エコシステム（ライブラリやパッケージ）が[React][react]などより少ないこと、知見が少ないなどがデメリットでしょうか。
+  少なくとも大規模なウェブサイトやWEBアプリケーションの開発には[React][react]の方が分がある気がします。
+  個人的に[Svelte][svelte]は[Astro][astro]と非常に相性が良いと思っています（ランタイムがほぼなく、バンドルサイズが小さいため）。  
+
+  ちなみに[PagefindのDefaultUI][pagefind-default-ui]は[Svelte][svelte]で作られています。  
+
+[visible]: https://docs.astro.build/ja/reference/directives-reference/#clientvisible
+[mitosis]: https://github.com/BuilderIO/mitosis
+[qwik]: https://qwik.dev/
+[qwik-city]: https://qwik.dev/docs/qwikcity/
+
+## [Qwik][qwik]  
+
+  パフォーマンスが非常に高いフレームワークで、Hydrationを行いません。
+  HydrationとはSSGなどで生成されたHTMLにインタラクティブな要素を追加するための下準備のことです。
+  乾いたHTML(砂漠)にHydration(水分補給)をして、
+  ウェブサイトが動き出す（緑化して動物などが生き生きとしている）ようなイメージでしょうか（ゴミみたいな例えですみません）。
+  従来のフレームワークでは非同期的にバッググラウンドでイベントスクリプトをロードするわけですが、
+  この[Qwik][qwik]はイベントが発生する際にダウンロードします。
+  しかし、それではイベントの発生にラグが生じるのではと思うかもしれません。
+  それについては[Qwik City][qwik-city]によるキャッシュやプリフェッチなどで最適化されるようです。
+  Astroなどは一部をダウンロードするので従来より大幅に改善していますが、初回ロードでは[Qwik][qwik]には適いません。
+  Astroで[Qwik][qwik]を使用することは可能ですが、[Qwik City][qwik-city]の恩恵を受けることが出来ない為、
+  [Qwik][qwik]をフルで活用したいならば[Qwik City][qwik-city]を使わなければなりません。
+
+  構文的には[React][react]に近いです。[React][react]にある機能がそのまま移植されていたり、
+  名前がほとんど同じだったりすることがあります。
+  しかし、[Qwik][qwik]の問題点はその学習コストの高さです。情報量も極めて少なく、
+  ドキュメントもエコシステムも若干不十分なところがあるのは確かです。
+  正直、妥協して[Svelte][svelte]を使う方が全然楽です。
+  [Astro][astro]には[client:visibleというクライアントディレクティブ][visible]があり、
+  これは画面内に映った時点でロードするというものであり初回ロードをかなり改善できます。
+  そう考えていくと[Qwik][qwik]を使わずともかなりのパフォーマンスを維持できることは間違いないでしょうが、
+  [Qwik][qwik]には絶対的なパフォーマンスがあるため、学習コストに見合う価値があるのは間違いないです。
+
+  各フレームワークのコードに変換できる[mitosis][mitosis]のようなイカれたプロジェクトもあるので、
+  学習コストがそもそも無くなる場合もあります。しかしながら[Qwik][qwik]は知名度も高いとは言い切れず、確率されたフレームワークで無いことも確かです。
+  BuilderIOが今後どのような動きを見せるのか注目すべきではありそうです。
 
 ## 開発環境は?
-
-- [WSL 2][wsl2]
-- [fnm][fnm]  
-- [pnpm][pnpm]  
-- [Alacritty][alacritty]  
-- [fish][fish]  
-- [Starship][starship]  
-- [VSCode][vscode]  
-  - [Dracula][vscode-dracula]  
-  - [Astro][vscode-astro]  
-  - [stylus][vscode-stylus]
-  - [JavaScript and TypeScript Nightly][vscode-js-and-ts]  
-  - [Markdown All in One][vscode-markdown]  
-  - [Prettier][vscode-prettier]  
-  - [EditorConfig for VS Code][vscode-editorconfig]  
-  - [GitLens][vscode-git-lens]  
-  - [Git Graph][vscode-git-graph]  
-  - [Git History][vscode-git-history]  
-  - [GitHub Pull][vscode-github-pull]  
-  - [indent-rainbow][vscode-indent-rainbow]  
-  - [Error Lens][vscode-error-lens]  
-  - [Bracket Lens][vscode-bracket-lens]  
-  - [Gremlins tracker for Visual Studio Code][vscode-gremlins]  
-  - [change-case][vscode-change-case]  
-  - [Path Intellisense][vscode-path-intellisense]  
-  - [IntelliCode][vscode-intelli-code]  
-  - [Tabnine][vscode-tabnine]  
-  - [Peacock][vscode-peacock]  
-  - [CodeSnap][vscode-code-snap]
-  - [GlassIt-VSC][vscode-glass-it]  
-
-  また、[Stackshare](https://stackshare.io/7rs/pages)もご参照下さい。  
-
-  正直[Mac][mac]で開発する方が楽ではあるのですが、[M Series][apple-m-series]では[BootCamp][bootcamp]がほぼ使えない状態で、
-  [Parallels Desktop][parallels]で使うのも好ましくないので[Windowsのノート][laptop]を買いました。
-  Windowsで開発する場合、[WSL][wsl2]を使うのが楽なのですが、[WSL][wsl2]はかなりゴミです。もちろん、[Linux][arch]をインストールすることは可能ですが、利便性は悪いです。  
-
+  
   > [7rs/pages](https://github.com/7rs/pages)  
 
   ちなみに、このウェブサイトはオープンソースです。貢献して頂けるのなら非常に助かりますが、私にやる気があるかはわかりません。現在は多言語化に頭を悩ませております。  

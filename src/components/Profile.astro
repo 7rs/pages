@@ -29,10 +29,10 @@ const { icon, alt, name, href, title, lang, openInNewTab, ...props } = Astro.pro
   @import "../styles/api.styl"
 
   article[profile-card]
+    @extend $hoverable-widget
     box-sizing border-box
     height 100%
     width 100%
-    glassmorphism(hovered: true)
     // Grid layout
     display grid
     grid-template-columns 1fr 4fr

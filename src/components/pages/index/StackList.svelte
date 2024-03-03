@@ -39,7 +39,7 @@
           {#if stack.icon.startsWith('src:')}
             <img in:blur={{ duration: 200 }} src={`src/icons/${stack.icon.slice(4)}.svg`} alt={stack.name} />
           {:else}
-            <Icon icon={stack.icon} />
+            <Icon icon={stack.icon} title={stack.name} />
           {/if}
         </a>
         <!--  -->

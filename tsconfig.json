@@ -7,10 +7,9 @@
         "allowJs": true,
         "moduleResolution": "node",
         "resolveJsonModule": true,
-        // "emitDeclarationOnly": true,
-        "allowImportingTsExtensions": true,
         "jsx": "react-jsx",
         "jsxImportSource": "@builder.io/qwik",
+        // "emitDeclarationOnly": true,
         "paths": {
             "@components/*": ["src/components/*"],
             "@pages-components/*": ["src/components/pages/*"],
@@ -22,6 +21,9 @@
             "@scripts/*": ["scripts/*"],
             "@lib/*": ["scripts/lib/*"],
             "@public/*": ["public/*"]
-        }
-    }
+        },
+        "noEmit": true,
+        "allowImportingTsExtensions": true
+    },
+    "exclude": ["*node_modules*", "scripts/lib"]
 }

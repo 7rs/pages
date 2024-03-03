@@ -1,6 +1,9 @@
 ---
 import { Metadata, getLocale, defaultBlogLocale, setMetadataFromJSON } from "@lib/meta";
 import { SchemaTypes, createSchema } from "@lib/schema";
+import { getLangaugeLabel } from "@lib/locale";
+
+import PostInfo from "@layouts-components/blog/postInfo.astro"
 
 import { fade } from "astro:transitions";
 
@@ -31,8 +34,12 @@ let metadata: Metadata = setMetadataFromJSON(pages, logo.src, logo.src, "Cbrnex 
   </Meta>
   <body>
     <Header transition:persist />
-    <main {...props} transition:animate={fade({ duration: "0.1s" })} data-pagefind-body={frontmatter.published ? "" : undefined}>
-      <h1>{frontmatter.title}</h1>
+    <main
+      {...props}
+      transition:animate={fade({ duration: "0.1s" })}
+      data-pagefind-body={frontmatter.published ? "" : undefined}
+    >
+      <PostInfo frontmatter={frontmatter} />
       <slot />
     </main>
     <Footer transition:persist />

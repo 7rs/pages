@@ -1,13 +1,12 @@
 ---
-import { Icon } from "astro-icon/components";
-
+import LinkIcon from "@components/icon/LinkIcon.astro";
 import SocialList from "@layouts-components/footer/SocialList.astro"
 
 import Link from "@components/Link.astro";
 ---
 
 <footer>
-  <Icon name="pages-logo" />
+  <LinkIcon icon="pages-logo" href="/" title="Main page" />
   <SocialList />
   <nav profile-links>
     <Link href="https://github.com/7rs" title="GitHub Profile" openInNewTab>Cbrnex</Link>
@@ -16,7 +15,7 @@ import Link from "@components/Link.astro";
   </nav>
   <nav navigation-links>
     <Link href="/" title="Main Page">Main</Link>
-    <Link href="/blog" title="Blod search">Blog</Link>
+    <Link href="/blog" title="Blog search">Blog</Link>
     <Link href="/tas" title="TAS contents">TAS</Link>
   </nav>
 </footer>
@@ -53,8 +52,8 @@ import Link from "@components/Link.astro";
       padding 1.5rem calc((100% - var(--widths-large)) / 2 + 0.5rem)
 
     &::before
+      @extend $simple-blur
       z-index -1
-      background-blur()
 
     // Branding Logo
     [data-icon="pages-logo"]
@@ -62,8 +61,8 @@ import Link from "@components/Link.astro";
       font-size 3rem
       margin auto
       @media screen and (min-width widths.medium)
-        align-content flex-start
         margin 0
+        align-content flex-start
 
     [social-list]
       grid-area socials
@@ -84,9 +83,6 @@ import Link from "@components/Link.astro";
         sans(1.2rem, 1.5rem)
         @media screen and (min-width widths.large)
           sans(1.5rem, 1.75rem)
-
-          &:hover
-            sans(1.75rem, 2rem)
-            transition all 100ms linear
-            filter drop-shadow(0px 0px 8px colors.dark.content)
+        &:hover
+          expand-text(1.75rem, 2rem)
 </style>
