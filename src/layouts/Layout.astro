@@ -1,86 +1,96 @@
 ---
-import { Metadata, Frontmatter, getLocale, defaultLocale, defaultBlogLocale, setMetadataFromJSON } from "@lib/meta";
-import { SchemaTypes, createSchema } from "@lib/schema";
-
 import { fade } from "astro:transitions";
 
+// Scripts
+import { defaultLocale, setMetadataFromJSON } from "@lib/meta";
+import { SchemaTypes, createSchema } from "@lib/schema";
+
+// UI & Styling
 import Meta from "@layouts/Meta.astro";
 import Header from "@layouts/Header.astro";
 import Footer from "@layouts/Footer.astro";
+import "@styles/default.styl"
 
-import { pages } from "pages.json";
-
-import "@styles/main.styl";
-import logo from "@assets/logo.svg";
-
-import dark from "@assets/dark900.avif";
-import light from "@assets/light900.avif";
-
-const darkBackground = `url(${dark.src})`;
-const lightBackground = `url(${light.src})`;
-
+// Receives props
 export interface Props {
   title: string;
   locale?: string;
-  schemaMarkup?: string;
-  frontmatter?: Frontmatter;
   fonts?: Array<string>;
+  schemaMarkup?: string;
+  noIndex?: boolean;
 }
+const { 
+  title,
+  locale = defaultLocale,
+  fonts = ["Fira+Sans:wght@400;700;900"],
+  schemaMarkup,
+  noIndex =false,
+  ...props 
+} = Astro.props;
 
-const { title, locale = defaultLocale, schemaMarkup, frontmatter, fonts = [], ...props } = Astro.props;
+// Loads configrations
+import { pages } from "pages.json";
+import logo from "@icons/colored-7rs.svg";
+let metadata = setMetadataFromJSON(pages, logo.src, logo.src, "Cbrnex Logo");
 
-// https://fonts.google.com/specimen/Fira+Sans
-// https://fonts.google.com/specimen/Fira+Code
-const firaSans = "Fira+Sans:ital,wght@0,400;0,700;1,400;1,700";
-fonts.push(...(frontmatter ? [firaSans, "Fira Code"] : [firaSans]));
-
-let metadata: Metadata = setMetadataFromJSON(
-  pages,
-  logo.src,
-  logo.src,
-  "Cbrnex Logo",
-  frontmatter ? !frontmatter.published : false,
-);
-
-let lang = locale;
-let defaultSchemaMarkup: string;
-let search: string | undefined = "";
-if (frontmatter) {
-  search = frontmatter.published ? "" : undefined;
-  lang = getLocale(frontmatter.lang || defaultBlogLocale);
-  defaultSchemaMarkup = createSchema(SchemaTypes.Article, metadata, frontmatter);
-} else {
-  defaultSchemaMarkup = createSchema(SchemaTypes.Profile, metadata);
-}
+// Loads wallpapers
+import dark from "@assets/dark900.avif";
+import light from "@assets/light900.avif";
+const darkWallpaper = `url(${dark.src})`;
+const lightWallpaper = `url(${light.src})`;
 ---
 
 <!doctype html>
-<html lang={lang}>
-  <Meta title={frontmatter?.title || title} metadata={metadata} fonts={fonts}>
-    <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
-    <link rel="prefetch" fetchpriority="low" as="image" type="image/jpeg" href={light.src} />
-    <link rel="prefetch" fetchpriority="low" as="image" type="image/jpeg" href={dark.src} />
+<html lang={locale}>
+  <Meta title={title} metadata={metadata} fonts={fonts}>
+    <script type="application/ld+json" set:html={schemaMarkup || createSchema(SchemaTypes.Profile, metadata)} />
+    <link rel="prefetch" fetchpriority="low" as="image" type="image/avif" href={light.src} />
+    <link rel="prefetch" fetchpriority="low" as="image" type="image/avif" href={dark.src} />
   </Meta>
-  <body>
-    <Header transition:persist />
-    <main
-      {...props}
-      transition:animate={fade({ duration: "0.1s" })}
-      data-pagefind-body={search}
-    >
+  <body class="system">
+    <Header />
+    <main {...props} transition:animate={fade({ duration: "0.1s" })} data-pagefind-body={noIndex ? undefined : ""}>
       <slot />
     </main>
-    <Footer transition:persist />
-    <!-- The "Prettier" is stupid. Where's prettier?????? -->
-    <style lang="stylus" define:vars={{darkBackground, lightBackground}} is:global>
-  @import "../styles/api.styl"
-
-  html
-    overflow hidden auto
-    @media (prefers-color-scheme light)
-      background var(--lightBackground) center/cover no-repeat fixed, colors.background
-    @media (prefers-color-scheme dark)
-      background var(--darkBackground) center/cover no-repeat fixed, colors.dark.background
-</style>
+    <Footer />
   </body>
 </html>
+
+<style lang="stylus" define:vars={{lightWallpaper, darkWallpaper}} is:global>
+  @import "../styles/api.styl"
+
+  :root
+    @media (prefers-color-scheme light)
+      --background-image var(--lightWallpaper)
+    @media (prefers-color-scheme dark)
+      --background-image var(--darkWallpaper)
+
+  .light-mode
+    --background-image var(--lightWallpaper)
+  .dark-mode
+    --background-image var(--darkWallpaper)
+
+  main::before
+    z-index -1002
+    full-size-before()
+    background var(--background-image) center/cover no-repeat fixed, var(--background)
+
+  body
+    z-index -1001
+    position relative
+    box-sizing border-box
+    overflow-x clip
+    min-height 100vh
+    max-width 100%
+    flex(column)
+    scrollbar(5px) // Chrome & Edge
+
+  main
+    z-index 0
+    position relative
+    flex-grow 1
+    min-height 100%
+    responsive-padding()
+    padding-bottom 3rem
+    flex(column, 3rem)
+</style>

@@ -1,0 +1,35 @@
+---
+import Repository from "@components/Repository.astro";
+---
+
+<section repository-list>
+  <Repository authors="7rs" name="line4py" icon="simple-icons:python">
+    Unofficially LINE library for Python.
+  </Repository>
+  <Repository authors="7rs" name="logos" icon="7rs-icon">Brandings by Cbrnex.</Repository>
+  <Repository authors="7rs" name="parfait" icon="simple-icons:lua">
+    A GUI tool for SM64 TASing.
+  </Repository>
+  <Repository authors="7rs" name="line" icon="simple-icons:line">
+    LINE API information and thrift files.
+  </Repository>
+  <Repository authors="7rs" name="legible-fonts" icon="simple-icons:fontforge">
+    Legible monospace fonts for engineers.
+  </Repository>
+  <Repository authors="74gg" name="74gg.github.io" icon="74-icon">
+    An website for an organization @74gg.
+  </Repository>
+</section>
+
+<style lang="stylus">
+  @import "../../../styles/api.styl"
+
+  [repository-list]
+    display grid
+    gap 1rem
+    grid-template-columns 1fr
+    @media screen and (min-width widths.medium)
+      grid-template-columns repeat(2, 1fr)
+    @media screen and (min-width widths.large)
+      grid-template-columns repeat(3, 1fr)
+</style>

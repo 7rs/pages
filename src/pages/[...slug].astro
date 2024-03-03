@@ -1,8 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import { getRelativeLocaleUrlList, getRelativeLocaleUrl } from "astro:i18n";
 
-import "@styles/md.styl";
+import "@styles/markdown.styl";
 
 export async function getStaticPaths() {
   const pages = await getCollection("blog");

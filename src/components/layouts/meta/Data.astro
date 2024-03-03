@@ -1,0 +1,20 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  authorName?: string;
+  siteName?: string;
+  url?: string;
+}
+
+const { title, description, authorName, siteName, url } = Astro.props;
+---
+
+<title>{title}</title>
+<link rel="sitemap" href="/sitemap-0.xml" />
+<meta name="generator" content="Astro" />
+<!-- Optional -->
+{description && <meta name="description" content={description} />}
+{authorName && <meta name="author" content={authorName} />}
+{url && <link rel="canonical" href={url} />}
+{siteName && <meta content={siteName} name="apple-mobile-web-app-title" />}

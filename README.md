@@ -33,7 +33,7 @@
   <img src=".github/assets/banner.jpg" alt="banner" />
 </picture>
 
-[English](./README) | [日本語](./README_ja)
+[English](./README.md) | [日本語](./README_ja.md)
 
 [stylus]: https://img.shields.io/badge/Stylus-333333?style=for-the-badge&logo=stylus
 [svelte]: https://img.shields.io/badge/Svelte-FF3E00?style=for-the-badge&logo=svelte&logoColor=white
@@ -76,6 +76,7 @@
 - [Optimization SEO.](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)  
 - Search articles with [Pagefind](https://pagefind.app/)  
 
+[2024-01-28]: https://pagespeed.web.dev/analysis/https-7rs-dev/0f0e76xl0r?form_factor=mobile
 [2024-01-13_2]: https://pagespeed.web.dev/analysis/https-7rs-dev/x0q7ws96dt?form_factor=mobile
 [2024-01-13_1]: https://pagespeed.web.dev/analysis/https-7rs-dev/bflti9eum0?form_factor=mobile
 [2024-01-12]: https://pagespeed.web.dev/analysis/https-7rs-dev/azm6eyfj4m?form_factor=mobile
@@ -85,10 +86,11 @@
 
   | Mobile | Desktop | Date |
   | - | - | - |
-  | 99 | 100 | [2024-01-13][2024-01-13_2] |
-  | 91 | 98  | [2024-01-13][2024-01-13_1] |
-  | 88 | 96  | [2024-01-12][2024-01-12] |
-  | 82 | 94  | [2024-01-08][2024-01-08] |
+  | 100 | 100 | [2024-01-28][2024-01-28] |
+  | 99  | 100 | [2024-01-13][2024-01-13_2] |
+  | 91  | 98  | [2024-01-13][2024-01-13_1] |
+  | 88  | 96  | [2024-01-12][2024-01-12] |
+  | 82  | 94  | [2024-01-08][2024-01-08] |
 
 ## Installation  
 
@@ -125,7 +127,7 @@
 #### Activate preview in your browser  
 
   ```sh
-  pnpm run dev  
+  pnpm dev  
   ```  
 
 [unsplash-badge]: https://img.shields.io/badge/Unsplash-black?style=for-the-badge&logo=unsplash

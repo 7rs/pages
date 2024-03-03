@@ -1,5 +1,5 @@
 ---
-layout: "@layouts/Layout.astro"
+layout: "@layouts/Blog.astro"
 title: "速いウェブサイトを作る"
 tags: ["frontend", "cloudflare", "astro", "stylus"]
 published: false

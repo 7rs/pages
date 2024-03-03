@@ -13,7 +13,3 @@ node_modules/
 # Environment-dependent files
 .DS_Store
 *.Identifier
-
-# config files
-.vscode/*
-!.vscode/extensions.json

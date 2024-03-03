@@ -1,131 +1,88 @@
 ---
-import Brand from "@components/Brand.astro";
-import SocialList from "@components/footer/SocialList.astro";
+import LinkIcon from "@components/icon/LinkIcon.astro";
+import SocialList from "@layouts-components/footer/SocialList.astro"
 
-import LabeledIcon from "@components/LabeledIcon.astro";
-import Navigation from "@components/footer/Navigation.astro";
-import Social from "@components/footer/Social.astro";
+import Link from "@components/Link.astro";
 ---
 
 <footer>
-  <div class="footer">
-    <div class="summary">
-      <Brand />
-      <p>Fast and simple website.</p>
-    </div>
-    <SocialList>
-      <Social alias="youtube" userId="QRZE" openInNewTab />
-      <Social alias="github" userId="7rs" openInNewTab />
-      <Social alias="zenn" userId="7rs" openInNewTab />
-      <Social alias="discord" userId="GQP8A5kDJV" openInNewTab />
-      <Social alias="telegram" userId="Cbrnex" openInNewTab />
-      <Social alias="youtube" userId="cbrnex" openInNewTab />
-      <Social alias="reddit" userId="r4zln" openInNewTab />
-      <Social alias="twitch" userId="cbrnex" openInNewTab />
-      <Social alias="patreon" userId="7rs" openInNewTab />
-      <Social alias="paypal" userId="7rbots" openInNewTab />
-      <Social alias="gitlab" userId="7rs" openInNewTab />
-      <Social alias="qiita" userId="7rs" openInNewTab />
-      <Social alias="applemusic" userId="7rs" openInNewTab />
-      <Social alias="internetarchive" userId="cbrnex" openInNewTab />
-      <Social customSocial={{ iconName: "simple-icons:rss", description: "My blog RSS feed", url: "/rss.xml" }} openInNewTab />
-      <!-- simple-icons:rss /rss.xml -->
-      <!--
-      <Social alias="x" userId="cbrnex" openInNewTab />
-      <Social alias="tiktok" userId="cbrnex" openInNewTab />
-      <Social alias="mastodon" userId="7rs" openInNewTab />
-      <Social alias="mastodon.cloud" userId="7rs" openInNewTab />
-      <Social alias="mstdn.jp" userId="7rs" openInNewTab />
-      -->
-    </SocialList>
-    <Navigation icon="logo" categoryName="Pages" description="Pages item" name="pages-nav">
-      <LabeledIcon icon="material-symbols:other-houses" description="Main page" href="/">Main</LabeledIcon>
-    </Navigation>
-    <Navigation
-      icon="material-symbols:info-outline"
-      categoryName="Resources"
-      description="Resources of pages"
-      name="resources-nav"
-    >
-      <LabeledIcon
-        icon="simple-icons:github"
-        description="GitHub repository for pages"
-        href="https://7rs.dev/github"
-        openInNewTab
-        label="Repository"
-      />
-      <LabeledIcon
-        icon="material-symbols:book-2"
-        description="Documentations for pages"
-        href="https://7rs.dev/docs"
-        openInNewTab
-        label="Docs"
-      />
-      <LabeledIcon
-        icon="material-symbols:copyright-outline"
-        description="About license"
-        href="https://7rs.dev/license"
-        openInNewTab
-        label="License"
-      />
-      <LabeledIcon
-        icon="material-symbols:stylus-note"
-        description="Scraps in Zenn"
-        href="https://7rs.dev/scraps"
-        openInNewTab
-        label="Scraps"
-      />
-      <LabeledIcon
-        icon="simple-icons:stackshare"
-        description="Information in Stackshare"
-        href="https://7rs.dev/tech-stack"
-        openInNewTab
-        label="Stack"
-      />
-    </Navigation>
-  </div>
+  <LinkIcon icon="pages-logo" href="/" title="Main page" />
+  <SocialList />
+  <nav profile-links>
+    <Link href="https://github.com/7rs" title="GitHub Profile" openInNewTab>Cbrnex</Link>
+    <Link href="https://github.com/74gg" title="Organization" openInNewTab>74</Link>
+    <Link href="https://github.com/7rs/pages" title="Source code" openInNewTab>Pages</Link>
+  </nav>
+  <nav navigation-links>
+    <Link href="/" title="Main Page">Main</Link>
+    <Link href="/blog" title="Blog search">Blog</Link>
+    <Link href="/tas" title="TAS contents">TAS</Link>
+  </nav>
 </footer>
 
 <style lang="stylus">
   @import "../styles/api.styl"
 
-  div.footer
-    padding 1rem
+  footer
+    z-index 1
+    position relative
+    bottom 0
+    box-sizing border-box
+    width 100%
+    // Grid layout
     display grid
-    gap 1rem 0
-    // For responsive
+    gap 1rem 0.5rem
+    // Responsive
+    padding 0.5rem
+    grid-template-columns repeat(2, 1fr)
+    grid-template-rows auto auto 1fr
     grid-template-areas \
-      "summary    " \
-      "social-list";
+      "brand brand" \
+      "socials socials" \
+      "links nav" \
+      "links nav";
     @media screen and (min-width widths.medium)
-      grid-template-rows 2fr 5fr
-      grid-template-columns 3fr 1fr
+      padding 1.25rem 1rem
+      grid-template-columns 2fr repeat(2, 1fr)
+      grid-template-rows auto 1fr
       grid-template-areas \
-      "summary     resources-nav" \
-      "social-list resources-nav";
+        "brand   links nav" \
+        "socials links nav";
     @media screen and (min-width widths.large)
-      grid-template-rows 2fr 5fr
-      grid-template-columns 3fr repeat(2, 1fr)
-      grid-template-areas \
-      "summary     pages-nav resources-nav" \
-      "social-list pages-nav resources-nav";
+      padding 1.5rem calc((100% - var(--widths-large)) / 2 + 0.5rem)
 
-    div.summary
-      grid-area summary
+    &::before
+      @extend $simple-blur
+      z-index -1
+
+    // Branding Logo
+    [data-icon="pages-logo"]
+      grid-area brand
+      font-size 3rem
+      margin auto
+      @media screen and (min-width widths.medium)
+        margin 0
+        align-content flex-start
 
     [social-list]
-      grid-area social-list
+      grid-area socials
 
-    [footer-nav]
-      display none
+    [profile-links]
+      grid-area links
 
-    [footer-nav="pages-nav"]
-      grid-area pages-nav
-      @media screen and (min-width widths.large)
-        display flex
+    [navigation-links]
+      grid-area nav
 
-    [footer-nav="resources-nav"]
-      grid-area resources-nav
-      @media screen and (min-width widths.medium)
-        display flex
+    [profile-links], [navigation-links]
+      flex(column, 0.2rem)
+
+      [data-link]
+        width 100%
+        display block
+        // Responsive
+        sans(1.2rem, 1.5rem)
+        @media screen and (min-width widths.large)
+          sans(1.5rem, 1.75rem)
+        &:hover
+          expand-text(1.75rem, 2rem)
 </style>
