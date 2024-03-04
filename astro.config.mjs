@@ -1,59 +1,105 @@
 import { defineConfig, passthroughImageService } from 'astro/config';
-import mdx from "@astrojs/mdx";
-import svelte from "@astrojs/svelte";
-import sitemap from "@astrojs/sitemap";
-import purgecss from "astro-purgecss";
-import Compress from "astro-compress";
-import robotsTxt from "astro-robots-txt";
-import pagefind from "astro-pagefind";
-import icon from "astro-icon";
 
-import qwikdev from "@qwikdev/astro";
+import mdx from '@astrojs/mdx';
+import svelte from '@astrojs/svelte';
+import qwikdev from '@qwikdev/astro';
+import robotsTxt from 'astro-robots-txt';
+import sitemap from '@astrojs/sitemap';
+import pagefind from 'astro-pagefind';
+import purgecss from 'astro-purgecss';
+import Compress from 'astro-compress';
+import icon from 'astro-icon';
 
-// https://astro.build/config
 export default defineConfig({
-  // https://astro.build/integrations/
-  integrations: [Compress({
-    CSS: true,
+  site: 'https://7rs.dev',
+  /*
+    https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml
+    https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?search=Unassigned
+    https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
+
+    - 2998: Real Secure
+    - 2999 RemoteWare Unassigned
+    - 3000: HBCI, RemoteWare Client (Ruby on Rails)
+    - 4000: Terabase, ICQ, Diablo II
+    - 4321: Remote Who Is (Astro default)
+    - 5173-5189: Unassigned (5173: Vite)
+    - 8080: HTTP Alternate, Apache Tomcat
+    - 8888: NewsEDGE server TCP, HyperVM (Known Unauthorized Use)
+  */
+  server: {
+    host: true,
+    port: 2999
+  },
+  i18n: {
+    defaultLocale: 'ja',
+    locales: ['ja', 'en'],
+    fallback: {
+      en: 'ja'
+    },
+    routing: {
+      prefixDefaultLocale: false
+    },
+  },
+  markdown: {
+    shikiConfig: {
+      theme: 'dracula'
+    },
+    gfm: false
+  },
+  integrations: [mdx(), svelte(), qwikdev(), robotsTxt(), sitemap(), pagefind(), purgecss(), Compress({
+    CSS: false,
     HTML: true,
     Image: false,
     JavaScript: true,
     SVG: true
-  }), mdx(), purgecss(), svelte(), robotsTxt(), sitemap(), pagefind(), icon({
-    iconDir: "src/icons",
+  }),
+  icon({
+    iconDir: 'src/icons',
     include: {
-      simpleIcons: ["youtube", "twitch", "tiktok", "pinterest", "applemusic", "github", "gitlab", "internetarchive", "patreon", "paypal", "reddit", "zenn", "qiita", "x", "mastodon", "discord", "telegram", "rss", "porkbun"],
-      materialSymbols: ["wb-sunny-outline", "search", "copyright-outline", "menu", "package-2-outline-sharp"],
-      cib: ["creative-commons-pd", "creative-commons-zero"],
-      octicon: ["law-16"]
+      simpleIcons: [
+        'porkbun',
+        'cloudflarepages',
+        'powershell',
+        'purgecss',
+        'googlefonts',
+        'iconify',
+        'unsplash',
+        'sharp',
+        'pagespeedinsights'
+      ],
+      Logos: [
+        'cloudflare',
+        'git',
+        'github',
+        'sublimetext-icon',
+        'nodejs',
+        'pnpm',
+        'microsoft-windows',
+        'firefox',
+        'chrome',
+        'microsoft-edge',
+        'html-5',
+        'stylus',
+        'postcss',
+        'javascript',
+        'typescript',
+        'markdown',
+        'vitejs',
+        'astro',
+        'svelte',
+        'qwik',
+        'zod',
+        'autoprefixer',
+        'prettier',
+        'lighthouse',
+        'editorconfig'
+      ],
+      materialSymbols: ['wb-sunny-outline', 'search', 'copyright-outline', 'menu', 'package-2-outline-sharp'],
+      cib: ['creative-commons-pd', 'creative-commons-zero'],
+      octicon: ['law-16']
     }
-  }), qwikdev()],
-  // https://docs.astro.build/guides/images/
-  image: {
-    service: passthroughImageService()
-  },
-  // https://docs.astro.build/guides/internationalization/
-  // https://docs.astro.build/recipes/i18n/
-  i18n: {
-    defaultLocale: "ja",
-    locales: ["ja", "en"],
-    routing: {
-      prefixDefaultLocale: false
-    },
-    fallback: {
-      en: "ja"
-    }
-  },
-  // https://docs.astro.build/guides/markdown-content/
-  // https://github.com/shikijs/shiki/blob/main/docs/languages.md
-  // https://github.com/shikijs/shiki/blob/main/docs/themes.md
-  markdown: {
-    shikiConfig: {
-      theme: "dracula"
-    },
-    gfm: false
-  },
-  // https://github.com/alextim/astro-lib
-  // https://github.com/alextim/astro-lib/tree/main/packages/astro-robots-txt
-  site: "https://7rs.dev"
+  })],
+  // image: {
+  //   service: passthroughImageService()
+  // },
 });

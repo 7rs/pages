@@ -13,7 +13,7 @@ import Footer from "@layouts/Footer.astro";
 
 import { pages } from "pages.json";
 
-import logo from "@icons/logo.svg";
+import logo from "@icons/colored-7rs.svg";
 
 export interface Props {
   frontmatter: any;
@@ -32,7 +32,7 @@ let metadata: Metadata = setMetadataFromJSON(pages, logo.src, logo.src, "Cbrnex 
   <Meta title={frontmatter.title} metadata={metadata} fonts={fonts}>
     <script type="application/ld+json" set:html={createSchema(SchemaTypes.Article, metadata, frontmatter)} />
   </Meta>
-  <body>
+  <body class="markdown system">
     <Header transition:persist />
     <main
       {...props}

@@ -37,7 +37,9 @@
         <!-- Icon -->
         <a href={stack.url} title={stack.name} target="_blank" referrerpolicy="no-referrer" rel="noopener noreferrer">
           {#if stack.icon.startsWith('src:')}
-            <img in:blur={{ duration: 200 }} src={`src/icons/${stack.icon.slice(4)}.svg`} alt={stack.name} />
+            <img src={`src/icons/${stack.icon.slice(4)}.svg`} alt={stack.name} />
+          {:else if stack.icon.startsWith('url:')}
+            <img src={stack.icon.slice(4)} alt={stack.name} />
           {:else}
             <Icon icon={stack.icon} title={stack.name} />
           {/if}

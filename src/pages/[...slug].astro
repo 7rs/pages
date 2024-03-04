@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 
 import "@styles/markdown.styl";
+import "@styles/default.styl";
 
 export async function getStaticPaths() {
   const pages = await getCollection("blog");

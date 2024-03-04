@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 
 import ThemeSvelte from "@layouts-components/header/Theme.svelte"
-import ThemeQwik from "@layouts-components/header/theme"
+// import ThemeQwik from "@components/layouts/header/theme.tsx"
 
 import LinkIcon from "@components/icon/LinkIcon.astro";
 import Search from "@components/Search.astro"
@@ -12,7 +12,7 @@ import Search from "@components/Search.astro"
   <LinkIcon icon="pages-logo" href="/" title="Main page" />
   <Search />
   <nav>
-    <ThemeQwik />
+    <ThemeSvelte client:only />
     <Icon name="material-symbols:menu" />
   </nav>
 </header>
@@ -27,7 +27,9 @@ import Search from "@components/Search.astro"
     responsive-padding(x: 0.5rem, y: 0.5rem)
     // Grid layout
     display grid
-    grid-template-columns auto 1fr auto
+    grid-template-columns auto 1fr
+    @media screen and (min-width widths.large)
+      grid-template-columns auto 1fr auto
     gap 3rem
 
     &::before
@@ -48,29 +50,32 @@ import Search from "@components/Search.astro"
     @media screen and (min-width widths.medium)
       gap 2rem
 
-    svg[data-icon], svg
+    svg
+      color var(--content)
       font-size 1.75rem
       @media screen and (min-width widths.medium)
         font-size 2rem
 
-    div
-      height 1.75rem
-      width 1.75rem
-      @media screen and (min-width widths.medium)
-        height 2rem
-        width 2rem
+    // For Qwik
 
-      background var(--content)
-      mask-size 100%
-      mask-repeat no-repeat
-      mask-position center
+    // div
+    //   height 1.75rem
+    //   width 1.75rem
+    //   @media screen and (min-width widths.medium)
+    //     height 2rem
+    //     width 2rem
 
-    div.system
-      mask-image url("/system.svg")
+    //   background var(--content)
+    //   mask-size 100%
+    //   mask-repeat no-repeat
+    //   mask-position center
 
-    div.light-mode
-      mask-image url("/light-mode.svg")
+    // div.system
+    //   mask-image url("https://api.iconify.design/material-symbols/computer-outline-sharp.svg")
 
-    div.dark-mode
-      mask-image url("/dark-mode.svg")
+    // div.light-mode
+    //   mask-image url("https://api.iconify.design/material-symbols/light-mode-outline.svg")
+
+    // div.dark-mode
+    //   mask-image url("https://api.iconify.design/material-symbols/dark-mode.svg")
 </style>
