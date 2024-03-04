@@ -5,7 +5,7 @@ import { Metadata } from "@lib/meta";
 
 import OpenGraphData from "@layouts-components/meta/OpenGraphData.astro";
 import TwitterCard from "@layouts-components/meta/TwitterCards.astro";
-import Fonts from "@layouts-components/meta/Fonts.astro";
+import Preload from "@components/layouts/meta/Preload.astro";
 import Settings from "@layouts-components/meta/Settings.astro";
 import Data from "@layouts-components/meta/Data.astro";
 
@@ -28,7 +28,7 @@ const { title, metadata, fonts = [] } = Astro.props;
     url={metadata.site.url}
   />
   <Settings favicon={metadata.site.favicon} noIndex={metadata.noIndex} />
-  <Fonts fonts={fonts} />
+  <Preload fonts={fonts} />
   <OpenGraphData
     title={title}
     siteName={metadata.site.name}

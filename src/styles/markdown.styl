@@ -1,4 +1,4 @@
-@import "default.styl"
+@import "api.styl"
 
 // Shittest specification
 @import "waste.styl"
@@ -22,14 +22,6 @@ $underline
     @media (prefers-color-scheme dark)
       border-bottom 1px solid colors.dark.content
 
-body
-  flex(column)
-  box-sizing border-box
-  min-height 100vh
-  align-items center
-  scrollbar(5px)
-  background var(--background)
-
 
 left-spacing = 1rem
 letter-size = 1.1rem
@@ -38,83 +30,91 @@ letter-size = 1.1rem
   --left-spacing: left-spacing
   --letter-size: letter-size
 
-// Markdown contents
-main
-  width 100%
+
+body.markdown
+  flex(column)
   box-sizing border-box
-  padding 0.5rem
-  @media screen and (min-width widths.large)
-    padding 1.5rem calc((100% - var(--widths-large)) / 2 + 0.5rem)
+  min-height 100vh
+  align-items center
+  scrollbar(5px)
+  background var(--background)
 
-  *
-    margin-bottom 1rem
-    & > *
-      margin-bottom 0
-
-  p, a, li
-    sans(letter-size, calc(var(--letter-size) + 0.5rem)) 
-
-  a
-    @extend $hoverable-link
-
-  p, li, h1, h2, h3, h4, h5, h6
-    color var(--content)
-
-  li
-    padding-bottom 0.25rem
+  main
+    width 100%
     box-sizing border-box
-    margin-left calc(var(--left-spacing) + 1rem)
-    &::marker
-      font-size 1rem
+    padding 0.5rem
+    @media screen and (min-width widths.large)
+      padding 1.5rem calc((100% - var(--widths-large)) / 2 + 0.5rem)
 
-  blockquote
-    margin-left left-spacing
-    border-left 3px solid black
-    font-style italic
-    padding-left left-spacing
+    *
+      margin-bottom 1rem
+      & > *
+        margin-bottom 0
 
-  p, h2, h3, h4, h5, h6
-    padding-left left-spacing
+    p, a, li
+      sans(letter-size, calc(var(--letter-size) + 0.5rem)) 
 
-  * > p
-    padding 0
+    a
+      @extend $hoverable-link
 
-  h1
-    margin 2.5rem 0
+    p, li, h1, h2, h3, h4, h5, h6
+      color var(--content)
 
-  h1, h1 > *
-    sans(3rem, 3rem)
-    font-weight 900
-    text-align center
+    li
+      padding-bottom 0.25rem
+      box-sizing border-box
+      margin-left calc(var(--left-spacing) + 1rem)
+      &::marker
+        font-size 1rem
 
-  h2
-    @extend $underline
-    margin-top 3rem
+    blockquote
+      margin-left left-spacing
+      border-left 3px solid black
+      font-style italic
+      padding-left left-spacing
 
-  h2, h2 > *
-    sans(2rem, 2.5rem)
-    font-weight 700
+    p, h2, h3, h4, h5, h6
+      padding-left left-spacing
 
-  h3
-    margin-top 1.5rem
+    * > p
+      padding 0
 
-  h3, h3 > *
-    sans(1.75rem, 2rem)
+    h1
+      margin 2.5rem 0
 
-  h4
-    margin-top 1rem
+    h1, h1 > *
+      sans(3rem, 3rem)
+      font-weight 900
+      text-align center
 
-  h4, h4 > *
-    sans(1.5rem, 2rem)
+    h2
+      @extend $underline
+      margin-top 3rem
 
-  h5
-    margin-top 1rem
+    h2, h2 > *
+      sans(2rem, 2.5rem)
+      font-weight 700
 
-  h5, h5 > *
-    sans(1.25rem, 1.5rem)
+    h3
+      margin-top 1.5rem
 
-  h6
-    margin-top 1rem
+    h3, h3 > *
+      sans(1.75rem, 2rem)
 
-  h6, h6 > *
-    sans(1rem, 1.5rem)
+    h4
+      margin-top 1rem
+
+    h4, h4 > *
+      sans(1.5rem, 2rem)
+
+    h5
+      margin-top 1rem
+
+    h5, h5 > *
+      sans(1.25rem, 1.5rem)
+
+    h6
+      margin-top 1rem
+
+    h6, h6 > *
+      sans(1rem, 1.5rem)
