@@ -3,6 +3,8 @@ dist/
 node_modules/
 .astro/
 .git/
+*-lighthouse.html
+lighthouse.html
 
 # Logs
 *.log*
@@ -13,7 +15,3 @@ node_modules/
 # Environment-dependent files
 .DS_Store
 *.Identifier
-
-# config files
-.vscode/*
-!.vscode/extensions.json

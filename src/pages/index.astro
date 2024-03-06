@@ -1,52 +1,19 @@
 ---
 import Layout from "@layouts/Layout.astro";
 
-import Profile from "@components/main/Profile.astro";
-import PostList from "@components/PostList.astro";
-
-import Repo from "@components/main/Repository.astro";
-import RepositoryList from "@components/main/RepositoryList.astro";
-
-import Avatar from "@assets/avatar.jpg";
+import Landing from "@pages-components/index/Landing.astro"
+import ProfileList from "@pages-components/index/ProfileList.astro"
+import RepositoryList from "@pages-components/index/RepositoryList.astro"
+import PostList from "@components/post/PostList.astro";
+import Stack from "@pages-components/index/Stack.astro"
+import License from "@pages-components/index/License.astro"
 ---
 
-<Layout title="Main Page">
-  <Profile image={Avatar} name="Cbrnex">
-    I'm Japanese and a SM64 Romhack TASer. <br />
-    The name "Cbrnex" comes from <a
-      href="https://simple.wikipedia.org/wiki/CBRNE"
-      target="_blank"
-      rel="noopener noreferrer">CBRNE</a
-    >.
-  </Profile>
-  <RepositoryList>
-    <Repo userId="7rs" repository="pages" icon="mdi:world-wide-web" lang="astro" license="cc0">
-      Fast and simple website.
-    </Repo>
-    <Repo userId="7rs" repository="parfait" icon="mdi:world-wide-web" lang="lua" license="nolicense">
-      A fork of SM64 Lua Redux.
-    </Repo>
-    <Repo userId="7rs" repository="sm64tas" icon="mdi:world-wide-web" lang="unknown" license="wtfpl">
-      An archive for publication and storage TASing files. 
-    </Repo>
-    <Repo userId="7rs" repository="line4py" icon="mdi:world-wide-web" lang="python" license="wtfpl">
-      A closed LINE API for Python.
-    </Repo>
-    <Repo userId="7rs" repository="line" icon="mdi:world-wide-web" lang="thrift" license="wtfpl">
-      A repository for collection closed LINE api information and publishing thrift files.
-    </Repo>
-    <Repo userId="7rs" repository="legible-fonts" icon="mdi:world-wide-web" lang="python" license="ofl">
-      A Legible monospace fonts for engineers.
-    </Repo>
-  </RepositoryList>
+<Layout>
+  <Landing />
+  <ProfileList />
+  <RepositoryList />
   <PostList />
+  <Stack />
+  <!-- <License /> -->
 </Layout>
-
-<style lang="stylus">
-  @import "../styles/api.styl"
-
-  main
-    display flex
-    flex-direction column
-    gap 3rem
-</style>

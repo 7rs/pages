@@ -15,6 +15,16 @@
                 "parser": "json",
                 "tabWidth": 4
             }
+        },
+        {
+            "files": ["*.js", "*.ts", "*.svelte", "*.jsx", "*.tsx", "*.mjs"],
+            "options": {
+                "singleQuote": true
+            }
+        },
+        {
+            "files": ["*.styl"],
+            "options": { "trailingComma": "all" }
         }
     ]
 }

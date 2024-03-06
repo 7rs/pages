@@ -13,20 +13,17 @@
 ## Usage in CLI  
 
   ```sh
-  # avatar
-  wget "https://unsplash.com/photos/7bynNtRqu4E/download?force=true" -O "./src/assets/7bynNtRqu4E.jpg"
-  sharp resize 240 240 --position "top" -i "./src/assets/7bynNtRqu4E.jpg" -o "./src/assets/avatar.jpg" --format "jpg" --mozjpeg --nearLossless
+  # default
+  wget "https://unsplash.com/photos/yZygONrUBe8/download?force=true" -O "./src/assets/background/yZygONrUBe8.jpg"
+  wget "https://unsplash.com/photos/Q1p7bh3SHj8/download?force=true" -O "./src/assets/background/Q1p7bh3SHj8.jpg"
 
-  # background
-  wget "https://unsplash.com/photos/Q1p7bh3SHj8/download?force=true" -O "./src/assets/dark.jpg"
-  sharp resize 900 --fit "cover" -i "./src/assets/dark.jpg" -o "./src/assets/dark900.jpg" --format "jpg"  --mozjpeg --nearLossless
-  sharp resize 900 --fit "cover" -i "./src/assets/dark.jpg" -o "./src/assets/dark900.avif" --format "avif" --nearLossless  --compression "zstd"
-  sharp removeAlpha -i "./src/assets/dark900.avif" -o "./src/assets/dark900.avif"
+  # blog
+  wget "https://unsplash.com/photos/E8Ufcyxz514/download?force=true" -O "./src/assets/background/E8Ufcyxz514.jpg"
+  wget "https://unsplash.com/photos/ZkzobNDayXo/download?force=true" -O "./src/assets/background/ZkzobNDayXo.jpg"
 
-  wget "https://unsplash.com/photos/yZygONrUBe8/download?force=true" -O "./src/assets/light.jpg"
-  sharp resize 900 --fit "cover" --position "left bottom" -i "./src/assets/light.jpg" -o "./src/assets/light900.jpg" --format "jpg"  --mozjpeg --nearLossless
-  sharp resize 900 --fit "cover" --position "left bottom" -i "./src/assets/light.jpg" -o "./src/assets/light900.avif" --format "avif" --nearLossless --compression "zstd"
-  sharp removeAlpha -i "./src/assets/light900.avif" -o "./src/assets/light900.avif"
+  # tas
+  wget "https://unsplash.com/photos/PGdW_bHDbpI/download?force=true" -O "./src/assets/background/PGdW_bHDbpI.jpg"
+  wget "https://unsplash.com/photos/DX7pT_guAyE/download?force=true" -O "./src/assets/background/DX7pT_guAyE.jpg"
   ```
 
 ### Commands  

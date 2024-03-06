@@ -1,0 +1,25 @@
+---
+import GradientLogo from "@components/GradientLogo.astro";
+import GradientText from "@components/GradientText.astro";
+
+import logo from "@icons/pages-icon.svg";
+
+const landingLogo = `url(${logo.src})`;
+---
+<section landing-box>
+  <GradientLogo />
+  <GradientText>
+    No ads, No paid, <br /> No morals.
+  </GradientText>
+</section>
+
+<style lang="stylus" define:vars={{landingLogo}}>
+  @import "../../../styles/api.styl"
+
+  [landing-box]
+    height calc(100vh - 5rem)
+    box-sizing border-box
+    padding 1rem
+    flex(column)
+    justify-content center
+</style>

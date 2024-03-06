@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("blog");
+
+  const tagList: string[] = []
+  pages.map(page => page.data.tags
+  .filter((tag): tag is string => !(tag in tagList))
+  .map(tag => {
+    tagList.push(tag)
+  }))
+
+  const tags:  { params: { tag: string } }[] = tagList
+  .filter((tag): tag is string => tag != null)
+  .map(tag => ({ params: {tag: tag }})); // マッピング
+
+  return tags;
+}
+
+const { tag } = Astro.params;
+---
+
+{tag}

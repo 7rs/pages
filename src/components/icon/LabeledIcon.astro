@@ -1,0 +1,34 @@
+---
+import { Icon } from "astro-icon/components";
+
+import Link from "@components/Link.astro";
+import { boolean } from "astro/zod";
+
+export interface Props {
+  icon: string;
+  href?: string;
+  openInNewTab?: boolean;
+}
+
+const { icon, href, openInNewTab = false, ...props } = Astro.props;
+---
+
+<Link href={href} openInNewTab={openInNewTab} {...props}>
+  <div {...props} labeled-icon>
+    <Icon name={icon}  />
+    <p {...props}><slot /></p>
+  </div>
+</Link>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [labeled-icon]
+    flex(_gap: 0.5rem)
+
+  [data-icon], p
+    height 100%
+    font-size 1.25rem
+    line-height 1.5rem
+
+</style>

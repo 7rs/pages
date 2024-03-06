@@ -1,21 +1,29 @@
 {
     "compilerOptions": {
-        "target": "es2022",
-        "module": "ESNext",
+        // "target": "es2022",
+        // "module": "ESNext",
         "strictNullChecks": true,
         "baseUrl": ".",
         "allowJs": true,
         "moduleResolution": "node",
         "resolveJsonModule": true,
-        "allowImportingTsExtensions": true,
+        "jsx": "react-jsx",
+        "jsxImportSource": "@builder.io/qwik",
+        // "emitDeclarationOnly": true,
         "paths": {
             "@components/*": ["src/components/*"],
+            "@pages-components/*": ["src/components/pages/*"],
+            "@layouts-components/*": ["src/components/layouts/*"],
             "@assets/*": ["src/assets/*"],
+            "@icons/*": ["src/icons/*"],
             "@styles/*": ["src/styles/*"],
             "@layouts/*": ["src/layouts/*"],
             "@scripts/*": ["scripts/*"],
             "@lib/*": ["scripts/lib/*"],
             "@public/*": ["public/*"]
-        }
-    }
+        },
+        "noEmit": true,
+        "allowImportingTsExtensions": true
+    },
+    "exclude": ["*node_modules*", "scripts/lib"]
 }

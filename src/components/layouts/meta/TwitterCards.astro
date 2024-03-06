@@ -1,0 +1,27 @@
+---
+// https://developer.twitter.com/docs/tweets/optimize-with-cards/guides/getting-started
+
+export interface Props {
+  title: string;
+  twitterId?: string;
+  image?: string;
+  alt?: string;
+}
+
+const { title, twitterId, image, alt } = Astro.props;
+---
+
+<meta name="twitter:title" content={title} />
+<meta property="twitter:card" content="summary_large_image" />
+{
+  twitterId && (
+    <Fragment>
+      <meta property="twitter:site" content={twitterId} />
+      <meta property="twitter:site:id" content={twitterId} />
+      <meta property="twitter:creator" content={twitterId} />
+      <meta property="twitter:creator:id" content={twitterId} />
+    </Fragment>
+  )
+}
+{image && <meta name="twitter:image" content={image} />}
+{alt && <meta name="twitter:image:alt" content={alt} />}

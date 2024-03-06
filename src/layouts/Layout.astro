@@ -1,86 +1,122 @@
 ---
-import { Metadata, Frontmatter, getLocale, defaultLocale, defaultBlogLocale, setMetadataFromJSON } from "@lib/meta";
+import { fade } from "astro:transitions";
+import { getImage } from "astro:assets"
+// Scripts
+import { defaultLocale, setMetadataFromJSON } from "@lib/meta";
 import { SchemaTypes, createSchema } from "@lib/schema";
 
-import { fade } from "astro:transitions";
-
+// UI & Styling
 import Meta from "@layouts/Meta.astro";
 import Header from "@layouts/Header.astro";
 import Footer from "@layouts/Footer.astro";
+import "@styles/default.styl"
 
-import { pages } from "pages.json";
+import defaultLight from "@assets/background/yZygONrUBe8.jpg";
+import defaultDark from "@assets/background/Q1p7bh3SHj8.jpg";
 
-import "@styles/main.styl";
-import logo from "@assets/logo.svg";
-
-import dark from "@assets/dark900.avif";
-import light from "@assets/light900.avif";
-
-const darkBackground = `url(${dark.src})`;
-const lightBackground = `url(${light.src})`;
-
+// Receives props
 export interface Props {
-  title: string;
+  title?: string;
   locale?: string;
-  schemaMarkup?: string;
-  frontmatter?: Frontmatter;
   fonts?: Array<string>;
+  schemaMarkup?: string;
+  noIndex?: boolean;
+  light?: ImageMetadata;
+  dark?: ImageMetadata;
+  backgroundOptions?: { [key: string]: any}
 }
+const { 
+  title = "Pages - Fast and simple website.",
+  locale = defaultLocale,
+  fonts = ["Fira+Sans:wght@400;700;900"],
+  schemaMarkup,
+  noIndex = false,
+  light = defaultLight,
+  dark = defaultDark,
+  backgroundOptions = { format: "avif", quality: 70 },
+  ...props 
+} = Astro.props;
 
-const { title, locale = defaultLocale, schemaMarkup, frontmatter, fonts = [], ...props } = Astro.props;
+// Loads configrations
+import { pages } from "pages.json";
+import logo from "@icons/colored-7rs.svg";
+let metadata = setMetadataFromJSON(pages, logo.src, logo.src, "Cbrnex Logo");
 
-// https://fonts.google.com/specimen/Fira+Sans
-// https://fonts.google.com/specimen/Fira+Code
-const firaSans = "Fira+Sans:ital,wght@0,400;0,700;1,400;1,700";
-fonts.push(...(frontmatter ? [firaSans, "Fira Code"] : [firaSans]));
+const lightBackgroundImage = await getImage({
+  ...backgroundOptions,
+  src: light,
+  width: Math.trunc(720 * (light.width / light.height))
+})
+const lightBackground = `url(${lightBackgroundImage.src})`
 
-let metadata: Metadata = setMetadataFromJSON(
-  pages,
-  logo.src,
-  logo.src,
-  "Cbrnex Logo",
-  frontmatter ? !frontmatter.published : false,
-);
-
-let lang = locale;
-let defaultSchemaMarkup: string;
-let search: string | undefined = "";
-if (frontmatter) {
-  search = frontmatter.published ? "" : undefined;
-  lang = getLocale(frontmatter.lang || defaultBlogLocale);
-  defaultSchemaMarkup = createSchema(SchemaTypes.Article, metadata, frontmatter);
-} else {
-  defaultSchemaMarkup = createSchema(SchemaTypes.Profile, metadata);
-}
+const darkBackgroundImage = await getImage({
+  ...backgroundOptions,
+  src: dark,
+  width: Math.trunc(720 * (dark.width / dark.height))
+})
+const darkBackground = `url(${darkBackgroundImage.src})`
 ---
 
 <!doctype html>
-<html lang={lang}>
-  <Meta title={frontmatter?.title || title} metadata={metadata} fonts={fonts}>
-    <script type="application/ld+json" set:html={schemaMarkup || defaultSchemaMarkup} />
-    <link rel="prefetch" fetchpriority="low" as="image" type="image/jpeg" href={light.src} />
-    <link rel="prefetch" fetchpriority="low" as="image" type="image/jpeg" href={dark.src} />
+<html lang={locale}>
+  <Meta title={title} metadata={metadata} fonts={fonts}>
+    <script type="application/ld+json" set:html={schemaMarkup || createSchema(SchemaTypes.Profile, metadata)} />
+    <link rel="prefetch" fetchpriority="high" as="image" type={`image/${light.format}`} href={defaultLight.src} />
+    <link rel="prefetch" fetchpriority="high" as="image" type={`image/${dark.format}`} href={defaultLight.src} />
   </Meta>
   <body>
-    <Header transition:persist />
-    <main
-      {...props}
-      transition:animate={fade({ duration: "0.1s" })}
-      data-pagefind-body={search}
-    >
+    <Header />
+    <main {...props} transition:animate={fade({ duration: "0.1s" })} data-pagefind-body={noIndex ? undefined : ""}>
       <slot />
     </main>
-    <Footer transition:persist />
-    <!-- The "Prettier" is stupid. Where's prettier?????? -->
-    <style lang="stylus" define:vars={{darkBackground, lightBackground}} is:global>
-  @import "../styles/api.styl"
-
-  html
-    overflow hidden auto
-    @media (prefers-color-scheme light)
-      background var(--lightBackground) center/cover no-repeat fixed, colors.background
-    @media (prefers-color-scheme dark)
-      background var(--darkBackground) center/cover no-repeat fixed, colors.dark.background
-</style>
+    <Footer />
   </body>
 </html>
+
+<style lang="stylus" define:vars={{lightBackground, darkBackground}} is:global>
+  @import "../styles/api.styl"
+
+  light-filter = grayscale(10%)
+  dark-filter = brightness(75%)
+
+  :root
+    @media (prefers-color-scheme dark)
+      --background-image var(--darkBackground)
+      --background-filter dark-filter
+    @media (prefers-color-scheme light)
+      --background-image var(--lightBackground)
+      --background-filter light-filter
+
+  body:not(.markdown)
+
+    &.light-mode
+      --background-image var(--lightBackground)
+      --background-filter light-filter
+    &.dark-mode
+      --background-image var(--darkBackground)
+      --background-filter dark-filter
+
+    z-index -1001
+    position relative
+    box-sizing border-box
+    overflow-x clip
+    min-height 100vh
+    max-width 100%
+    flex(column)
+    scrollbar(5px) // Chrome & Edge
+
+    main
+      z-index 0
+      position relative
+      flex-grow 1
+      min-height 100%
+      responsive-padding()
+      padding-bottom 3rem
+      flex(column, 3rem)
+
+      &::before
+        z-index -1002
+        full-size-before()
+        filter var(--background-filter)
+        background var(--background-image) center/cover no-repeat fixed, var(--background)
+</style>
