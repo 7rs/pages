@@ -1,13 +1,25 @@
-[post-info]
-    flex(column, 2rem)
+body.markdown > main
+  [post-info]
+    display flex
+    flex-direction column
+    gap 2rem
 
-[modified-dates]
-  flex()
-  justify-content space-around
+  [modified-dates]
+    display flex
+    justify-content space-around
 
-[tag-list]
-  flex(_gap: 1rem)
+  [tag-list]
+    display flex
+    overflow scroll
+    gap 1rem
+    justify-content center
 
-[tag-item]
-  width auto
-  padding 0.25rem
+  p[tag-item]
+    width auto
+    border-radius 8px
+    padding 0.25rem 1rem
+    background black
+    color white
+    @media (prefers-color-scheme: dark)
+      background white
+      color black

@@ -24,24 +24,28 @@ $underline
 
 
 left-spacing = 1rem
+x-spacing = 1rem
 letter-size = 1.1rem
+golden-ratio = (1 + 5 ** 0.5) / 2
 
 :root
   --left-spacing: left-spacing
   --letter-size: letter-size
+  --golden-ratio: golden-ratio
 
 
 body.markdown
-  flex(column)
   box-sizing border-box
   min-height 100vh
+  flex(column)
   align-items center
-  scrollbar(5px)
   background var(--background)
+  scrollbar(5px)
 
   main
-    width 100%
     box-sizing border-box
+    width 100%
+    // Responsive
     padding 0.5rem
     @media screen and (min-width widths.large)
       padding 1.5rem calc((100% - var(--widths-large)) / 2 + 0.5rem)
@@ -51,70 +55,102 @@ body.markdown
       & > *
         margin-bottom 0
 
+    p, li, h1, h2, h3, h4, h5, h6, summary, table
+      color var(--content)
+
     p, a, li
-      sans(letter-size, calc(var(--letter-size) + 0.5rem)) 
+      sans(1rem)
+      @media screen and (min-width widths.medium)
+        sans(1.2rem)
 
     a
       @extend $hoverable-link
 
-    p, li, h1, h2, h3, h4, h5, h6
-      color var(--content)
-
-    li
-      padding-bottom 0.25rem
-      box-sizing border-box
-      margin-left calc(var(--left-spacing) + 1rem)
-      &::marker
-        font-size 1rem
-
-    blockquote
-      margin-left left-spacing
-      border-left 3px solid black
-      font-style italic
-      padding-left left-spacing
-
-    p, h2, h3, h4, h5, h6
-      padding-left left-spacing
-
-    * > p
-      padding 0
-
     h1
-      margin 2.5rem 0
+      margin 2rem 0
+      @media screen and (min-width widths.medium)
+        margin 2.5rem 0
 
     h1, h1 > *
-      sans(3rem, 3rem)
       font-weight 900
       text-align center
+      sans(1.75rem)
+      @media screen and (min-width widths.medium)
+        sans(2.5rem)
+      @media screen and (min-width widths.large)
+        sans(3rem)
 
     h2
       @extend $underline
       margin-top 3rem
 
     h2, h2 > *
-      sans(2rem, 2.5rem)
       font-weight 700
+      sans(1.5rem)
+      @media screen and (min-width widths.medium)
+        sans(2rem)
 
     h3
       margin-top 1.5rem
 
     h3, h3 > *
-      sans(1.75rem, 2rem)
+      sans(1.4rem)
+      @media screen and (min-width widths.medium)
+        sans(1.75rem)
 
     h4
       margin-top 1rem
 
     h4, h4 > *
-      sans(1.5rem, 2rem)
+      sans(1.5rem)
 
     h5
       margin-top 1rem
 
     h5, h5 > *
-      sans(1.25rem, 1.5rem)
+      sans(1.25rem)
 
     h6
       margin-top 1rem
 
     h6, h6 > *
-      sans(1rem, 1.5rem)
+      sans(1rem)
+
+    pre > code, code
+      mono(1rem)
+      @media screen and (min-width widths.medium)
+        mono(1.2rem)
+
+    th, td
+      padding 0.5rem 1rem
+      sans(1rem)
+      @media screen and (min-width widths.medium)
+        sans(1.2rem)
+
+    pre
+      padding 1rem
+      border-radius 1rem
+
+    ul, ol
+      list-style-position inside
+
+    p, h2, h3, h4, h5, h6
+      @media screen and (min-width widths.medium)
+        padding 0 x-spacing
+
+    * > p
+      padding 0
+
+    li
+      padding-bottom 0.25rem
+      box-sizing border-box
+      &::marker
+        font-size 1rem
+
+    blockquote
+      border-left 3px solid var(--content)
+      font-style italic
+      padding-left 0.5rem
+      @media screen and (min-width widths.medium)
+        margin-left x-spacing
+        margin-right x-spacing
