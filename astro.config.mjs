@@ -43,8 +43,7 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       theme: 'dracula'
-    },
-    gfm: false
+    }
   },
   integrations: [mdx(), svelte(), qwikdev(), robotsTxt(), sitemap(), pagefind(), purgecss(), Compress({
     CSS: false,

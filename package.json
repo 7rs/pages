@@ -11,7 +11,7 @@
         "astro": "astro",
         "format": "prettier --write . --plugin=prettier-plugin-astro,prettier-plugin-stylus,prettier-plugin-svelte",
         "search": "npx pagefind --site dist",
-        "benchmark": "lighthouse http://localhost:2999/ --quiet --view --output-path lighthouse.html"
+        "benchmark": "lighthouse http://localhost:2999/ --quiet --view --emulated-form-factor mobile --output-path mobile-lighthouse.html"
     },
     "dependencies": {
         "@astrojs/mdx": "^2.1.1",
@@ -54,7 +54,15 @@
         "prettier-plugin-stylus": "^0.1.0",
         "prettier-plugin-svelte": "^3.1.2"
     },
-    "keywords": ["7rs", "cbrnex", "pages", "7rs.dev", "astro", "stylus", "svelte"],
+    "keywords": [
+        "7rs",
+        "cbrnex",
+        "pages",
+        "7rs.dev",
+        "astro",
+        "stylus",
+        "svelte"
+    ],
     "bugs": {
         "url": "https://github.com/7rs/pages/issues"
     },

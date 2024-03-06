@@ -24,6 +24,7 @@ References:
 
 default-font-size = 1rem
 default-line-height = 1.5rem
+golden-ratio = (1 + 5 ** 0.5) / 2
 
 // https://fonts.google.com/?stroke=Sans+Serif&subset=latin
 main-sans = "Fira Sans"
@@ -45,17 +46,24 @@ Arguments:
   height: Height of character display area. (Default: 1.5rem)
         https://developer.mozilla.org/en/docs/Web/CSS/line-height
 */
-sans(size = default-font-size, height = default-line-height)
+
+auto-line-height(size, _height = null)
+  if _height
+    line-height _height
+  else
+    line-height size * golden-ratio
+
+sans(size = default-font-size, height = null)
   font-family main-sans, alternative-sans
   font-size size
-  line-height height
+  auto-line-height(size, height)
 
-serif(size = default-font-size, height = default-line-height)
+serif(size = default-font-size, height = null)
   font-family alternative-serif
   font-size size
-  line-height height
+  auto-line-height(size, height)
 
-mono(size = default-font-size, height = default-line-height)
+mono(size = default-font-size, height = null)
   font-family main-mono, alternative-mono
   font-size size
-  line-height height
+  auto-line-height(size, height)

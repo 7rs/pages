@@ -1,6 +1,6 @@
 ---
 import { fade } from "astro:transitions";
-
+import { getImage } from "astro:assets"
 // Scripts
 import { defaultLocale, setMetadataFromJSON } from "@lib/meta";
 import { SchemaTypes, createSchema } from "@lib/schema";
@@ -11,20 +11,29 @@ import Header from "@layouts/Header.astro";
 import Footer from "@layouts/Footer.astro";
 import "@styles/default.styl"
 
+import defaultLight from "@assets/background/yZygONrUBe8.jpg";
+import defaultDark from "@assets/background/Q1p7bh3SHj8.jpg";
+
 // Receives props
 export interface Props {
-  title: string;
+  title?: string;
   locale?: string;
   fonts?: Array<string>;
   schemaMarkup?: string;
   noIndex?: boolean;
+  light?: ImageMetadata;
+  dark?: ImageMetadata;
+  backgroundOptions?: { [key: string]: any}
 }
 const { 
-  title,
+  title = "Pages - Fast and simple website.",
   locale = defaultLocale,
   fonts = ["Fira+Sans:wght@400;700;900"],
   schemaMarkup,
-  noIndex =false,
+  noIndex = false,
+  light = defaultLight,
+  dark = defaultDark,
+  backgroundOptions = { format: "avif", quality: 70 },
   ...props 
 } = Astro.props;
 
@@ -33,19 +42,27 @@ import { pages } from "pages.json";
 import logo from "@icons/colored-7rs.svg";
 let metadata = setMetadataFromJSON(pages, logo.src, logo.src, "Cbrnex Logo");
 
-// Loads wallpapers
-import dark from "@assets/dark900.avif";
-import light from "@assets/light900.avif";
-const darkWallpaper = `url(${dark.src})`;
-const lightWallpaper = `url(${light.src})`;
+const lightBackgroundImage = await getImage({
+  ...backgroundOptions,
+  src: light,
+  width: Math.trunc(720 * (light.width / light.height))
+})
+const lightBackground = `url(${lightBackgroundImage.src})`
+
+const darkBackgroundImage = await getImage({
+  ...backgroundOptions,
+  src: dark,
+  width: Math.trunc(720 * (dark.width / dark.height))
+})
+const darkBackground = `url(${darkBackgroundImage.src})`
 ---
 
 <!doctype html>
 <html lang={locale}>
   <Meta title={title} metadata={metadata} fonts={fonts}>
     <script type="application/ld+json" set:html={schemaMarkup || createSchema(SchemaTypes.Profile, metadata)} />
-    <link rel="prefetch" fetchpriority="low" as="image" type="image/avif" href={light.src} />
-    <link rel="prefetch" fetchpriority="low" as="image" type="image/avif" href={dark.src} />
+    <link rel="prefetch" fetchpriority="high" as="image" type={`image/${light.format}`} href={defaultLight.src} />
+    <link rel="prefetch" fetchpriority="high" as="image" type={`image/${dark.format}`} href={defaultLight.src} />
   </Meta>
   <body>
     <Header />
@@ -56,20 +73,28 @@ const lightWallpaper = `url(${light.src})`;
   </body>
 </html>
 
-<style lang="stylus" define:vars={{lightWallpaper, darkWallpaper}} is:global>
+<style lang="stylus" define:vars={{lightBackground, darkBackground}} is:global>
   @import "../styles/api.styl"
 
+  light-filter = grayscale(10%)
+  dark-filter = brightness(75%)
+
   :root
-    @media (prefers-color-scheme light)
-      --background-image var(--lightWallpaper)
     @media (prefers-color-scheme dark)
-      --background-image var(--darkWallpaper)
+      --background-image var(--darkBackground)
+      --background-filter dark-filter
+    @media (prefers-color-scheme light)
+      --background-image var(--lightBackground)
+      --background-filter light-filter
 
   body:not(.markdown)
+
     &.light-mode
-      --background-image var(--lightWallpaper)
+      --background-image var(--lightBackground)
+      --background-filter light-filter
     &.dark-mode
-      --background-image var(--darkWallpaper)
+      --background-image var(--darkBackground)
+      --background-filter dark-filter
 
     z-index -1001
     position relative
@@ -92,5 +117,6 @@ const lightWallpaper = `url(${light.src})`;
       &::before
         z-index -1002
         full-size-before()
+        filter var(--background-filter)
         background var(--background-image) center/cover no-repeat fixed, var(--background)
 </style>

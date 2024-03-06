@@ -3,6 +3,7 @@ dist/
 node_modules/
 .astro/
 .git/
+*-lighthouse.html
 lighthouse.html
 
 # Logs

@@ -10,7 +10,7 @@ const { frontmatter, ...props } = Astro.props;
 
 <section post-info>
   <h1>{frontmatter.title}</h1>
-  <div tag-list>{frontmatter.tags.map((tag) => <p tag-item>{tag}</p>)}</div>
+  <div tag-list>{frontmatter.tags.map((tag) => <a href={`/blog?tag=${tag}`} tag-item>{tag}</a>)}</div>
   {
     frontmatter.published && (
       <div modified-dates>
