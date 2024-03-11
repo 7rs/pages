@@ -11,6 +11,9 @@
     "[typescriptreact]": {
         "editor.tabSize": 2
     },
+    "[typescript]": {
+        "editor.tabSize": 2
+    },
     "[stylus]": {
         "editor.tabSize": 4
     },

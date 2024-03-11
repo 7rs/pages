@@ -1,0 +1,45 @@
+---
+export interface Props {
+  frontmatter: { [key: string]: any };
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { frontmatter, headings, ...props } = Astro.props;
+
+headings.unshift({ depth: 0, slug: frontmatter.title || "#", text: frontmatter.title || "" });
+---
+
+<aside>
+  {
+    headings.map((heading) => (
+      <a href={`#${heading.slug}`} style={`padding-left: calc(1rem * ${heading.depth - 1})`}>
+        {heading.text}
+      </a>
+    ))
+  }
+</aside>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  aside
+    display none
+    @media screen and (min-width widths.largest)
+      position sticky
+      top 20vh
+      height 60vh
+      padding 0 1rem
+      margin 20vh 1rem
+      overflow auto
+      flex(column, 0.5rem)
+      scrollbar(3px)
+
+    a
+      sans(1rem)
+      text-decoration none
+
+      &:hover
+        background-color rgba(black, 0.2)
+        @media (prefers-color-scheme dark)
+          background-color rgba(white, 0.2)
+</style>

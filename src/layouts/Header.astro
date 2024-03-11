@@ -1,17 +1,16 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import ThemeSvelte from "@layouts-components/header/Theme.svelte"
-// import ThemeQwik from "@components/layouts/header/theme.tsx"
-
 import LinkIcon from "@components/icon/LinkIcon.astro";
 import Search from "@components/Search.astro"
+import ThemeSvelte from "@layouts-components/header/Theme.svelte"
+// import ThemeQwik from "@components/layouts/header/theme.tsx"
 ---
 
 <header>
   <LinkIcon icon="pages-logo" href="/" title="Main page" />
   <Search />
-  <nav>
+  <nav action-buttons>
     <ThemeSvelte client:only />
     <Icon name="material-symbols:menu" />
   </nav>
@@ -24,58 +23,51 @@ import Search from "@components/Search.astro"
     z-index 1
     position sticky
     top 0
-    responsive-padding(x: 0.5rem, y: 0.5rem)
-    // Grid layout
-    display grid
-    grid-template-columns auto 1fr
+    responsive-padding(x: 1rem, y: 0.5rem)
+    flex(_gap: 1rem)
+    justify-content space-between
     @media screen and (min-width widths.large)
-      grid-template-columns auto 1fr auto
-    gap 3rem
-
+      justify-content center
     &::before
       @extend $simple-blur
       z-index -1
 
   svg[data-icon]
-    line-height 100%
+    line-height 3rem
 
   svg[data-icon="pages-logo"]
     font-size 3rem
 
-  nav
-    display flex
+  nav[action-buttons]
     align-items center
     justify-content flex-end
-    gap 1.5rem
+    flex(_gap: 1.25rem)
     @media screen and (min-width widths.medium)
-      gap 2rem
+      flex(_gap: 1.75rem)
 
-    svg
+    svg, svg[data-icon]
       color var(--content)
-      font-size 1.75rem
-      @media screen and (min-width widths.medium)
-        font-size 2rem
+      font-size 2rem
 
-    // For Qwik
+    /* For Qwik (Iconify doesn't support Qwik directly.)
 
-    // div
-    //   height 1.75rem
-    //   width 1.75rem
-    //   @media screen and (min-width widths.medium)
-    //     height 2rem
-    //     width 2rem
+    div
+      height 2rem
+      width 2rem
 
-    //   background var(--content)
-    //   mask-size 100%
-    //   mask-repeat no-repeat
-    //   mask-position center
+      background var(--content)
+      mask-size 100%
+      mask-repeat no-repeat
+      mask-position center
 
-    // div.system
-    //   mask-image url("https://api.iconify.design/material-symbols/computer-outline-sharp.svg")
+      &.system
+        mask-image url("https://api.iconify.design/material-symbols/computer-outline-sharp.svg")
 
-    // div.light-mode
-    //   mask-image url("https://api.iconify.design/material-symbols/light-mode-outline.svg")
+      &.light-mode
+        mask-image url("https://api.iconify.design/material-symbols/light-mode-outline.svg")
 
-    // div.dark-mode
-    //   mask-image url("https://api.iconify.design/material-symbols/dark-mode.svg")
+      &.dark-mode
+        mask-image url("https://api.iconify.design/material-symbols/dark-mode.svg")
+
+    */
 </style>

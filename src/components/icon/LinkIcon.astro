@@ -12,6 +12,12 @@ export interface Props {
 const { icon, href, title, openInNewTab = false, ...props } = Astro.props;
 ---
 
-<Link href={href} title={title} openInNewTab={openInNewTab} {...props}>
-  <Icon name={icon} title={title} {...props} />
+<Link href={href} title={title} openInNewTab={openInNewTab} link-icon={icon} {...props}>
+  <Icon name={icon} title={title} {...props}/>
 </Link>
+
+<style lang="stylus">
+  [data-icon]
+    display block
+</style>
+

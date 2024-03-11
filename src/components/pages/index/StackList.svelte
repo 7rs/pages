@@ -32,7 +32,7 @@
   </div>
   <!-- Stack icons -->
   {#key $activeTabIndex}
-    <article in:slide={{ duration: 100 }}>
+    <article in:blur={{ duration: 100 }}>
       {#each tabs[$activeTabIndex].stacks as stack}
         <!-- Icon -->
         <a href={stack.url} title={stack.name} target="_blank" referrerpolicy="no-referrer" rel="noopener noreferrer">
@@ -69,9 +69,9 @@
       border none
       color black
       // Responsive
-      sans(1rem, 1.5rem)
+      sans(1rem)
       @media screen and (min-width widths.medium)
-        sans(1.25rem, 1.75rem)
+        sans(1.25rem)
 
       &:nth-child(7n + 1)
         background-color rgb(255, 224, 224)
@@ -91,24 +91,41 @@
       &:hover
         filter saturate(500%)
 
+  icon = 2.5rem
+  icon-gap = 3rem
+  tab-padding = 2rem
+
+  large-icon = 5rem
+  large-icon-gap = 4rem
+  large-tab-padding = 3rem
+
   article
+    overflow-x auto
     width 100%
     display flex
     justify-content space-around
     flex-wrap wrap
     box-sizing border-box
-
-    padding 2rem
-    gap 3rem
+    height (tab-padding * 2) + (icon * 3) + (icon-gap * 2)
     @media screen and (min-width widths.medium)
-      gap 4rem
-      padding 3rem
+      height (large-tab-padding * 2) + (large-icon * 2) + large-icon-gap
 
-    :global(svg), img
+    padding tab-padding
+    gap icon-gap
+    @media screen and (min-width widths.medium)
+      gap large-icon-gap
+      padding large-tab-padding
+
+    :global(svg), img, a
       width auto
       max-width 100%
-      height 2.5rem
+      height icon
       @media screen and (min-width widths.medium)
-        height 5rem
+        height large-icon
       color black
+
+  section
+    height (tab-padding * 2) + (icon * 3) + (icon-gap * 2) + (1rem * golden-ratio)
+    @media screen and (min-width widths.medium)
+      height (large-tab-padding * 2) + (large-icon * 2) + large-icon-gap + (1.25rem * golden-ratio)
 </style>

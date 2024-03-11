@@ -1,0 +1,33 @@
+---
+import { profilePageSchema, articleSchema, Assignee } from "@scripts/lib/schema";
+
+export interface Props {
+  title: string;
+  profile?: Assignee | Assignee[];
+  author?: Assignee | Assignee[];
+  datePublished?: string;
+  dateModified?: string;
+}
+const { title, datePublished, dateModified, profile, author, ...props } = Astro.props;
+
+function generateSchema() {
+  if (profile != null) {
+    return profilePageSchema.parse({
+      mainEntity: profile,
+      datePublished: datePublished,
+      dateModified: dateModified,
+    });
+  } else if (author != null) {
+    return articleSchema.parse({
+      headline: title,
+      datePublished: datePublished,
+      dateModified: dateModified,
+      author: author,
+    });
+  } else {
+    throw new Error("Emptying both `author` and `profile` is not possible.");
+  }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(generateSchema())} />

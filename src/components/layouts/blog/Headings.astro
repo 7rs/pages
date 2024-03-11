@@ -1,0 +1,28 @@
+---
+export interface Props {
+  frontmatter: {[key: string]: any};
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { frontmatter, headings, ...props } = Astro.props;
+
+headings.unshift({ depth: 0, slug: frontmatter.title || "", text: frontmatter.title || "" })
+---
+<ul>
+  {
+    headings.map(heading => (
+      <li style={`padding-left: calc(0.5rem * ${heading.depth})`}>
+        {heading.text}
+      </li>
+    ))
+  }
+</ul>
+
+<style lang="stylus">
+  @import "../../../styles/api.styl"
+
+  ul
+    display none
+    @media screen and (min-width widths.largest)
+      flex(column, 0.5rem)
+</style>
