@@ -3,7 +3,7 @@ import { createGoogleFontURL } from "@lib/font"
 
 export interface Props {
   fonts?: Array<string>;
-  images?: Array<{ format: string; src: string }>;
+  images?: Array<{ format: string; src: string, media?: string }>;
 }
 
 const { fonts = [], images } = Astro.props;
@@ -13,12 +13,12 @@ const { fonts = [], images } = Astro.props;
 <link rel="dns-prefetch" href="//fonts.googleapis.com/" />
 <link rel="dns-prefetch" href="//fonts.gstatic.com/" />
 <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
 <link rel="stylesheet" href={createGoogleFontURL(fonts)} as="style" crossorigin />
 
 <!-- Iconify -->
 <link rel="dns-prefetch" href="//api.iconify.design" />
-<link rel="preconnect" href="https://api.iconify.design" crossorigin />
+<link rel="preconnect" href="https://api.iconify.design/" crossorigin />
 
 <!-- Images -->
 {

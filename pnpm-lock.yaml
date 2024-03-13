@@ -109,9 +109,6 @@ devDependencies:
   postcss:
     specifier: ^8.4.35
     version: 8.4.35
-  postcss-comment:
-    specifier: ^2.0.0
-    version: 2.0.0
   postcss-preset-env:
     specifier: ^9.5.0
     version: 9.5.0(postcss@8.4.35)
@@ -6385,12 +6382,6 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /postcss-comment@2.0.0:
-    resolution: {integrity: sha512-5zT5iKU7c0tK9KJFNrVf+g1MGTkzf/4V3e0Zzm2g1uoFQC5jeTHmB9O1iAqh97+jnKpc6al204e0pwFUiCwseg==}
-    dependencies:
-      postcss: 6.0.23
-    dev: true
-
   /postcss-custom-media@10.0.3(postcss@8.4.35):
     resolution: {integrity: sha512-wfJ9nKpLn/Qy7LASKu0Rj9Iq2uMzlRt27P4FAE1889IKRMdYUgy8SqvdXfAOs7LJLQX9Fjm0mZ+TSFphD/mKwA==}
     engines: {node: ^14 || ^16 || >=18}
@@ -6680,15 +6671,6 @@ packages:
 
   /postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
-    dev: true
-
-  /postcss@6.0.23:
-    resolution: {integrity: sha512-soOk1h6J3VMTZtVeVpv15/Hpdl2cBLX3CAw4TAbkpTJiNPk9YP/zWcD1ND+xEtvyuuvKzbxliTOIyvkSeSJ6ag==}
-    engines: {node: '>=4.0.0'}
-    dependencies:
-      chalk: 2.4.2
-      source-map: 0.6.1
-      supports-color: 5.5.0
     dev: true
 
   /postcss@8.4.35:

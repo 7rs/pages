@@ -10,7 +10,7 @@ import Meta from '@layouts/Meta.astro';
 import Header from '@layouts/Header.astro';
 import Footer from '@layouts/Footer.astro';
 
-import logo from '@icons/colored-7rs.svg';
+import logo from '@icons/favicon.svg';
 import defaultLight from '@assets/background/yZygONrUBe8.jpg';
 import defaultDark from '@assets/background/Q1p7bh3SHj8.jpg';
 
@@ -65,8 +65,8 @@ const darkBackground = `url(${darkBackgroundImage.src})`
     favicon={logo.src}
     fonts={fonts}
     images={[
-      { format: backgroundOptions.format, src: lightBackgroundImage.src },
-      { format: backgroundOptions.format, src: darkBackgroundImage.src }
+      { format: backgroundOptions.format, src: lightBackgroundImage.src, media: "(prefers-color-scheme: light)" },
+      { format: backgroundOptions.format, src: darkBackgroundImage.src, media: "(prefers-color-scheme: dark)" }
     ]}
     meta={meta || websiteSchema.parse({
       'name': '7rs.dev',
@@ -121,7 +121,6 @@ const darkBackground = `url(${darkBackgroundImage.src})`
     z-index -1001
     position relative
     box-sizing border-box
-    overflow-x clip
     min-height 100vh
     max-width 100%
     flex(column)

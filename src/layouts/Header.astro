@@ -5,9 +5,11 @@ import LinkIcon from "@components/icon/LinkIcon.astro";
 import Search from "@components/Search.astro"
 import ThemeSvelte from "@layouts-components/header/Theme.svelte"
 // import ThemeQwik from "@components/layouts/header/theme.tsx"
+
+const props = Astro.props;
 ---
 
-<header>
+<header main-header {...props}>
   <LinkIcon icon="pages-logo" href="/" title="Main page" />
   <Search />
   <nav action-buttons>
