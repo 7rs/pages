@@ -38,6 +38,7 @@
 - Optimization SEO.
 - Easy setup for [VSCode][vscode].
 
+[2024-03-07]: https://pagespeed.web.dev/analysis/https-7rs-dev/hwvf482lxb?form_factor=mobile
 [2024-01-28]: https://pagespeed.web.dev/analysis/https-7rs-dev/0f0e76xl0r?form_factor=mobile
 [2024-01-13_2]: https://pagespeed.web.dev/analysis/https-7rs-dev/x0q7ws96dt?form_factor=mobile
 [2024-01-13_1]: https://pagespeed.web.dev/analysis/https-7rs-dev/bflti9eum0?form_factor=mobile
@@ -48,6 +49,7 @@
 
   | Mobile | Desktop | Date |
   | - | - | - |
+  | 99  | 100 | [2024-03-07][2024-03-07] |
   | 100 | 100 | [2024-01-28][2024-01-28] |
   | 99  | 100 | [2024-01-13][2024-01-13_2] |
   | 91  | 98  | [2024-01-13][2024-01-13_1] |

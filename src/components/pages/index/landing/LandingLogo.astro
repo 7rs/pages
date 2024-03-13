@@ -10,29 +10,25 @@ const { logo = defualtLogo, ...props } = Astro.props;
 const logoURL = `url(${logo.src})`;
 ---
 
-<div gradient-logo></div>
+<figure>
+  <div gradient-logo></div>
+</figure>
 
 <style lang="stylus" define:vars={{logoURL}}>
-  @import "../styles/api.styl"
+  @import "../../../../styles/api.styl"
+
+  figure
+    position absolute
+    bottom 0
+    width 100%
+    overflow-x clip
 
   [gradient-logo]
     z-index 0
-    position relative
     display block
     margin 0 auto
-    overflow-x clip
-    // Responsive
     height 15rem
     width 15rem
-    @media screen and (min-width widths.medium)
-      height 20rem
-      width 20rem
-    @media screen and (min-width widths.large)
-      height 15rem
-      width 15rem
-    @media screen and (min-width widths.largest)
-      height 20rem
-      width 20rem
 
     // Mask
     mask-image var(--logoURL);
@@ -54,6 +50,7 @@ const logoURL = `url(${logo.src})`;
         rgba(128,224,255,1) 67%,
         rgba(176,160,255,1) 83%,
         rgba(224,160,255,1) 100%);
+      // background linear-gradient(135deg, red, orange, yellow, green, cyan, blue, purple);
       animation 2s linear 0s infinite reverse forwards running rotate
 
     &::before

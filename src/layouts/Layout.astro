@@ -1,79 +1,102 @@
 ---
-import { fade } from "astro:transitions";
-import { getImage } from "astro:assets"
-// Scripts
-import { defaultLocale, setMetadataFromJSON } from "@lib/meta";
-import { SchemaTypes, createSchema } from "@lib/schema";
+import { fade, slide } from 'astro:transitions';
+import { getImage } from 'astro:assets'
 
-// UI & Styling
-import Meta from "@layouts/Meta.astro";
-import Header from "@layouts/Header.astro";
-import Footer from "@layouts/Footer.astro";
-import "@styles/default.styl"
+import { websiteSchema, Website } from '@lib/meta';
+import { personSchema, Assignee } from '@lib/schema';
+import { getFont } from '@lib/font';
 
-import defaultLight from "@assets/background/yZygONrUBe8.jpg";
-import defaultDark from "@assets/background/Q1p7bh3SHj8.jpg";
+import Meta from '@layouts/Meta.astro';
+import Header from '@layouts/Header.astro';
+import Footer from '@layouts/Footer.astro';
 
-// Receives props
+import logo from '@icons/favicon.svg';
+import defaultLight from '@assets/background/yZygONrUBe8.jpg';
+import defaultDark from '@assets/background/Q1p7bh3SHj8.jpg';
+
+import '@styles/default.styl'
+
 export interface Props {
   title?: string;
   locale?: string;
   fonts?: Array<string>;
-  schemaMarkup?: string;
   noIndex?: boolean;
   light?: ImageMetadata;
   dark?: ImageMetadata;
-  backgroundOptions?: { [key: string]: any}
+  backgroundOptions?: { [key: string]: any},
+  profile?: Assignee | Assignee[];
+  meta?: Website;
 }
 const { 
-  title = "Pages - Fast and simple website.",
-  locale = defaultLocale,
-  fonts = ["Fira+Sans:wght@400;700;900"],
-  schemaMarkup,
+  title = 'Pages - Fast and simple website.',
+  locale = 'en',
+  fonts = [getFont('Fira Sans', [{}, {weight: 700}, {weight: 900}])],
   noIndex = false,
   light = defaultLight,
   dark = defaultDark,
-  backgroundOptions = { format: "avif", quality: 70 },
+  backgroundOptions = { format: 'avif', quality: 70 },
+  profile,
+  meta,
   ...props 
 } = Astro.props;
 
-// Loads configrations
-import { pages } from "pages.json";
-import logo from "@icons/colored-7rs.svg";
-let metadata = setMetadataFromJSON(pages, logo.src, logo.src, "Cbrnex Logo");
+const resolution = 720
 
 const lightBackgroundImage = await getImage({
   ...backgroundOptions,
   src: light,
-  width: Math.trunc(720 * (light.width / light.height))
+  width: Math.trunc(resolution * (light.width / light.height))
 })
 const lightBackground = `url(${lightBackgroundImage.src})`
 
 const darkBackgroundImage = await getImage({
   ...backgroundOptions,
   src: dark,
-  width: Math.trunc(720 * (dark.width / dark.height))
+  width: Math.trunc(resolution * (dark.width / dark.height))
 })
 const darkBackground = `url(${darkBackgroundImage.src})`
 ---
 
 <!doctype html>
 <html lang={locale}>
-  <Meta title={title} metadata={metadata} fonts={fonts}>
-    <script type="application/ld+json" set:html={schemaMarkup || createSchema(SchemaTypes.Profile, metadata)} />
-    <link rel="prefetch" fetchpriority="high" as="image" type={`image/${light.format}`} href={defaultLight.src} />
-    <link rel="prefetch" fetchpriority="high" as="image" type={`image/${dark.format}`} href={defaultLight.src} />
-  </Meta>
+  <Meta
+    title={title}
+    noIndex={noIndex}
+    favicon={logo.src}
+    fonts={fonts}
+    images={[
+      { format: backgroundOptions.format, src: lightBackgroundImage.src, media: "(prefers-color-scheme: light)" },
+      { format: backgroundOptions.format, src: darkBackgroundImage.src, media: "(prefers-color-scheme: dark)" }
+    ]}
+    meta={meta || websiteSchema.parse({
+      'name': '7rs.dev',
+      'description': 'No ads, No paid, No morals.',
+      'url': 'https://7rs.dev/',
+      'author': 'Cbrnex',
+      'image': logo.src,
+      'imageAlt': '7rs logo',
+      'keywords': ['Cbrnex', '7rs', 'qЯze', 'MANJSRSU', 'Rynon'],
+      'twitterId': 'qlzegg'
+    })}
+    profile={profile || personSchema.parse({
+      name: 'Cbrnex',
+      alternateName: '7rs',
+      image: 'https://7rs.dev/avatar',
+      url: 'https://7rs.dev/',
+      sameAs: 'https://github.com/7rs',
+      jobTitle: 'Student',
+    })}
+  />
   <body>
     <Header />
-    <main {...props} transition:animate={fade({ duration: "0.1s" })} data-pagefind-body={noIndex ? undefined : ""}>
+    <main data-pagefind-body={noIndex ? undefined : ''} {...props}>
       <slot />
     </main>
     <Footer />
   </body>
 </html>
 
-<style lang="stylus" define:vars={{lightBackground, darkBackground}} is:global>
+<style lang="stylus" is:global define:vars={{lightBackground, darkBackground}}>
   @import "../styles/api.styl"
 
   light-filter = grayscale(10%)
@@ -88,7 +111,6 @@ const darkBackground = `url(${darkBackgroundImage.src})`
       --background-filter light-filter
 
   body:not(.markdown)
-
     &.light-mode
       --background-image var(--lightBackground)
       --background-filter light-filter
@@ -99,11 +121,10 @@ const darkBackground = `url(${darkBackgroundImage.src})`
     z-index -1001
     position relative
     box-sizing border-box
-    overflow-x clip
     min-height 100vh
     max-width 100%
     flex(column)
-    scrollbar(5px) // Chrome & Edge
+    scrollbar(5px)
 
     main
       z-index 0

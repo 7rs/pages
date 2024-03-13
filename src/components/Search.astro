@@ -1,10 +1,12 @@
 ---
-import "@styles/pagefind.styl"
+import "@styles/pagefind.styl";
 
 import Search from "astro-pagefind/components/Search";
 
 export const prerender = false;
 const q = Astro.url.searchParams.get("q") ?? undefined;
+
+const props = Astro.props;
 ---
 
 <Search
@@ -16,4 +18,5 @@ const q = Astro.url.searchParams.get("q") ?? undefined;
     translations: { placeholder: "Powered by Pagefind", zero_results: "Couldn't find [SEARCH_TERM]", clear_search: "" },
     showSubResults: true,
   }}
+  {...props}
 />

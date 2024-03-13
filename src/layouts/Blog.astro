@@ -1,46 +1,126 @@
 ---
-import { Metadata, getLocale, defaultBlogLocale, setMetadataFromJSON } from "@lib/meta";
-import { SchemaTypes, createSchema } from "@lib/schema";
+import { getCollection } from "astro:content";
 
-import PostInfo from "@layouts-components/blog/postInfo.astro"
-
-import { fade } from "astro:transitions";
+import { websiteSchema } from "@lib/meta";
+import { personSchema, Assignee } from "@lib/schema";
+import { getFont } from "@lib/font"
 
 import Meta from "@layouts/Meta.astro";
 import Header from "@layouts/Header.astro";
-import Footer from "@layouts/Footer.astro";
 
-import { pages } from "pages.json";
+import PostHeader from "@layouts-components/blog/PostHeader.astro"
+import Sidebar from "@layouts-components/blog/Sidebar.astro"
+import MainContent from "@layouts-components/blog/MainContent.astro"
+import PostFooter from "@layouts-components/blog/PostFooter.astro"
 
-import logo from "@icons/colored-7rs.svg";
+import logo from "@icons/favicon.svg";
 
 export interface Props {
-  frontmatter: any;
+  frontmatter: { tags?: string[], [key: string ]: any };
+  headings: { depth: number; slug: string; text: string }[];
+}
+const { frontmatter, headings, ...props } = Astro.props;
+
+const authors = {
+  "Cbrnex": personSchema.parse({
+    name: "Cbrnex",
+    alternateName: "7rs",
+    image: "https://www.gravatar.com/avatar/1b6f182a11eba357a5b85085b74acccd",
+    url: "https://7rs.dev/",
+    sameAs: "https://github.com/7rs",
+    jobTitle: "Student",
+  })
 }
 
-const { frontmatter, ...props } = Astro.props;
+// frontmatter doesn't support zod's `.default`.
+// "it supports all of the features of Zod"
+// Ok, Astro lied.
+const posts = await getCollection("blog", data => frontmatter.url.endsWith(data.slug));
+const authorNames = posts.map(post => post.data.authors)[0]
+let authorsSchema: Assignee[] = []
+authorNames.map(name => authors[name] && authorsSchema.push(authors[name]))
 
-// https://fonts.google.com/specimen/Fira+Sans
-// https://fonts.google.com/specimen/Fira+Code
-const fonts = ["Fira+Sans:ital,wght@0,400;0,700;1,400;1,700", "Fira Code"];
-let metadata: Metadata = setMetadataFromJSON(pages, logo.src, logo.src, "Cbrnex Logo", !frontmatter.published);
+const meta = websiteSchema.parse({
+    "name": "7rs.dev",
+    "description": "No ads, No paid, No morals.",
+    "url": "https://7rs.dev/",
+    "author": "Cbrnex",
+    "image": logo.src,
+    "imageAlt": "7rs logo",
+    "keywords": [],
+    "twitterId": "qlzegg"
+});
 ---
 
 <!doctype html>
-<html lang={getLocale(frontmatter.lang || defaultBlogLocale)}>
-  <Meta title={frontmatter.title} metadata={metadata} fonts={fonts}>
-    <script type="application/ld+json" set:html={createSchema(SchemaTypes.Article, metadata, frontmatter)} />
-  </Meta>
+<html lang={frontmatter.lang || "ja"}>
+  <Meta
+    fonts={[
+      getFont("Fira Sans", [{}, {weight: 700}, {typefaces: 1},  {weight: 700, typefaces: 1}]),
+      getFont("Fira Code"),
+    ]}
+    meta={meta}
+    title={frontmatter.title}
+    favicon={logo.src}
+    noIndex={!frontmatter.published}
+    author={authorsSchema}
+    datePublished={frontmatter.published_at}
+    dateModified={frontmatter.updated_at}
+  />
   <body class="markdown system">
-    <Header transition:persist />
-    <main
-      {...props}
-      transition:animate={fade({ duration: "0.1s" })}
-      data-pagefind-body={frontmatter.published ? "" : undefined}
-    >
-      <PostInfo frontmatter={frontmatter} />
-      <slot />
+    <Header />
+    <main>
+      <PostHeader frontmatter={frontmatter} />
+      <MainContent><slot /></MainContent>
+      <PostFooter />
     </main>
-    <Footer transition:persist />
+    <Sidebar frontmatter={frontmatter} headings={headings} />
   </body>
 </html>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  body
+    z-index 0
+    position relative
+    box-sizing border-box
+
+    height 100vh
+    width 100%
+    max-height 100vh
+    max-width widths.largest
+
+    display grid
+    grid-template-areas "header" \
+                        "content"
+    @media screen and (min-width widths.large)
+      grid-template-areas "header  header " \
+                          "content sidebar"
+      margin auto
+      max-height 100vh
+      grid-template-rows 1fr calc(100vh - 1fr)
+      grid-template-columns 3fr 1fr
+
+    header[main-header]
+      grid-area header
+
+    main
+      grid-area content
+      max-width 900px
+
+    aside
+      grid-area sidebar
+      max-width 300px
+
+    aside, main
+      overflow clip scroll
+      box-sizing border-box
+      padding 3rem 1.5rem
+      width 100%
+      height 100%
+
+      padding 2rem 1rem
+      @media screen and (min-width widths.largest)
+        padding 3rem 1.5rem
+</style>

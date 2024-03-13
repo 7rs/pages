@@ -1,6 +1,7 @@
 light-color = {
   background: rgb(240, 240, 248),
   content: black,
+  content-reversed: white,
   link: blue,
   link-hover: rgba(blue, 0.5),
   widget: rgba(white, 0.4),
@@ -12,6 +13,7 @@ light-color = {
 dark-color = {
   background: rgb(8, 8, 16),
   content: white,
+  content-reversed: black,
   link: red,
   link-hover: rgba(red, 0.5),
   widget: rgba(black, 0.4),
@@ -23,6 +25,7 @@ dark-color = {
 :root
   --background light-color.background
   --content light-color.content
+  --content-reversed light-color.content-reversed
   --link light-color.link
   --link-hover light-color.link-hover
   --widget light-color.widget
@@ -32,6 +35,7 @@ dark-color = {
   @media (prefers-color-scheme dark)
     --background dark-color.background
     --content dark-color.content
+    --content-reversed dark-color.content-reversed
     --link dark-color.link
     --link-hover dark-color.link-hover
     --widget dark-color.widget
@@ -42,6 +46,7 @@ dark-color = {
 .light-mode
   --background light-color.background
   --content light-color.content
+  --content-reversed light-color.content-reversed
   --link light-color.link
   --link-hover light-color.link-hover
   --widget light-color.widget
@@ -52,6 +57,7 @@ dark-color = {
 .dark-mode
   --background dark-color.background
   --content dark-color.content
+  --content-reversed dark-color.content-reversed
   --link dark-color.link
   --link-hover dark-color.link-hover
   --widget dark-color.widget

@@ -17,7 +17,17 @@
             }
         },
         {
-            "files": ["*.js", "*.ts", "*.svelte", "*.jsx", "*.tsx", "*.mjs"],
+            "files": [
+                "*.js",
+                "*.ts",
+                "*.test.ts",
+                "*.svelte",
+                "*.jsx",
+                "*.tsx",
+                "*.mjs",
+                "astro.config.mjs",
+                "astro.mjs"
+            ],
             "options": {
                 "singleQuote": true
             }

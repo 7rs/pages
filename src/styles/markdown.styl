@@ -1,8 +1,5 @@
 @import "api.styl"
 
-// Shittest specification
-@import "waste.styl"
-
 @keyframes under
   0%
     width 0%
@@ -49,6 +46,9 @@ body.markdown
     padding 0.5rem
     @media screen and (min-width widths.large)
       padding 1.5rem calc((100% - var(--widths-large)) / 2 + 0.5rem)
+    @media screen and (min-width widths.largest)
+      width widths.large
+      padding 0.5rem
 
     *
       margin-bottom 1rem

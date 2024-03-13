@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { blur, fly, fade } from 'svelte/transition';
+  import { blur } from 'svelte/transition';
   import { writable } from 'svelte/store';
+
   import Icon from '@iconify/svelte';
 
   import * as stack from '@lib/theme.ts';

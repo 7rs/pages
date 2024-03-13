@@ -1,19 +1,30 @@
 ---
 import Layout from "@layouts/Layout.astro";
 
-import Landing from "@pages-components/index/Landing.astro"
-import ProfileList from "@pages-components/index/ProfileList.astro"
-import RepositoryList from "@pages-components/index/RepositoryList.astro"
+import LandingText from "@components/pages/index/landing/LandingText.svelte";
+import LandingLogo from "@components/pages/index/landing/LandingLogo.astro";
+import ProfileList from "@pages-components/index/ProfileList.astro";
+import RepositoryList from "@pages-components/index/RepositoryList.astro";
 import PostList from "@components/post/PostList.astro";
-import Stack from "@pages-components/index/Stack.astro"
-import License from "@pages-components/index/License.astro"
+import Stack from "@pages-components/index/Stack.astro";
 ---
 
 <Layout>
-  <Landing />
+  <section landing-box>
+    <LandingLogo />
+    <LandingText client:load words={["No Advertising", "No Paid Content", "No Right Reserved"]} />
+  </section>
   <ProfileList />
   <RepositoryList />
   <PostList />
   <Stack />
-  <!-- <License /> -->
 </Layout>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  section[landing-box]
+    position relative
+    margin 50vh 0
+    width 100%
+</style>

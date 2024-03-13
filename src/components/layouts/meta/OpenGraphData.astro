@@ -17,3 +17,4 @@ const { title, siteName, image, keywords } = Astro.props;
 {siteName ? <meta property="og:site_name" content={siteName} /> : <meta property="og:site_name" content={title} />}
 {image && <meta property="og:image" content={image} />}
 {keywords && <meta property="og:keywords" content={keywords?.join(", ")} />}
+
