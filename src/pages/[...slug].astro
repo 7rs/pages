@@ -7,10 +7,6 @@ import "@styles/default.styl";
 export async function getStaticPaths() {
   const pages = await getCollection("blog");
 
-  if (pages.map == null) {
-    return;
-  }
-
   const paths = pages.map((page) => {
     const [lang, ...slug] = page.slug.split("/");
     return { params: { lang: slug ? lang : undefined, slug: page.slug }, props: page };
