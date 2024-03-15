@@ -1,8 +1,8 @@
 ---
 layout: "@layouts/Blog.astro"
-title: "ah"
+title: "Markdown preview"
+tags: ["preview"]
 lang: "en"
-tags: ["profile"]
 ---
 
 ## Headers
