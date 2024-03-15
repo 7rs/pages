@@ -6,6 +6,7 @@ light-color = {
   link-hover: rgba(blue, 0.5),
   widget: rgba(white, 0.4),
   widget-hover: rgba(black, 0.5),
+  wiget-border: rgba(black, .2),
   search-background: rgba(white, 0.2),
   border: black,
 }
@@ -18,6 +19,7 @@ dark-color = {
   link-hover: rgba(red, 0.5),
   widget: rgba(black, 0.4),
   widget-hover: rgba(white, 0.5),
+  wiget-border: rgba(white, .2),
   search-background: rgba(black, 0.2),
   border: white,
 }
@@ -30,6 +32,7 @@ dark-color = {
   --link-hover light-color.link-hover
   --widget light-color.widget
   --widget-hover light-color.widget-hover
+  --widget-border light-color.wiget-border
   --search-background light-color.search-background
   --border light-color.border
   @media (prefers-color-scheme dark)
@@ -40,6 +43,7 @@ dark-color = {
     --link-hover dark-color.link-hover
     --widget dark-color.widget
     --widget-hover dark-color.widget-hover
+    --widget-border dark-color.wiget-border
     --search-background dark-color.search-background
     --border dark-color.border
 
@@ -51,6 +55,7 @@ dark-color = {
   --link-hover light-color.link-hover
   --widget light-color.widget
   --widget-hover light-color.widget-hover
+  --widget-border light-color.wiget-border
   --search-background light-color.search-background
   --border light-color.border
 
@@ -62,5 +67,6 @@ dark-color = {
   --link-hover dark-color.link-hover
   --widget dark-color.widget
   --widget-hover dark-color.widget-hover
+  --widget-border dark-color.wiget-border
   --search-background dark-color.search-background
   --border dark-color.border

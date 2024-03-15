@@ -1,156 +1,264 @@
 @import "api.styl"
 
-@keyframes under
-  0%
-    width 0%
-  100%
-    width 100%
-
-$underline
-  position relative
-  width 100%
-  box-sizing border-box
-  &::before
-    z-index -1
-    set-absolute()
-    /* duration | timing-function | delay | iteration-count | direction | fill-mode | play-state | name */
-    animation 500ms ease-out 0s 1 normal forwards running under
-    border-bottom 1px solid colors.content
-    @media (prefers-color-scheme dark)
-      border-bottom 1px solid colors.dark.content
-
-
-left-spacing = 1rem
-x-spacing = 1rem
-letter-size = 1.1rem
-golden-ratio = (1 + 5 ** 0.5) / 2
-
-:root
-  --left-spacing: left-spacing
-  --letter-size: letter-size
-  --golden-ratio: golden-ratio
-
-
 body.markdown
-  box-sizing border-box
-  min-height 100vh
-  flex(column)
-  align-items center
-  background var(--background)
-  scrollbar(5px)
-
   main
-    box-sizing border-box
-    width 100%
-    // Responsive
-    padding 0.5rem
-    @media screen and (min-width widths.large)
-      padding 1.5rem calc((100% - var(--widths-large)) / 2 + 0.5rem)
-    @media screen and (min-width widths.largest)
-      width widths.large
-      padding 0.5rem
-
-    *
-      margin-bottom 1rem
-      & > *
-        margin-bottom 0
-
-    p, li, h1, h2, h3, h4, h5, h6, summary, table
-      color var(--content)
-
-    p, a, li
-      sans(1rem)
-      @media screen and (min-width widths.medium)
-        sans(1.2rem)
+    color var(--content)
+    sans(1rem)
+    @media screen and (min-width widths.medium)
+      sans(1.125rem)
 
     a
-      @extend $hoverable-link
+      color var(--link)
+      &:hover
+        text-decoration underline
 
     h1
-      margin 2rem 0
-      @media screen and (min-width widths.medium)
-        margin 2.5rem 0
-
-    h1, h1 > *
-      font-weight 900
-      text-align center
-      sans(1.75rem)
-      @media screen and (min-width widths.medium)
-        sans(2.5rem)
-      @media screen and (min-width widths.large)
-        sans(3rem)
+      margin-top 4rem
+      margin-bottom 3rem
 
     h2
-      @extend $underline
+      padding 0 0.5rem
       margin-top 3rem
-
-    h2, h2 > *
-      font-weight 700
+      margin-bottom 0.75rem
       sans(1.5rem)
-      @media screen and (min-width widths.medium)
-        sans(2rem)
 
-    h3
+    h3, h4, h5, h6, summary
+      margin-top 0.5rem
+      margin-bottom 0.5rem
+
+    h3, summary
       margin-top 1.5rem
-
-    h3, h3 > *
-      sans(1.4rem)
-      @media screen and (min-width widths.medium)
-        sans(1.75rem)
-
-    h4
-      margin-top 1rem
-
-    h4, h4 > *
-      sans(1.5rem)
-
-    h5
-      margin-top 1rem
-
-    h5, h5 > *
+      font-weight 700
       sans(1.25rem)
 
+    h4
+      sans(1.125rem)
+
+    h5
+      sans(1.0625rem)
+
     h6
-      margin-top 1rem
-
-    h6, h6 > *
       sans(1rem)
-
-    pre > code, code
-      mono(1rem)
-      @media screen and (min-width widths.medium)
-        mono(1.2rem)
-
-    th, td
-      padding 0.5rem 1rem
-      sans(1rem)
-      @media screen and (min-width widths.medium)
-        sans(1.2rem)
-
-    pre
-      padding 1rem
-      border-radius 1rem
 
     ul, ol
       list-style-position inside
 
-    p, h2, h3, h4, h5, h6
+      padding-left 0.5rem
+      ul, ol
+        padding-left 1rem
+
+      &.contains-task-list
+        list-style none
+
+    pre, code
+      mono(1rem)
       @media screen and (min-width widths.medium)
-        padding 0 x-spacing
+        mono(1.125rem)
 
-    * > p
-      padding 0
+    :not(pre) > code
+      background var(--content)
+      color var(--content-reversed)
+      padding 0 0.25rem
+      border-radius 0.5rem
 
-    li
-      padding-bottom 0.25rem
-      box-sizing border-box
-      &::marker
-        font-size 1rem
+    pre
+      padding 1rem
+      border-radius 0.5rem
+      margin 1rem 0
 
     blockquote
-      border-left 3px solid var(--content)
+      border-left solid 2px var(--border)
       font-style italic
       padding-left 0.5rem
-      @media screen and (min-width widths.medium)
-        margin-left x-spacing
-        margin-right x-spacing
+      margin 1rem 0
+
+    details
+      margin 1rem 0
+      summary
+        sans(1.25rem)
+
+    table
+      margin 1rem 0
+      padding 0.5rem
+
+      th, td
+        color black
+        padding 0.5rem
+        border-right solid 1px var(--border)
+        border-bottom solid 1px var(--border)
+        &:last-child
+          border-right none
+
+        &:nth-child(7n + 1)
+          background-color rgb(255, 224, 224)
+        &:nth-child(7n + 2)
+          background-color rgb(255, 240, 224)
+        &:nth-child(7n + 3)
+          background-color rgb(255, 255, 224)
+        &:nth-child(7n + 4)
+          background-color rgb(224, 255, 224)
+        &:nth-child(7n + 5)
+          background-color rgb(224, 224, 255)
+        &:nth-child(7n + 6)
+          background-color rgb(224, 240, 255)
+        &:nth-child(7n + 7)
+          background-color rgb(255, 224, 255)
+
+      tr:last-child > td
+          border-bottom none
+
+
+// @keyframes under
+//   0%
+//     width 0%
+//   100%
+//     width 100%
+
+// $underline
+//   position relative
+//   width 100%
+//   box-sizing border-box
+//   &::before
+//     z-index -1
+//     set-absolute()
+//     /* duration | timing-function | delay | iteration-count | direction | fill-mode | play-state | name */
+//     animation 500ms ease-out 0s 1 normal forwards running under
+//     border-bottom 1px solid colors.content
+//     @media (prefers-color-scheme dark)
+//       border-bottom 1px solid colors.dark.content
+
+
+// left-spacing = 1rem
+// x-spacing = 1rem
+// letter-size = 1.1rem
+// golden-ratio = (1 + 5 ** 0.5) / 2
+
+// :root
+//   --left-spacing: left-spacing
+//   --letter-size: letter-size
+//   --golden-ratio: golden-ratio
+
+
+// body.markdown
+//   box-sizing border-box
+//   min-height 100vh
+//   flex(column)
+//   align-items center
+//   background var(--background)
+//   scrollbar(5px)
+
+//   main
+//     box-sizing border-box
+//     width 100%
+//     // Responsive
+//     padding 0.5rem
+//     @media screen and (min-width widths.large)
+//       padding 1.5rem calc((100% - var(--widths-large)) / 2 + 0.5rem)
+//     @media screen and (min-width widths.largest)
+//       width widths.large
+//       padding 0.5rem
+
+//     *
+//       margin-bottom 1rem
+//       & > *
+//         margin-bottom 0
+
+//     p, li, h1, h2, h3, h4, h5, h6, summary, table
+//       color var(--content)
+
+//     p, a, li
+//       sans(1rem)
+//       @media screen and (min-width widths.medium)
+//         sans(1.2rem)
+
+//     a
+//       @extend $hoverable-link
+
+//     h1
+//       margin 2rem 0
+//       @media screen and (min-width widths.medium)
+//         margin 2.5rem 0
+
+//     h1, h1 > *
+//       font-weight 900
+//       text-align center
+//       sans(1.75rem)
+//       @media screen and (min-width widths.medium)
+//         sans(2.5rem)
+//       @media screen and (min-width widths.large)
+//         sans(3rem)
+
+//     h2
+//       @extend $underline
+//       margin-top 3rem
+
+//     h2, h2 > *
+//       font-weight 700
+//       sans(1.5rem)
+//       @media screen and (min-width widths.medium)
+//         sans(2rem)
+
+//     h3
+//       margin-top 1.5rem
+
+//     h3, h3 > *
+//       sans(1.4rem)
+//       @media screen and (min-width widths.medium)
+//         sans(1.75rem)
+
+//     h4
+//       margin-top 1rem
+
+//     h4, h4 > *
+//       sans(1.5rem)
+
+//     h5
+//       margin-top 1rem
+
+//     h5, h5 > *
+//       sans(1.25rem)
+
+//     h6
+//       margin-top 1rem
+
+//     h6, h6 > *
+//       sans(1rem)
+
+//     pre > code, code
+//       mono(1rem)
+//       @media screen and (min-width widths.medium)
+//         mono(1.2rem)
+
+//     th, td
+//       padding 0.5rem 1rem
+//       sans(1rem)
+//       @media screen and (min-width widths.medium)
+//         sans(1.2rem)
+
+//     pre
+//       padding 1rem
+//       border-radius 1rem
+
+//     ul, ol
+//       list-style-position inside
+
+//     p, h2, h3, h4, h5, h6
+//       @media screen and (min-width widths.medium)
+//         padding 0 x-spacing
+
+//     * > p
+//       padding 0
+
+//     li
+//       padding-bottom 0.25rem
+//       box-sizing border-box
+//       &::marker
+//         font-size 1rem
+
+//     blockquote
+//       border-left 3px solid var(--content)
+//       font-style italic
+//       padding-left 0.5rem
+//       @media screen and (min-width widths.medium)
+//         margin-left x-spacing
+//         margin-right x-spacing

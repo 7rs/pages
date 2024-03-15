@@ -1,6 +1,14 @@
 <script lang="ts">
   import { writable } from 'svelte/store';
 
+  export let modalId = 'modal';
+  export let activeClass = 'show';
+
+  const modal = window.document.getElementById(modalId);
+  if (modal == null) {
+    throw new Error(`Not found modal element: ${modalId}`);
+  }
+
   export let headings: Array<{ slug: string; depth: number; text: string }> = [];
   export let indentWidth: string
   export let colors = {
@@ -22,6 +30,7 @@
     style:background-color={$activeHeadingIndex === i ? backgroundColor : undefined}
     on:click={() => {
       $activeHeadingIndex = i;
+      modal.classList.remove(activeClass)
     }}
     {...$$restProps}
   >
