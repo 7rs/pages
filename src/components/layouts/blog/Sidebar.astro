@@ -1,6 +1,5 @@
 ---
-import Headings from "@layouts-components/blog/Headings.svelte";
-import LinkButton from "@layouts-components/blog/LinkButton.astro";
+import FloatingButton from "./FloatingButton.svelte";
 
 import Pocket from "@components/share/Pocket.astro";
 import Twitter from "@components/share/Twitter.astro";
@@ -8,6 +7,9 @@ import Bluesky from "@components/share/Bluesky.astro";
 import Reddit from "@components/share/Reddit.astro";
 import Hatena from "@components/share/Hatena.astro";
 import Mastodon from "@components/share/Mastodon.astro";
+
+import Headings from "@layouts-components/blog/Headings.svelte";
+import LinkButton from "@layouts-components/blog/LinkButton.astro";
 
 export interface Props {
   frontmatter: { [key: string]: any };
@@ -33,7 +35,8 @@ const url = Astro.site + Astro.url.pathname.slice(1);
 const ext = frontmatter.file.slice(frontmatter.file.lastIndexOf("."));
 ---
 
-<aside {...props}>
+<FloatingButton modalId="sidebar" client:only />
+<aside id="sidebar" {...props}>
   <section share-buttons>
     <Reddit title={frontmatter.title} url={url} />
     <Twitter text={frontmatter.title} hashtags={frontmatter.tags} url={url} />
@@ -43,11 +46,13 @@ const ext = frontmatter.file.slice(frontmatter.file.lastIndexOf("."));
     <Hatena url={url} />
   </section>
   <section heading-list>
-    <Headings headings={headings} indentWidth="0.5rem" client:only />
+    <Headings modalId="sidebar" headings={headings} indentWidth="0.5rem" client:only />
   </section>
   <section action-buttons>
-    <LinkButton href="https://github.com/7rs/pages/issues/new/choose">Issue</LinkButton>
-    <LinkButton href={`${repositoryURL}/blob/${branchName}${frontmatter.url}${ext}?plain=1`}>Source Code</LinkButton>
+    <LinkButton title="Submit an issue" href="https://github.com/7rs/pages/issues/new/choose">Issue</LinkButton>
+    <LinkButton title="View source codes" href={`${repositoryURL}/blob/${branchName}${frontmatter.url}${ext}?plain=1`}>
+      Source Code
+    </LinkButton>
   </section>
 </aside>
 
@@ -56,17 +61,26 @@ const ext = frontmatter.file.slice(frontmatter.file.lastIndexOf("."));
 
   aside
     display none
-    @media screen and (min-width widths.large)
+
+    &.show
+      z-index 2
+      position fixed
       display grid
+      background-color white
 
     grid-template-rows auto 1fr auto
     row-gap 1rem
 
+    @media screen and (min-width widths.large)
+      position static
+      display grid
+
     section[share-buttons]
-      overflow-x scroll
+      overflow-x auto
       padding 0.25rem 0.25rem 1rem
       flex()
       justify-content space-between
+      scrollbar()
 
       [link-icon]
         font-size 1.25rem
@@ -89,9 +103,10 @@ const ext = frontmatter.file.slice(frontmatter.file.lastIndexOf("."));
             color #00A4DE
 
     section[heading-list]
-      overflow clip scroll
+      overflow clip auto
       height 100%
       flex(column, 0.25rem)
+      scrollbar()
 
       a
         padding-top 0.5rem
