@@ -7,7 +7,9 @@ import "@styles/default.styl";
 export async function getStaticPaths() {
   const pages = await getCollection("blog");
 
-  const paths = pages.map((page) => {
+  // I dunno errors by cloudflare or astro but this is shittest bug
+  // i dunno why but maybe host couldn't load astro types
+  const paths = pages?.map((page) => {
     const [lang, ...slug] = page.slug.split("/");
     return { params: { lang: slug ? lang : undefined, slug: page.slug }, props: page };
   });
