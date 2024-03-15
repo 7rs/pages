@@ -14,7 +14,7 @@
         "benchmark": "lighthouse http://localhost:2999/ --quiet --view --emulated-form-factor mobile --output-path mobile-lighthouse.html"
     },
     "dependencies": {
-        "@astrojs/mdx": "^2.1.1",
+        "@astrojs/mdx": "^2.2.0",
         "@astrojs/rss": "^4.0.5",
         "@astrojs/sitemap": "^3.1.1",
         "@astrojs/svelte": "^5.2.0",
@@ -30,7 +30,7 @@
         "@pagefind/default-ui": "^1.0.4",
         "@qwikdev/astro": "^0.5.7",
         "@webcomponents/template-shadowroot": "^0.2.1",
-        "astro": "^4.4.10",
+        "astro": "^4.5.5",
         "astro-compress": "^2.2.5",
         "astro-icon": "^1.0.2",
         "astro-pagefind": "^1.4.0",
