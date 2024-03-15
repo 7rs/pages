@@ -34,9 +34,9 @@ const authors = {
 // frontmatter doesn't support zod's `.default`.
 // "it supports all of the features of Zod"
 // Ok, Astro lied.
-// const posts = await getCollection("blog", (data: {[key: string]: any}) => frontmatter.url?.endsWith(data.slug));
-const authorNames = ["Cbrnex"]
-// posts.map(post => post.data.authors)[0]
+const posts = await getCollection("blog", (data: {[key: string]: any}) => frontmatter.url?.endsWith(data.slug));
+const authorNames = posts?.map(post => post.data.authors)[0] || ['Cbrnex']
+// const authorNames = ["Cbrnex"]
 let authorsSchema: Assignee[] = []
 authorNames.map(name => authors[name] && authorsSchema.push(authors[name]))
 
