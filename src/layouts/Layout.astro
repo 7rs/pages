@@ -2,7 +2,7 @@
 import { fade, slide } from 'astro:transitions';
 import { getImage } from 'astro:assets'
 
-import { websiteSchema, Website } from '@lib/meta';
+import { website, Website } from '@lib/meta';
 import { personSchema, Assignee } from '@lib/schema';
 import { getFont } from '@lib/font';
 
@@ -68,7 +68,7 @@ const darkBackground = `url(${darkBackgroundImage.src})`
       { format: backgroundOptions.format, src: lightBackgroundImage.src, media: "(prefers-color-scheme: light)" },
       { format: backgroundOptions.format, src: darkBackgroundImage.src, media: "(prefers-color-scheme: dark)" }
     ]}
-    meta={meta || websiteSchema.parse({
+    meta={meta || website.parse({
       'name': '7rs.dev',
       'description': 'No ads, No paid, No morals.',
       'url': 'https://7rs.dev/',

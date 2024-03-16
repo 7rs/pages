@@ -2,8 +2,8 @@
     "exclude": ["*node_modules*", "scripts/lib"],
     "compilerOptions": {
         // "target": "es2022",
-        // "module": "ESNext",
-        "moduleResolution": "node",
+        "module": "nodenext",
+        // "moduleResolution": "NodeNext",
         "allowJs": true,
         "baseUrl": ".",
         "strictNullChecks": true,
@@ -25,7 +25,8 @@
             "@layouts/*": ["src/layouts/*"],
             "@scripts/*": ["scripts/*"],
             "@lib/*": ["scripts/lib/*"],
-            "@public/*": ["public/*"]
+            "@public/*": ["public/*"],
+            "@content/*": ["src/content/*"]
         }
     }
 }

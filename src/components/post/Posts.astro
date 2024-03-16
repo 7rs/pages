@@ -1,0 +1,18 @@
+---
+import { getCollection } from "astro:content";
+
+import PostList from "@components/post/PostList.svelte";
+
+export interface Props {
+  langs?: string[];
+}
+
+const { langs = ["en", "ja"], ...props } = Astro.props;
+
+const posti18n: { [lang: string]: any[] } = {};
+for (const lang of langs) {
+  posti18n[lang] = await getCollection("blog", (post) => post.data.published && post.data.lang == lang);
+}
+---
+
+<PostList posti18n={posti18n} client:visible />

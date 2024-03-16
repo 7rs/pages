@@ -1,17 +1,16 @@
-<section main-content></section>
-  <slot />
-</section>
+
 
 <style lang="stylus" is:global>
   @import "../../../styles/api.styl"
 
-  * > a
-    text-decoration none
+  body.markdown
+    * > a
+      text-decoration none
 
-  h2
-    margin-top 3rem
-    margin-bottom 1rem
-    border-bottom 1px solid var(--content)
-    sans(1.5rem)
+    h2
+      margin-top 3rem
+      margin-bottom 1rem
+      border-bottom 1px solid var(--content)
+      sans(1.5rem)
 
 </style>

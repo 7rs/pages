@@ -1,4 +1,6 @@
 ---
+import { PostDetail } from "@lib/meta";
+
 import FloatingButton from "./FloatingButton.svelte";
 
 import Pocket from "@components/share/Pocket.astro";
@@ -12,7 +14,7 @@ import Headings from "@layouts-components/blog/Headings.svelte";
 import LinkButton from "@layouts-components/blog/LinkButton.astro";
 
 export interface Props {
-  frontmatter: { [key: string]: any };
+  frontmatter: PostDetail;
   headings: { depth: number; slug: string; text: string }[];
   indentSize?: string;
   repositoryURL?: string;
@@ -31,8 +33,7 @@ const {
 headings.unshift({ depth: 1, slug: frontmatter.title, text: frontmatter.title || "" });
 
 const url = Astro.site + Astro.url.pathname.slice(1);
-
-const ext = frontmatter.file.slice(frontmatter.file.lastIndexOf("."));
+const ext = frontmatter.file?.slice(frontmatter.file.lastIndexOf(".")) || ".md";
 ---
 
 <FloatingButton modalId="sidebar" client:only />
@@ -50,7 +51,12 @@ const ext = frontmatter.file.slice(frontmatter.file.lastIndexOf("."));
   </section>
   <section action-buttons>
     <LinkButton title="Submit an issue" href="https://github.com/7rs/pages/issues/new/choose">Issue</LinkButton>
-    <LinkButton title="View source codes" href={`${repositoryURL}/blob/${branchName}${frontmatter.url}${ext}?plain=1`}>
+    <LinkButton
+      title="View source codes"
+      href={frontmatter.url != null
+        ? `${repositoryURL}/blob/${branchName}${frontmatter.url}${ext}?plain=1`
+        : "https://github.com/7rs/pages"}
+    >
       Source Code
     </LinkButton>
   </section>

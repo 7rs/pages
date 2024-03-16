@@ -1,39 +1,39 @@
 ---
-import { getLangaugeLabel } from "@lib/locale";
+import { getLangaugeLabel } from "@lib/meta";
+import { dateToString, PostDetail } from "@lib/meta";
+
+import qs from "qs"
 
 export interface Props {
-  frontmatter: { [key: string]: any };
-
-  title?: string;
-  lang?: string;
-  tags?: string[];
-  publishedAt?: string;
-  updatedAt?: string;
+  frontmatter: PostDetail;
 }
 
-const {
-  title,
-  lang = "ja",
-  tags = [],
-  publishedAt,
-  updatedAt,
-  frontmatter,
-} = Astro.props;
+const { frontmatter } = Astro.props;
 ---
 
 <header post-header>
   <h1 id={frontmatter.title}>{frontmatter.title}</h1>
 
   <section tag-list>
-    {frontmatter.tags.map((tag) => <a href={`/blog?tag=${tag}`}>{tag}</a>)}
+    {frontmatter.tags.map((tag) => <a href={`/blog?${qs.stringify({tags: [tag]})}`}>{tag}</a>)}
   </section>
 
   <section post-detail>
     <p>{getLangaugeLabel(frontmatter.lang)}</p>
-    <time published-at datetime={frontmatter.published_at || "0000-00-00"}
-      >{frontmatter.published_at || "Hidden post"}</time
-    >
-    <time updated-at datetime={frontmatter.updated_at || "9999-99-99"}>{frontmatter.updated_at || "Not updated"}</time>
+    {
+      frontmatter.published_at && (
+        <time published-at datetime={String(frontmatter.published_at)}>
+          {dateToString(frontmatter.published_at)}
+        </time>
+      )
+    }
+    {
+      frontmatter.updated_at && (
+        <time updated-at datetime={String(frontmatter.updated_at)}>
+          {dateToString(frontmatter.updated_at)}
+        </time>
+      )
+    }
   </section>
 </header>
 
@@ -50,6 +50,7 @@ const {
 
     section[tag-list]
       flex(_gap: 1rem)
+      flex-wrap wrap
       justify-content center
       sans(1.5rem)
 
