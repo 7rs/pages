@@ -1,7 +1,7 @@
 ---
 import { ViewTransitions, fade } from "astro:transitions";
 
-import { Website } from "@lib/meta";
+import { Website, dateToString } from "@lib/meta";
 import { Assignee } from "@lib/schema";
 
 import Schema from "@layouts-components/meta/Schema.astro";
@@ -16,20 +16,26 @@ export interface Props {
   noIndex: boolean;
   favicon: string;
   fonts?: Array<string>;
-  images?: Array<{ format: string; src: string, media?: string }>;
+  images?: Array<{ format: string; src: string; media?: string }>;
   meta: Website;
   profile?: Assignee | Assignee[];
   author?: Assignee | Assignee[];
-  datePublished?: string;
-  dateModified?: string;
+  datePublished?: Date | string;
+  dateModified?: Date | string;
 }
 
 const { title, noIndex, favicon, fonts, images, meta, profile, author, datePublished, dateModified } = Astro.props;
 ---
 
 <head>
-  <ViewTransitions transition:animate={fade({ duration: '0.1s' })} />
-  <Schema title={title} profile={profile} author={author} datePublished={datePublished} dateModified={dateModified} />
+  <ViewTransitions transition:animate={fade({ duration: "0.1s" })} />
+  <Schema
+    title={title}
+    profile={profile}
+    author={author}
+    datePublished={datePublished instanceof Date ? dateToString(datePublished) : datePublished}
+    dateModified={dateModified instanceof Date ? dateToString(dateModified) : dateModified}
+  />
   <Data title={title} description={meta.description} authorName={meta.author} siteName={meta.name} url={meta.url} />
   <Settings favicon={favicon} noIndex={noIndex} />
   <Preload fonts={fonts} images={images} />

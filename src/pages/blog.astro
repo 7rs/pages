@@ -1,11 +1,14 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Params from "@components/layouts/blog/Params.svelte";
+import Params from "@components/pages/blog/Params.svelte";
 
 import light from "@assets/background/E8Ufcyxz514.jpg";
 import dark from "@assets/background/ZkzobNDayXo.jpg";
 ---
 
 <Layout light={light} dark={dark}>
-  <Params client:only /></Layout>
+  <p>This page is under development.</p>
+  <a href="https://github.com/7rs/pages">Repository</a>
+  <Params client:only />
+</Layout>
 

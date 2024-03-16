@@ -1,7 +1,6 @@
 ---
 layout: "@layouts/Blog.astro"
 title: "Markdown preview"
-tags: ["preview"]
 lang: "en"
 ---
 

@@ -1,7 +1,5 @@
 ---
-import { getCollection } from "astro:content";
-
-import { websiteSchema } from "@lib/meta";
+import { website, postDetail } from "@lib/meta";
 import { personSchema, Assignee } from "@lib/schema";
 import { getFont } from "@lib/font"
 
@@ -10,7 +8,6 @@ import Header from "@layouts/Header.astro";
 
 import PostHeader from "@layouts-components/blog/PostHeader.astro"
 import Sidebar from "@layouts-components/blog/Sidebar.astro"
-import MainContent from "@layouts-components/blog/MainContent.astro"
 
 import logo from "@icons/favicon.svg";
 
@@ -19,6 +16,8 @@ export interface Props {
   headings: { depth: number; slug: string; text: string }[];
 }
 const { frontmatter, headings, ...props } = Astro.props;
+
+const FixedFrontmatter = postDetail.parse(frontmatter)
 
 const authors = {
   "Cbrnex": personSchema.parse({
@@ -31,16 +30,10 @@ const authors = {
   })
 }
 
-// frontmatter doesn't support zod's `.default`.
-// "it supports all of the features of Zod"
-// Ok, Astro lied.
-const posts = await getCollection("blog", (data: {[key: string]: any}) => frontmatter.url?.endsWith(data.slug));
-const authorNames = posts?.map(post => post.data.authors)[0] || ['Cbrnex']
-// const authorNames = ["Cbrnex"]
 let authorsSchema: Assignee[] = []
-authorNames.map(name => authors[name] && authorsSchema.push(authors[name]))
+FixedFrontmatter.authors.map(name => authors[name] && authorsSchema.push(authors[name]))
 
-const meta = websiteSchema.parse({
+const meta = website.parse({
     "name": "7rs.dev",
     "description": "No ads, No paid, No morals.",
     "url": "https://7rs.dev/",
@@ -53,34 +46,36 @@ const meta = websiteSchema.parse({
 ---
 
 <!doctype html>
-<html lang={frontmatter.lang || "ja"}>
+<html lang={FixedFrontmatter.lang || "ja"}>
   <Meta
     fonts={[
       getFont("Fira Sans", [{}, {weight: 700}, {typefaces: 1},  {weight: 700, typefaces: 1}]),
       getFont("Fira Code"),
     ]}
     meta={meta}
-    title={frontmatter.title}
+    title={FixedFrontmatter.title}
     favicon={logo.src}
-    noIndex={!frontmatter.published}
+    noIndex={!FixedFrontmatter.published}
     author={authorsSchema}
-    datePublished={frontmatter.published_at}
-    dateModified={frontmatter.updated_at}
+    datePublished={FixedFrontmatter.published_at}
+    dateModified={FixedFrontmatter.updated_at}
   />
   <body class="markdown system">
     <Header />
     <main>
-      <PostHeader frontmatter={frontmatter} />
-      <MainContent><slot /></MainContent>
+      <PostHeader frontmatter={FixedFrontmatter} />
+      <section main-content></section>
+        <slot />
+      </section>
     </main>
-    <Sidebar frontmatter={frontmatter} headings={headings} />
+    <Sidebar frontmatter={FixedFrontmatter} headings={headings} />
   </body>
 </html>
 
 <style lang="stylus">
   @import "../styles/api.styl"
 
-  body
+  body.markdown
     background var(--background)
     z-index 0
     position relative
