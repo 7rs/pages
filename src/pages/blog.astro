@@ -1,14 +1,24 @@
 ---
+import { getImage } from 'astro:assets'
+
 import Layout from "@layouts/Layout.astro";
 import Params from "@components/pages/blog/Params.svelte";
+import Search from "@components/pagefind/Search.svelte"
 
 import light from "@assets/background/E8Ufcyxz514.jpg";
 import dark from "@assets/background/ZkzobNDayXo.jpg";
+
+import notFound from "@assets/You-are-an-idiot.gif"
+
+const image = await getImage({src: notFound})
 ---
 
-<Layout light={light} dark={dark}>
-  <p>This page is under development.</p>
-  <a href="https://github.com/7rs/pages">Repository</a>
-  <Params client:only />
+<Layout locale="ja" light={light} dark={dark}>
+  <Search isDevelopment={import.meta.env.DEV} notFoundSrc={image.src} client:only />
 </Layout>
+
+<style lang="stylus">
+  main
+    margin 3rem 0
+</style>
 

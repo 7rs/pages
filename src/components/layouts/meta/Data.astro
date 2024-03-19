@@ -24,9 +24,9 @@ const {
 } = Astro.props;
 ---
 
-<title>{title}</title>
+<title data-pagefind-meta="title">{title}</title>
 <link rel="sitemap" href="/sitemap-0.xml" />
-<meta name="generator" content={`Astro v${packageData["dependencies"]["astro"].slice(1)}`} />
+<meta name="generator" content={Astro.generator} />
 <!-- Optional -->
 {description && <meta name="description" content={description} />}
 {authorName && <meta name="author" content={authorName} />}

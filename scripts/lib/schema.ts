@@ -16,17 +16,20 @@ const thingSchema = z.object({
   url: z.ostring(),
   sameAs: z.optional(strings),
 })
+export type Thing = z.infer<typeof thingSchema>;
 
 /** Thing > Person
- * 
+ *
  * A person (alive, dead, undead, or fictional).
- * 
+ *
  * @see https://schema.org/Person
  */
 export const personSchema = thingSchema.extend({
-  "@type": z.ostring().default("Person"),
+  '@type': z.ostring().default('Person'),
   jobTitle: z.ostring(),
-})
+});
+
+export type Person = z.infer<typeof personSchema>;
 
 /** Thing > Organization
  * 
@@ -39,9 +42,12 @@ export const organizationSchema = thingSchema.extend({
   logo: z.ostring(),
   founder: z.optional(personSchema),
 })
+export type Organization = z.infer<typeof organizationSchema>;
 
-export const assignee = personSchema.or(organizationSchema)
-export const assignees = personSchema.array().or(organizationSchema.array())
+export const assignee = personSchema.or(organizationSchema);
+export const assignees = personSchema.array().or(organizationSchema.array());
+export type Assignee = Person | Organization;
+export type Assignees = Assignee[];
 
 /** Thing > CreativeWork > Article
  * 
@@ -60,21 +66,23 @@ export const articleSchema = z.object({
   dateModified: z.optional(z.coerce.date()),
   author: assignee.or(assignees).optional(),
 })
+export type Article = z.infer<typeof articleSchema>;
 
 /** Thing > CreativeWork > WebPage > ProfilePage
- * 
+ *
  * Web page type: Profile page.
- * 
+ *
  * @see https://schema.org/ProfilePage
  * @see https://developers.google.com/search/docs/appearance/structured-data/profile-page
  */
 export const profilePageSchema = z.object({
-  "@context": z.ostring().default(schemaURL),
-  "@type": z.ostring().default("ProfilePage"),
+  '@context': z.ostring().default(schemaURL),
+  '@type': z.ostring().default('ProfilePage'),
   mainEntity: assignee.or(assignees),
   datePublished: z.optional(z.coerce.date()),
   dateModified: z.optional(z.coerce.date()),
-})
+});
+export type ProfilePage = z.infer<typeof profilePageSchema>;
 
 /** Thing > Intangible > ListItem
  * 
@@ -87,34 +95,29 @@ export const listItemSchema = z.object({
   name: z.ostring(),
   position: z.number()
 })
+export type ListItem = z.infer<typeof listItemSchema>;
 
 /** Thing > Intangible > ItemList > BreadcrumbList
- * 
- * A BreadcrumbList is an ItemList consisting of a chain of linked Web pages,  
+ *
+ * A BreadcrumbList is an ItemList consisting of a chain of linked Web pages,
  * typically described using at least their URL and their name, and typically ending with the current page.
- * 
+ *
  * The position property is used to reconstruct the order of the items in a BreadcrumbList.
  * The convention is that a breadcrumb list has an itemListOrder of ItemListOrderAscending (lower values listed first),
  * and that the first items in this list correspond to the "top" or beginning of the breadcrumb trail,
  * e.g. with a site or section homepage.
  * The specific values of 'position' are not assigned meaning for a BreadcrumbList,
  * but they should be integers, e.g. beginning with '1' for the first item in the list.
- * 
+ *
  * @see https://schema.org/BreadcrumbList
  * @see https://developers.google.com/search/docs/appearance/structured-data/breadcrumb
  */
 export const breadcrumbListSchema = z.object({
-  "@context": z.ostring().default(schemaURL),
-  "@type": z.ostring().default("BreadcrumbList"),
+  '@context': z.ostring().default(schemaURL),
+  '@type': z.ostring().default('BreadcrumbList'),
   itemListElement: z.array(listItemSchema),
-})
-
-export type Thing = z.infer<typeof thingSchema>;
-export type Organization = z.infer<typeof organizationSchema>;
-export type Person = z.infer<typeof personSchema>;
-export type Assignee = Person | Organization
-export type Assignees = Assignee[]
-export type Article = z.infer<typeof articleSchema>;
-export type ProfilePage = z.infer<typeof profilePageSchema>;
-export type ListItem = z.infer<typeof listItemSchema>;
+});
 export type BreadcrumbList = z.infer<typeof breadcrumbListSchema>;
+
+
+

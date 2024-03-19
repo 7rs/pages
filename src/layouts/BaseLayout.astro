@@ -1,0 +1,68 @@
+---
+import { getImage } from "astro:assets";
+
+import { PostDetail, Website } from "@lib/meta";
+import { Assignee, personSchema } from "@lib/schema";
+import { getFont } from "@lib/font";
+
+import Meta from "@layouts/Meta.astro";
+
+import logo from "@icons/favicon.svg";
+
+export interface Props {
+  title?: string;
+  locale?: string;
+  noIndex?: boolean;
+  fonts?: string[];
+  background?: Array<{ format: string; src: string; media?: string }>;
+  meta?: Website;
+  profile?: Assignee | Assignee[];
+  frontmatter?: PostDetail;
+}
+
+const {
+  title = "Pages - Fast and simple website.",
+  locale = "en",
+  noIndex = false,
+  fonts = [getFont("Fira Sans")],
+  background,
+  meta = {
+    name: "7rs.dev",
+    description: "No ads, No paid, No morals.",
+    url: "https://7rs.dev/",
+    author: "Cbrnex",
+    image: logo.src,
+    imageAlt: "7rs logo",
+    keywords: ["Cbrnex", "7rs", "qЯze", "MANJSRSU", "Rynon"],
+    twitterId: "qlzegg",
+  },
+  profile,
+  frontmatter,
+  ...props
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <Meta
+      title={title}
+      noIndex={noIndex}
+      favicon={logo.src}
+      fonts={fonts}
+      images={background}
+      meta={meta}
+      profile={profile || personSchema.parse({
+        name: 'Cbrnex',
+        alternateName: '7rs',
+        image: 'https://7rs.dev/avatar',
+        url: 'https://7rs.dev/',
+        sameAs: 'https://github.com/7rs',
+        jobTitle: 'Student',
+      })}
+    />
+  </head>
+  <body {...props}>
+    <slot />
+  </body>
+</html>

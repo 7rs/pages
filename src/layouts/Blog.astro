@@ -8,6 +8,7 @@ import Header from "@layouts/Header.astro";
 
 import PostHeader from "@layouts-components/blog/PostHeader.astro"
 import Sidebar from "@layouts-components/blog/Sidebar.astro"
+import PostFooter from "@components/layouts/blog/PostFooter.astro";
 
 import logo from "@icons/favicon.svg";
 
@@ -46,7 +47,7 @@ const meta = website.parse({
 ---
 
 <!doctype html>
-<html lang={FixedFrontmatter.lang || "ja"}>
+<html lang={FixedFrontmatter.lang}>
   <Meta
     fonts={[
       getFont("Fira Sans", [{}, {weight: 700}, {typefaces: 1},  {weight: 700, typefaces: 1}]),
@@ -62,11 +63,12 @@ const meta = website.parse({
   />
   <body class="markdown system">
     <Header />
-    <main>
+    <main >
       <PostHeader frontmatter={FixedFrontmatter} />
-      <section main-content></section>
+      <section main-content data-pagefind-body={FixedFrontmatter.published ? '' : undefined}>
         <slot />
       </section>
+      <PostFooter lang={FixedFrontmatter.lang}  />
     </main>
     <Sidebar frontmatter={FixedFrontmatter} headings={headings} />
   </body>

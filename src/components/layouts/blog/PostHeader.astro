@@ -2,7 +2,7 @@
 import { getLangaugeLabel } from "@lib/meta";
 import { dateToString, PostDetail } from "@lib/meta";
 
-import qs from "qs"
+import qs from "qs";
 
 export interface Props {
   frontmatter: PostDetail;
@@ -15,21 +15,37 @@ const { frontmatter } = Astro.props;
   <h1 id={frontmatter.title}>{frontmatter.title}</h1>
 
   <section tag-list>
-    {frontmatter.tags.map((tag) => <a href={`/blog?${qs.stringify({tags: [tag]})}`}>{tag}</a>)}
+    {
+      frontmatter.tags.map((tag) => (
+        <a data-pagefind-filter="tag" href={`/blog?${qs.stringify({ tag: [tag] })}`}>
+          {tag}
+        </a>
+      ))
+    }
   </section>
 
   <section post-detail>
-    <p>{getLangaugeLabel(frontmatter.lang)}</p>
+    <p data-pagefind-filter="lang">{getLangaugeLabel(frontmatter.lang)}</p>
     {
       frontmatter.published_at && (
-        <time published-at datetime={String(frontmatter.published_at)}>
+        <time
+          published-at
+          data-pagefind-meta="publishedAt"
+          data-pagefind-sort="publishedAt"
+          datetime={String(frontmatter.published_at)}
+        >
           {dateToString(frontmatter.published_at)}
         </time>
       )
     }
     {
       frontmatter.updated_at && (
-        <time updated-at datetime={String(frontmatter.updated_at)}>
+        <time
+          updated-at
+          data-pagefind-meta="updatedAt"
+          data-pagefind-sort="updatedAt"
+          datetime={String(frontmatter.updated_at)}
+        >
           {dateToString(frontmatter.updated_at)}
         </time>
       )
