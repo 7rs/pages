@@ -1,20 +1,47 @@
 <script lang="ts">
   import { writable } from 'svelte/store';
-  import { blur } from 'svelte/transition';
+  import { blur, slide } from 'svelte/transition';
+  import { linear, cubicIn, cubicOut } from 'svelte/easing';
   import qs from 'qs';
   import type { PagefindSearchFragment } from '@lib/pagefind.ts';
 
   import Icon from '@iconify/svelte';
 
   import SearchResult from './SearchResult.svelte';
+  import { onDestroy, onMount } from 'svelte';
+
+  const intervalTime = 10000;
 
   export let isDevelopment;
-  export let placeholder = '検索したいワードを入力してね';
-  export let notFoundSrc = '../../assets/You-are-an-idiot.gif'
+  export let placeholders = [
+    'Search by Keyword.',
+    'Powered by Pagefind.',
+    'Subscribe to @QRZE on YouTube!',
+    'Do you know this website is open source?',
+    "Do you wanna know why default UI isn't use?",
+    'I gotta set shitty numbers to set styles of default UI.',
+    "I've get stuck on other scenes.",
+    'But they excite and entertain me.',
+    'Okay, here are some of my favorite songs!',
+    't+pazolite - HYPER4ID #TPZREMAKE',
+    'ikaruga_nex - ReviXy',
+    'Aoi - !nterroban(?,',
+    '3R2 - Blow My Mind (tpz Overheat Remix)',
+    'GHOSTEMANE x PARV0 - I duckinf hatw you',
+    'Lil Darkie - COMPOSITION III IN RED, WHITE, AND BLACK',
+    'back number - then',
+    'Would you listen to more from me please?',
+    'Click on discord icon in footer.',
+  ];
+  export let notFoundSrc = '../../assets/You-are-an-idiot.gif';
+
+  const placeholderTextIndex = writable(0);
 
   const query = writable('');
   const filters = writable(qs.parse(window.location.search.slice(1)));
-  const displayFilter = writable(false);
+  const displayDestroyButton = writable(false);
+  const displayFilters = writable($filters.tag?.length > 0);
+  const displayResults = writable(false);
 
   let pagefind = (async () => {
     const scriptDir = isDevelopment ? '/' : '/dist/';
@@ -39,6 +66,22 @@
       async function search(e, t)
   */
 
+  onMount(() => {
+    const interval = setInterval(() => {
+      if ($displayDestroyButton) {
+        return;
+      }
+
+      if ($placeholderTextIndex === placeholders.length - 1) {
+        $placeholderTextIndex = 0;
+      } else {
+        $placeholderTextIndex++;
+      }
+    }, intervalTime);
+
+    return () => clearInterval(interval);
+  });
+
   async function fixFilter() {
     $filters = qs.parse(window.location.search.slice(1));
     const allFilters = await resolvePagefind.filters();
@@ -58,23 +101,41 @@
       $filters.tag = [item];
     }
 
-    history.replaceState('', '', `${window.location.pathname}?${qs.stringify($filters)}`);
+    if ($filters.tag?.length > 0) {
+      $displayFilters = true;
+      $displayDestroyButton = true;
+      $placeholderTextIndex = 0;
+      history.replaceState('', '', `${window.location.pathname}?${qs.stringify($filters)}`);
+      return;
+    }
+
+    $displayDestroyButton = false;
+    history.replaceState('', '', window.location.pathname);
   }
 
   async function destroy() {
     const _destroy = resolvePagefind.destroy();
     $query = '';
     $filters = {};
+    $displayFilters = false;
+    $displayDestroyButton = false;
+    $displayResults = false;
     history.replaceState('', '', window.location.pathname);
     await _destroy;
   }
 
   async function search(q): Promise<PagefindSearchFragment[]> {
-    await fixFilter();
+    if ($query.length <= 0) {
+      $displayDestroyButton = false;
+      $displayResults = false;
+      return [];
+    }
 
-    await resolvePagefind.options({
-      baseUrl: '/blog',
-    });
+    await fixFilter();
+    $placeholderTextIndex = 0;
+    $displayDestroyButton = true;
+    $displayResults = true;
+
     const search = await resolvePagefind.search(q, { filters: $filters });
     return await Promise.all(search.results.map(async (r) => await r.data()));
   }
@@ -85,57 +146,59 @@
     <button
       data-filter-button
       on:click={() => {
-        $displayFilter = $displayFilter ? false : true;
+        $displayFilters = $displayFilters ? false : true;
+        $placeholderTextIndex = 0;
       }}><Icon icon="mdi:hashtag" /></button
     >
-    <input bind:value={$query} {placeholder} />
-    <button
-      data-destroy-button
-      style:display={Object.keys($filters).length <= 0 && $query.length <= 0 ? 'none' : 'block'}
-      on:click={destroy}><Icon icon="material-symbols:close" /></button
-    >
+    <input bind:value={$query} placeholder={placeholders[$placeholderTextIndex]} />
+    {#if $displayDestroyButton}
+      <button
+        in:slide={{ duration: 100, easing: linear, axis: 'x' }}
+        out:slide={{ duration: 100, easing: linear, axis: 'x' }}
+        data-destroy-button
+        on:click={destroy}><Icon icon="material-symbols:close" /></button
+      >
+    {/if}
   </div>
   {#await pagefind then pagefind}
     <!-- Filters -->
     {#await pagefind.filters() then filterObject}
-      <fieldset style:display={$displayFilter ? 'block' : 'none'}>
-        <legend>Tag</legend>
-        {#each Object.keys(filterObject.tag || []) as item}
-          <div>
-            <input
-              type="checkbox"
-              id={item}
-              name="tag"
-              checked={$filters.tag?.includes(item)}
-              on:click={() => toggleFilter(item)}
-            />
-            <label for={item}>{filterObject.tag[item]} {item}</label>
-          </div>
-        {/each}
-      </fieldset>
+      {#if $displayFilters}
+        <fieldset
+          in:slide={{ duration: 200, easing: cubicIn, axis: 'y' }}
+          out:slide={{ duration: 100, easing: cubicOut, axis: 'y' }}
+          data-filter
+        >
+          <legend>Tag</legend>
+          {#each Object.keys(filterObject.tag || []) as item}
+            <div data-filter-button>
+              <input
+                type="checkbox"
+                id={item}
+                name="tag"
+                checked={$filters.tag?.includes(item)}
+                on:click={() => toggleFilter(item)}
+              />
+              <label for={item}>{filterObject.tag[item]} {item}</label>
+            </div>
+          {/each}
+        </fieldset>
+      {/if}
     {/await}
     <!-- Search Results -->
-    {#if $query.length > 0}
-      <div data-search-results>
-        {#await search($query) then results}
-          {#if results.length > 0}
-            {#each results as data}
-              <SearchResult {data} />
-            {/each}
-          {:else}
-            <p>{`${$query} を検索したけど結果は0件！おつかれ！`}</p>
-            <img src={notFoundSrc} alt="wtf?" />
-            <!-- <div data-annoying-spinners>
-              <Icon icon="svg-spinners:3-dots-rotate" />
-              <Icon icon="svg-spinners:6-dots-scale-middle" />
-              <Icon icon="svg-spinners:blocks-wave" />
-              <Icon icon="svg-spinners:gooey-balls-1" />
-              <Icon icon="svg-spinners:ring-resize" />
-            </div> -->
-          {/if}
-        {/await}
+    {#await search($query) then results}
+      <div style:display={$displayResults ? undefined : 'none'} data-search-results>
+        {#if results.length > 0}
+          {#each results as data}
+            <SearchResult {data} />
+          {/each}
+        {:else if $displayResults}
+          <p>{`${$query} を検索したけど結果は0件！おつかれ！`}</p>
+          <img src={notFoundSrc} alt="wtf?" />
+        {/if}
       </div>
-    {/if}
+    {/await}
+
     <!-- Search Results -->
   {:catch error}
     <p>{error}</p>
@@ -173,16 +236,33 @@
           height 2.5rem
           width auto
 
+    fieldset[data-filter]
+      background-color var(--background)
+
+      legend
+        sans(1.5rem)
+        padding 0 1rem
+        background-color var(--content-reversed)
+        border solid 1px var(--border)
+        border-radius 0.5rem
+
+      div[data-filter-button]
+          flex(_gap: 1rem)
+          padding 0 1rem
+
+          input[type="checkbox"]
+            transform scale(1.5)
+
+          label
+            sans(1.25rem)
+            width 100%
+
     div[data-search-results]
       box-sizing border-box
       padding 1rem
-      flex(column, 1rem)
+      flex(column, 3rem)
       background-color var(--content-reversed)
 
-      
       p
         sans(2rem)
-      div[data-annoying-spinners] > :global(svg)
-        height 5rem
-        width auto
 </style>
