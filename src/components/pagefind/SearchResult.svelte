@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { PagefindSearchFragment } from '@lib/pagefind.ts';
+  import type { PagefindSearchFragment } from '@lib/pagefind';
 
   export let data: PagefindSearchFragment;
 </script>
