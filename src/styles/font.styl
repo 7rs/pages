@@ -26,6 +26,7 @@ default-font-size = 1rem
 default-line-height = 1.5rem
 golden-ratio = (1 + 5 ** 0.5) / 2
 
+
 // https://fonts.google.com/?stroke=Sans+Serif&subset=latin
 main-sans = "Fira Sans"
 alternative-sans = "Trebuchet MS", "Verdana", "Arial", ui-sans-serif, sans-serif
@@ -67,3 +68,23 @@ mono(size = default-font-size, height = null)
   font-family main-mono, alternative-mono
   font-size size
   auto-line-height(size, height)
+
+$standard-sizes = {
+  smallest: 1rem,
+  small: 1.125rem,
+  medium: 1.25rem,
+  large: 1.5rem,
+  xl: 2rem,
+  xxl: 2.5rem,
+  xxxl: 5rem,
+  xxxxl: 7.5rem,
+  largest: 10rem,
+}
+
+$standard-spaces = {
+  smallest: 0.25rem,
+  small: 0.5rem,
+  medium: 1rem,
+  large: 1.5rem,
+  largest: 3rem,
+}

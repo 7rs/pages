@@ -22,7 +22,7 @@
     <Icon icon="mdi:hashtag" />
     <div>
       {#each post.data.tags as tag}
-        <a href={`/blog?${qs.stringify({tags: [tag]})}`} title={tag}>
+        <a href={`/blog?${qs.stringify({tag: [tag]})}`} title={tag}>
           #{tag}
         </a>
       {/each}
