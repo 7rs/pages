@@ -4,75 +4,99 @@
   import { onMount } from 'svelte';
 
   import {
-    displayDestroyButton,
-    displayFilters,
-    displayResults,
     filters,
     initFilters,
     applyFilters,
-    placeholderTextIndex,
     query,
+    hideAlls,
+    showResults,
+    hasQuery,
+    hideResults,
+    showFiltersIfNeed,
+    getErrorMessage,
+    PagefindErrors,
   } from '@lib/pagefind';
 
   import Results from './Results.svelte';
   import Control from './Control.svelte';
   import Filters from './Filters.svelte';
 
-  export let isDevelopment;
+  export let pagefindPath: string
 
   onMount(() => {
     applyFilters();
-    $displayFilters = $filters.tag.length > 0;
+    showFiltersIfNeed();
   });
 
   let pagefind = (async () => {
-    const scriptDir = isDevelopment ? '/' : '/dist/';
-    const _pagefind = await import(/* @vite-ignore */ `${scriptDir}pagefind/pagefind.js`);
+    const _pagefind = await import(/* @vite-ignore */ pagefindPath);
     await _pagefind.init();
 
     return _pagefind;
   })();
+  let errorMessage: string;
 
   let resolvePagefind;
-  pagefind.then((resolve) => (resolvePagefind = resolve)).catch((err) => console.log(err));
+  pagefind
+    .then((resolve) => (resolvePagefind = resolve))
+    .catch((err) => (errorMessage = getErrorMessage(PagefindErrors.FailedImport, err)));
 
   async function destroy() {
     const _destroy = resolvePagefind.destroy();
 
     initFilters();
-    $query = '';
-    $displayDestroyButton = false;
-    $displayResults = false;
+    hideAlls();
 
     await _destroy;
   }
 
-  async function search(q): Promise<PagefindSearchFragment[]> {
-    if ($query.length <= 0) {
-      $displayDestroyButton = $filters.tag.length > 0;
-      $displayResults = false;
+  async function search(_query: string): Promise<PagefindSearchFragment[]> {
+    if (!hasQuery()) {
+      hideResults(true, false);
       return [];
     }
 
-    $placeholderTextIndex = 0;
-    $displayDestroyButton = true;
-    $displayResults = true;
+    const search = await resolvePagefind.search(_query, { filters: $filters });
+    const results = Promise.all(search.results.map((r) => r.data()));
 
-    const search = await resolvePagefind.search(q, { filters: $filters });
-    return await Promise.all(search.results.map((r) => r.data()));
+    showResults();
+
+    return await results;
   }
 </script>
 
 <article data-pagefind>
   <Control destroyAction={destroy} />
-  {#await pagefind then pagefind}
-    {#await pagefind.filters() then filterObject}
-      <Filters {filterObject} />
+  <section data-additional-box>
+    {#await pagefind then pagefind}
+      <!-- Filter List -->
+      {#await pagefind.filters() then filterObject}
+        <Filters {filterObject} />
+      {/await}
+      <!-- Result List -->
+      {#await search($query) then results}
+        <Results resultList={results} />
+      {:catch err}
+        <p data-error-message>{getErrorMessage(PagefindErrors.FailedSearch, err)}</p>
+      {/await}
+    {:catch}
+      <p data-error-message>{errorMessage}</p>
     {/await}
-    {#await search($query) then results}
-      <Results resultList={results} />
-    {/await}
-  {:catch error}
-    <p>{error}</p>
-  {/await}
+  </section>
 </article>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  p[data-error-message]
+    @extend $widget
+    sans($standard-sizes.small)
+    @media screen and (min-width widths.medium)
+      sans($standard-sizes.medium)
+
+  section[data-additional-box]
+    margin-top $standard-spaces.medium
+    box-sizing border-box
+    width 100%
+    flex(column, $standard-spaces.medium)
+</style>

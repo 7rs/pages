@@ -2,9 +2,10 @@
   import { slide } from 'svelte/transition';
   import { cubicIn } from 'svelte/easing';
 
+  import type { FilterObject } from '@lib/pagefind';
   import { displayFilters, filters, toggleTag } from '@lib/pagefind';
 
-  export let filterObject: { [key: string]: any };
+  export let filterObject: FilterObject;
 
   const animation: { [key: string]: any } = { duration: 150, easing: cubicIn, axis: 'y' };
 </script>
@@ -33,18 +34,17 @@
 
   fieldset[data-filter]
     @extend $widget
-    margin-bottom 1rem
     flex()
     flex-wrap wrap
     border none
     border-radius 1rem
 
     div[data-filter-button]
-      padding 0 0.5rem
-      flex(_gap: 0.5rem)
+      padding 0 $standard-spaces.small
+      flex(_gap: $standard-spaces.small)
       @media screen and (min-width widths.medium)
-        padding 0 1rem
-        flex(_gap: 1rem)
+        padding 0 $standard-spaces.medium
+        flex(_gap: $standard-spaces.medium)
 
       input[type="checkbox"]
         margin auto
@@ -53,9 +53,9 @@
           transform scale(1.75)
 
       label
-        sans(1.125rem)
+        sans($standard-sizes.small)
         @media screen and (min-width widths.medium)
-          sans(1.25rem)
+          sans($standard-sizes.medium)
 
         &:hover
           color var(--link)

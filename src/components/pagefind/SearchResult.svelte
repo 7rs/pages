@@ -2,6 +2,7 @@
   import type { PagefindSearchFragment } from '@lib/pagefind';
 
   export let data: PagefindSearchFragment;
+  export let requireSubResults: boolean = false;
 </script>
 
 <section data-search-result {...$$restProps}>
@@ -10,16 +11,18 @@
     <p>{@html data.excerpt}</p>
   </a>
   <!-- Sub Result -->
-  <ul data-search-sub-result>
-    {#each data.sub_results.slice(0, 3) as subResult}
-      <li>
-        <a href={subResult.url}
-          ><h3>{subResult.title}</h3>
-          <p>{@html subResult.excerpt}</p>
-        </a>
-      </li>
-    {/each}
-  </ul>
+  {#if requireSubResults}
+    <ul data-search-sub-result>
+      {#each data.sub_results.slice(0, 3) as subResult}
+        <li>
+          <a href={subResult.url}
+            ><h3>{subResult.title}</h3>
+            <p>{@html subResult.excerpt}</p>
+          </a>
+        </li>
+      {/each}
+    </ul>
+  {/if}
 </section>
 
 <style lang="stylus">
@@ -41,22 +44,32 @@
 
     h2
       @extend $link
-      sans(2rem)
+      sans($standard-sizes.medium)
+      @media screen and (min-width widths.medium)
+        sans($standard-sizes.xxl)
 
     p
-      sans(1.125rem)
-      padding-left 2rem
+      padding-left $standard-spaces.medium
+      sans($standard-sizes.smallest)
+      @media screen and (min-width widths.medium)
+        padding-left $standard-spaces.large
+        sans($standard-sizes.medium)
 
     ul[data-search-sub-result]
-      padding-left 1rem
       list-style none
+      padding-left $standard-spaces.medium
+      @media screen and (min-width widths.medium)
+        padding-left $standard-spaces.large
 
       li
-        margin-top 1rem
+        padding-top $standard-spaces.large;
+
         h3
           @extend $link
-          sans(1.5rem)
+          sans($standard-sizes.small)
+          @media screen and (min-width widths.medium)
+            sans($standard-sizes.large)
 
         p
-          sans(1rem)
+          sans($standard-sizes.smallest)
 </style>

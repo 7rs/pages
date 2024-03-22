@@ -11,7 +11,7 @@
   <div data-search-results>
     {#if resultList.length > 0}
       {#each resultList as data}
-        <SearchResult {data} />
+        <SearchResult  {data} />
       {/each}
     {:else if $displayResults}
       <p>{`${$query} を検索したけど結果は0件！おつかれ！`}</p>
@@ -25,10 +25,14 @@
   div[data-search-results]
     @extend $widget
     box-sizing border-box
-    padding 2rem
-    flex(column, 3rem)
+    flex(column, $standard-spaces.largest)
     border-radius 1rem
+    padding $standard-spaces.medium
+    @media screen and (min-width widths.medium)
+      padding $standard-spaces.large
 
     p
-      sans(2rem)
+      sans($standard-sizes.small)
+      @media screen and (min-width widths.medium)
+        sans($standard-sizes.large)
 </style>

@@ -51,22 +51,22 @@
 
   div[data-pagefind-control]
     @extend $widget
-    flex()
-    margin-bottom 1rem
-    padding 0 1rem
+    padding 0 $standard-spaces.medium
     border-radius 1rem
+    flex($standard-spaces.smallest)
+    @media screen and (min-width widths.medium)
+      flex($standard-spaces.small)
 
     input
-      overflow-x clip
       width 100% 
       background none
       border none
       outline none
-      sans(1.125rem)
-      padding 1rem 0.5rem
+      sans($standard-sizes.small)
+      padding $standard-spaces.medium $standard-spaces.small
       @media screen and (min-width widths.medium)
-        sans(1.5rem)
-        padding 1rem
+        sans($standard-sizes.large)
+        padding $standard-spaces.medium
 
     button
       background none
@@ -74,23 +74,13 @@
       height 100%
       margin auto
 
-      &[data-destroy-button]
-        margin-left 0.25rem
-      &[data-filter-button]
-        margin-right 0.25rem
-      @media screen and (min-width widths.medium)
-        &[data-destroy-button]
-          margin-left 0.5rem
-        &[data-filter-button]
-          margin-right 0.5rem
-
       :global(svg)
         color var(--content)
 
         width auto
-        height 1.75rem
+        height $standard-sizes.large
         @media screen and (min-width widths.medium)
-          height 2.5rem
+          height $standard-sizes.xl
 
         &:hover
           transition all 100ms ease-out
