@@ -1,25 +1,21 @@
 ---
-import { getImage } from 'astro:assets'
-
 import Layout from "@layouts/Layout.astro";
-import Search from "@components/pagefind/Search.svelte"
+
+import PostList from "@components/blog/PostList.astro";
+import Search from "@components/pagefind/Search.svelte";
 
 import light from "@assets/background/E8Ufcyxz514.jpg";
 import dark from "@assets/background/ZkzobNDayXo.jpg";
 
-import notFound from "@assets/You-are-an-idiot.gif"
-
-const image = await getImage({src: notFound})
-
-const dir =  import.meta.env.DEV ? 'dist/' : ''
+const dir = import.meta.env.DEV ? "dist/" : "";
 ---
 
 <Layout locale="ja" light={light} dark={dark}>
   <Search pagefindPath={`/${dir}pagefind/pagefind.js`} client:only="svelte" />
+  <PostList />
 </Layout>
 
 <style lang="stylus">
   main
     margin 1.5rem 0
 </style>
-

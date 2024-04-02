@@ -1,9 +1,10 @@
 ---
 import { website, postDetail } from "@lib/meta";
-import { personSchema, Assignee } from "@lib/schema";
+import { personSchema, Assignee, Schemas } from "@lib/schema";
 import { getFont } from "@lib/font"
 
-import Meta from "@layouts/Meta.astro";
+// import Meta from '@layouts/Meta.astro';
+import Meta from '@layouts-components/meta/Meta.astro';
 import Header from "@layouts/Header.astro";
 
 import PostHeader from "@layouts-components/blog/PostHeader.astro"
@@ -16,7 +17,7 @@ export interface Props {
   frontmatter: { tags?: string[], [key: string ]: any };
   headings: { depth: number; slug: string; text: string }[];
 }
-const { frontmatter, headings, ...props } = Astro.props;
+const { frontmatter, headings } = Astro.props;
 
 const FixedFrontmatter = postDetail.parse(frontmatter)
 
@@ -24,7 +25,7 @@ const authors = {
   "Cbrnex": personSchema.parse({
     name: "Cbrnex",
     alternateName: "7rs",
-    image: "https://www.gravatar.com/avatar/1b6f182a11eba357a5b85085b74acccd",
+    image: "https://7rs.dev/avatar",
     url: "https://7rs.dev/",
     sameAs: "https://github.com/7rs",
     jobTitle: "Student",
@@ -33,33 +34,33 @@ const authors = {
 
 let authorsSchema: Assignee[] = []
 FixedFrontmatter.authors.map(name => authors[name] && authorsSchema.push(authors[name]))
-
-const meta = website.parse({
-    "name": "7rs.dev",
-    "description": "No ads, No paid, No morals.",
-    "url": "https://7rs.dev/",
-    "author": "Cbrnex",
-    "image": logo.src,
-    "imageAlt": "7rs logo",
-    "keywords": [],
-    "twitterId": "qlzegg"
-});
 ---
 
 <!doctype html>
 <html lang={FixedFrontmatter.lang}>
   <Meta
-    fonts={[
-      getFont("Fira Sans", [{}, {weight: 700}, {typefaces: 1},  {weight: 700, typefaces: 1}]),
-      getFont("Fira Code"),
-    ]}
-    meta={meta}
     title={FixedFrontmatter.title}
-    favicon={logo.src}
     noIndex={!FixedFrontmatter.published}
-    author={authorsSchema}
-    datePublished={FixedFrontmatter.published_at}
-    dateModified={FixedFrontmatter.updated_at}
+    resources={{
+      fonts:[
+        getFont("Fira Sans", [{}, {weight: 700}, {typefaces: 1},  {weight: 700, typefaces: 1}]),
+        getFont("Fira Code"),
+      ]
+    }}
+    schemaType={Schemas.Article}
+    schema={{
+      headline: FixedFrontmatter.title,
+      datePublished: FixedFrontmatter.published_at,
+      dateModified: FixedFrontmatter.updated_at,
+      author: {
+    name: "Cbrnex",
+    alternateName: "7rs",
+    image: "https://www.gravatar.com/avatar/1b6f182a11eba357a5b85085b74acccd",
+    url: "https://7rs.dev/",
+    sameAs: "https://github.com/7rs",
+    jobTitle: "Student",
+  }
+    }}
   />
   <body class="markdown system">
     <Header />

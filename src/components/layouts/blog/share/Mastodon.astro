@@ -1,0 +1,22 @@
+---
+import LinkIcon from "@components/LinkIcon.astro";
+
+export interface Props {
+  text: string;
+  url: string;
+  icon?: string;
+}
+const { text, url, icon = "simple-icons:mastodon", ...props } = Astro.props;
+
+let URI = "https://mastodon.social/share";
+
+Object.keys(Astro.props).forEach((key, i) => {
+  if (Astro.props[key] == null) {
+    return;
+  }
+
+  URI += `${i > 0 ? "&" : "?"}${key}=${encodeURIComponent(Astro.props[key])}`;
+});
+---
+
+<LinkIcon icon={icon} href={URI} {...props} openInNewTab />

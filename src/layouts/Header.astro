@@ -1,18 +1,16 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import LinkIcon from "@components/icon/LinkIcon.astro";
-import Search from "@components/Search.astro"
+import LinkIcon from "@components/LinkIcon.astro";
 import ThemeSvelte from "@layouts-components/header/Theme.svelte"
-// import ThemeQwik from "@components/layouts/header/theme.tsx"
 
 const props = Astro.props;
 ---
 
 <header main-header {...props}>
   <LinkIcon icon="pages-logo" href="/" title="Main page" />
-  <Search />
   <nav action-buttons>
+    <LinkIcon icon="material-symbols:search" href="/blog" title="blog search" />
     <ThemeSvelte client:only />
     <Icon name="material-symbols:menu" />
   </nav>
@@ -28,8 +26,6 @@ const props = Astro.props;
     responsive-padding(x: 1rem, y: 0.5rem)
     flex(_gap: 1rem)
     justify-content space-between
-    @media screen and (min-width widths.large)
-      justify-content center
     &::before
       @extend $simple-blur
       z-index -1
@@ -50,6 +46,14 @@ const props = Astro.props;
     svg, svg[data-icon]
       color var(--content)
       font-size 2rem
+      &:hover
+        transition all 100ms ease-out
+        transform scale(125%)
+
+    svg[data-icon="material-symbols:search"]
+      display none
+      @media screen and (min-width widths.medium)
+        display block
 
     /* For Qwik (Iconify doesn't support Qwik directly.)
 

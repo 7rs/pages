@@ -2,7 +2,7 @@
     "name": "@7rs/pages",
     "description": "Fast and simple website.",
     "type": "module",
-    "version": "0.3.2",
+    "version": "0.4.0",
     "scripts": {
         "dev": "astro dev",
         "start": "astro dev",
@@ -59,15 +59,7 @@
         "stylus": "^0.63.0",
         "ts-jest": "^29.1.2"
     },
-    "keywords": [
-        "7rs",
-        "cbrnex",
-        "pages",
-        "7rs.dev",
-        "astro",
-        "stylus",
-        "svelte"
-    ],
+    "keywords": ["7rs", "cbrnex", "pages", "7rs.dev", "astro", "stylus", "svelte"],
     "bugs": {
         "url": "https://github.com/7rs/pages/issues"
     },

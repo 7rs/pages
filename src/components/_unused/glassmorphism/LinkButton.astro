@@ -1,0 +1,47 @@
+---
+export interface Props {
+  href: string;
+  secondaryText: string;
+}
+
+const { href, secondaryText } = Astro.props;
+---
+
+<a href={href} link-button>
+  <span main-text><slot /></span>
+  <span secondary-text>{secondaryText}</span>
+</a>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+  @import "../../styles/apiv2.styl"
+
+  [link-button]
+    padding 1rem
+    position relative
+
+    sans(3rem)
+    text-decoration none
+
+    span[main-text]
+      position relative
+      opacity 1
+
+    span[secondary-text]
+      position absolute
+      opacity 0
+
+    &:hover
+
+      span
+        transition all 300ms linear
+
+      span[main-text]
+        position absolute
+        opacity 0
+
+      span[secondary-text]
+        position relative
+        opacity 1
+
+</style>

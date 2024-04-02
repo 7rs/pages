@@ -1,0 +1,48 @@
+---
+const datas = [
+  { label: "Astro", progress: 46 },
+  { label: "Stylus", progress: 23 },
+  { label: "TypeScript", progress: 20 },
+  { label: "Svelte", progress: 7 },
+  { label: "JavaScript", progress: 4 },
+];
+---
+
+<article>
+  {
+    datas.map((data) => (
+      <>
+        <p>{data.label}</p>
+        <div style={`max-width: ${data.progress}%`} />
+      </>
+    ))
+  }
+</article>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+  @import "../../styles/apiv2.styl"
+
+  @keyframes under
+    0%
+      width 0%
+    100%
+      width 100%
+
+  article
+    @extend $glassmorphism
+    sans(1.25rem)
+    display grid
+    grid-template-columns auto 1fr
+    gap 1rem
+
+    p
+      grid-column 1
+      padding 0 0.5rem
+
+    div
+      grid-column 2
+      background red
+      min-height 100%
+      animation 2s ease-out 0s 1 normal forwards running under
+</style>

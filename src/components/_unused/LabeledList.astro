@@ -1,0 +1,30 @@
+---
+import LabeledIcon from "@components/_unused/LabeledIcon.astro";
+
+export interface Props {
+  label: string;
+  icon: string;
+  items?: string[];
+}
+
+const { label, icon, items = [], ...props } = Astro.props;
+---
+
+<div labeled-list {...props}>
+  <p list-label {...props}>{label}</p>
+  {items.map((item) => <LabeledIcon icon={icon}>{item}</LabeledIcon>)}
+</div>
+
+<style lang="stylus">
+  @import "../../../styles/api.styl"
+
+  [labeled-list]
+    width 100%
+    flex(column, 0.1rem)
+
+    [data-icon], p
+      sans(1.25rem, 1.5rem)
+
+    [list-label]
+      sans(1.5rem, 2rem)
+</style>

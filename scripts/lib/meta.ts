@@ -68,3 +68,16 @@ export const postDetail = z.object({
   url: z.ostring(),
 });
 export type PostDetail = z.infer<typeof postDetail>;
+
+export interface PreImage {
+  format: string;
+  src: string;
+  media?: string;
+}
+
+export interface PreResources {
+  fonts?: string[];
+  images?: PreImage[];
+  light?: PreImage;
+  dark?: PreImage;
+}

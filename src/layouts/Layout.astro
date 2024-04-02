@@ -1,18 +1,16 @@
 ---
-import { fade, slide } from 'astro:transitions';
 import { getImage } from 'astro:assets'
+import { GetImageResult } from 'astro';
 
-import BaseLayout from "@layouts/BaseLayout.astro"
-
-import { website, Website } from '@lib/meta';
-import { personSchema, Assignee } from '@lib/schema';
+import { Website } from '@lib/meta';
+import { Assignee, Schemas } from '@lib/schema';
 import { getFont } from '@lib/font';
 
-import Meta from '@layouts/Meta.astro';
+import Meta from '@layouts-components/meta/Meta.astro';
+
 import Header from '@layouts/Header.astro';
 import Footer from '@layouts/Footer.astro';
 
-import logo from '@icons/favicon.svg';
 import defaultLight from '@assets/background/yZygONrUBe8.jpg';
 import defaultDark from '@assets/background/Q1p7bh3SHj8.jpg';
 
@@ -26,6 +24,7 @@ export interface Props {
   light?: ImageMetadata;
   dark?: ImageMetadata;
   backgroundOptions?: { [key: string]: any},
+  resolution?: number;
   profile?: Assignee | Assignee[];
   meta?: Website;
 }
@@ -37,26 +36,23 @@ const {
   light = defaultLight,
   dark = defaultDark,
   backgroundOptions = { format: 'avif', quality: 70 },
+  resolution = 720,
   profile,
   meta,
   ...props 
 } = Astro.props;
 
-const resolution = 720
+async function getOptimizedImage(image: ImageMetadata, resolution: number): Promise<[GetImageResult, string]> {
+  const optimizedImage = await getImage({
+    ...backgroundOptions,
+    src: image,
+    width: Math.trunc(resolution * (image.width / image.height))
+  })
+  return [optimizedImage, `url(${optimizedImage.src})`]
+}
 
-const lightBackgroundImage = await getImage({
-  ...backgroundOptions,
-  src: light,
-  width: Math.trunc(resolution * (light.width / light.height))
-})
-const lightBackground = `url(${lightBackgroundImage.src})`
-
-const darkBackgroundImage = await getImage({
-  ...backgroundOptions,
-  src: dark,
-  width: Math.trunc(resolution * (dark.width / dark.height))
-})
-const darkBackground = `url(${darkBackgroundImage.src})`
+const [lightBackgroundImage, lightBackground] = await getOptimizedImage(light, resolution)
+const [darkBackgroundImage, darkBackground] = await getOptimizedImage(dark, resolution)
 ---
 
 <!doctype html>
@@ -64,40 +60,31 @@ const darkBackground = `url(${darkBackgroundImage.src})`
   <Meta
     title={title}
     noIndex={noIndex}
-    favicon={logo.src}
-    fonts={fonts}
-    images={[
-      { format: backgroundOptions.format, src: lightBackgroundImage.src, media: "(prefers-color-scheme: light)" },
-      { format: backgroundOptions.format, src: darkBackgroundImage.src, media: "(prefers-color-scheme: dark)" }
-    ]}
-    meta={meta || website.parse({
-      'name': '7rs.dev',
-      'description': 'No ads, No paid, No morals.',
-      'url': 'https://7rs.dev/',
-      'author': 'Cbrnex',
-      'image': logo.src,
-      'imageAlt': '7rs logo',
-      'keywords': ['Cbrnex', '7rs', 'qЯze', 'MANJSRSU', 'Rynon'],
-      'twitterId': 'qlzegg'
-    })}
-    profile={profile || personSchema.parse({
-      name: 'Cbrnex',
-      alternateName: '7rs',
-      image: 'https://7rs.dev/avatar',
-      url: 'https://7rs.dev/',
-      sameAs: 'https://github.com/7rs',
-      jobTitle: 'Student',
-    })}
+    resources={{
+      fonts: fonts, 
+      light: { format: backgroundOptions.format, src: lightBackgroundImage.src },
+      dark: { format: backgroundOptions.format, src: darkBackgroundImage.src },
+    }}
+    meta={meta}
+    schemaType={Schemas.WebSite}
+    schema={profile}
   />
   <body>
     <Header />
-    <main data-pagefind-body={noIndex ? undefined : ''} {...props}>
+    <main {...props}>
       <slot />
     </main>
     <Footer />
   </body>
 </html>
 
+{
+  /*
+    https://github.com/withastro/prettier-plugin-astro/issues/316
+
+    Why this neglected for since an year yet?
+  */
+}
 <style lang="stylus" is:global define:vars={{lightBackground, darkBackground}}>
   @import "../styles/api.styl"
 
@@ -135,7 +122,7 @@ const darkBackground = `url(${darkBackgroundImage.src})`
       min-height 100%
       responsive-padding()
       padding-bottom 3rem
-      flex(column, 3rem)
+      flex(column, 10rem)
 
       &::before
         z-index -1002

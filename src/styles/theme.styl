@@ -1,4 +1,6 @@
-light-color = {
+gradient-alpha = 10%
+
+light = {
   background: rgb(240, 240, 248),
   content: black,
   content-reversed: white,
@@ -9,9 +11,13 @@ light-color = {
   wiget-border: rgba(black, .2),
   search-background: rgba(white, 0.2),
   border: black,
+  gradient-background: linear-gradient(45deg,
+    rgba(224, 208, 255, gradient-alpha) 0%,
+    rgba(255, 208, 255, gradient-alpha) 50%,
+    rgba(255, 255, 255, gradient-alpha) 100%),
 }
 
-dark-color = {
+_dark = {
   background: rgb(8, 8, 16),
   content: white,
   content-reversed: black,
@@ -22,51 +28,59 @@ dark-color = {
   wiget-border: rgba(white, .2),
   search-background: rgba(black, 0.2),
   border: white,
+  gradient-background: linear-gradient(45deg,
+    rgba(32, 0, 48, gradient-alpha) 0%,
+    rgba(0,  0, 48, gradient-alpha) 50%,
+    rgba(0,  0, 0,  gradient-alpha) 100%),
 }
 
 :root
-  --background light-color.background
-  --content light-color.content
-  --content-reversed light-color.content-reversed
-  --link light-color.link
-  --link-hover light-color.link-hover
-  --widget light-color.widget
-  --widget-hover light-color.widget-hover
-  --widget-border light-color.wiget-border
-  --search-background light-color.search-background
-  --border light-color.border
+  --background light.background
+  --content light.content
+  --content-reversed light.content-reversed
+  --link light.link
+  --link-hover light.link-hover
+  --widget light.widget
+  --widget-hover light.widget-hover
+  --widget-border light.wiget-border
+  --search-background light.search-background
+  --border light.border
+  --gradient-background light.gradient-background
   @media (prefers-color-scheme dark)
-    --background dark-color.background
-    --content dark-color.content
-    --content-reversed dark-color.content-reversed
-    --link dark-color.link
-    --link-hover dark-color.link-hover
-    --widget dark-color.widget
-    --widget-hover dark-color.widget-hover
-    --widget-border dark-color.wiget-border
-    --search-background dark-color.search-background
-    --border dark-color.border
+    --background _dark.background
+    --content _dark.content
+    --content-reversed _dark.content-reversed
+    --link _dark.link
+    --link-hover _dark.link-hover
+    --widget _dark.widget
+    --widget-hover _dark.widget-hover
+    --widget-border _dark.wiget-border
+    --search-background _dark.search-background
+    --border _dark.border
+    --gradient-background _dark.gradient-background
 
 .light-mode
-  --background light-color.background
-  --content light-color.content
-  --content-reversed light-color.content-reversed
-  --link light-color.link
-  --link-hover light-color.link-hover
-  --widget light-color.widget
-  --widget-hover light-color.widget-hover
-  --widget-border light-color.wiget-border
-  --search-background light-color.search-background
-  --border light-color.border
+  --background light.background
+  --content light.content
+  --content-reversed light.content-reversed
+  --link light.link
+  --link-hover light.link-hover
+  --widget light.widget
+  --widget-hover light.widget-hover
+  --widget-border light.wiget-border
+  --search-background light.search-background
+  --border light.border
+  --gradient-background light.gradient-background
 
 .dark-mode
-  --background dark-color.background
-  --content dark-color.content
-  --content-reversed dark-color.content-reversed
-  --link dark-color.link
-  --link-hover dark-color.link-hover
-  --widget dark-color.widget
-  --widget-hover dark-color.widget-hover
-  --widget-border dark-color.wiget-border
-  --search-background dark-color.search-background
-  --border dark-color.border
+  --background _dark.background
+  --content _dark.content
+  --content-reversed _dark.content-reversed
+  --link _dark.link
+  --link-hover _dark.link-hover
+  --widget _dark.widget
+  --widget-hover _dark.widget-hover
+  --widget-border _dark.wiget-border
+  --search-background _dark.search-background
+  --border _dark.border
+  --gradient-background _dark.gradient-background

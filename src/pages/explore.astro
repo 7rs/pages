@@ -1,0 +1,86 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+import light from "@assets/background/PGdW_bHDbpI.jpg";
+import dark from "@assets/background/ZkzobNDayXo.jpg";
+---
+
+<Layout light={light} dark={dark}>
+  <header landing-header>
+    <hgroup>
+      <h1><span>Fast</span>, <span>Readable</span>, and <span>Flexible</span></h1>
+      <p>A tool to create awesome websites. And an website.</p>
+    </hgroup>
+    <div>
+      <a href="https://github.com/7rs/pages">Get Started</a>
+      <a href="https://github.com/7rs/pages">Explore</a>
+    </div>
+  </header>
+</Layout>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  main
+    margin-top 3rem
+    margin 50vh 0
+
+  header[landing-header]
+    position relative
+    flex(column, 3rem)
+
+    hgroup
+      position absolute
+      bottom 0
+      text-align center
+
+      h1, * > *, * > * > *
+        
+        font-weight 900
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        sans(3rem)
+        @media screen and (min-width widths.medium)
+          sans(3rem)
+        @media screen and (min-width widths.largest)
+          sans(4rem)
+
+      p
+        sans(2rem, 2.5rem)
+        margin-top 1.5rem
+
+    div
+      position absolute
+      top 0
+      box-sizing border-box
+      flex(_gap: 1rem)
+      justify-content center
+      a
+        box-sizing border-box
+        background-color white
+        padding 1rem
+        sans(2rem, 2rem)
+        text-decoration none
+        border-radius 2rem
+
+        &:hover
+          background-color black
+          color white
+</style>

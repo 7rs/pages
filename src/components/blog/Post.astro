@@ -1,0 +1,90 @@
+---
+import { PostDetail, getLangaugeLabel } from "@lib/meta";
+import qs from "qs";
+
+import { Icon } from "astro-icon/components";
+
+import Link from "@components/Link.astro";
+import Datetime from "@components/Datetime.astro";
+
+export interface Props {
+  post: PostDetail;
+  url: string;
+}
+
+const { post, url, ...props } = Astro.props;
+---
+
+<article {...props} data-post>
+  <h3 data-post-title><Link href={url}>{post.title}</Link></h3>
+  <div data-post-authors>
+    {post.authors.map((author) => <Link href={`/blog?${qs.stringify({ author: [author] })}`}>@{author}</Link>)}
+  </div>
+  <div data-post-tags>
+    {post.tags.map((tag) => <Link href={`/blog?${qs.stringify({ tag: [tag] })}`}>#{tag}</Link>)}
+  </div>
+  <!-- <Icon name="material-symbols:upload-sharp" />
+  <Icon name="material-symbols:update" />
+  <Icon name="mdi:language" /> -->
+  <div data-post-details>
+    <div>
+      <Icon name="material-symbols:upload-sharp" />
+      <Datetime datetime={post.published_at} title="Published at" />
+    </div>
+    <div>
+      <Icon name="material-symbols:update" />
+      <Datetime datetime={post.updated_at} title="Updated at" />
+    </div>
+    <div>
+      <Icon name="mdi:language" />
+      <p data-post-language>{getLangaugeLabel(post.lang)}</p>
+    </div>
+  </div>
+</article>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-post]
+    @extend $glassmorphism
+    padding 1rem
+    flex(column)
+
+    [data-link]:hover
+      text-decoration underline
+
+    [data-post-title]
+      sans(2rem)
+
+    [data-post-authors], [data-post-tags], [data-datetime], [data-post-language]
+      sans(1.25rem)
+
+    [data-post-authors], [data-post-tags]
+      flex(_gap: 0.5rem)
+
+    [data-post-details]
+      padding-top 0.5rem
+      flex()
+      justify-content space-around
+
+    /* Hovered colors */
+
+    [data-post-authors] > [data-link]:hover
+      color rgb(160, 0, 0)
+
+    [data-post-tags] > [data-link]:hover
+      color rgb(51, 122, 183)
+
+    [data-post-details] > div
+      flex(_gap: 0.5rem)
+      justify-content center
+
+      sans(1.25rem, 1.5rem)
+      [data-icon]
+        display block
+        height 100%
+        font-size 1.5rem
+
+      &:hover
+        color rgb(255, 136, 0)
+</style>

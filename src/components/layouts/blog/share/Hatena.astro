@@ -1,0 +1,11 @@
+---
+import LinkIcon from "@components/LinkIcon.astro";
+
+export interface Props {
+  url: string;
+  icon?: string;
+}
+const { url, icon = "simple-icons:hatenabookmark", ...props } = Astro.props;
+---
+
+<LinkIcon icon={icon} href={`https://b.hatena.ne.jp/entry/${encodeURIComponent(url)}`} {...props} openInNewTab />
