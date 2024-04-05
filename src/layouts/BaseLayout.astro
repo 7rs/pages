@@ -1,0 +1,95 @@
+---
+import { Frontmatter, Page, Website, toPage, getPersons, ThemeColor, Resources } from "@lib/metagg";
+import { articleSchema, Schemas, SchemaProps, webSiteSchema } from "@lib/schema";
+
+import favicon from "src/icons/favicon.svg";
+import persons from "static/persons.json";
+import siteData from "static/site.json";
+
+import PreAPI from "@components/meta/PreAPI.astro";
+
+import Meta from "@components/meta/Meta.astro";
+import "@styles/default.styl";
+
+export interface Prop extends SchemaProps {
+  frontmatter?: Frontmatter;
+  page?: Page;
+  site?: Website;
+  title?: string;
+  published?: boolean;
+  themeColor?: ThemeColor;
+  className?: string;
+  cssVars?: { [key: string]: string };
+  resources?: Resources;
+}
+
+const {
+  frontmatter,
+  page = {
+    title: "Pages",
+    description: "This page is under development.",
+    lang: "en",
+    tags: [],
+    authors: [],
+    url: Astro.url.href,
+  },
+  site = {
+    name: siteData["name"] || "Pages",
+    favicon: favicon.src,
+    host: siteData.hasOwnProperty("host") ? getPersons(siteData.host, persons) : [],
+    twitterId: siteData["twitterId"],
+  },
+  title,
+  published = false,
+  themeColor,
+  schemaType = Schemas.WebSite,
+  schema,
+  className,
+  cssVars = {},
+  resources = {},
+  ...props
+} = Astro.props;
+
+if (site.favicon == null) {
+  site.favicon = favicon.src;
+}
+
+if (title != null) {
+  page.title = title;
+}
+
+const parsedWebsite = Website.parse(site);
+const parsedPage = frontmatter ? toPage(frontmatter, persons) : Page.parse(page);
+const parsedSchema = frontmatter
+  ? articleSchema.parse({
+      headline: frontmatter.title,
+      datePublished: frontmatter.published_at,
+      dateModified: frontmatter.updated_at,
+      author: getPersons(frontmatter.authors),
+    })
+  : webSiteSchema.parse({
+      name: parsedWebsite.name,
+      image: parsedWebsite.image,
+      url: Astro.url.href,
+    });
+---
+
+<!-- 
+  Are you curious about the source code?
+  Source code is available on GitHub: https://github.com/7rs/pages
+-->
+<html>
+  <head
+    ><Meta
+      page={parsedPage}
+      site={parsedWebsite}
+      published={frontmatter ? frontmatter.published : published}
+      schemaType={frontmatter ? Schemas.Article : schemaType}
+      schema={parsedSchema}
+    />
+    <PreAPI images={resources.images} fonts={resources.fonts} />
+  </head>
+  <body class={className} {...props}>
+    <slot />
+  </body><style define:vars={cssVars}></style>
+</html>

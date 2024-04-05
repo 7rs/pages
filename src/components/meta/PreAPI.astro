@@ -1,0 +1,52 @@
+---
+import { createGoogleFontURL } from "@lib/font";
+import { Resources } from "@lib/metagg";
+
+import PreConnect from "@components/meta/PreConnect.astro";
+
+export interface Props extends Resources {}
+
+const { images = [], fonts = [], useCloudflareFonts = true } = Astro.props;
+---
+
+{
+  /*
+    Fonts won't be downloaded from Google if Cloudflare Fonts is enabled.
+
+    Write `PreConnect` if you immediately use the following:
+    - https://giscus.app/
+    - https://api.iconify.design/
+  */
+  fonts.length > 0 && (import.meta.env.DEV || !useCloudflareFonts) && (
+    <>
+      <PreConnect href="https://fonts.googleapis.com/" crossorigin="" />
+      <PreConnect href="https://fonts.gstatic.com/" crossorigin="" />
+    </>
+  )
+}
+{fonts.length > 0 && <link rel="stylesheet" href={createGoogleFontURL(fonts)} as="style" crossorigin="" />}
+
+{
+  images.map((image) => {
+    if (image.format == null) {
+      image.format = image.src.slice(image.src.lastIndexOf("."));
+    }
+
+    if (image.media === "dark") {
+      image.media = "(prefers-color-scheme: dark)";
+    } else if (image.media === "light") {
+      image.media = "(prefers-color-scheme: light)";
+    }
+
+    return (
+      <link
+        rel="prefetch"
+        fetchpriority="high"
+        as="image"
+        type={`image/${image.format}`}
+        href={image.src}
+        media={image.media}
+      />
+    );
+  })
+}

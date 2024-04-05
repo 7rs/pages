@@ -1,10 +1,11 @@
 ---
-layout: "@layouts/Blog.astro"
+layout: "@layouts/BlogLayout.astro"
 title: "Cbrnexって誰？"
 tags: ["profile"]
 published: true
 published_at: "2024-01-05"
 updated_at: "2024-01-29"
+authors: ["Cbrnex"]
 ---
 
 [cbrne]: https://ja.wikipedia.org/wiki/CBRNE

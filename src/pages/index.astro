@@ -1,18 +1,15 @@
 ---
-import { getCollection } from "astro:content";
-
-import Layout from "@layouts/Layout.astro";
+import MainLayout from "@layouts/MainLayout.astro";
 
 import LandingHeader from "@components/index/LandingHeader.astro";
 import Blog from "@components/index/Blog.astro";
-import Works from "@components/index/Works.astro";
 import Community from "@components/index/Community.astro";
 import Profile from "@components/index/Profile.astro";
 ---
 
-<Layout>
+<MainLayout published={true} title="Pages - Main Page">
   <LandingHeader />
   <Blog />
   <Community />
   <Profile />
-</Layout>
+</MainLayout>

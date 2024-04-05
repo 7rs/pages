@@ -1,5 +1,5 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import MainLayout from "@layouts/MainLayout.astro";
 
 import PostList from "@components/blog/PostList.astro";
 import Search from "@components/pagefind/Search.svelte";
@@ -10,10 +10,10 @@ import dark from "@assets/background/ZkzobNDayXo.jpg";
 const dir = import.meta.env.DEV ? "dist/" : "";
 ---
 
-<Layout locale="ja" light={light} dark={dark}>
+<MainLayout published={true} title="Pages - Search" backgrounds={{ light: light, dark: dark }}>
   <Search pagefindPath={`/${dir}pagefind/pagefind.js`} client:only="svelte" />
   <PostList />
-</Layout>
+</MainLayout>
 
 <style lang="stylus">
   main

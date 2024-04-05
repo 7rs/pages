@@ -36,7 +36,7 @@ const url = Astro.site + Astro.url.pathname.slice(1);
 const ext = frontmatter.file?.slice(frontmatter.file.lastIndexOf(".")) || ".md";
 ---
 
-<FloatingButton modalId="sidebar" client:only />
+<FloatingButton modalId="sidebar" client:only="svelte" />
 <aside id="sidebar" {...props}>
   <section share-buttons>
     <Reddit title={frontmatter.title} url={url} />
@@ -47,7 +47,7 @@ const ext = frontmatter.file?.slice(frontmatter.file.lastIndexOf(".")) || ".md";
     <Hatena url={url} />
   </section>
   <section heading-list>
-    <Headings modalId="sidebar" headings={headings} indentWidth="0.5rem" client:only />
+    <Headings modalId="sidebar" headings={headings} indentWidth="0.5rem" client:only="svelte" />
   </section>
   <section action-buttons>
     <LinkButton title="Submit an issue" href="https://github.com/7rs/pages/issues/new/choose">Issue</LinkButton>

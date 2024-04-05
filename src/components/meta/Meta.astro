@@ -1,0 +1,33 @@
+---
+import { Website, Page, ThemeColor } from "@lib/metagg";
+import { Schemas, SchemaProps } from "@lib/schema";
+
+import Settings from "@components/meta/Settings.astro";
+import PageData from "@components/meta/PageData.astro";
+import WebsiteData from "@components/meta/WebsiteData.astro";
+import TwitterCards from "@components/meta/TwitterCards.astro";
+import OpenGraph from "@components/meta/OpenGraph.astro";
+
+export interface Props extends SchemaProps {
+  page: Page;
+  site: Website;
+  published: boolean;
+  themeColor?: ThemeColor;
+}
+
+const { page, site, published, themeColor, schemaType, schema } = Astro.props;
+
+const image = page.image && page.imageAlt ? { src: page.image, alt: page.imageAlt } : undefined;
+---
+
+<Settings favicon={site.favicon} noIndex={!published} themeColor={themeColor} />
+<PageData
+  title={page.title}
+  description={page.description}
+  authors={page.authors.map((author) => author.name)}
+  image={image}
+/>
+<WebsiteData name={site.name} />
+{schemaType && schema && <script type="application/ld+json" set:html={JSON.stringify(schemaType.parse(schema))} />}
+<TwitterCards title={page.title} twitterId={site.twitterId} image={image} />
+<OpenGraph title={page.title} siteName={site.name} image={image} tags={page.tags} />

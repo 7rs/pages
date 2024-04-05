@@ -1,5 +1,3 @@
-[license-raw]: https://github.com/7rs/pages/blob/main/LICENSE
-[license]: https://flat.badgen.net/github/license/7rs/pages?labelColor=#000  
 [main-version]: https://img.shields.io/github/package-json/v/7rs/pages/main?style=flat-square&label=main&labelColor=000&color=blue
 [main-modified]: https://flat.badgen.net/github/last-commit/7rs/pages/main?label&color=purple
 [pre-version]: https://img.shields.io/github/package-json/v/7rs/pages/pre?style=flat-square&label=pre&labelColor=000&color=blue
@@ -17,26 +15,33 @@
 
 [English](./README.md) | [日本語](./README_ja.md)
 
+![Version][main-version]![Last commit][main-modified]
+![Version][pre-version]![Last commit][pre-modified]
+![Version][dev-version]![Last commit][dev-modified]  
+
 # [Pages](https://7rs.dev/)  
 
-  **Fast** and **simple** website.  
-
-  [![License][license]][license-raw]  
-  ![Version][main-version]![Last commit][main-modified]
-  ![Version][pre-version]![Last commit][pre-modified]
-  ![Version][dev-version]![Last commit][dev-modified]
-
-  [![Built with Astro](https://astro.badg.es/v2/built-with-astro/large.svg)](https://astro.build/)  
+  **Fast**, **simple** and **Flexible**.  
+  A tool to create awesome websites. And an website.  
 
 ## Features (Goals)  
 
-- Open source.
-- High performance.
-- Responsive web design.
-- Supports dark mode.
-- Supports Japanese and English.
-- Optimization SEO.
-- Easy setup for [VSCode][vscode].
+### Fast  
+
+Pages is developed with an emphasis on performance.  
+A goal is to score 90+ on PageSpeed Insights.  
+
+### Readable  
+
+Split huge codes and Mark up semantically.
+
+### Flexible  
+
+Ecosystem, important attributes
+
+### For all users  
+
+Responsive, Darkmode, VSCOde, i18n
 
 [2024-03-07]: https://pagespeed.web.dev/analysis/https-7rs-dev/hwvf482lxb?form_factor=mobile
 [2024-01-28]: https://pagespeed.web.dev/analysis/https-7rs-dev/0f0e76xl0r?form_factor=mobile
@@ -112,5 +117,7 @@
   [![Static Badge](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://7rs.dev/d)
 
 ## Author  
+
+[![Built with Astro](https://astro.badg.es/v2/built-with-astro/large.svg)](https://astro.build/)
 
 - [Cbrnex](https://github.com/7rs)  

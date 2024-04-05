@@ -1,0 +1,39 @@
+---
+/**
+ * If theme color is one color, specify only light.
+ * This is also the case with dark themes only.
+ */
+
+import { ThemeColor } from "@lib/metagg";
+
+export interface Props {
+  favicon?: string;
+  noIndex?: boolean;
+  themeColor?: ThemeColor;
+}
+
+const { favicon, noIndex, themeColor = { light: "white", dark: "black" } } = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="color-scheme" content="light dark" />
+<meta name="format-detection" content="telephone=no,email=no,address=no" />
+<meta name="referrer" content="no-referrer" />
+
+<meta name="google" content="nositelinkssearchbox" />
+<meta name="googlebot" content="notranslate" />
+<meta name="robots" content={(noIndex ? "none " : "") + "noarchive nositelinkssearchbox notranslate"} />
+
+{favicon && <link rel="icon" href={favicon} type="image/svg+xml" />}
+{
+  themeColor.dark ? (
+    <>
+      <meta name="theme-color" media="(prefers-color-scheme: light)" content={themeColor.light} />
+      <meta name="theme-color" media="(prefers-color-scheme: dark)" content={themeColor.dark} />
+    </>
+  ) : (
+    <meta name="theme-color" content={themeColor.light} />
+  )
+}
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />

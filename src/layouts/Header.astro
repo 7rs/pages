@@ -11,7 +11,7 @@ const props = Astro.props;
   <LinkIcon icon="pages-logo" href="/" title="Main page" />
   <nav action-buttons>
     <LinkIcon icon="material-symbols:search" href="/blog" title="blog search" />
-    <ThemeSvelte client:only />
+    <ThemeSvelte client:only="svelte" />
     <Icon name="material-symbols:menu" />
   </nav>
 </header>

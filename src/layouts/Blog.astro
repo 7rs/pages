@@ -14,7 +14,7 @@ import PostFooter from "@components/layouts/blog/PostFooter.astro";
 import logo from "@icons/favicon.svg";
 
 export interface Props {
-  frontmatter: { tags?: string[], [key: string ]: any };
+  frontmatter: { [key: string ]: any };
   headings: { depth: number; slug: string; text: string }[];
 }
 const { frontmatter, headings } = Astro.props;

@@ -1,0 +1,133 @@
+---
+import { GetImageResult } from "astro";
+import { getImage } from "astro:assets";
+
+import { getFont } from "@lib/font";
+import { Backgrounds } from "@lib/metagg";
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@layouts/Header.astro";
+import Footer from "@layouts/Footer.astro";
+
+import defaultLight from "@assets/background/yZygONrUBe8.jpg";
+import defaultDark from "@assets/background/Q1p7bh3SHj8.jpg";
+
+const defaultBackgroundOptions = { format: "avif", quality: 70 };
+const defaultBackgroundResolution = 720;
+
+export interface Props {
+  title?: string;
+  locale?: string;
+  fonts?: Array<string>;
+  published?: boolean;
+  backgrounds?: Backgrounds;
+}
+const {
+  title = "Pages - Fast and simple website.",
+  locale = "en",
+  fonts = [],
+  published = false,
+  backgrounds = {
+    light: defaultLight,
+    dark: defaultDark,
+    options: defaultBackgroundOptions,
+    resolution: defaultBackgroundResolution,
+  },
+  ...props
+} = Astro.props;
+
+async function getOptimizedImage(
+  image: ImageMetadata,
+  resolution: number = defaultBackgroundResolution,
+  options: { [key: string]: any } = defaultBackgroundOptions,
+): Promise<GetImageResult> {
+  const optimizedImage = await getImage({
+    ...options,
+    src: image,
+    width: Math.trunc(resolution * (image.width / image.height)),
+  });
+
+  return optimizedImage;
+}
+
+const lightBackground = await getOptimizedImage(backgrounds.light, backgrounds.resolution, backgrounds.options);
+const darkBackground = backgrounds.dark
+  ? await getOptimizedImage(backgrounds.dark, backgrounds.resolution, backgrounds.options)
+  : undefined;
+
+const images = [
+  { src: lightBackground.src, format: backgrounds.options?.format || defaultBackgroundOptions, media: "light" },
+];
+if (darkBackground != null) {
+  images.push({
+    src: darkBackground.src,
+    format: backgrounds.options?.format || defaultBackgroundOptions,
+    media: "dark",
+  });
+}
+---
+
+<BaseLayout
+  title={title}
+  published={published}
+  cssVars={{
+    lightBackground: `url(${lightBackground.src})`,
+    darkBackground: darkBackground && `url(${darkBackground.src})`,
+  }}
+  resources={{
+    images: images,
+    fonts: [getFont("Fira Sans", [{}, { weight: 700 }, { weight: 900 }])],
+  }}
+>
+  <Header />
+  <main {...props}>
+    <slot />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  light-filter = grayscale(10%)
+  dark-filter = brightness(75%)
+
+  :root
+    @media (prefers-color-scheme dark)
+      --background-image var(--darkBackground)
+      --background-filter dark-filter
+    @media (prefers-color-scheme light)
+      --background-image var(--lightBackground)
+      --background-filter light-filter
+
+  body:not(.markdown)
+    &.light-mode
+      --background-image var(--lightBackground)
+      --background-filter light-filter
+    &.dark-mode
+      --background-image var(--darkBackground)
+      --background-filter dark-filter
+
+    z-index -1001
+    position relative
+    box-sizing border-box
+    min-height 100vh
+    max-width 100%
+    flex(column)
+    scrollbar(5px)
+
+    main
+      z-index 0
+      position relative
+      flex-grow 1
+      min-height 100%
+      responsive-padding()
+      padding-bottom 3rem
+      flex(column, 10rem)
+
+      &::before
+        z-index -1002
+        full-size-before()
+        filter var(--background-filter)
+        background var(--background-image) center/cover no-repeat fixed, var(--background)
+</style>

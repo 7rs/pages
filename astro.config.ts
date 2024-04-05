@@ -1,4 +1,4 @@
-import { defineConfig, passthroughImageService } from 'astro/config';
+import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import svelte from '@astrojs/svelte';
 import qwikdev from '@qwikdev/astro';
@@ -9,50 +9,60 @@ import purgecss from 'astro-purgecss';
 import Compress from 'astro-compress';
 import icon from 'astro-icon';
 
-import path from 'path'
+import { vitePreprocess } from '@astrojs/svelte';
+
+import path from 'path';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://7rs.dev',
   server: {
     host: true,
-    port: 2999
+    port: 2999,
   },
-  scopedStyleStrategy: "attribute",
+  scopedStyleStrategy: 'attribute',
   i18n: {
     defaultLocale: 'ja',
     locales: ['ja', 'en'],
     fallback: {
-      en: 'ja'
+      en: 'ja',
     },
     routing: {
-      prefixDefaultLocale: false
-    }
+      prefixDefaultLocale: false,
+    },
   },
   markdown: {
     shikiConfig: {
-      theme: 'dracula'
-    }
+      theme: 'dracula',
+    },
   },
-  integrations: [mdx(), svelte(), qwikdev(), robotsTxt(), sitemap(), pagefind(),
-  // purgecss(),
+  integrations: [
+    mdx(),
+    svelte({ preprocess: vitePreprocess() }),
+    qwikdev(),
+    robotsTxt(),
+    sitemap(),
+    pagefind(),
+    // purgecss(),
     Compress({
       CSS: true,
       HTML: true,
       Image: false,
       JavaScript: true,
-      SVG: true
-    }), icon({
+      SVG: true,
+    }),
+    icon({
       iconDir: 'src/icons',
       include: {
-        materialSymbols: ['wb-sunny-outline', 'search', 'copyright-outline', 'menu', 'package-2-outline-sharp']
-      }
-    })],
+        materialSymbols: ['wb-sunny-outline', 'search', 'copyright-outline', 'menu', 'package-2-outline-sharp'],
+      },
+    }),
+  ],
   vite: {
     resolve: {
       alias: {
         '@lib': path.resolve('./scripts/lib'),
-      }
-    }
-  }
+      },
+    },
+  },
 });
