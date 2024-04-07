@@ -23,9 +23,6 @@ const { post, url, ...props } = Astro.props;
   <div data-post-tags>
     {post.tags.map((tag) => <Link href={`/blog?${qs.stringify({ tag: [tag] })}`}>#{tag}</Link>)}
   </div>
-  <!-- <Icon name="material-symbols:upload-sharp" />
-  <Icon name="material-symbols:update" />
-  <Icon name="mdi:language" /> -->
   <div data-post-details>
     <div>
       <Icon name="material-symbols:upload-sharp" />

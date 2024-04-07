@@ -1,5 +1,5 @@
 ---
-layout: "@layouts/Blog.astro"
+layout: "@layouts/BlogLayout.astro"
 title: "新しいウェブサイトを作る"
 tags: ["frontend", "cloudflare", "porkbun", "astro", "stylus", "typescript", "svelte", "qwik"]
 published: true

@@ -3,7 +3,7 @@ import Link from "@components/Link.astro";
 import LinkButtons from "@components/LinkButtons.astro";
 ---
 
-<section data-landing>
+<section data-landing-header>
   <hgroup>
     <h1><span id="fast">Fast</span>, <span id="readable">Readable</span> and <span id="flexible">Flexible</span></h1>
     <p>A tool to create awesome websites. And an website.</p>
@@ -20,7 +20,7 @@ import LinkButtons from "@components/LinkButtons.astro";
   [data-link-buttons] > [data-link]
     @extend $button
 
-  [data-landing]
+  [data-landing-header]
     flex(column, 3rem)
     min-height 90vh
     justify-content center

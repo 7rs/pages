@@ -13,53 +13,48 @@
   <img src=".github/assets/banner.jpg" alt="banner" />
 </picture>
 
-[English](./README.md) | [日本語](./README_ja.md)
-
 ![Version][main-version]![Last commit][main-modified]
 ![Version][pre-version]![Last commit][pre-modified]
 ![Version][dev-version]![Last commit][dev-modified]  
 
 # [Pages](https://7rs.dev/)  
 
-  **Fast**, **simple** and **Flexible**.  
+  **Fast**, **Readable** and **Flexible**.  
   A tool to create awesome websites. And an website.  
+
+[pagespeed-insights]: https://pagespeed.web.dev/
 
 ## Features (Goals)  
 
 ### Fast  
 
-Pages is developed with an emphasis on performance.  
-A goal is to score 90+ on PageSpeed Insights.  
+Pages is developed with the emphasis on performance.  
+A goal is to score 90+ on [PageSpeed Insights][pagespeed-insights].  
 
 ### Readable  
 
-Split huge codes and Mark up semantically.
+Splits huge codes and mark up semantically (Minimize div tags).  
+And reduces multi-line Flexboxes by using a grid layout instead.  
+So **reuse** and **semantics HTML**.  
 
 ### Flexible  
 
-Ecosystem, important attributes
+Pages has no `!important`.  And the use of classes is minimal.  
+So you can override styles and use any class name!  
+Also, because used Astro, PostCSS, UI frameworks such as Svelte, etc., you can use their ecosystems.  
 
 ### For all users  
 
-Responsive, Darkmode, VSCOde, i18n
-
-[2024-03-07]: https://pagespeed.web.dev/analysis/https-7rs-dev/hwvf482lxb?form_factor=mobile
-[2024-01-28]: https://pagespeed.web.dev/analysis/https-7rs-dev/0f0e76xl0r?form_factor=mobile
-[2024-01-13_2]: https://pagespeed.web.dev/analysis/https-7rs-dev/x0q7ws96dt?form_factor=mobile
-[2024-01-13_1]: https://pagespeed.web.dev/analysis/https-7rs-dev/bflti9eum0?form_factor=mobile
-[2024-01-12]: https://pagespeed.web.dev/analysis/https-7rs-dev/azm6eyfj4m?form_factor=mobile
-[2024-01-08]: https://pagespeed.web.dev/analysis/https-7rs-dev/govex9jx2k?form_factor=mobile
+- [Responsive web design](https://developer.mozilla.org/docs/Learn/CSS/CSS_layout/Responsive_Design)
+- [Dark mode](https://en.wikipedia.org/wiki/Light-on-dark_color_scheme)
+- [i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization)
+- [use pnpm](https://pnpm.io/motivation)
+- [use TypeScript](https://www.typescriptlang.org/)
+- [use VSCode](https://code.visualstudio.com/)
 
 ## Benchmarks  
 
-  | Mobile | Desktop | Date |
-  | - | - | - |
-  | 99  | 100 | [2024-03-07][2024-03-07] |
-  | 100 | 100 | [2024-01-28][2024-01-28] |
-  | 99  | 100 | [2024-01-13][2024-01-13_2] |
-  | 91  | 98  | [2024-01-13][2024-01-13_1] |
-  | 88  | 96  | [2024-01-12][2024-01-12] |
-  | 82  | 94  | [2024-01-08][2024-01-08] |
+  Images
 
 ## Installation  
 
@@ -93,14 +88,21 @@ Responsive, Darkmode, VSCOde, i18n
   pnpm dev  
   ```  
 
+#### Build website  
+
+  ```sh
+  pnpm build
+  ```  
+
 [unsplash-badge]: https://img.shields.io/badge/Unsplash-black?style=for-the-badge&logo=unsplash
 [unsplash-license]: https://unsplash.com/license
+[cc0]: https://creativecommons.org/publicdomain/zero/1.0/
 
 ## License  
 
-  **Pages** is published under [CC0](https://creativecommons.org/publicdomain/zero/1.0/) except for asset files.  
+  **Pages** is published under [CC0][cc0] except for asset files.  
 
-[![Unsplash][unsplash-badge]][unsplash-license]  
+[![Built with Astro](https://astro.badg.es/v2/built-with-astro/large.svg)](https://astro.build/)  [![Unsplash][unsplash-badge]][unsplash-license]
 
 ## Contributing  
 
@@ -117,7 +119,5 @@ Responsive, Darkmode, VSCOde, i18n
   [![Static Badge](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://7rs.dev/d)
 
 ## Author  
-
-[![Built with Astro](https://astro.badg.es/v2/built-with-astro/large.svg)](https://astro.build/)
 
 - [Cbrnex](https://github.com/7rs)  

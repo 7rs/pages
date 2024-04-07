@@ -1,5 +1,5 @@
 ---
-layout: "@layouts/Blog.astro"
+layout: "@layouts/BlogLayout.astro"
 title: "Astro"
 tags: ["Astro", "HTML", "CSS", "JavaScript", "TypeScript", "Frontend"]
 ---

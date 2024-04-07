@@ -1,4 +1,2 @@
 *.md
 *.mdx
-src/layouts/Layout.astro
-src/layouts/Blog.astro

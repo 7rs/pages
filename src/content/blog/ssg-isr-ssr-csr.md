@@ -1,5 +1,5 @@
 ---
-layout: "@layouts/Blog.astro"
+layout: "@layouts/BlogLayout.astro"
 title: "SSGとISRとSSRとCSR"
 tags: ["SSG", "ISR", "SSR", "ISR", "Frontend"]
 ---

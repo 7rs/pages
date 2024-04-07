@@ -1,6 +1,6 @@
 ---
 import { Website, Page, ThemeColor } from "@lib/metagg";
-import { Schemas, SchemaProps } from "@lib/schema";
+import { SchemaProps } from "@lib/schema";
 
 import Settings from "@components/meta/Settings.astro";
 import PageData from "@components/meta/PageData.astro";
@@ -20,7 +20,7 @@ const { page, site, published, themeColor, schemaType, schema } = Astro.props;
 const image = page.image && page.imageAlt ? { src: page.image, alt: page.imageAlt } : undefined;
 ---
 
-<Settings favicon={site.favicon} noIndex={!published} themeColor={themeColor} />
+<Settings noIndex={!published} favicon={site.favicon} themeColor={themeColor} />
 <PageData
   title={page.title}
   description={page.description}

@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 
 import LinkIcon from "@components/LinkIcon.astro";
-import ThemeSvelte from "@layouts-components/header/Theme.svelte"
+import ThemeSwitcher from "@components/ThemeSwitcher.svelte"
 
 const props = Astro.props;
 ---
@@ -11,7 +11,7 @@ const props = Astro.props;
   <LinkIcon icon="pages-logo" href="/" title="Main page" />
   <nav action-buttons>
     <LinkIcon icon="material-symbols:search" href="/blog" title="blog search" />
-    <ThemeSvelte client:only="svelte" />
+    <ThemeSwitcher client:only="svelte" />
     <Icon name="material-symbols:menu" />
   </nav>
 </header>
@@ -54,26 +54,4 @@ const props = Astro.props;
       display none
       @media screen and (min-width widths.medium)
         display block
-
-    /* For Qwik (Iconify doesn't support Qwik directly.)
-
-    div
-      height 2rem
-      width 2rem
-
-      background var(--content)
-      mask-size 100%
-      mask-repeat no-repeat
-      mask-position center
-
-      &.system
-        mask-image url("https://api.iconify.design/material-symbols/computer-outline-sharp.svg")
-
-      &.light-mode
-        mask-image url("https://api.iconify.design/material-symbols/light-mode-outline.svg")
-
-      &.dark-mode
-        mask-image url("https://api.iconify.design/material-symbols/dark-mode.svg")
-
-    */
 </style>
