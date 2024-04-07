@@ -1,0 +1,132 @@
+---
+import { getImage } from 'astro:assets'
+import { GetImageResult } from 'astro';
+
+import { Website } from '@lib/meta';
+import { Assignee, Schemas } from '@lib/schema';
+import { getFont } from '@lib/font';
+
+import Meta from '@layouts-components/meta/Meta.astro';
+
+import Header from '@layouts/Header.astro';
+import Footer from '@layouts/Footer.astro';
+
+import defaultLight from '@assets/background/yZygONrUBe8.jpg';
+import defaultDark from '@assets/background/Q1p7bh3SHj8.jpg';
+
+import '@styles/default.styl'
+
+export interface Props {
+  title?: string;
+  locale?: string;
+  fonts?: Array<string>;
+  noIndex?: boolean;
+  light?: ImageMetadata;
+  dark?: ImageMetadata;
+  backgroundOptions?: { [key: string]: any},
+  resolution?: number;
+  profile?: Assignee | Assignee[];
+  meta?: Website;
+}
+const { 
+  title = 'Pages - Fast and simple website.',
+  locale = 'en',
+  fonts = [getFont('Fira Sans', [{}, {weight: 700}, {weight: 900}])],
+  noIndex = false,
+  light = defaultLight,
+  dark = defaultDark,
+  backgroundOptions = { format: 'avif', quality: 70 },
+  resolution = 720,
+  profile,
+  meta,
+  ...props 
+} = Astro.props;
+
+async function getOptimizedImage(image: ImageMetadata, resolution: number): Promise<[GetImageResult, string]> {
+  const optimizedImage = await getImage({
+    ...backgroundOptions,
+    src: image,
+    width: Math.trunc(resolution * (image.width / image.height))
+  })
+  return [optimizedImage, `url(${optimizedImage.src})`]
+}
+
+const [lightBackgroundImage, lightBackground] = await getOptimizedImage(light, resolution)
+const [darkBackgroundImage, darkBackground] = await getOptimizedImage(dark, resolution)
+---
+
+<!doctype html>
+<html lang={locale}>
+  <Meta
+    title={title}
+    noIndex={noIndex}
+    resources={{
+      fonts: fonts, 
+      light: { format: backgroundOptions.format, src: lightBackgroundImage.src },
+      dark: { format: backgroundOptions.format, src: darkBackgroundImage.src },
+    }}
+    meta={meta}
+    schemaType={Schemas.WebSite}
+    schema={profile}
+  />
+  <body>
+    <Header />
+    <main {...props}>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+{
+  /*
+    https://github.com/withastro/prettier-plugin-astro/issues/316
+
+    Why this neglected for since an year yet?
+  */
+}
+<style lang="stylus" is:global define:vars={{lightBackground, darkBackground}}>
+  @import "../styles/api.styl"
+
+  light-filter = grayscale(10%)
+  dark-filter = brightness(75%)
+
+  :root
+    @media (prefers-color-scheme dark)
+      --background-image var(--darkBackground)
+      --background-filter dark-filter
+    @media (prefers-color-scheme light)
+      --background-image var(--lightBackground)
+      --background-filter light-filter
+
+  body:not(.markdown)
+    &.light-mode
+      --background-image var(--lightBackground)
+      --background-filter light-filter
+    &.dark-mode
+      --background-image var(--darkBackground)
+      --background-filter dark-filter
+
+    z-index -1001
+    position relative
+    box-sizing border-box
+    min-height 100vh
+    max-width 100%
+    flex(column)
+    scrollbar(5px)
+
+    main
+      z-index 0
+      position relative
+      flex-grow 1
+      min-height 100%
+      responsive-padding()
+      padding-bottom 3rem
+      flex(column, 10rem)
+
+      &::before
+        z-index -1002
+        full-size-before()
+        filter var(--background-filter)
+        background var(--background-image) center/cover no-repeat fixed, var(--background)
+</style>

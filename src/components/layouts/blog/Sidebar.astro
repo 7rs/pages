@@ -3,12 +3,12 @@ import { PostDetail } from "@lib/meta";
 
 import FloatingButton from "./FloatingButton.svelte";
 
-import Pocket from "@components/share/Pocket.astro";
-import Twitter from "@components/share/Twitter.astro";
-import Bluesky from "@components/share/Bluesky.astro";
-import Reddit from "@components/share/Reddit.astro";
-import Hatena from "@components/share/Hatena.astro";
-import Mastodon from "@components/share/Mastodon.astro";
+import Pocket from "@layouts-components/blog/share/Pocket.astro";
+import Twitter from "@layouts-components/blog/share/Twitter.astro";
+import Bluesky from "@layouts-components/blog/share/Bluesky.astro";
+import Reddit from "@layouts-components/blog/share/Reddit.astro";
+import Hatena from "@layouts-components/blog/share/Hatena.astro";
+import Mastodon from "@layouts-components/blog/share/Mastodon.astro";
 
 import Headings from "@layouts-components/blog/Headings.svelte";
 import LinkButton from "@layouts-components/blog/LinkButton.astro";
@@ -36,7 +36,7 @@ const url = Astro.site + Astro.url.pathname.slice(1);
 const ext = frontmatter.file?.slice(frontmatter.file.lastIndexOf(".")) || ".md";
 ---
 
-<FloatingButton modalId="sidebar" client:only />
+<FloatingButton modalId="sidebar" client:only="svelte" />
 <aside id="sidebar" {...props}>
   <section share-buttons>
     <Reddit title={frontmatter.title} url={url} />
@@ -47,7 +47,7 @@ const ext = frontmatter.file?.slice(frontmatter.file.lastIndexOf(".")) || ".md";
     <Hatena url={url} />
   </section>
   <section heading-list>
-    <Headings modalId="sidebar" headings={headings} indentWidth="0.5rem" client:only />
+    <Headings modalId="sidebar" headings={headings} indentWidth="0.5rem" client:only="svelte" />
   </section>
   <section action-buttons>
     <LinkButton title="Submit an issue" href="https://github.com/7rs/pages/issues/new/choose">Issue</LinkButton>

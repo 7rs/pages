@@ -61,37 +61,6 @@ colors =  {
   },
 }
 
-hoverable(light-color, dark-color = null, alpha = 0.5, under = false)
-  color light-color
-  text-decoration none
-  &:hover
-    color rgba(light-color, alpha)
-    if under
-      text-decoration underline
-    
-  if dark-color
-    @media (prefers-color-scheme dark)
-      color dark-color
-      &:hover
-        color rgba(dark-color, alpha)
-
-$hoverable-link
-  color var(--link)
-  text-decoration none
-  &:hover
-    color var(--link-hover)
-    text-decoration underline
-
-hoverable-background(light-color, dark-color = null, alpha = 0.5)
-  text-decoration none
-  &:hover
-    background rgba(light-color, alpha)
-
-  if dark-color
-    @media (prefers-color-scheme dark)
-      &:hover
-        background rgba(dark-color, alpha)
-
 glassmorphism()
   z-index 0
   padding 1rem
@@ -108,13 +77,3 @@ $widget
   glassmorphism()
   background var(--widget)
   color var(--content)
-
-$hoverable-widget
-  @extend $widget
-  &:hover
-    background var(--widget-hover)
-
-expand-text(_size, _height)
-  sans(_size, _height)
-  transition all 100ms linear
-  filter drop-shadow(0px 0px 8px white)

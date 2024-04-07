@@ -1,4 +1,4 @@
 ---
-layout: "@layouts/Blog.astro"
+layout: "@layouts/BlogLayout.astro"
 title: "Cloudflare Pages"
 ---

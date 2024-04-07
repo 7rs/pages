@@ -1,0 +1,83 @@
+---
+import { Icon } from "astro-icon/components";
+
+const messages = [
+  { icon: "material-symbols:rocket", title: "Fast", description: "No unnecessary scripts or resources." },
+  { icon: "mdi:code", title: "Simple", description: "Code is designed to be simple." },
+  { icon: "mdi:design", title: "variable", description: "Sometimes beautiful, sometimes cool, sometimes cute." },
+];
+---
+
+<section>
+  {
+    messages.map((message) => (
+      <article>
+        <Icon name={message.icon} />
+        <h2>{message.title}</h2>
+        <p>{message.description}</p>
+      </article>
+    ))
+  }
+</section>
+
+<style lang="stylus">
+  @import "../../../../styles/api.styl"
+
+  section
+    flex(column, 1rem)
+    margin 10rem 0
+
+  article
+    
+    position relative
+    display grid
+    column-gap 3rem
+    padding 1rem 0
+
+    &::before
+      z-index -1
+      position absolute
+      width 200vw
+      height 150%
+      top 0
+      left calc(-50vw + 50%)
+      content ""
+
+    &:nth-child(1)
+      &::before
+        background-color red
+    &:nth-child(2)
+      &::before
+        background-color blue
+    &:nth-child(3)
+      &::before
+        background-color green
+
+    &:nth-child(2n + 1)
+      text-align start
+      justify-content flex-start
+      grid-template-areas "icon title" \
+                          "icon desc ";
+      &::before
+        transform rotate(1deg)
+
+    &:nth-child(2n)
+      text-align end
+      justify-content flex-end
+      grid-template-areas "title icon" \
+                          "desc icon ";
+      &::before
+        transform rotate(-1deg)
+
+    svg[data-icon]
+      grid-area icon
+      font-size 10rem
+
+    h2
+      grid-area title
+      sans(3rem)
+
+    p
+      grid-area desc
+      sans(1.5rem)
+</style>

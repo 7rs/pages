@@ -1,0 +1,66 @@
+---
+import Link from "@components/Link.astro";
+import LinkButtons from "@components/LinkButtons.astro";
+---
+
+<section data-landing-header>
+  <hgroup>
+    <h1><span id="fast">Fast</span>, <span id="readable">Readable</span> and <span id="flexible">Flexible</span></h1>
+    <p>A tool to create awesome websites. And an website.</p>
+  </hgroup>
+  <LinkButtons>
+    <Link href="https://github.com/7rs/pages" openInNewTab>Get Started</Link>
+    <Link href="/explore">Explore Pages</Link>
+  </LinkButtons>
+</section>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-link-buttons] > [data-link]
+    @extend $button
+
+  [data-landing-header]
+    flex(column, 3rem)
+    min-height 90vh
+    justify-content center
+
+    hgroup
+      bottom 0
+      width 100%
+      text-align center
+
+      h1
+        @extend $header-text
+
+        filter drop-shadow(0 0 8px white)
+
+        font-weight 900
+        // Responsive
+        margin 1rem 0
+        @media screen and (min-width widths.medium)
+          margin 1.5rem 0
+        @media screen and (min-width widths.large)
+          margin 1rem 0
+
+        span
+          background-clip text
+          color transparent
+
+          &#fast
+            background-image linear-gradient(180deg, rgb(255,160,160) 0%, rgb(240,240,255) 100%);
+            filter drop-shadow(0 0 8px red)
+
+          &#readable
+            background-image linear-gradient(180deg, rgb(160,160,255) 0%, rgb(240,240,255) 100%);
+            filter drop-shadow(0 0 8px blue)
+
+          &#flexible
+            background-image linear-gradient(180deg, rgb(255,160,255) 0%, rgb(255,240,255) 100%);
+            filter drop-shadow(0 0 8px purple)
+
+      p
+        @extend $header-sub-text
+        filter drop-shadow(0 0 4px var(--content-reversed))
+        text-shadow 0 0 4px white
+</style>

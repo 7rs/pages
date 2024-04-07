@@ -8,6 +8,36 @@
   --widths-largest widths.largest
   --golden-ratio ((1 + 5 ** 0.5) / 2)
 
+@keyframes float
+  0%
+    transform translateY(0)
+  25%
+    transform translateY(4px)
+  50%
+    transform translateY(0)
+  75%
+    transform translateY(-4px)
+  100%
+    transform translateY(0)
+
+@keyframes rainbow-shadow
+  0%
+    filter drop-shadow(0 0 8px red)
+  14%
+    filter drop-shadow(0 0 8px orange)
+  28%
+    filter drop-shadow(0 0 8px yellow)
+  42%
+    filter drop-shadow(0 0 8px green)
+  56%
+    filter drop-shadow(0 0 8px cyan)
+  70%
+    filter drop-shadow(0 0 8px indigo)
+  84%
+    filter drop-shadow(0 0 8px purple)
+  100%
+    filter drop-shadow(0 0 8px red)
+
 *
   margin-top 0
   margin-bottom 0

@@ -1,0 +1,31 @@
+---
+/*
+  https://ogp.me/
+  https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data
+*/
+
+import { PageImage, getFormat } from "@lib/metagg";
+
+export interface Props {
+  title: string;
+  siteName: string;
+  image?: PageImage;
+  tags?: string[];
+}
+
+const { title, siteName, image, tags = [] } = Astro.props;
+---
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={title} />
+{tags.length > 0 && <meta property="og:keywords" content={tags?.join(", ")} />}
+{
+  image && (
+    <>
+      <meta property="og:image" content={image.src} />
+      <meta property="og:image:type" content={`image/${getFormat(image.src)}`} />
+      <meta property="og:image:alt" content={image.alt} />
+    </>
+  )
+}

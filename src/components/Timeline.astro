@@ -1,0 +1,33 @@
+---
+const props = Astro.props;
+---
+
+<ul data-timeline {...props}>
+  <slot />
+</ul>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  :root
+    --point-size 1.25rem
+    --line-width 4px
+    --timeline-width 3rem
+    @media screen and (min-width widths.medium)
+      --timeline-width 4rem
+
+  ul
+    margin 5rem 0
+    padding-left var(--timeline-width)
+    list-style none
+    position relative
+    flex(column, 1rem)
+
+    &::before
+      position absolute
+      height 100%
+      width var(--line-width)
+      content ""
+      left calc(var(--timeline-width) / 2 - var(--line-width) / 2)
+      background linear-gradient(180deg, rgba(255,0,0,1) 0%, rgba(0,0,255,1) 100%);
+</style>
