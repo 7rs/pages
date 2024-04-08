@@ -4,9 +4,13 @@ import { getFont } from "@lib/font";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Header from "@layouts/Header.astro";
+
 import PostHeader from "@components/blog/PostHeader.astro";
+import PostFooter from "@components/blog/PostFooter.astro";
+
+import MainContent from "@components/blog/MainContent.astro";
+
 import Sidebar from "@layouts-components/blog/Sidebar.astro";
-import PostFooter from "@components/layouts/blog/PostFooter.astro";
 
 export interface Props {
   frontmatter: { [key: string]: any };
@@ -29,17 +33,8 @@ const prasedFrontmatter = Frontmatter.parse(frontmatter);
 >
   <Header />
   <main>
-    <PostHeader
-      title={prasedFrontmatter.title}
-      authors={prasedFrontmatter.authors}
-      tags={prasedFrontmatter.tags}
-      lang={prasedFrontmatter.lang}
-      publishedAt={prasedFrontmatter.published_at}
-      updatedAt={prasedFrontmatter.updated_at}
-    />
-    <section main-content data-pagefind-body={prasedFrontmatter.published ? "" : undefined}>
-      <slot />
-    </section>
+    <PostHeader frontmatter={prasedFrontmatter} />
+    <MainContent data-pagefind-body={prasedFrontmatter.published ? "" : undefined}><slot /></MainContent>
     <PostFooter lang={prasedFrontmatter.lang} />
   </main>
   <Sidebar frontmatter={prasedFrontmatter} headings={headings} />
@@ -76,6 +71,7 @@ const prasedFrontmatter = Frontmatter.parse(frontmatter);
     main
       grid-area content
       max-width 900px
+      flex(column, 5rem)
 
     aside
       grid-area sidebar

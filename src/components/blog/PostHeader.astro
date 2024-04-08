@@ -1,41 +1,36 @@
 ---
 import { getLangaugeLabel } from "@lib/meta";
-import Datetime from "@components/Datetime.astro";
-import LabeledIcon from "@components/LabeledIcon.astro";
+import { Frontmatter } from "@lib/metagg";
 
 import LinkFilters from "@components/blog/LinkFilters.astro";
-
+import LabeledIcon from "@components/LabeledIcon.astro";
+import Datetime from "@components/Datetime.astro";
 export interface Props {
-  title: string;
-  tags?: string[];
-  authors?: string[];
-  lang?: string;
-  publishedAt?: Date;
-  updatedAt?: Date;
+  frontmatter: Frontmatter;
 }
 
-const { title, tags = [], authors = [], lang = "ja", publishedAt, updatedAt } = Astro.props;
+const { frontmatter } = Astro.props;
 ---
 
 <header data-post-header>
-  <h1 data-post-title id={title}>{title}</h1>
+  <h1 data-post-title id={frontmatter.title}>{frontmatter.title}</h1>
   <!-- Filters -->
-  <LinkFilters key="author" filterList={authors} title="author" prefix="@" />
-  <LinkFilters key="tag" filterList={tags} title="tag" prefix="#" />
+  <LinkFilters key="author" filterList={frontmatter.authors} title="author" prefix="@" />
+  <LinkFilters key="tag" filterList={frontmatter.tags} title="tag" prefix="#" />
   <!-- Details -->
   <LabeledIcon icon="mdi:language" name="lang">
-    <p data-pagefind-filter="lang">{getLangaugeLabel(lang)}</p>
+    <p data-pagefind-filter="lang">{getLangaugeLabel(frontmatter.lang)}</p>
   </LabeledIcon>
   <LabeledIcon icon="material-symbols:upload-sharp" name="published-date">
     <Datetime
-      datetime={publishedAt}
+      datetime={frontmatter.published_at}
       title="Published date"
       data-pagefind-meta="publishedAt"
       data-pagefind-sort="publishedAt"
     />
   </LabeledIcon>
   <LabeledIcon icon="material-symbols:update" name="updated-date">
-    <Datetime datetime={updatedAt} title="Updated date" data-pagefind-meta="updatedAt" data-pagefind-sort="updatedAt" />
+    <Datetime datetime={frontmatter.updated_at} title="Updated date" data-pagefind-meta="updatedAt" data-pagefind-sort="updatedAt" />
   </LabeledIcon>
 </header>
 
@@ -44,7 +39,6 @@ const { title, tags = [], authors = [], lang = "ja", publishedAt, updatedAt } = 
 
   [data-post-header]
     box-sizing border-box
-    margin 3rem 0
 
     display grid
     row-gap 1rem

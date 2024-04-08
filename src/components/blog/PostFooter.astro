@@ -3,10 +3,10 @@ export interface Props {
   lang?: string;
 }
 
-const { lang = "ja", ...props } = Astro.props;
+const { lang = "ja" } = Astro.props;
 ---
 
-<footer>
+<footer data-post-footer>
   <script
     src="https://giscus.app/client.js"
     data-repo="7rs/pages"
@@ -27,8 +27,7 @@ const { lang = "ja", ...props } = Astro.props;
 </footer>
 
 <style lang="stylus">
-  footer
+  [data-post-footer]
     box-sizing border-box
-    margin 3rem 0
     width 100%
 </style>
