@@ -4,7 +4,8 @@ import { Icon } from "astro-icon/components";
 import LinkIcon from "@components/LinkIcon.astro";
 import ThemeSwitcher from "@components/ThemeSwitcher.svelte"
 
-const props = Astro.props;
+
+const { ...props} = Astro.props;
 ---
 
 <header main-header {...props}>

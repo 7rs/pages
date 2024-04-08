@@ -1,0 +1,25 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  icon: string;
+  name?: string;
+}
+
+const { icon, name = "", ...props } = Astro.props;
+---
+
+<div data-labeled-icon={name} {...props}>
+  <Icon name={icon} />
+  <slot />
+</div>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  [data-labeled-icon]
+    flex(_gap: 0.5rem)
+
+    [data-icon]
+      height 100%
+</style>

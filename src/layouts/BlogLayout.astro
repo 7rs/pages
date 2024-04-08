@@ -4,7 +4,7 @@ import { getFont } from "@lib/font";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Header from "@layouts/Header.astro";
-import PostHeader from "@layouts-components/blog/PostHeader.astro";
+import PostHeader from "@components/blog/PostHeader.astro";
 import Sidebar from "@layouts-components/blog/Sidebar.astro";
 import PostFooter from "@components/layouts/blog/PostFooter.astro";
 
@@ -29,7 +29,14 @@ const prasedFrontmatter = Frontmatter.parse(frontmatter);
 >
   <Header />
   <main>
-    <PostHeader frontmatter={prasedFrontmatter} />
+    <PostHeader
+      title={prasedFrontmatter.title}
+      authors={prasedFrontmatter.authors}
+      tags={prasedFrontmatter.tags}
+      lang={prasedFrontmatter.lang}
+      publishedAt={prasedFrontmatter.published_at}
+      updatedAt={prasedFrontmatter.updated_at}
+    />
     <section main-content data-pagefind-body={prasedFrontmatter.published ? "" : undefined}>
       <slot />
     </section>

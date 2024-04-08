@@ -2,6 +2,7 @@
 layout: "@layouts/BlogLayout.astro"
 title: "新しいウェブサイトを作る"
 tags: ["frontend", "cloudflare", "porkbun", "astro", "stylus", "typescript", "svelte", "qwik"]
+authors: ["Cbrnex"]
 published: true
 published_at: "2024-01-07"
 updated_at: "2024-03-03"
