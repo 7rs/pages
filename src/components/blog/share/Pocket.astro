@@ -1,0 +1,21 @@
+---
+import LinkIcon from "@components/LinkIcon.astro";
+
+export interface Props {
+  url: string;
+  icon?: string;
+}
+const { url, icon = "simple-icons:pocket", ...props } = Astro.props;
+---
+
+<LinkIcon icon={icon} href={`https://getpocket.com/edit?url=${encodeURIComponent(url)}`} {...props} openInNewTab />
+
+<style lang="stylus">
+  @import "../../../styles/api.styl"
+
+  [data-link-icon]
+    zoom()
+
+  [data-icon]:hover
+    color #EF3F56
+</style>

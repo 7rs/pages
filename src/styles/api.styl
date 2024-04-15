@@ -121,3 +121,9 @@ $header-sub-text
     sans(1.5rem, 1.75rem)
   @media screen and (min-width widths.large)
     sans(1.75rem, 2rem)
+
+zoom(ms = 100ms, function = ease-out, _scale = 125%)
+  &:hover
+    transition all ms function
+    transform scale(_scale)
+

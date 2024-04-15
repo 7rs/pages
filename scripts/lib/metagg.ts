@@ -147,3 +147,10 @@ export interface Backgrounds {
   options?: { [key: string]: any; format: string; quality: number };
   resolution?: number;
 }
+
+export interface Headings {
+  [key: string]: any;
+  depth: number;
+  slug: string;
+  text: string;
+}

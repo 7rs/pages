@@ -1,0 +1,31 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  title?: string;
+  text?: string;
+  icon?: string;
+  buttonId?: string;
+}
+
+const { title, text, icon, buttonId = "copy-button", ...props } = Astro.props;
+---
+
+<button title={title} id={buttonId} data-copy-button {...props}>
+  {icon ? <Icon name={icon} {...props} /> : <slot />}
+</button>
+
+<script is:inline define:vars={{ buttonId, text }}>
+  document.getElementById(buttonId)?.addEventListener("click", () => {
+    navigator.clipboard.writeText(text || location.href);
+    alert(`Copied to clipboard: ${text || location.href}`);
+  });
+</script>
+
+<style lang="stylus">
+  [data-copy-button]
+    background none
+
+  [data-icon]
+    display block
+</style>

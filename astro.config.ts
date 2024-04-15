@@ -6,14 +6,10 @@ import robotsTxt from 'astro-robots-txt';
 import sitemap from '@astrojs/sitemap';
 import pagefind from 'astro-pagefind';
 import purgecss from 'astro-purgecss';
-import Compress from 'astro-compress';
 import icon from 'astro-icon';
 
-import { vitePreprocess } from '@astrojs/svelte';
-
-
-
 import path from 'path';
+import playformCompress from '@playform/compress';
 
 // https://astro.build/config
 export default defineConfig({
@@ -40,50 +36,14 @@ export default defineConfig({
   },
   integrations: [
     mdx(),
-    svelte({ preprocess: vitePreprocess() }),
+    svelte({ emitCss: false }),
     qwikdev(),
     robotsTxt(),
     sitemap(),
     pagefind(),
     purgecss(),
-    Compress({
-      CSS: true,
-      HTML: true,
-      Image: false,
-      JavaScript: true,
-      SVG: true,
-    }),
-    icon({
-      iconDir: 'src/icons',
-      include: {
-        materialSymbols: [
-          'search',
-          'menu',
-          'upload-sharp',
-          'update',
-          'dark-mode',
-          'light-mode-outline',
-          'comments-outline',
-        ],
-        mdi: ['language', 'share-outline', 'comments-outline', 'ads-off', 'money-off'],
-        cib: ['creative-commons-zero'],
-        simpleIcons: [
-          'discord',
-          'github',
-          'python',
-          'reddit',
-          'mastodon',
-          'bluesky',
-          'hatenabookmark',
-          'youtube',
-          'zenn',
-          'patreon',
-          'rss',
-          'pocket',
-          'x',
-        ],
-      },
-    }),
+    icon({ iconDir: 'src/icons' }),
+    playformCompress(),
   ],
   vite: {
     resolve: {

@@ -1,0 +1,106 @@
+---
+import { Headings, Frontmatter } from "@lib/metagg";
+
+import HeadingList from "@components/blog/HeadingList.svelte";
+
+import Pocket from "@components/blog/share/Pocket.astro";
+import Twitter from "@components/blog/share/Twitter.astro";
+import Bluesky from "@components/blog/share/Bluesky.astro";
+import Reddit from "@components/blog/share/Reddit.astro";
+import Hatena from "@components/blog/share/Hatena.astro";
+import Mastodon from "@components/blog/share/Mastodon.astro";
+
+import CopyButton from "@components/CopyButton.astro";
+import LinkIcon from "@components/LinkIcon.astro";
+
+export interface Props {
+  headings: Headings[];
+  frontmatter: Frontmatter;
+}
+
+const { headings = [], frontmatter, ...props } = Astro.props;
+
+const url = Astro.site + Astro.url.pathname.slice(1);
+const ext = frontmatter.file?.slice(frontmatter.file.lastIndexOf(".")) || ".md";
+
+const repositoryURL = "https://github.com/7rs/pages";
+const branchName = "main";
+---
+
+<aside data-sidebar {...props}>
+  <section data-post-info>
+    <hgroup data-post-title>
+      <h2>{frontmatter.title}</h2>
+    </hgroup>
+    <HeadingList isDev={import.meta.env.DEV} headings={headings} client:only="svelte" />
+  </section>
+  <section data-buttons>
+    <div data-share-buttons>
+      <Reddit title={frontmatter.title} url={url} />
+      <Twitter text={frontmatter.title} hashtags={frontmatter.tags} url={url} />
+      <Mastodon text={frontmatter.title} url={url} />
+      <Bluesky text={`${frontmatter.title}`} url={url} />
+      <Pocket url={url} />
+      <Hatena url={url} />
+    </div>
+    <div data-action-buttons>
+      <LinkIcon
+        title="Submit an issue"
+        href="https://github.com/7rs/pages/issues/new/choose"
+        icon="material-symbols:exclamation"
+        openInNewTab
+      />
+      <LinkIcon
+        title="View source code"
+        href={frontmatter.url != null
+          ? `${repositoryURL}/blob/${branchName}${frontmatter.url}${ext}?plain=1`
+          : "https://github.com/7rs/pages"}
+        icon="material-symbols:code"
+        openInNewTab
+      />
+      <CopyButton title="Copy share link" icon="material-symbols:share">Copy</CopyButton>
+    </div>
+  </section>
+</aside>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-sidebar]
+    box-sizing border-box
+    overflow scroll
+    position sticky
+    padding 1rem
+    max-height 90vh
+
+  [data-buttons]
+    flex(column, 1.5rem)
+    padding 0.5rem
+
+  [data-post-info]
+    flex(column, 1.5rem)
+
+  [data-share-buttons]
+    flex()
+    justify-content space-between
+
+    [data-link-icon]
+      font-size 1.5rem
+
+  [data-action-buttons]
+    flex(_gap: 1rem)
+    justify-content space-around
+
+    [data-link-icon], [data-copy-button]
+      border none
+      font-size 2rem
+      zoom()
+
+      &:hover
+        color var(--content-reversed)
+        backgrond-color var(--content) 
+
+  [data-post-title]
+    sans(1.25rem)
+    text-align center
+</style>
