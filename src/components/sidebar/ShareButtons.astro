@@ -1,0 +1,50 @@
+---
+import { Frontmatter } from "@lib/metagg";
+
+import Pocket from "@components/share/Pocket.astro";
+import Twitter from "@components/share/Twitter.astro";
+import Bluesky from "@components/share/Bluesky.astro";
+import Reddit from "@components/share/Reddit.astro";
+import Hatena from "@components/share/Hatena.astro";
+import Mastodon from "@components/share/Mastodon.astro";
+
+export interface Props {
+  frontmatter: Frontmatter;
+}
+
+const { frontmatter } = Astro.props;
+
+const url = Astro.site + Astro.url.pathname.slice(1);
+---
+
+<div data-share-buttons>
+  <Reddit title={frontmatter.title} url={url} />
+  <Twitter text={frontmatter.title} hashtags={frontmatter.tags} url={url} />
+  <Mastodon text={frontmatter.title} url={url} />
+  <Bluesky text={`${frontmatter.title}`} url={url} />
+  <Pocket url={url} />
+  <Hatena url={url} />
+</div>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-share-buttons]
+    flex()
+    justify-content space-between
+    @media screen and (min-width widths.medium)
+      flex(_gap: 3rem)
+      justify-content flex-center
+    @media screen and (min-width widths.large)
+      flex(_gap: 0rem)
+      justify-content space-between
+
+  [data-link-icon]
+    font-size 1.25rem
+    @media screen and (min-width widths.medium)
+      font-size 2rem
+    @media screen and (min-width widths.large)
+      font-size 1.25rem
+    @media screen and (min-width widths.largest)
+      font-size 1.5rem
+</style>

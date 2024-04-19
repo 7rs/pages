@@ -1,0 +1,50 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  sidebarId: string;
+  buttonId?: string;
+}
+
+const { sidebarId, buttonId, ...props } = Astro.props;
+---
+
+<button id={buttonId} {...props} data-floating-button><Icon name="material-symbols:info-outline" /></button>
+
+<script define:vars={{ buttonId, sidebarId }}>
+  const button = window.document.getElementById(buttonId);
+  const sidebar = window.document.getElementById(sidebarId);
+
+  if (button == null || sidebar == null) {
+    return;
+  }
+
+  button.addEventListener("click", () => {
+    if (sidebar.style.display === "none") {
+      sidebar.style.display = "flex";
+      button.style.display = "none";
+    } else {
+      sidebar.style.display = "none";
+    }
+  });
+</script>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  button
+    z-index 9999
+    position fixed
+    bottom 1rem
+    right 1rem
+    background-color var(--background)
+    border none
+    border-radius 100%
+
+    [data-icon]
+      display block
+      font-size 3rem
+
+    @media screen and (min-width widths.large)
+      display none
+</style>

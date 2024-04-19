@@ -13,6 +13,26 @@
    */
   export let frameRate = 20;
 
+  export let decisionOffset = 20;
+
+  export let sidebarId = '';
+  export let sidebarButtonId = '';
+
+  export let largeWidth = 900;
+
+  const sidebar = document.getElementById(sidebarId);
+  const closeable = window.innerWidth < largeWidth;
+  const sidebarButton = document.getElementById(sidebarButtonId);
+
+  function closeSidebar() {
+    if (sidebar != null) {
+      sidebar.style.display = 'none';
+    }
+    if (sidebarButton?.style.display === 'none') {
+      sidebarButton.style.display = '';
+    }
+  }
+
   /** Index of selected headings. */
   const activeIndex = writable(0);
   /** An array of elements of the heading.
@@ -39,6 +59,8 @@
    * `$activeIndex` <= `$activePosition` < `$activeIndex + 1`
    */
   function setIndex(position: number) {
+    position += decisionOffset;
+
     if (headingElements[$activeIndex + 1] && position >= headingElements[$activeIndex + 1].offsetTop) {
       for (; $activeIndex < headingElements.length - 1; $activeIndex++) {
         if (position < headingElements[$activeIndex + 1].offsetTop) {
@@ -65,10 +87,35 @@
   });
 </script>
 
+{#if closeable}
+  <div data-sidebar-buttons>
+    <button
+      on:click={() => {
+        closeable && closeSidebar();
+      }}>Close Sidebar</button
+    >
+    <button
+      on:click={() => {
+        if (!closeable) {
+          return;
+        }
+        window.scroll(0, 0);
+        closeSidebar();
+      }}
+    >
+      Close and Top
+    </button>
+  </div>
+{/if}
 <ul>
   {#each headings as heading, i}
     <li data-heading-depth={heading.depth} data-heading-status={i === $activeIndex ? 'active' : 'inactive'}>
-      <a href={`#${heading.slug}`}>{heading.text}</a>
+      <a
+        on:click={() => {
+          closeable && closeSidebar();
+        }}
+        href={`#${heading.slug}`}>{heading.text}</a
+      >
     </li>
   {/each}
 </ul>
@@ -76,28 +123,47 @@
 <style lang="stylus">
   @import "../../styles/api.styl"
 
+  [data-sidebar-buttons]
+    flex(column, 0.75rem)
+
+  button
+    background none
+    sans(1rem)
+    border 1px solid var(--border)
+    border-radius 8px
+
   ul
     list-style none
     flex(column, 0.25rem)
 
     li
-      padding 0.25rem 0.5rem
-      sans(1rem)
-      @media screen and (min-width widths.largest)
-        padding 0.5rem 0.75rem
-        sans(1.125rem)
+      a
+        box-sizing border-box
+        display block
+        height 100%
+        width 100%
+        text-decoration none
+
+        padding 0.25rem 0.5rem
+        sans(1rem)
+        @media screen and (min-width widths.largest)
+          padding 0.5rem 0.75rem
+          sans(1.125rem)
+
+      &[data-heading-status="inactive"]
+        border-left 1px solid rgba(gray, 0.5)
+
+        &:hover
+          background-color rgba(gray, 0.25)
 
       &[data-heading-status="active"]
-        font-weight 700
-        background linear-gradient(45deg, rgba(64, 0, 255, .2), rgba(255, 0, 64, .2))
+        background-color var(--link-background-hover)
         border-radius 0 8px 8px 0
-        border-left 8px solid var(--link)
+        border-left 1px solid var(--link)
 
-        &[data-heading-depth="3"]
-          border-left 4px solid var(--link)
+      &[data-heading-depth="2"]
+        font-weight 700
 
-      a
-        text-decoration none
-        &:hover
-          text-decoration underline
+      &[data-heading-depth="3"]
+        font-weight 400
 </style>

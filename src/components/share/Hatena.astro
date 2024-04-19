@@ -11,7 +11,7 @@ const { url, icon = "simple-icons:hatenabookmark", ...props } = Astro.props;
 <LinkIcon icon={icon} href={`https://b.hatena.ne.jp/entry/${encodeURIComponent(url)}`} {...props} openInNewTab />
 
 <style lang="stylus">
-  @import "../../../styles/api.styl"
+  @import "../../styles/api.styl"
 
   [data-link-icon]
     zoom()

@@ -1,0 +1,78 @@
+---
+import { Headings, Frontmatter } from "@lib/metagg";
+
+import HeadingList from "@components/sidebar/HeadingList.svelte";
+import ShareButtons from "@components/sidebar/ShareButtons.astro";
+import ActionButtons from "@components/sidebar/ActionButtons.astro";
+
+import FloatingButton from "@components/sidebar/FloatingButton.astro";
+
+export interface Props {
+  headings: Headings[];
+  frontmatter: Frontmatter;
+}
+
+const { headings = [], frontmatter, ...props } = Astro.props;
+
+const sidebarId = "sidebar";
+const sidebarButtonId = "floating-button";
+---
+
+<aside id={sidebarId} data-sidebar {...props}>
+  <section data-post-info>
+    <hgroup data-post-title>
+      <h2>{frontmatter.title}</h2>
+    </hgroup>
+    <HeadingList
+      sidebarId={sidebarId}
+      sidebarButtonId={sidebarButtonId}
+      isDev={import.meta.env.DEV}
+      headings={headings}
+      client:only="svelte"
+    />
+  </section>
+  <section data-buttons>
+    <ShareButtons frontmatter={frontmatter} />
+    <ActionButtons frontmatter={frontmatter} />
+  </section>
+</aside>
+<FloatingButton sidebarId={sidebarId} buttonId={sidebarButtonId} />
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  [data-sidebar]
+    box-sizing border-box
+    overflow scroll
+    flex(column, 1rem)
+
+    display none
+    z-index 9999
+    position fixed
+    top 0
+    left 0
+    width 100%
+    backdrop-filter blur(32px)
+    max-height 100vh
+    padding 1rem
+
+    @media screen and (min-width widths.large)
+      display flex
+      position sticky
+      top 0
+      right 0
+      padding 3rem 1rem
+      width 100%
+      max-height 90vh
+
+  [data-buttons]
+    flex(column, 1.5rem)
+    padding 0.5rem
+
+  [data-post-info]
+    flex(column, 1.5rem)
+
+  [data-post-title]
+    sans(1.25rem)
+    text-align center
+</style>

@@ -1,11 +1,13 @@
 gradient-alpha = 10%
 
-light = {
+_light = {
   background: rgb(240, 240, 248),
   content: black,
   content-reversed: white,
   link: blue,
   link-hover: rgba(blue, 0.5),
+  link-background: rgba(blue, 0.05),
+  link-background-hover: rgba(blue, 0.25),
   widget: rgba(white, 0.4),
   widget-hover: rgba(black, 0.5),
   wiget-border: rgba(black, .2),
@@ -23,6 +25,8 @@ _dark = {
   content-reversed: black,
   link: red,
   link-hover: rgba(red, 0.5),
+  link-background: rgba(red, 0.05),
+  link-background-hover: rgba(red, 0.25),
   widget: rgba(black, 0.4),
   widget-hover: rgba(white, 0.5),
   wiget-border: rgba(white, .2),
@@ -35,23 +39,27 @@ _dark = {
 }
 
 :root
-  --background light.background
-  --content light.content
-  --content-reversed light.content-reversed
-  --link light.link
-  --link-hover light.link-hover
-  --widget light.widget
-  --widget-hover light.widget-hover
-  --widget-border light.wiget-border
-  --search-background light.search-background
-  --border light.border
-  --gradient-background light.gradient-background
+  --background _light.background
+  --content _light.content
+  --content-reversed _light.content-reversed
+  --link _light.link
+  --link-hover _light.link-hover
+  --link-background _light.link-background
+  --link-background-hover _light.link-background-hover
+  --widget _light.widget
+  --widget-hover _light.widget-hover
+  --widget-border _light.wiget-border
+  --search-background _light.search-background
+  --border _light.border
+  --gradient-background _light.gradient-background
   @media (prefers-color-scheme dark)
     --background _dark.background
     --content _dark.content
     --content-reversed _dark.content-reversed
     --link _dark.link
     --link-hover _dark.link-hover
+    --link-background _dark.link-background
+    --link-background-hover _dark.link-background-hover
     --widget _dark.widget
     --widget-hover _dark.widget-hover
     --widget-border _dark.wiget-border
@@ -60,17 +68,19 @@ _dark = {
     --gradient-background _dark.gradient-background
 
 .light-mode
-  --background light.background
-  --content light.content
-  --content-reversed light.content-reversed
-  --link light.link
-  --link-hover light.link-hover
-  --widget light.widget
-  --widget-hover light.widget-hover
-  --widget-border light.wiget-border
-  --search-background light.search-background
-  --border light.border
-  --gradient-background light.gradient-background
+  --background _light.background
+  --content _light.content
+  --content-reversed _light.content-reversed
+  --link _light.link
+  --link-hover _light.link-hover
+  --link-background _light.link-background
+  --link-background-hover _light.link-background-hover
+  --widget _light.widget
+  --widget-hover _light.widget-hover
+  --widget-border _light.wiget-border
+  --search-background _light.search-background
+  --border _light.border
+  --gradient-background _light.gradient-background
 
 .dark-mode
   --background _dark.background
@@ -78,6 +88,8 @@ _dark = {
   --content-reversed _dark.content-reversed
   --link _dark.link
   --link-hover _dark.link-hover
+  --link-background _dark.link-background
+  --link-background-hover _dark.link-background-hover
   --widget _dark.widget
   --widget-hover _dark.widget-hover
   --widget-border _dark.wiget-border
