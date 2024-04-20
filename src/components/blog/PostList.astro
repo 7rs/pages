@@ -10,7 +10,7 @@ const { ...props } = Astro.props;
 
 <section {...props} data-post-list>
   <h2>Recent Post</h2>
-  {posts.map((post) => <Post post={post.data} url={post.slug} />)}
+  {posts.map((post) => <Post post={post.data} url={`/${post.slug}`} />)}
 </section>
 
 <style lang="stylus">
