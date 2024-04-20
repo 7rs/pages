@@ -1,23 +1,25 @@
 ---
-import LinkIcon from "@components/icon/LinkIcon.astro";
-import SocialList from "@layouts-components/footer/SocialList.astro"
-
+import LinkIcon from "@components/LinkIcon.astro";
 import Link from "@components/Link.astro";
 ---
 
 <footer>
-  <LinkIcon icon="pages-logo" href="/" title="Main page" />
-  <SocialList />
-  <nav profile-links>
-    <Link href="https://github.com/7rs" title="GitHub Profile" openInNewTab>Cbrnex</Link>
-    <Link href="https://github.com/74gg" title="Organization" openInNewTab>74</Link>
-    <Link href="https://github.com/7rs/pages" title="Source code" openInNewTab>Pages</Link>
-  </nav>
-  <nav navigation-links>
-    <Link href="/" title="Main Page">Main</Link>
-    <Link href="/blog" title="Blog search">Blog</Link>
-    <Link href="/tas" title="TAS contents">TAS</Link>
-  </nav>
+  <!-- Website informations (Pages icon and License information) -->
+  <div site-info>
+    <LinkIcon icon="pages-icon" href="/" title="Main page" />
+    <p license-info>
+      Licensed by <Link href="https://creativecommons.org/public-domain/cc0" title="CC0 1.0" openInNewTab>CC0</Link>
+    </p>
+  </div>
+  <!-- Social icon list (link) -->
+  <div social-list>
+    <LinkIcon icon="simple-icons:youtube" href="https://youtube.com/@qrze" title="YouTube (@qlze)" openInNewTab />
+    <LinkIcon icon="simple-icons:github" href="https://github.com/7rs" title="GitHub (@7rs)" openInNewTab />
+    <LinkIcon icon="simple-icons:zenn" href="https://zenn.dev/p/74" title="Zenn (74)" openInNewTab />
+    <LinkIcon icon="simple-icons:patreon" href="https://patreon.com/7rs" title="Patreon (@7rs)" openInNewTab />
+    <LinkIcon icon="simple-icons:discord" href="https://7rs.dev/discord" title="Discord Server" openInNewTab />
+    <LinkIcon icon="simple-icons:rss" href="/rss.xml" title="RSS" openInNewTab />
+  </div>
 </footer>
 
 <style lang="stylus">
@@ -28,61 +30,56 @@ import Link from "@components/Link.astro";
     position relative
     bottom 0
     box-sizing border-box
+    responsive-padding(x: 1rem, y: 1rem)
     width 100%
-    // Grid layout
-    display grid
-    gap 1rem 0.5rem
-    // Responsive
-    padding 0.5rem
-    grid-template-columns repeat(2, 1fr)
-    grid-template-rows auto auto 1fr
-    grid-template-areas \
-      "brand brand" \
-      "socials socials" \
-      "links nav" \
-      "links nav";
-    @media screen and (min-width widths.medium)
-      padding 1.25rem 1rem
-      grid-template-columns 2fr repeat(2, 1fr)
-      grid-template-rows auto 1fr
-      grid-template-areas \
-        "brand   links nav" \
-        "socials links nav";
+    flex(column, 1rem)
     @media screen and (min-width widths.large)
-      padding 1.5rem calc((100% - var(--widths-large)) / 2 + 0.5rem)
-
+      flex()
     &::before
       @extend $simple-blur
       z-index -1
 
-    // Branding Logo
-    [data-icon="pages-logo"]
-      grid-area brand
-      font-size 3rem
-      margin auto
+  site-info-height = 3rem
+  div[site-info]
+    width 100%
+    flex()
+    justify-content center
+    @media screen and (min-width widths.large)
+      justify-content flex-start
+
+    a[data-link-icon="pages-icon"] > svg[data-icon]
+      font-size site-info-height
+      &:hover
+        transition all 3s ease-in-out
+        transform rotate(50turn)
+
+    p[license-info]
+      sans(site-info-height / golden-ratio, site-info-height)
+      a[data-link]:hover
+        text-decoration underline solid var(--content) 1px
+
+  div[social-list]
+    flex(_gap: 1.25rem)
+    justify-content center
+
+    svg[data-icon]
+      height 100%
+      font-size 1.5rem
       @media screen and (min-width widths.medium)
-        margin 0
-        align-content flex-start
-
-    [social-list]
-      grid-area socials
-
-    [profile-links]
-      grid-area links
-
-    [navigation-links]
-      grid-area nav
-
-    [profile-links], [navigation-links]
-      flex(column, 0.2rem)
-
-      [data-link]
-        width 100%
-        display block
-        // Responsive
-        sans(1.2rem, 1.5rem)
-        @media screen and (min-width widths.large)
-          sans(1.5rem, 1.75rem)
-        &:hover
-          expand-text(1.75rem, 2rem)
+        font-size 1.75rem
+      &:hover
+        transition all 100ms ease-out
+        transform scale(125%)
+        &[data-icon="simple-icons:youtube"]
+          color #FF0000
+        &[data-icon="simple-icons:github"]
+          color #181717
+        &[data-icon="simple-icons:zenn"]
+          color #3EA8FF
+        &[data-icon="simple-icons:patreon"]
+          color #000000
+        &[data-icon="simple-icons:discord"]
+          color #5865F2
+        &[data-icon="simple-icons:rss"]
+          color #FFA500
 </style>

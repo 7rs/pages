@@ -1,19 +1,14 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import MainLayout from "@layouts/MainLayout.astro";
 
-import Landing from "@pages-components/index/Landing.astro"
-import ProfileList from "@pages-components/index/ProfileList.astro"
-import RepositoryList from "@pages-components/index/RepositoryList.astro"
-import PostList from "@components/post/PostList.astro";
-import Stack from "@pages-components/index/Stack.astro"
-import License from "@pages-components/index/License.astro"
+import LandingHeader from "@components/index/LandingHeader.astro";
+import BlogIntroduction from "@components/index/BlogIntroduction.astro";
+import CommunityIntroduction from "@components/index/CommunityIntroduction.astro";
+import Profile from "@components/index/Profile.astro";
 ---
 
-<Layout>
-  <Landing />
-  <ProfileList />
-  <RepositoryList />
-  <PostList />
-  <Stack />
-  <!-- <License /> -->
-</Layout>
+<MainLayout published={true} title="Pages - Main Page">
+  <LandingHeader />
+  <BlogIntroduction />
+  <CommunityIntroduction />
+</MainLayout>

@@ -1,80 +1,83 @@
-type SiteMetadata = {
-    name: string;
-    description: string;
-    url?: string;
-    keywords?: string[];
-}
-
-type AuthorMetadata = {
-    name: string;
-    description: string;
-    alternateName?: string;
-    image?: string;
-    url?: string;
-    alterUrl?: string;
-}
-
-type MetadataJSON = {
-    site: SiteMetadata;
-    author: AuthorMetadata;
-    twitterId?: string;
-}
-
-export type Metadata = MetadataJSON & {
-    site: SiteMetadata & {
-        favicon?: string;
-        image?: string;
-        alt?: string;
-    };
-    author: AuthorMetadata;
-    noIndex: boolean;
-}
-
-export function setMetadataFromJSON(
-    json: MetadataJSON,
-    favicon?: string,
-    image?: string,
-    alt?: string,
-    noIndex?: boolean): Metadata {
-    return {
-        site: {
-            ...json.site,
-            favicon: favicon,
-            image: image,
-            alt: alt,
-        },
-        author: json.author,
-        twitterId: json.twitterId,
-        noIndex: noIndex || false
-    } as Metadata;
-}
-
-export type Frontmatter = {
-    title: string;
-    tags: Array<string>;
-    url: string;
-    published?: boolean;
-    lang: string;
-    [key: string]: any;
-};
-
-export const defaultLocale = "en";
-export const defaultBlogLocale = "ja"
+// import querystring from 'querystring';
+import qs from 'qs';
+import { z } from 'astro:content';
 
 export function getLocale(lang: string): string {
-    switch (lang) {
-        case "ja":
-        case "jp":
-        case "japanese":
-        case "japan":
-            return "ja-JP"
-        default:
-            return "en";
-    }
+  switch (lang) {
+    case 'ja':
+    case 'jp':
+    case 'japanese':
+    case 'japan':
+      return 'ja-JP';
+    default:
+      return 'en';
+  }
 }
 
-const GOOGLE_FONT_HOST = "https://fonts.googleapis.com/css2"
+export const Langs = {
+  Unknown: 'Unknown',
+  Japanese: '日本語',
+  English: 'English',
+} as const;
+export type Langs = (typeof Langs)[keyof typeof Langs];
 
-export function createFontURL(fonts: Array<string>): string {
-    return `${GOOGLE_FONT_HOST}?family=${fonts.join("&family=").replace(/\s/g, "+")}&display=swap`;
+export function getLangaugeLabel(lang: string): Langs {
+  switch (lang) {
+    case 'en':
+    case 'english':
+      return Langs.English;
+    default:
+      return Langs.Japanese;
+  }
+}
+
+export interface Locale {
+  slug: string;
+  title: string;
+  lang: Langs;
+}
+
+export const website = z.object({
+  name: z.string(),
+  description: z.string(),
+  url: z.string(),
+  author: z.string(),
+  image: z.string(),
+  imageAlt: z.string(),
+  keywords: z.array(z.string()).optional(),
+  twitterId: z.string().optional(),
+});
+export type Website = z.infer<typeof website>;
+
+export function dateToString(dateObject: Date) {
+  const year = String(dateObject.getFullYear()).padStart(2, '0');
+  const month = String(dateObject.getMonth() + 1).padStart(2, '0');
+  const date = String(dateObject.getDate()).padStart(2, '0');
+  return `${year}-${month}-${date}`;
+}
+
+export const postDetail = z.object({
+  title: z.string(),
+  lang: z.ostring().default('ja'),
+  authors: z.optional(z.array(z.string())).default(['Cbrnex']),
+  tags: z.optional(z.array(z.string())).default(['no_tags']),
+  published: z.optional(z.boolean()).default(false),
+  published_at: z.optional(z.coerce.date()),
+  updated_at: z.optional(z.coerce.date()),
+  file: z.ostring(),
+  url: z.ostring(),
+});
+export type PostDetail = z.infer<typeof postDetail>;
+
+export interface PreImage {
+  format: string;
+  src: string;
+  media?: string;
+}
+
+export interface PreResources {
+  fonts?: string[];
+  images?: PreImage[];
+  light?: PreImage;
+  dark?: PreImage;
 }

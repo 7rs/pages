@@ -1,0 +1,18 @@
+---
+const props = Astro.props;
+---
+
+<div data-link-buttons {...props}>
+  <slot />
+</div>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  [data-link-buttons]
+    justify-content center
+
+    flex(_gap: 0.75rem)
+    @media screen and (min-width widths.large)
+      flex(_gap: 1.5rem)
+</style>

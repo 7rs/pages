@@ -1,0 +1,21 @@
+---
+const props = Astro.props;
+---
+
+<div data-card-list {...props}>
+  <slot />
+</div>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  [data-card-list]
+    display grid
+    gap 1rem
+
+    grid-template-columns 1fr
+    grid-template-rows repeat(3, 1fr)
+    @media screen and (min-width widths.large)
+      grid-template-columns repeat(3, 1fr)
+      grid-template-rows 1fr
+</style>

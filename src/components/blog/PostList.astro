@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+
+import Post from "@components/blog/Post.astro";
+
+const posts = await getCollection("blog", (post) => post.data.published);
+
+const { ...props } = Astro.props;
+---
+
+<section {...props} data-post-list>
+  <h2>Recent Post</h2>
+  {posts.map((post) => <Post post={post.data} url={`/${post.slug}`} />)}
+</section>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-post-list]
+    flex(column, 1.5rem)
+</style>

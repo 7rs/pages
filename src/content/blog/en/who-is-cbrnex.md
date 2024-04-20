@@ -1,16 +1,16 @@
 ---
-layout: "@layouts/Blog.astro"
+layout: "@layouts/BlogLayout.astro"
 title: "Who is Cbrnex?"
 tags: ["profile"]
 lang: "en"
 published: true
 published_at: "2024-01-08"
-updated_at: "2024-01-27"
+updated_at: "2024-04-09"
 ---
 
 [cbrne]: https://simple.wikipedia.org/wiki/CBRNE
 
-# Introduction  
+## Introduction  
 
   I'm **Cbrnex**. You can read "Seaburn Cross" or "Seaburn X."
   **Cbrnex** come from [an acronym CBRNE][cbrne].  

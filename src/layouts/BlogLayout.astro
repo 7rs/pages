@@ -1,0 +1,69 @@
+---
+import { Frontmatter, Headings } from "@lib/metagg";
+import { getFont } from "@lib/font";
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@layouts/Header.astro";
+import Sidebar from "@layouts/Sidebar.astro";
+
+import PostHeader from "@components/blog/PostHeader.astro";
+import PostFooter from "@components/blog/PostFooter.astro";
+import MainContent from "@components/blog/MainContent.astro";
+
+export interface Props {
+  frontmatter: { [key: string]: any };
+  headings: Headings[];
+}
+const { frontmatter, headings } = Astro.props;
+
+const prasedFrontmatter = Frontmatter.parse(frontmatter);
+---
+
+<BaseLayout
+  frontmatter={prasedFrontmatter}
+  className="markdown"
+  resources={{
+    fonts: [
+      getFont("Fira Sans", [{}, { weight: 700 }, { typefaces: 1 }, { weight: 700, typefaces: 1 }]),
+      getFont("Fira Code"),
+    ],
+  }}
+>
+  <Header />
+  <main data-main-box>
+    <PostHeader frontmatter={prasedFrontmatter} />
+    <MainContent data-pagefind-body={prasedFrontmatter.published ? "" : undefined}><slot /></MainContent>
+    <PostFooter lang={prasedFrontmatter.lang} />
+  </main>
+  <Sidebar frontmatter={prasedFrontmatter} headings={headings} />
+</BaseLayout>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  body.markdown
+    background var(--background)
+    @media screen and (min-width widths.large)
+      display grid
+      grid-template-rows 1fr auto
+      grid-template-columns 3fr 1fr
+      grid-template-areas \
+        "header   header" \
+        "main-box sidebar"
+
+  [data-main-header]
+    grid-area header
+    position relative
+
+  [data-main-box]
+    grid-area main-box
+    box-sizing border-box
+    margin auto
+    padding 1rem
+    width 100%
+    @media screen and (min-width widths.large)
+      max-width 800px
+
+  [data-sidebar]
+    grid-area sidebar
+</style>

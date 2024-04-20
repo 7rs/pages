@@ -1,0 +1,78 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  icons: string[];
+  animationTime?: string | number;
+  radius?: string | number;
+}
+
+const { icons = [], animationTime = 15000, ...props } = Astro.props;
+
+let playbackTime: string;
+let unit: string;
+
+if (typeof animationTime === "number") {
+  playbackTime = `${animationTime}ms`;
+  unit = "ms";
+} else {
+  playbackTime = animationTime;
+  if (animationTime.endsWith("ms")) {
+    unit = "ms";
+  } else {
+    unit = "s";
+  }
+}
+
+const time = parseInt(playbackTime.slice(0, playbackTime.length - unit.length));
+const delay = Math.floor(time / icons.length);
+---
+
+<article data-ring {...props}>
+  <slot />
+  {icons.map((icon, i) => <Icon style={`animation-delay: -${i * delay}${unit}`} name={icon} />)}
+</article>
+
+<style lang="stylus" define:vars={{playbackTime}}>
+  @import "../styles/api.styl"
+
+  @keyframes rotate 
+    from
+      transform rotate(0deg) translateY(100%) rotate(0deg)
+    to
+      transform rotate(360deg) translateY(100%) rotate(-360deg)
+
+  [data-ring]
+    position relative
+    margin 10rem auto
+    width 100%
+
+    height 7rem
+    @media screen and (min-width widths.medium)
+      height 10rem
+
+    [data-icon]
+      z-index -1
+      position absolute
+      top 50%
+      left 50%
+      height 100%
+      translate -50% -50%
+      animation var(--playbackTime) linear infinite normal forwards running rotate
+      color white
+
+      font-size 2rem
+      @media screen and (min-width widths.medium)
+        font-size 3rem
+
+      &:nth-child(5n + 1)
+        filter drop-shadow(0 0 8px orange)
+      &:nth-child(5n + 2)
+        filter drop-shadow(0 0 8px purple)
+      &:nth-child(5n + 3)
+        filter drop-shadow(0 0 8px green)
+      &:nth-child(5n + 4)
+        filter drop-shadow(0 0 8px blue)
+      &:nth-child(5n + 5)
+        filter drop-shadow(0 0 8px red)
+</style>

@@ -1,0 +1,53 @@
+---
+import Ring from "@components/Ring.astro";
+import SparkleText from "@components/SparkleText.astro";
+
+import Link from "@components/Link.astro";
+import LinkButtons from "@components/LinkButtons.astro";
+
+import Card from "@components/Card.astro";
+import CardList from "@components/CardList.astro";
+---
+
+<section data-blog-introduction>
+  <Ring
+    icons={[
+      "material-symbols:search",
+      "mdi:comments-outline",
+      "material-symbols:dark-mode",
+      "material-symbols:light-mode-outline",
+      "mdi:share-outline",
+    ]}
+  >
+    <SparkleText title="Blog">A blog for any genre</SparkleText>
+  </Ring>
+
+  <LinkButtons>
+    <Link href="/blog">Search</Link>
+    <Link href="/what-is-pages-blog">About Pages Blog</Link>
+  </LinkButtons>
+
+  <CardList>
+    <Card icon="mdi:ads-off" label="No ads">No advertisings and No promotions. All for your focus.</Card>
+    <Card icon="mdi:money-off" label="No payments">
+      No paid contents and No donations. Pages blog is completely free!
+    </Card>
+    <Card icon="cib:creative-commons-zero" label="No copyright">Cannot be yours, but Pages is for everyone.</Card>
+  </CardList>
+</section>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-link-buttons]
+    margin 3rem 0
+    [data-link]
+      @extend $button
+
+  [data-sparkle-text]
+    p, h2
+      background-image linear-gradient(180deg,
+        rgb(255, 160, 208) 0%,
+        rgb(255, 255, 255) 50%,
+        rgb(208, 160, 255) 100%);
+</style>

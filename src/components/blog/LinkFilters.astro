@@ -1,0 +1,39 @@
+---
+import qs from "qs";
+
+export interface Props {
+  key: string;
+  filterList?: string[];
+  prefix?: string;
+  title?: string;
+  href?: string;
+}
+
+import Link from "@components/Link.astro";
+
+const { filterList = [], title = "filter", prefix = "", key, href = "blog", ...props } = Astro.props;
+---
+
+<div data-link-filters={title} {...props}>
+  {
+    filterList.map((filterItem) => (
+      <Link
+        data-pagefind-filter={key}
+        title={`${title}: ${filterItem}`}
+        href={`/${href}?${qs.stringify({ [key]: [filterItem] })}`}
+        {...props}
+      >
+        {prefix + filterItem}
+      </Link>
+    ))
+  }
+</div>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-link-filters]
+    flex(_gap: 1rem)
+    flex-wrap wrap
+    justify-content center
+</style>

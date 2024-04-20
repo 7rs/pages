@@ -1,0 +1,43 @@
+---
+export interface Props {
+  label: string;
+}
+
+const { label, ...props } = Astro.props;
+---
+
+<li data-timeline-item {...props}>
+  <h4>{label}</h4>
+  <p><slot /></p>
+</li>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  li
+    h4
+      position relative
+      sans(1.75rem, 3rem)
+      text-shadow 0 0 8px white
+
+      &::before
+        position absolute
+        content ""
+        top 50%
+        right calc(100% - var(--point-size) / 2 + var(--timeline-width) / 2)
+        translate 0 -50%
+        width var(--point-size)
+        height var(--point-size)
+        background radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 100%);
+        border-radius 100%
+    p
+      @extend $glassmorphism
+      sans(1.25rem)
+      backdrop-filter blur(8px)
+      padding 1rem
+
+      a
+        color var(--link)
+        &:hover
+          text-decoration underline
+</style>

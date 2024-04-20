@@ -1,0 +1,18 @@
+---
+import { PageImage } from "@lib/metagg";
+
+export interface Props {
+  title: string;
+  description: string;
+  authors?: string[];
+  image?: PageImage;
+}
+
+const { title, description, authors = [], image } = Astro.props;
+---
+
+<title data-pagefind-meta="title">{title}</title>
+<meta name="description" content={description} />
+{authors.length > 0 && <meta name="author" content={authors.join(", ")} />}
+{image?.src && <meta name="thumbnail" content={image.src} />}
+<link rel="canonical" href={Astro.url} />

@@ -1,11 +1,21 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import Params from "@components/layouts/blog/Params.svelte";
+import MainLayout from "@layouts/MainLayout.astro";
+
+import PostList from "@components/blog/PostList.astro";
+import Search from "@components/pagefind/Search.svelte";
 
 import light from "@assets/background/E8Ufcyxz514.jpg";
 import dark from "@assets/background/ZkzobNDayXo.jpg";
+
+const dir = import.meta.env.DEV ? "dist/" : "";
 ---
 
-<Layout light={light} dark={dark}>
-  <Params client:only /></Layout>
+<MainLayout published={true} title="Pages - Search" backgrounds={{ light: light, dark: dark }}>
+  <Search pagefindPath={`/${dir}pagefind/pagefind.js`} client:only="svelte" />
+  <PostList />
+</MainLayout>
 
+<style lang="stylus">
+  main
+    margin 1.5rem 0
+</style>
