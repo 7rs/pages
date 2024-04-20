@@ -1,0 +1,112 @@
+---
+import { getLangaugeLabel } from "@lib/meta";
+import { Frontmatter } from "@lib/metagg";
+
+import LinkFilters from "@components/blog/LinkFilters.astro";
+import LabeledIcon from "@components/LabeledIcon.astro";
+import Datetime from "@components/Datetime.astro";
+export interface Props {
+  frontmatter: Frontmatter;
+}
+
+const { frontmatter } = Astro.props;
+---
+
+<header data-post-header>
+  <h1 data-post-title id={frontmatter.title}>{frontmatter.title}</h1>
+  <!-- Filters -->
+  <LinkFilters key="author" filterList={frontmatter.authors} title="author" prefix="@" />
+  <LinkFilters key="tag" filterList={frontmatter.tags} title="tag" prefix="#" />
+  <!-- Details -->
+  <LabeledIcon icon="mdi:language" name="lang">
+    <p data-pagefind-filter="lang">{getLangaugeLabel(frontmatter.lang)}</p>
+  </LabeledIcon>
+  <LabeledIcon icon="material-symbols:upload-sharp" name="published-date">
+    <Datetime
+      datetime={frontmatter.published_at}
+      title="Published date"
+      data-pagefind-meta="publishedAt"
+      data-pagefind-sort="publishedAt"
+    />
+  </LabeledIcon>
+  <LabeledIcon icon="material-symbols:update" name="updated-date">
+    <Datetime datetime={frontmatter.updated_at} title="Updated date" data-pagefind-meta="updatedAt" data-pagefind-sort="updatedAt" />
+  </LabeledIcon>
+</header>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-post-header]
+    box-sizing border-box
+
+    display grid
+    row-gap 1rem
+    justify-items center
+
+    grid-template-columns repeat(2, 1fr)
+    grid-template-areas \
+      "title          title" \
+      "tags           tags " \
+      "authors        authors" \
+      "lang           lang" \
+      "published-date updated-date";
+    @media screen and (min-width widths.medium)
+      grid-template-columns repeat(3, 1fr)
+      grid-template-areas \
+        "title   title          title       " \
+        "tags    tags           tags        " \
+        "authors authors        authors     " \
+        "lang    published-date updated-date";
+
+    [data-post-title]
+      grid-area title
+      margin 0
+      text-align center
+
+      sans(2rem)
+      @media screen and (min-width widths.medium)
+        sans(2.5rem)
+      @media screen and (min-width widths.large)
+        sans(3rem)
+
+    // Filters
+
+    [data-link-filters="author"]
+      grid-area authors
+
+    [data-link-filters="tag"]
+      grid-area tags
+
+    // Details
+
+    [data-labeled-icon="lang"]
+      grid-area lang
+
+    [data-labeled-icon="published-date"]
+      grid-area published-date
+
+    [data-labeled-icon="updated-date"]
+      grid-area updated-date
+
+    // Color, size
+
+    [data-link-filters]
+      [data-link]:hover
+        text-decoration underline
+
+    [data-labeled-icon], [data-link-filters]
+      sans(1.125rem)
+      @media screen and (min-width widths.medium)
+        sans(1.25rem)
+
+    [data-link-filters="tag"], [data-labeled-icon="lang"]
+      [data-link], p
+        color rgb(51, 122, 183)
+
+    [data-link-filters="author"] > [data-link]
+      color rgb(160, 0, 0)
+
+    [data-datetime]
+      color rgb(255, 136, 0)
+</style>

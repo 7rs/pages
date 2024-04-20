@@ -1,0 +1,75 @@
+---
+const { ...props } = Astro.props;
+---
+
+<section id="main-content" data-main-content {...props}>
+  <slot />
+</section>
+
+<style lang="stylus" is:global>
+  @import "../../styles/api.styl"
+
+  $underline
+    position relative
+    &::before
+      z-index -1
+      set-absolute()
+      animation 1s ease-out 0s 1 normal forwards running expand
+      border-bottom 2px solid var(--border)
+
+  [data-main-content]
+    a
+      text-decoration none
+
+    p
+      margin-bottom 1rem
+
+    p, li
+      a
+        color var(--link)
+        &:hover
+          text-decoration underline var(--link) solid 1.5px
+
+    p, li
+      sans(1.125rem)
+      @media screen and (min-width widths.medium)
+        sans(1.25rem)
+
+    pre, code
+      mono(1rem, 1.25rem)
+      @media screen and (min-width widths.medium)
+        mono(1.25rem, 1.5rem)
+
+    pre
+      margin 1.5rem 0
+      padding 0.5rem
+      border-radius 0.5rem
+
+    h2
+      @extend $underline
+
+      margin-top 3rem
+      margin-bottom 1.5rem
+      sans(1.5rem)
+      @media screen and (min-width widths.medium)
+        margin-top 4rem
+        margin-bottom 2rem
+        sans(2rem)
+
+    h3
+      margin-top 1.5rem
+      margin-bottom 0.75rem
+      border-left 0.25rem solid red
+      padding-left 0.5rem
+      sans(1.25rem)
+      @media screen and (min-width widths.medium)
+        margin-top 2rem
+        margin-bottom 1rem
+        border-left 0.5rem solid red
+        padding-left 1rem
+        sans(1.75rem)
+
+    ul
+      margin 1.5rem 0
+      list-style inside
+</style>

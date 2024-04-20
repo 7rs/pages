@@ -1,0 +1,26 @@
+---
+import LinkIcon from "@components/LinkIcon.astro";
+
+export interface Props {
+  text: string;
+  url: string;
+  icon?: string;
+}
+const { text, url, icon = "simple-icons:bluesky", ...props } = Astro.props;
+
+let URI = "https://bsky.app/intent/compose";
+
+const content = encodeURIComponent(text + (url != null ? ` ${url}` : ""));
+---
+
+<LinkIcon icon={icon} href={`${URI}?text=${content}`} {...props} openInNewTab />
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-link-icon]
+    zoom()
+
+  [data-icon]:hover
+    color #0285FF
+</style>

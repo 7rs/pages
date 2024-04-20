@@ -1,16 +1,18 @@
 ---
-import { Frontmatter } from "@lib/metagg";
+import { Frontmatter, Headings } from "@lib/metagg";
 import { getFont } from "@lib/font";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Header from "@layouts/Header.astro";
-import PostHeader from "@layouts-components/blog/PostHeader.astro";
-import Sidebar from "@layouts-components/blog/Sidebar.astro";
-import PostFooter from "@components/layouts/blog/PostFooter.astro";
+import Sidebar from "@layouts/Sidebar.astro";
+
+import PostHeader from "@components/blog/PostHeader.astro";
+import PostFooter from "@components/blog/PostFooter.astro";
+import MainContent from "@components/blog/MainContent.astro";
 
 export interface Props {
   frontmatter: { [key: string]: any };
-  headings: { depth: number; slug: string; text: string }[];
+  headings: Headings[];
 }
 const { frontmatter, headings } = Astro.props;
 
@@ -28,11 +30,9 @@ const prasedFrontmatter = Frontmatter.parse(frontmatter);
   }}
 >
   <Header />
-  <main>
+  <main data-main-box>
     <PostHeader frontmatter={prasedFrontmatter} />
-    <section main-content data-pagefind-body={prasedFrontmatter.published ? "" : undefined}>
-      <slot />
-    </section>
+    <MainContent data-pagefind-body={prasedFrontmatter.published ? "" : undefined}><slot /></MainContent>
     <PostFooter lang={prasedFrontmatter.lang} />
   </main>
   <Sidebar frontmatter={prasedFrontmatter} headings={headings} />
@@ -43,47 +43,27 @@ const prasedFrontmatter = Frontmatter.parse(frontmatter);
 
   body.markdown
     background var(--background)
-    z-index 0
-    position relative
-    box-sizing border-box
-
-    height 100vh
-    width 100%
-    max-height 100vh
-    max-width widths.largest
-
-    display grid
-    grid-template-areas "header" \
-                        "content"
     @media screen and (min-width widths.large)
-      grid-template-areas "header  header " \
-                          "content sidebar"
-      margin auto
-      max-height 100vh
-      grid-template-rows 1fr calc(100vh - 1fr)
+      display grid
+      grid-template-rows 1fr auto
       grid-template-columns 3fr 1fr
+      grid-template-areas \
+        "header   header" \
+        "main-box sidebar"
 
-    header[main-header]
-      grid-area header
+  [data-main-header]
+    grid-area header
+    position relative
 
-    main
-      grid-area content
-      max-width 900px
+  [data-main-box]
+    grid-area main-box
+    box-sizing border-box
+    margin auto
+    padding 1rem
+    width 100%
+    @media screen and (min-width widths.large)
+      max-width 800px
 
-    aside
-      grid-area sidebar
-      @media screen and (min-width widths.largest)
-        max-width 300px
-
-    aside, main
-      overflow clip auto
-      box-sizing border-box
-      padding 3rem 1.5rem
-      width 100%
-      height 100%
-      scrollbar()
-
-      padding 2rem 1rem
-      @media screen and (min-width widths.largest)
-        padding 3rem 1.5rem
+  [data-sidebar]
+    grid-area sidebar
 </style>

@@ -26,24 +26,26 @@
 
 ## Features (Goals)  
 
-### Fast  
+### 🚀 Fast  
 
 Pages is developed with the emphasis on performance.  
 A goal is to score 90+ on [PageSpeed Insights][pagespeed-insights].  
 
-### Readable  
+### ✨ Readable  
 
 Splits huge codes and mark up semantically (Minimize div tags).  
 And reduces multi-line Flexboxes by using a grid layout instead.  
-So **reuse** and **semantics HTML**.  
+So **components** and **semantics HTML**.  
 
-### Flexible  
+### 🍄 Flexible  
 
-Pages has no `!important`.  And the use of classes is minimal.  
+Pages has no `!important`. And the use of classes is minimal.  
 So you can override styles and use any class name!  
 Also, because used Astro, PostCSS, UI frameworks such as Svelte, etc., you can use their ecosystems.  
 
-### For all users  
+### 🌟 For all users  
+
+  For all visitors and all developers.  
 
 - [Responsive web design](https://developer.mozilla.org/docs/Learn/CSS/CSS_layout/Responsive_Design)
 - [Dark mode](https://en.wikipedia.org/wiki/Light-on-dark_color_scheme)
@@ -56,39 +58,45 @@ Also, because used Astro, PostCSS, UI frameworks such as Svelte, etc., you can u
 
   Images
 
-## Installation  
+## Getting Started  
 
-### Requirement (Recommended)  
+### Clone Pages  
 
-- [fnm](https://github.com/Schniz/fnm)
-- [pnpm](https://pnpm.io/)
-
-#### Clone the pages project (SSH)  
+  If cloning over HTTPS, replace to this url:
+  `https://github.com/7rs/pages.git`  
 
   ```sh
-  git clone git@github.com:7rs/pages.git --depth 1
+  git clone git@github.com:7rs/pages.git --depth 1 && cd pages
   ```  
 
-### Install Node.js with [codename]((https://nodejs.org/en/about/previous-releases)) (fnm)  
+### Install Node.js  
+
+  [fnm](https://github.com/Schniz/fnm)  
+
+  Not necessary when using stackblitz, etc.  
 
   ```sh
   fnm install lts/hydrogen
   fnm use lts/hydrogen
   ```
 
-#### Install dependencies  
+### Install Pages  
+
+  [pnpm](https://pnpm.io/)  
+
+  You can start with npm or yarn, but don't officially support them.  
 
   ```sh
   pnpm install
   ```  
 
-#### Activate preview in your browser  
+### Preview  
 
   ```sh
   pnpm dev  
   ```  
 
-#### Build website  
+### Build  
 
   ```sh
   pnpm build

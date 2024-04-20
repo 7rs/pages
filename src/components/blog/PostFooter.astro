@@ -1,0 +1,33 @@
+---
+export interface Props {
+  lang?: string;
+}
+
+const { lang = "ja" } = Astro.props;
+---
+
+<footer data-post-footer>
+  <script
+    src="https://giscus.app/client.js"
+    data-repo="7rs/pages"
+    data-repo-id="R_kgDOH0TP_g"
+    data-category="7rs.dev"
+    data-category-id="DIC_kwDOH0TP_s4CeCyG"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang={lang}
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+    is:inline></script>
+</footer>
+
+<style lang="stylus">
+  [data-post-footer]
+    box-sizing border-box
+    width 100%
+</style>

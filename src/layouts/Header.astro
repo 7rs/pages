@@ -4,10 +4,11 @@ import { Icon } from "astro-icon/components";
 import LinkIcon from "@components/LinkIcon.astro";
 import ThemeSwitcher from "@components/ThemeSwitcher.svelte"
 
-const props = Astro.props;
+
+const { ...props} = Astro.props;
 ---
 
-<header main-header {...props}>
+<header data-main-header {...props}>
   <LinkIcon icon="pages-logo" href="/" title="Main page" />
   <nav action-buttons>
     <LinkIcon icon="material-symbols:search" href="/blog" title="blog search" />

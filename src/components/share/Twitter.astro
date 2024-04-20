@@ -1,0 +1,47 @@
+---
+import LinkIcon from '@components/LinkIcon.astro';
+
+export interface Props {
+  text: string;
+  hashtags: string[] | string;
+  url: string;
+  icon?: string
+}
+
+const { text, hashtags, url, icon = "simple-icons:x", ...props } = Astro.props;
+
+let URI = "https://twitter.com/intent/tweet";
+// "https://twitter.com/share"
+
+const details = {
+  ...Astro.props,
+  ref_src: "twsrc^tfw|twcamp^buttonembed|twterm^hashtag|twgr^htts",
+  original_referer: "https://publish.twitter.com/",
+};
+
+Object.keys(details).forEach((key, i) => {
+  if (details[key] == null) {
+    return;
+  }
+
+  if (Array.isArray(details[key])) {
+    if (details[key].length <= 0) {
+      return;
+    }
+    details[key] = details[key].join(",");
+  }
+
+  URI += `${i > 0 ? "&" : "?"}${key}=${encodeURIComponent(details[key])}`;
+});
+---
+<LinkIcon icon={icon} href={URI} {...props} openInNewTab />
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-link-icon]
+    zoom()
+
+  // [data-icon]:hover
+  //   color #000000
+</style>

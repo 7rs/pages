@@ -1,0 +1,60 @@
+---
+import { Frontmatter } from "@lib/metagg";
+
+import CopyButton from "@components/CopyButton.astro";
+import LinkIcon from "@components/LinkIcon.astro";
+
+import Link from "@components/Link.astro";
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  frontmatter: Frontmatter;
+  repositoryURL?: string;
+}
+
+const { frontmatter, repositoryURL = "https://github.com/7rs/pages" } = Astro.props;
+
+const ext = frontmatter.file?.slice(frontmatter.file.lastIndexOf(".")) || ".md";
+---
+
+<div data-action-buttons>
+  <Link href=`${repositoryURL}/issues/new/choose` openInNewTab>
+    <Icon name="mdi:idea" />
+    <p>Create an issue</p>
+  </Link>
+  <Link href={`${repositoryURL}/blob/main${frontmatter.url || Astro.url.pathname}${ext}?plain=1`} openInNewTab>
+    <Icon name="material-symbols:code" />
+    <p>View source code</p>
+  </Link>
+  <CopyButton title="Copy share link" icon="material-symbols:share">Copy url</CopyButton>
+</div>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-link], [data-copy-button]
+    flex(_gap: 0.5rem)
+    
+    border solid 1px var(--border)
+    border-radius 0.5rem
+    padding 0.5rem
+
+    sans(1rem, 1.25rem)
+    @media screen and (min-width widths.largest)
+      flex(_gap: 1rem)
+      sans(1.125rem, 1.5rem)
+
+    &:hover
+      background-color red
+
+    [data-icon]
+      display block
+      height 100%
+      font-size 1.25rem
+      @media screen and (min-width widths.largest)
+        font-size 1.5rem
+
+  [data-action-buttons]
+    flex(column, _gap: 0.5rem)
+    justify-content space-around
+</style>

@@ -6,7 +6,8 @@
         "editor.tabSize": 2
     },
     "[svelte]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "svelte.svelte-vscode"
     },
     "[typescriptreact]": {
         "editor.tabSize": 2
