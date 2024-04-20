@@ -87,26 +87,24 @@
   });
 </script>
 
-{#if closeable}
-  <div data-sidebar-buttons>
+<div data-sidebar-buttons>
+  {#if closeable}
     <button
       on:click={() => {
         closeable && closeSidebar();
       }}>Close Sidebar</button
     >
-    <button
-      on:click={() => {
-        if (!closeable) {
-          return;
-        }
-        window.scroll(0, 0);
-        closeSidebar();
-      }}
-    >
-      Close and Top
-    </button>
-  </div>
-{/if}
+  {/if}
+  <button
+    on:click={() => {
+      window.scroll(0, 0);
+      closeable && closeSidebar();
+    }}
+  >
+    {closeable ? 'Close and Top' : 'Top'}
+  </button>
+</div>
+
 <ul>
   {#each headings as heading, i}
     <li data-heading-depth={heading.depth} data-heading-status={i === $activeIndex ? 'active' : 'inactive'}>

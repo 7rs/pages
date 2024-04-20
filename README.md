@@ -35,7 +35,7 @@ A goal is to score 90+ on [PageSpeed Insights][pagespeed-insights].
 
 Splits huge codes and mark up semantically (Minimize div tags).  
 And reduces multi-line Flexboxes by using a grid layout instead.  
-So **reuse** and **semantics HTML**.  
+So **components** and **semantics HTML**.  
 
 ### 🍄 Flexible  
 

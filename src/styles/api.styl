@@ -85,28 +85,6 @@ $button
     sans(1.5rem)
     padding 1rem
 
-$card
-  @extend $glassmorphism
-  padding 1rem
-  display grid
-  grid-template-rows auto 1fr
-  grid-template-columns auto 1fr
-  gap 0.5rem
-  grid-template-areas "icon label" \
-                      "desc desc ";
-
-  :global(svg)
-    grid-area icon
-    font-size 2rem
-
-  h3
-    grid-area label
-    sans(2rem, 2rem)
-    width 100%
-
-  p
-    grid-area desc
-    sans(1.25rem)
 
 $header-text
   sans(3rem, 3.5rem)
