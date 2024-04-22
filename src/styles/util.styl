@@ -1,0 +1,34 @@
+$icon-button
+  background none
+  border none
+
+hoverable(_scale = 125%, duration = 100ms, timing-function = ease-out)
+  &:hover
+    transition all duration timing-function
+    transform scale(_scale)
+
+    &[data-icon="simple-icons:youtube"]
+      color #FF0000
+    &[data-icon="simple-icons:github"]
+      color #181717
+    &[data-icon="simple-icons:zenn"]
+      color #3EA8FF
+    &[data-icon="simple-icons:patreon"]
+      color #000000
+    &[data-icon="simple-icons:discord"]
+      color #5865F2
+    &[data-icon="simple-icons:rss"]
+      color #FFA500
+
+flex(direction = row, _gap = null, justify-content = null)
+  display flex
+  flex-direction direction
+
+  if _gap
+    if direction is column || direction is column-reverse
+      row-gap _gap
+    else
+      column-gap _gap
+
+  if justify-content
+    justify-content justify-content

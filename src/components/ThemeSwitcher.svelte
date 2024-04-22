@@ -4,8 +4,9 @@
 
   import Icon from '@iconify/svelte';
 
-  import * as stack from '@lib/theme.ts';
-  const { loadThemeIndex, saveThemeIndex, toThemeName, getNextThemeIndex, themes } = stack;
+  // import * as stack from '@lib/theme.ts';
+  // const { loadThemeIndex, saveThemeIndex, toThemeName, getNextThemeIndex, themes } = stack;
+  import { loadThemeIndex, saveThemeIndex, toThemeName, getNextThemeIndex, themes } from '@lib/theme.ts';
 
   // Load the saved theme index.
   const activeIndex = writable(loadThemeIndex());
@@ -26,19 +27,19 @@
     {...$$restProps}
   >
     {#if themes[$activeIndex] === 'light-mode'}
-      <Icon icon="material-symbols:light-mode-outline" {...$$restProps} />
+      <!-- <Icon icon="material-symbols:light-mode-outline" {...$$restProps} /> -->
+      <Icon icon="line-md:moon-alt-to-sunny-outline-loop-transition" {...$$restProps} />
     {:else if themes[$activeIndex] === 'dark-mode'}
-      <Icon icon="material-symbols:dark-mode" {...$$restProps} />
+      <Icon icon="line-md:moon-alt-loop" {...$$restProps}  />
     {:else}
-      <Icon icon="material-symbols:computer-outline-sharp" {...$$restProps} />
+      <Icon icon="line-md:light-dark-loop" {...$$restProps} />
     {/if}
   </button>
 {/key}
 
 <style lang="stylus">
+  @import "../styles/api.styl"
+
   button
-    background none
-    border none
-    width auto
-    height 100%
+    @extend $icon-button
 </style>

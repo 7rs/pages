@@ -16,17 +16,14 @@
         "noEmit": true,
         "allowImportingTsExtensions": true,
         "paths": {
+            "@layouts/*": ["src/layouts/*"],
             "@components/*": ["src/components/*"],
-            "@pages-components/*": ["src/components/pages/*"],
-            "@layouts-components/*": ["src/components/layouts/*"],
+            "@styles/*": ["src/styles/*"],
             "@assets/*": ["src/assets/*"],
             "@icons/*": ["src/icons/*"],
-            "@styles/*": ["src/styles/*"],
-            "@layouts/*": ["src/layouts/*"],
             "@scripts/*": ["scripts/*"],
             "@lib/*": ["scripts/lib/*"],
-            "@public/*": ["public/*"],
-            "@content/*": ["src/content/*"]
+            "@static/*": ["static/*"]
         }
     }
 }

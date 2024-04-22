@@ -2,13 +2,13 @@
 import { Frontmatter, Page, Website, toPage, getPersons, ThemeColor, Resources } from "@lib/metagg";
 import { articleSchema, Schemas, SchemaProps, webSiteSchema } from "@lib/schema";
 
-import favicon from "src/icons/favicon.svg";
-import persons from "static/persons.json";
-import siteData from "static/site.json";
-
 import PreAPI from "@components/meta/PreAPI.astro";
-
 import Meta from "@components/meta/Meta.astro";
+
+import favicon from "@icons/favicon.svg";
+import persons from "@static/persons.json";
+import siteData from "@static/site.json";
+
 import "@styles/default.styl";
 
 export interface Prop extends SchemaProps {

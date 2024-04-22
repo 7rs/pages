@@ -2,18 +2,18 @@
 import { Icon } from "astro-icon/components";
 
 import LinkIcon from "@components/LinkIcon.astro";
-import ThemeSwitcher from "@components/ThemeSwitcher.svelte"
+import ThemeSwitcher from "@components/ThemeSwitcher.svelte";
+import Menu from "@components/Menu.svelte";
 
-
-const { ...props} = Astro.props;
+const { ...props } = Astro.props;
 ---
 
 <header data-main-header {...props}>
   <LinkIcon icon="pages-logo" href="/" title="Main page" />
-  <nav action-buttons>
-    <LinkIcon icon="material-symbols:search" href="/blog" title="blog search" />
+  <nav data-header-buttons>
     <ThemeSwitcher client:only="svelte" />
-    <Icon name="material-symbols:menu" />
+    <LinkIcon icon="line-md:search" href="/blog" title="blog search" />
+    <Menu client:only="svelte" />
   </nav>
 </header>
 
@@ -25,8 +25,8 @@ const { ...props} = Astro.props;
     position sticky
     top 0
     responsive-padding(x: 1rem, y: 0.5rem)
-    flex(_gap: 1rem)
-    justify-content space-between
+    flex(_gap: 1rem, justify-content: space-between)
+
     &::before
       @extend $simple-blur
       z-index -1
@@ -37,19 +37,17 @@ const { ...props} = Astro.props;
   svg[data-icon="pages-logo"]
     font-size 3rem
 
-  nav[action-buttons]
+  [data-header-buttons]
     align-items center
-    justify-content flex-end
-    flex(_gap: 1.25rem)
+
+    flex(_gap: 1.25rem, justify-content: flex-end)
     @media screen and (min-width widths.medium)
       flex(_gap: 1.75rem)
 
     svg, svg[data-icon]
+      hoverable()
       color var(--content)
       font-size 2rem
-      &:hover
-        transition all 100ms ease-out
-        transform scale(125%)
 
     svg[data-icon="material-symbols:search"]
       display none

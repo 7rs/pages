@@ -22,6 +22,7 @@
         "@astrojs/svelte": "^5.4.0",
         "@builder.io/qwik": "^1.4.5",
         "@iconify-json/cib": "^1.1.8",
+        "@iconify-json/line-md": "^1.1.37",
         "@iconify-json/material-symbols": "^1.1.69",
         "@iconify-json/mdi": "^1.1.64",
         "@iconify-json/simple-icons": "^1.1.93",
@@ -54,6 +55,8 @@
         "prettier-plugin-astro": "^0.12.3",
         "prettier-plugin-stylus": "^0.1.0",
         "prettier-plugin-svelte": "^3.1.2",
+        "stylelint-config-html": "^1.1.0",
+        "stylelint-stylus": "^1.0.0",
         "stylus": "^0.63.0",
         "ts-jest": "^29.1.2"
     },

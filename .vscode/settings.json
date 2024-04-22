@@ -20,5 +20,7 @@
     },
     "[json]": {
         "editor.tabSize": 4
-    }
+    },
+    "stylelint.customSyntax": "stylelint-stylus/custom-syntax",
+    "stylelint.validate": ["astro", "svelte", "stylus"]
 }
