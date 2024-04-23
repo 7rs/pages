@@ -1,6 +1,4 @@
 ---
-import { Icon } from "astro-icon/components";
-
 import LinkIcon from "@components/LinkIcon.astro";
 import ThemeSwitcher from "@components/ThemeSwitcher.svelte";
 import Menu from "@components/Menu.svelte";
@@ -20,37 +18,33 @@ const { ...props } = Astro.props;
 <style lang="stylus">
   @import "../styles/api.styl"
 
-  header
+  [data-main-header]
     z-index 1
     position sticky
     top 0
     responsive-padding(x: 1rem, y: 0.5rem)
     flex(_gap: 1rem, justify-content: space-between)
-
     &::before
       @extend $simple-blur
       z-index -1
 
-  svg[data-icon]
-    line-height 3rem
-
-  svg[data-icon="pages-logo"]
+  [data-link-icon]
     font-size 3rem
 
   [data-header-buttons]
     align-items center
-
     flex(_gap: 1.25rem, justify-content: flex-end)
     @media screen and (min-width widths.medium)
       flex(_gap: 1.75rem)
 
-    svg, svg[data-icon]
+    svg
       hoverable()
       color var(--content)
       font-size 2rem
-
-    svg[data-icon="material-symbols:search"]
       display none
       @media screen and (min-width widths.medium)
         display block
+
+    [data-menu-button] > svg
+      display block
 </style>

@@ -1,0 +1,62 @@
+---
+import Link from "@components/Link.astro";
+import LinkButtons from "@components/LinkButtons.astro";
+---
+
+<section data-landing-section>
+  <hgroup data-slogan>
+    <h1 data-main-text>
+      <span id="fast">Fast</span>, <span id="readable">Readable</span> and <span id="flexible">Flexible</span>
+    </h1>
+    <p data-sub-text>A tool to create awesome websites. And an website.</p>
+  </hgroup>
+  <LinkButtons>
+    <Link href="https://github.com/7rs/pages" openInNewTab>Get Started</Link>
+    <Link href="/explore">Explore Pages</Link>
+  </LinkButtons>
+</section>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-landing-section]
+    flex(column, 3rem)
+    min-height 90vh
+    justify-content center
+
+  [data-slogan]
+    flex(column)
+    width 100%
+    text-align center
+
+  [data-main-text]
+    filter drop-shadow(0 0 8px var(--content-reversed))
+    font-weight 900
+    sans(2.5rem)
+    @media screen and (min-width widths.medium)
+      sans(5rem)
+    @media screen and (min-width widths.large)
+      sans(4.25rem)
+
+  [data-sub-text]
+    filter drop-shadow(0 0 4px var(--content-reversed))
+    text-shadow 0 0 4px var(--content-reversed)
+    font-weight 700
+    sans(1.5rem)
+    @media screen and (min-width widths.medium)
+      sans(3rem)
+    @media screen and (min-width widths.large)
+      sans(2.25rem)
+
+  #fast
+    neontext(linear-gradient(180deg, rgb(255,160,160) 0%, rgb(240,240,255) 100%), red)
+
+  #readable
+    neontext(linear-gradient(180deg, rgb(160,160,255) 0%, rgb(240,240,255) 100%), blue)
+
+  #flexible
+    neontext(linear-gradient(180deg, rgb(255,160,255) 0%, rgb(255,240,255) 100%), purple)
+
+  [data-link-buttons] > [data-link]
+    @extend $button
+</style>

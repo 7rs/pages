@@ -32,3 +32,11 @@ flex(direction = row, _gap = null, justify-content = null)
 
   if justify-content
     justify-content justify-content
+
+$neontext-static
+  background-clip text
+  color transparent
+neontext(text-color, shadow-color, shadow-strength = 8px)
+  @extend $neontext-static
+  background-image text-color
+  filter drop-shadow(0 0 shadow-strength shadow-color)
