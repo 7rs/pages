@@ -1,40 +1,4 @@
-import { Person, Page, Frontmatter } from '@lib/meta/index.ts';
-
-export interface PageImage {
-  src: string;
-  alt: string;
-}
-
-export interface ThemeColor {
-  light: string;
-  dark?: string;
-}
-
-export interface Image {
-  src: string;
-  format?: string;
-  media?: string;
-}
-
-export interface Resources {
-  images?: Image[];
-  fonts?: string[];
-  useCloudflareFonts?: boolean;
-}
-
-export interface Backgrounds {
-  light: ImageMetadata;
-  dark?: ImageMetadata;
-  options?: { [key: string]: any; format: string; quality: number };
-  resolution?: number;
-}
-
-export interface Headings {
-  [key: string]: any;
-  depth: number;
-  slug: string;
-  text: string;
-}
+import { Person, Frontmatter, Page } from './frontmatter-models.ts';
 
 export function getFormat(src: string) {
   return src.slice(src.lastIndexOf('.') + 1);
@@ -57,14 +21,12 @@ export function getPersons(names: string[], personSource: { [key: string]: any }
 }
 
 export function toPage(frontmatter: Frontmatter, personSource: { [key: string]: any } = {}): Page {
-  const authors = frontmatter.authors.map((name) => getPerson(name, personSource));
-
   return Page.parse({
     title: frontmatter.title,
     description: frontmatter.description,
     lang: frontmatter.lang,
     tags: frontmatter.tags,
-    authors: authors,
+    authors: frontmatter.authors.map((name) => getPerson(name, personSource)),
     datePublished: frontmatter.published_at,
     dateModified: frontmatter.updated_at,
   });

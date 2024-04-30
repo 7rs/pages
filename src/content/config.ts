@@ -1,11 +1,12 @@
-import { z, defineCollection } from "astro:content";
-import { postDetail } from '@lib/meta';
+import { defineCollection } from 'astro:content';
+
+import { Frontmatter } from '@lib/meta/index.ts';
 
 const blogCollection = defineCollection({
   type: 'content',
-  schema: postDetail,
+  schema: Frontmatter,
 });
 
 export const collections = {
-    "blog": blogCollection,
+  blog: blogCollection,
 };

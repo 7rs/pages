@@ -1,4 +1,3 @@
-// import z from "zod";
 import { z } from 'astro:content';
 
 const strings = z.string().or(z.array(z.string()));
@@ -151,20 +150,3 @@ export const breadcrumbListSchema = z.object({
   itemListElement: z.array(listItemSchema),
 });
 export type BreadcrumbList = z.infer<typeof breadcrumbListSchema>;
-
-export const Schemas = {
-  WebSite: webSiteSchema,
-  ProfilePage: profilePageSchema,
-  Article: articleSchema,
-  BreadcrumbList: breadcrumbListSchema,
-} as const;
-export type Schemas = (typeof Schemas)[keyof typeof Schemas];
-
-export function createSchema(schemaType: Schemas, schema: { [key: string]: any }) {
-  return schemaType.parse(schema);
-}
-
-export interface SchemaProps {
-  schemaType?: Schemas;
-  schema?: { [key: string]: any };
-}

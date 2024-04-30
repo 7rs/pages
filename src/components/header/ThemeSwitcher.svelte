@@ -25,7 +25,6 @@
     {...$$restProps}
   >
     {#if themes[$activeIndex] === 'light-mode'}
-      <!-- <Icon icon="material-symbols:light-mode-outline" {...$$restProps} /> -->
       <Icon icon="line-md:moon-alt-to-sunny-outline-loop-transition" {...$$restProps} />
     {:else if themes[$activeIndex] === 'dark-mode'}
       <Icon icon="line-md:moon-alt-loop" {...$$restProps}  />
