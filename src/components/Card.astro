@@ -31,14 +31,20 @@ const { icon, label, id, ...props } = Astro.props;
 
     [data-icon]
       grid-area icon
-      font-size 2rem
+      font-size 1.5rem
+      @media screen and (min-width widths.large)
+        font-size 1.75rem
 
     h3
       grid-area label
-      sans(2rem, 2rem)
       width 100%
+      sans(1.5rem, 1.5rem)
+      @media screen and (min-width widths.large)
+        sans(1.75rem, 1.75rem)
 
     p
       grid-area desc
-      sans(1.25rem)
+      sans(1rem)
+      @media screen and (min-width widths.large)
+        sans(1.25rem)
 </style>

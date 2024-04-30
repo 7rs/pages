@@ -43,7 +43,7 @@
 {/if}
 
 <style lang="stylus">
-  @import "../styles/api.styl"
+  @import "../../styles/api.styl"
 
   [data-menu-button]
     @extend $icon-button

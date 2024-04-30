@@ -4,8 +4,6 @@
 
   import Icon from '@iconify/svelte';
 
-  // import * as stack from '@lib/theme.ts';
-  // const { loadThemeIndex, saveThemeIndex, toThemeName, getNextThemeIndex, themes } = stack;
   import { loadThemeIndex, saveThemeIndex, toThemeName, getNextThemeIndex, themes } from '@lib/theme.ts';
 
   // Load the saved theme index.
@@ -38,7 +36,7 @@
 {/key}
 
 <style lang="stylus">
-  @import "../styles/api.styl"
+  @import "../../styles/api.styl"
 
   button
     @extend $icon-button

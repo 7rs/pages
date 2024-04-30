@@ -51,22 +51,22 @@
 
   div[data-pagefind-control]
     @extend $widget
-    padding 0 $standard-spaces.medium
+    padding 0 1rem
     border-radius 1rem
-    flex($standard-spaces.smallest)
+    flex(0.25rem)
     @media screen and (min-width widths.medium)
-      flex($standard-spaces.small)
+      flex(0.5rem)
 
     input
       width 100% 
       background none
       border none
       outline none
-      sans($standard-sizes.small)
-      padding $standard-spaces.medium $standard-spaces.small
+      sans(1.5rem)
+      padding 1rem 0.5rem
       @media screen and (min-width widths.medium)
-        sans($standard-sizes.large)
-        padding $standard-spaces.medium
+        sans(1.5rem)
+        padding 1rem
 
     button
       background none
@@ -78,9 +78,9 @@
         color var(--content)
 
         width auto
-        height $standard-sizes.large
+        height 1.5rem
         @media screen and (min-width widths.medium)
-          height $standard-sizes.xl
+          height 2rem
 
         &:hover
           transition all 100ms ease-out

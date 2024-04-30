@@ -24,36 +24,6 @@ widths = {
   largest: 1200px,
 }
 
-sizes = {
-  icon: 1.75rem,
-  brand-size: 2.75rem,
-  brand-height: 3rem,
-  header-height: 3.5rem,
-  footer-nav-size: 1.5rem,
-  footer-nav-height: 1.75rem,
-  footer-nav-gap: 0.75rem,
-  // widths.large
-  large: {
-    icon: 2rem,
-  },
-}
-
-responsive-padding(_width = widths.large, x = 0.5rem, y = null)
-  --large-width _width
-  --padding-x x
-
-  box-sizing border-box
-  width 100%
-  padding-left x
-  padding-right x
-  @media screen and (min-width widths.large)
-    padding-left calc((100% - var(--large-width)) / 2 + var(--padding-x))
-    padding-right calc((100% - var(--large-width)) / 2 + var(--padding-x))
-
-  if y
-    padding-top y
-    padding-bottom y
-
 full-size-before()
   position fixed
   top 0

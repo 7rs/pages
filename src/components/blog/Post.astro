@@ -1,5 +1,5 @@
 ---
-import { PostDetail, getLangaugeLabel } from "@lib/meta";
+import { Frontmatter, getLangaugeLabel } from "@lib/meta";
 import qs from "qs";
 
 import { Icon } from "astro-icon/components";
@@ -8,7 +8,7 @@ import Link from "@components/Link.astro";
 import Datetime from "@components/Datetime.astro";
 
 export interface Props {
-  post: PostDetail;
+  post: Frontmatter;
   url: string;
 }
 
@@ -18,10 +18,10 @@ const { post, url, ...props } = Astro.props;
 <article {...props} data-post>
   <h3 data-post-title><Link href={url}>{post.title}</Link></h3>
   <div data-post-authors>
-    {post.authors.map((author) => <Link href={`/blog?${qs.stringify({ author: [author] })}`}>@{author}</Link>)}
+    {post.authors?.map((author) => <Link href={`/blog?${qs.stringify({ author: [author] })}`}>@{author}</Link>)}
   </div>
   <div data-post-tags>
-    {post.tags.map((tag) => <Link href={`/blog?${qs.stringify({ tag: [tag] })}`}>#{tag}</Link>)}
+    {post.tags?.map((tag) => <Link href={`/blog?${qs.stringify({ tag: [tag] })}`}>#{tag}</Link>)}
   </div>
   <div data-post-details>
     <div>

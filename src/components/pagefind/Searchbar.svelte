@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { PagefindSearchFragment } from '@lib/pagefind';
-
   import { onMount } from 'svelte';
+
+  import type { PagefindSearchFragment } from '@lib/pagefind';
 
   import {
     filters,
@@ -88,15 +88,15 @@
 <style lang="stylus">
   @import "../../styles/api.styl"
 
-  p[data-error-message]
+  [data-error-message]
     @extend $widget
-    sans($standard-sizes.small)
+    sans(1.125rem)
     @media screen and (min-width widths.medium)
-      sans($standard-sizes.medium)
+      sans(1.25rem)
 
-  section[data-additional-box]
-    margin-top $standard-spaces.medium
+  [data-additional-box]
+    margin-top 1rem
     box-sizing border-box
     width 100%
-    flex(column, $standard-spaces.medium)
+    flex(column, 1rem)
 </style>

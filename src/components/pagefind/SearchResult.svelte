@@ -44,32 +44,32 @@
 
     h2
       @extend $link
-      sans($standard-sizes.medium)
+      sans(1.25rem)
       @media screen and (min-width widths.medium)
-        sans($standard-sizes.xxl)
+        sans(2.5rem)
 
     p
-      padding-left $standard-spaces.medium
-      sans($standard-sizes.smallest)
+      padding-left 1.25rem
+      sans(1rem)
       @media screen and (min-width widths.medium)
-        padding-left $standard-spaces.large
-        sans($standard-sizes.medium)
+        padding-left 1.5rem
+        sans(1.25rem)
 
     ul[data-search-sub-result]
       list-style none
-      padding-left $standard-spaces.medium
+      padding-left 1.25rem
       @media screen and (min-width widths.medium)
-        padding-left $standard-spaces.large
+        padding-left 1.5rem
 
       li
-        padding-top $standard-spaces.large;
+        padding-top 1.5rem
 
         h3
           @extend $link
-          sans($standard-sizes.small)
+          sans(1.125rem)
           @media screen and (min-width widths.medium)
-            sans($standard-sizes.large)
+            sans(1.5rem)
 
         p
-          sans($standard-sizes.smallest)
+          sans(1rem)
 </style>

@@ -40,11 +40,11 @@
     border-radius 1rem
 
     div[data-filter-button]
-      padding 0 $standard-spaces.small
-      flex(_gap: $standard-spaces.small)
+      padding 0 0.5rem
+      flex(_gap: 0.5rem)
       @media screen and (min-width widths.medium)
-        padding 0 $standard-spaces.medium
-        flex(_gap: $standard-spaces.medium)
+        padding 0 1rem
+        flex(_gap: 1rem)
 
       input[type="checkbox"]
         margin auto
@@ -53,9 +53,9 @@
           transform scale(1.75)
 
       label
-        sans($standard-sizes.small)
+        sans(1.125rem)
         @media screen and (min-width widths.medium)
-          sans($standard-sizes.medium)
+          sans(1.25rem)
 
         &:hover
           color var(--link)
