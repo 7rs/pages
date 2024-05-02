@@ -1,6 +1,6 @@
 ---
 import LinkIcon from "@components/LinkIcon.astro";
-import ThemeSwitcher from "@components/header/ThemeSwitcher.svelte";
+import ColorSchemeButton from "@components/header/ColorSchemeButton.svelte";
 import Menu from "@components/header/Menu.svelte";
 
 const { ...props } = Astro.props;
@@ -9,7 +9,7 @@ const { ...props } = Astro.props;
 <header data-main-header {...props}>
   <LinkIcon icon="pages-logo" href="/" title="Main page" />
   <nav data-header-buttons>
-    <ThemeSwitcher client:only="svelte" />
+    <ColorSchemeButton client:only="svelte" />
     <LinkIcon icon="line-md:search" href="/blog" title="blog search" />
     <Menu client:only="svelte" />
   </nav>

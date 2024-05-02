@@ -1,6 +1,8 @@
-export const SchemeStatus = {
+export const ColorSchemes = {
   System: 'system',
   Light: 'light',
   Dark: 'dark',
 } as const;
-export type SchemeStatus = (typeof SchemeStatus)[keyof typeof SchemeStatus];
+export type ColorSchemes = (typeof ColorSchemes)[keyof typeof ColorSchemes];
+
+export const colorSchemeList = [ColorSchemes.System, ColorSchemes.Light, ColorSchemes.Dark];

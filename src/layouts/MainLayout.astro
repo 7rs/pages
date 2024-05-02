@@ -100,11 +100,11 @@ if (darkBackground != null) {
       --background-image var(--lightBackground)
       --background-filter light-filter
 
-  body:not(.markdown)
-    &.light-mode
+  body
+    &[data-color-scheme="light"]
       --background-image var(--lightBackground)
       --background-filter light-filter
-    &.dark-mode
+    &[data-color-scheme="dark"]
       --background-image var(--darkBackground)
       --background-filter dark-filter
 

@@ -21,7 +21,6 @@ const prasedFrontmatter = Frontmatter.parse(frontmatter);
 
 <BaseLayout
   frontmatter={prasedFrontmatter}
-  className="markdown"
   resources={{
     fonts: [
       getFont("Fira Sans", [{}, { weight: 700 }, { typefaces: 1 }, { weight: 700, typefaces: 1 }]),
@@ -41,7 +40,7 @@ const prasedFrontmatter = Frontmatter.parse(frontmatter);
 <style lang="stylus">
   @import "../styles/api.styl"
 
-  body.markdown
+  body
     background var(--background)
     @media screen and (min-width widths.large)
       display grid

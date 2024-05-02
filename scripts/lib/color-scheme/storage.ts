@@ -1,22 +1,28 @@
-import { SchemeStatus } from './models.ts';
+import { ColorSchemes } from './models.ts';
 
-export const schemeStatusKey = 'schemeStatus';
+export const colorSchemeStorageKey = 'schemeStatus';
 
-export function saveScheme(scheme: SchemeStatus, key: string = schemeStatusKey) {
-  if (scheme in SchemeStatus) {
-    window.localStorage.setItem(key, scheme);
+export function saveColorScheme(scheme: ColorSchemes, key: string = colorSchemeStorageKey): void {
+  window.localStorage.setItem(key, scheme);
+}
+
+export function isColorScheme(scheme: string): scheme is ColorSchemes {
+  switch (scheme) {
+    case ColorSchemes.System:
+    case ColorSchemes.Light:
+    case ColorSchemes.Dark:
+      return true;
+    default:
+      return false;
   }
 }
 
-export function loadScheme(key: string = schemeStatusKey): SchemeStatus {
+export function loadColorScheme(key: string = colorSchemeStorageKey): ColorSchemes {
   const status = window.localStorage.getItem(key);
-  if (status && status in SchemeStatus) {
-    return SchemeStatus[status];
-  }
 
-  return SchemeStatus.System;
+  return status && isColorScheme(status) ? status : ColorSchemes.System;
 }
 
-export function clearScheme(key: string = schemeStatusKey) {
+export function clearColorScheme(key: string = colorSchemeStorageKey): void {
   window.localStorage.removeItem(key);
 }

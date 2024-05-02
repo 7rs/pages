@@ -2,12 +2,12 @@
   import Icon from '@iconify/svelte';
   import { writable } from 'svelte/store';
 
+  import { changeColorScheme, activeColorScheme, colorSchemeList } from '@lib/color-scheme';
+
   const opened = writable(false);
 
   export let languages = ['ja', 'en'];
-  export let themes = ['system', 'dark', 'light'];
   const activeLanguage = writable(languages[0]);
-  const activeTheme = writable(themes[0])
 </script>
 
 <button
@@ -28,9 +28,9 @@
   <article data-menu>
     <p>Menu</p>
     <Icon icon="mdi:theme-light-dark" />
-    <select bind:value={$activeTheme}>
-      {#each themes as theme}
-        <option value={theme}>{theme}</option>
+    <select bind:value={$activeColorScheme} on:change={() => changeColorScheme($activeColorScheme)}>
+      {#each colorSchemeList as colorScheme}
+        <option value={colorScheme}>{colorScheme}</option>
       {/each}
     </select>
     <Icon icon="mdi:language" />

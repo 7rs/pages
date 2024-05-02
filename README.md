@@ -5,8 +5,6 @@
 [dev-version]: https://img.shields.io/github/package-json/v/7rs/pages/dev?style=flat-square&label=dev&labelColor=000&color=blue
 [dev-modified]: https://flat.badgen.net/github/last-commit/7rs/pages/dev?label&color=purple
 
-[vscode]: https://code.visualstudio.com/  
-
 <picture>
   <source srcset=".github/assets/banner.avif" />
   <source srcset=".github/assets/banner.webp" />
@@ -28,31 +26,33 @@
 
 ### 🚀 Fast  
 
-Pages is developed with the emphasis on performance.  
-A goal is to score 90+ on [PageSpeed Insights][pagespeed-insights].  
+  Pages is developed with the emphasis on performance.  
+  A goal is to score 90+ on [PageSpeed Insights][pagespeed-insights].  
 
 ### ✨ Readable  
 
-Splits huge codes and mark up semantically (Minimize div tags).  
-And reduces multi-line Flexboxes by using a grid layout instead.  
-So **components** and **semantics HTML**.  
+  Splits huge codes and mark up semantically (Minimize div tags).  
+  And reduces multi-line Flexboxes by using a grid layout instead.  
+  So **components** and **semantics HTML**.  
 
 ### 🍄 Flexible  
 
-Pages has no `!important`. And the use of classes is minimal.  
-So you can override styles and use any class name!  
-Also, because used Astro, PostCSS, UI frameworks such as Svelte, etc., you can use their ecosystems.  
+  Pages has no `!important` and no class (css).  
+  So you can override styles and use any class name!  
+  Also, because used Astro, PostCSS, UI frameworks such as Svelte, etc., you can use their ecosystems.  
 
 ### 🌟 For all users  
 
   For all visitors and all developers.  
 
+<!--  -->
 - [Responsive web design](https://developer.mozilla.org/docs/Learn/CSS/CSS_layout/Responsive_Design)
 - [Dark mode](https://en.wikipedia.org/wiki/Light-on-dark_color_scheme)
 - [i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization)
 - [use pnpm](https://pnpm.io/motivation)
 - [use TypeScript](https://www.typescriptlang.org/)
 - [use VSCode](https://code.visualstudio.com/)
+<!--  -->
 
 ## Benchmarks  
 
@@ -60,7 +60,7 @@ Also, because used Astro, PostCSS, UI frameworks such as Svelte, etc., you can u
 
 ## Getting Started  
 
-### Clone Pages  
+### Clone  
 
   If cloning over HTTPS, replace to this url:
   `https://github.com/7rs/pages.git`  
@@ -69,22 +69,7 @@ Also, because used Astro, PostCSS, UI frameworks such as Svelte, etc., you can u
   git clone git@github.com:7rs/pages.git --depth 1 && cd pages
   ```  
 
-### Install Node.js  
-
-  [fnm](https://github.com/Schniz/fnm)  
-
-  Not necessary when using stackblitz, etc.  
-
-  ```sh
-  fnm install lts/hydrogen
-  fnm use lts/hydrogen
-  ```
-
-### Install Pages  
-
-  [pnpm](https://pnpm.io/)  
-
-  You can start with npm or yarn, but don't officially support them.  
+### Install  
 
   ```sh
   pnpm install
@@ -110,22 +95,21 @@ Also, because used Astro, PostCSS, UI frameworks such as Svelte, etc., you can u
 
   **Pages** is published under [CC0][cc0] except for asset files.  
 
-[![Built with Astro](https://astro.badg.es/v2/built-with-astro/large.svg)](https://astro.build/)  [![Unsplash][unsplash-badge]][unsplash-license]
-
-## Contributing  
-
-### Languages  
-
-  Please use **Japanese** or **English**.  
-
-### Style Guides  
-
-  Styleguides are controlled by tools. [VSCode][vscode] makes it so easy to complete the setup.  
-
-### Community  
-
-  [![Static Badge](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://7rs.dev/d)
+[![Built with Astro](https://astro.badg.es/v2/built-with-astro/large.svg)](https://astro.build/)
+[![Unsplash][unsplash-badge]][unsplash-license]
 
 ## Author  
 
+  No need to write this name.
+
+<!--  -->
 - [Cbrnex](https://github.com/7rs)  
+<!--  -->
+
+## Contributing  
+
+  Please use **Japanese** or **English**.  
+
+  [![Discord Badge](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://7rs.dev/d)
+  [![GitHub Issue Badge](https://img.shields.io/badge/issue-black?style=for-the-badge&logo=github)](https://github.com/7rs/pages/issues)
+  [![GitHub Issue Badge](https://img.shields.io/badge/discussions-black?style=for-the-badge&logo=github)](https://github.com/7rs/pages/discussions)
