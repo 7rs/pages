@@ -1,0 +1,29 @@
+---
+import Link from "@components/colorless/Link.astro";
+
+export interface Props {
+  href: string;
+  openInNewTab?: boolean;
+}
+
+const { href, openInNewTab = false, ...props } = Astro.props;
+---
+
+<Link href={href} openInNewTab={openInNewTab} data-link-button {...props}><slot /></Link>
+
+<style lang="stylus">
+  @import "../styles/api.styl"
+
+  [data-link-button]
+    @extend $widget-glassmorphism
+
+    display block
+
+    padding 0.5rem
+    sans(1rem)
+    @media screen and (min-width widths.medium)
+      padding 0.75rem
+      sans(1.5rem)
+    @media screen and (min-width widths.medium)
+      padding 1rem
+</style>

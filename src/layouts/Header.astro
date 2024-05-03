@@ -1,58 +1,52 @@
 ---
-import { Icon } from "astro-icon/components";
+import LinkIcon from "@components/colorless/LinkIcon.astro";
+import ColorSchemeButton from "@components/header/ColorSchemeButton.svelte";
+import Menu from "@components/header/Menu.svelte";
 
-import LinkIcon from "@components/LinkIcon.astro";
-import ThemeSwitcher from "@components/ThemeSwitcher.svelte"
-
-
-const { ...props} = Astro.props;
+const { ...props } = Astro.props;
 ---
 
 <header data-main-header {...props}>
   <LinkIcon icon="pages-logo" href="/" title="Main page" />
-  <nav action-buttons>
-    <LinkIcon icon="material-symbols:search" href="/blog" title="blog search" />
-    <ThemeSwitcher client:only="svelte" />
-    <Icon name="material-symbols:menu" />
+  <nav data-header-buttons>
+    <ColorSchemeButton client:only="svelte" />
+    <LinkIcon icon="line-md:search" href="/blog" title="blog search" />
+    <Menu client:only="svelte" />
   </nav>
 </header>
 
 <style lang="stylus">
   @import "../styles/api.styl"
 
-  header
+  [data-main-header]
     z-index 1
     position sticky
     top 0
     responsive-padding(x: 1rem, y: 0.5rem)
-    flex(_gap: 1rem)
-    justify-content space-between
+    flex(_gap: 1rem, justify-content: space-between)
     &::before
-      @extend $simple-blur
+      // @extend $simple-blur
+      @extend $layout-glassmorphism
+      set-absolute()
       z-index -1
 
-  svg[data-icon]
-    line-height 3rem
-
-  svg[data-icon="pages-logo"]
+  [data-link-icon]
     font-size 3rem
 
-  nav[action-buttons]
+  [data-header-buttons]
     align-items center
-    justify-content flex-end
-    flex(_gap: 1.25rem)
+    flex(_gap: 1.25rem, justify-content: flex-end)
     @media screen and (min-width widths.medium)
       flex(_gap: 1.75rem)
 
-    svg, svg[data-icon]
+    svg
+      @extend $zoomable-icon
       color var(--content)
       font-size 2rem
-      &:hover
-        transition all 100ms ease-out
-        transform scale(125%)
-
-    svg[data-icon="material-symbols:search"]
       display none
       @media screen and (min-width widths.medium)
         display block
+
+    [data-menu-button] > svg
+      display block
 </style>

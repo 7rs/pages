@@ -1,4 +1,4 @@
-import { FontWeights, FontTypefaces, FontStyle, VariableFontStyle, Width, DefaultWidth } from './config';
+import { FontWeights, FontTypefaces, FontStyle, VariableFontStyle, DefaultWidth } from './config.ts';
 
 /**
  * Eliminate duplicate weights and typefaces and create Sets.

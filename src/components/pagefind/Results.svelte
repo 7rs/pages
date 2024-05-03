@@ -23,16 +23,16 @@
   @import "../../styles/api.styl"
 
   div[data-search-results]
-    @extend $widget
+    @extend $widget-glassmorphism
     box-sizing border-box
-    flex(column, $standard-spaces.largest)
+    flex(column, 3rem)
     border-radius 1rem
-    padding $standard-spaces.medium
+    padding 1rem
     @media screen and (min-width widths.medium)
-      padding $standard-spaces.large
+      padding 1.5rem
 
     p
-      sans($standard-sizes.small)
+      sans(1.125rem)
       @media screen and (min-width widths.medium)
-        sans($standard-sizes.large)
+        sans(1.5rem)
 </style>

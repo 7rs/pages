@@ -1,0 +1,48 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  title?: string;
+  text?: string;
+  icon?: string;
+  buttonId?: string;
+}
+
+const { title, text, icon, buttonId = "copy-button", ...props } = Astro.props;
+
+/*
+  Why use addEventListener instead of onclick?
+  Because onclick can have only one function and it can be overwritten.
+  So, it's unclear whether it will execute.
+*/
+---
+
+<button title={title} id={buttonId} data-copy-button {...props}>
+  {
+    icon ? (
+      <>
+        <Icon name={icon} {...props} />
+        <slot />
+      </>
+    ) : (
+      <slot />
+    )
+  }
+</button>
+
+<script define:vars={{ buttonId, text }}>
+  document.getElementById(buttonId)?.addEventListener("click", () => {
+    navigator.clipboard.writeText(text || location.href);
+    alert(`Copied to clipboard: ${text || location.href}`);
+  });
+</script>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+  [data-copy-button]
+    background none
+    flex(_gap: 0.5rem)
+
+  [data-icon]
+    display block
+</style>

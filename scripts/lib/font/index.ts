@@ -1,5 +1,5 @@
-import { GoogleFontURLGenerator } from './generator';
-import { FontStyle, VariableFontStyle } from './config';
+import { GoogleFontURLGenerator } from './generator.ts';
+import { FontStyle, VariableFontStyle } from './config.ts';
 
 /**
  * This function generates URLs for [Google Fonts](https://fonts.google.com/).
@@ -35,7 +35,7 @@ import { FontStyle, VariableFontStyle } from './config';
  * @returns {string} URL
  */
 export function getFont(name: string, fontStyles?: FontStyle[] | VariableFontStyle) {
-  name = name.replace(/\s/g, '+')
+  name = name.replace(/\s/g, '+');
 
   if (fontStyles == null) {
     return name;
@@ -44,7 +44,6 @@ export function getFont(name: string, fontStyles?: FontStyle[] | VariableFontSty
   return new GoogleFontURLGenerator(name, fontStyles).getFont();
 }
 
-
 export function createGoogleFontURL(fonts: Array<string>): string {
-  return'https://fonts.googleapis.com/css2' +`?family=${fonts.join('&family=')}&display=swap`;
+  return 'https://fonts.googleapis.com/css2' + `?family=${fonts.join('&family=')}&display=swap`;
 }

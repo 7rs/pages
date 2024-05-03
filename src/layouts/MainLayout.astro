@@ -3,7 +3,7 @@ import { GetImageResult } from "astro";
 import { getImage } from "astro:assets";
 
 import { getFont } from "@lib/font";
-import { Backgrounds } from "@lib/metagg";
+import { Backgrounds } from "@lib/meta";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Header from "@layouts/Header.astro";
@@ -100,11 +100,11 @@ if (darkBackground != null) {
       --background-image var(--lightBackground)
       --background-filter light-filter
 
-  body:not(.markdown)
-    &.light-mode
+  body
+    &[data-color-scheme="light"]
       --background-image var(--lightBackground)
       --background-filter light-filter
-    &.dark-mode
+    &[data-color-scheme="dark"]
       --background-image var(--darkBackground)
       --background-filter dark-filter
 
@@ -127,7 +127,12 @@ if (darkBackground != null) {
 
       &::before
         z-index -1002
-        full-size-before()
+        position fixed
+        top 0
+        left 0
+        width 100%
+        height 100vh
+        content ""
         filter var(--background-filter)
         background var(--background-image) center/cover no-repeat fixed, var(--background)
 </style>

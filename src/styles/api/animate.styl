@@ -1,0 +1,21 @@
+zoom(ms = 100ms, function = ease-out, _scale = 125%)
+  &:hover
+    transition all ms function
+    transform scale(_scale)
+
+$zoomable-icon
+  &:hover
+    zoom()
+
+    &[data-icon="simple-icons:youtube"]
+      color #FF0000
+    &[data-icon="simple-icons:github"]
+      color #181717
+    &[data-icon="simple-icons:zenn"]
+      color #3EA8FF
+    &[data-icon="simple-icons:patreon"]
+      color #000000
+    &[data-icon="simple-icons:discord"]
+      color #5865F2
+    &[data-icon="simple-icons:rss"]
+      color #FFA500
