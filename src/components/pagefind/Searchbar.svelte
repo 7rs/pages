@@ -89,7 +89,7 @@
   @import "../../styles/api.styl"
 
   [data-error-message]
-    @extend $widget
+    @extend $widget-glassmorphism
     sans(1.125rem)
     @media screen and (min-width widths.medium)
       sans(1.25rem)

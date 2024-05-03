@@ -1,7 +1,7 @@
 ---
-import Link from "@components/Link.astro";
-import LinkIcon from "@components/LinkIcon.astro";
-import LabeledIcon from "@components/LabeledIcon.astro";
+import Link from "@components/colorless/Link.astro";
+import LinkIcon from "@components/colorless/LinkIcon.astro";
+import LabeledIcon from "@components/colorless/LabeledIcon.astro";
 ---
 
 <footer data-main-footer>
@@ -34,7 +34,8 @@ import LabeledIcon from "@components/LabeledIcon.astro";
       flex(justify-content: space-between)
 
     &::before
-      @extend $simple-blur
+      @extend $layout-glassmorphism
+      set-absolute()
       z-index -1
 
   [data-labeled-icon]
@@ -54,7 +55,7 @@ import LabeledIcon from "@components/LabeledIcon.astro";
       flex(_gap: 1.5rem, justify-content: center)
 
     [data-icon]
-      hoverable()
+      @extend $zoomable-icon
       height 100%
       font-size 1.5rem
       @media screen and (min-width widths.medium)

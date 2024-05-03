@@ -1,20 +1,20 @@
 {
-    "exclude": ["*node_modules*", "scripts/lib"],
+    "exclude": ["*node_modules*", "*pagefind.js*"],
     "compilerOptions": {
-        // "target": "es2022",
-        // "moduleResolution": "NodeNext",
+        // Dependencies
         "module": "nodenext",
-        "allowJs": true,
-        "baseUrl": ".",
-        "strictNullChecks": true,
-        "jsx": "react-jsx",
-        "jsxImportSource": "@builder.io/qwik",
-        "resolveJsonModule": true,
         "esModuleInterop": true,
         "downlevelIteration": true,
-        // "emitDeclarationOnly": true,
-        "noEmit": true,
         "allowImportingTsExtensions": true,
+        // TS Options
+        "strictNullChecks": true,
+        "allowJs": true,
+        "resolveJsonModule": true,
+        // Output
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        // Path
+        "baseUrl": ".",
         "paths": {
             "@layouts/*": ["src/layouts/*"],
             "@components/*": ["src/components/*"],

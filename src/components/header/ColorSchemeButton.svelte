@@ -22,7 +22,7 @@
   onMount(initColorScheme);
 </script>
 
-<button on:click={advanceColorScheme} in:blur={{ duration: duration }}>
+<button on:click={advanceColorScheme} in:blur={{ duration: duration }} data-color-scheme-button>
   {#key $activeColorScheme}
     <Icon icon={getColorSchemeIcon($activeColorScheme)} {...$$restProps} />
   {/key}
@@ -31,6 +31,6 @@
 <style lang="stylus">
   @import "../../styles/api.styl"
 
-  button
+  [data-color-scheme-button]
     @extend $icon-button
 </style>

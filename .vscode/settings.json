@@ -1,7 +1,12 @@
 {
+    "editor.insertSpaces": true,
+    // Prettier
     "prettier.configPath": "./.prettierrc",
     "prettier.ignorePath": "./.prettierignore",
-    "editor.insertSpaces": true,
+    // Stylelint
+    "stylelint.customSyntax": "stylelint-stylus/custom-syntax",
+    "stylelint.validate": ["astro", "svelte", "stylus"],
+    // file
     "[astro]": {
         "editor.tabSize": 2
     },
@@ -20,7 +25,5 @@
     },
     "[json]": {
         "editor.tabSize": 4
-    },
-    "stylelint.customSyntax": "stylelint-stylus/custom-syntax",
-    "stylelint.validate": ["astro", "svelte", "stylus"]
+    }
 }

@@ -1,8 +1,8 @@
 ---
 import Ring from "@components/Ring.astro";
 import SparkleText from "@components/SparkleText.astro";
-import Link from "@components/Link.astro";
 import LinkButtons from "@components/LinkButtons.astro";
+import LinkButton from "@components/LinkButton.astro";
 import Card from "@components/Card.astro";
 ---
 
@@ -20,8 +20,8 @@ import Card from "@components/Card.astro";
   </Ring>
 
   <LinkButtons>
-    <Link href="/blog">Search</Link>
-    <Link href="/what-is-pages-blog">About Pages Blog</Link>
+    <LinkButton href="/blog">Search</LinkButton>
+    <LinkButton href="/what-is-pages-blog">About</LinkButton>
   </LinkButtons>
 
   <div data-card-list>
@@ -38,8 +38,6 @@ import Card from "@components/Card.astro";
 
   [data-link-buttons]
     margin 3rem 0
-    [data-link]
-      @extend $button
 
   [data-ring]
     height 7.5rem

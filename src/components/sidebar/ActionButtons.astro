@@ -1,10 +1,9 @@
 ---
 import { Frontmatter } from "@lib/meta";
 
-import CopyButton from "@components/CopyButton.astro";
-import LinkIcon from "@components/LinkIcon.astro";
+import CopyButton from "@components/colorless/CopyButton.astro";
 
-import Link from "@components/Link.astro";
+import Link from "@components/colorless/Link.astro";
 import { Icon } from "astro-icon/components";
 
 export interface Props {
@@ -12,12 +11,12 @@ export interface Props {
   repositoryURL?: string;
 }
 
-const { frontmatter, repositoryURL = "https://github.com/7rs/pages" } = Astro.props;
+const { frontmatter, repositoryURL = "https://github.com/7rs/pages", ...props } = Astro.props;
 
 const ext = frontmatter.file?.slice(frontmatter.file.lastIndexOf(".")) || ".md";
 ---
 
-<div data-action-buttons>
+<div data-action-buttons {...props}>
   <Link href=`${repositoryURL}/issues/new/choose` openInNewTab>
     <Icon name="mdi:idea" />
     <p>Create an issue</p>

@@ -1,13 +1,13 @@
 {
-    "plugins": ["prettier-plugin-astro", "prettier-plugin-stylus", "prettier-plugin-svelte"],
-    "astroAllowShorthand": false,
     "printWidth": 120,
-    "tabWidth": 2,
     "useTabs": false,
-    "semi": true,
+    "tabWidth": 2,
     "singleQuote": false,
+    "semi": true,
     "endOfLine": "lf",
     "options.editorconfig": true,
+    "plugins": ["prettier-plugin-astro", "prettier-plugin-stylus", "prettier-plugin-svelte"],
+    "astroAllowShorthand": false,
     "overrides": [
         {
             "files": [".prettierrc", "*.json"],
@@ -19,14 +19,18 @@
         {
             "files": [
                 "*.js",
+                "*.jsx",
+                "*.test.js",
                 "*.ts",
                 "*.test.ts",
-                "*.svelte",
-                "*.jsx",
                 "*.tsx",
+                "*.svelte",
                 "*.mjs",
+                "*.*.mjs",
+                "*.cjs",
+                "*.*.cjs",
                 "astro.config.mjs",
-                "astro.mjs"
+                "postcss.config.mjs"
             ],
             "options": {
                 "singleQuote": true

@@ -1,5 +1,5 @@
-import { FontWeights, FontTypefaces, FontStyle, VariableFontStyle, FontStyleOptions } from './config';
-import { FontStyleCollection } from './collection';
+import { FontWeights, FontTypefaces, FontStyle, VariableFontStyle, FontStyleOptions } from './config.ts';
+import { FontStyleCollection } from './collection.ts';
 
 /**
  * This class generates style parameters for [Google Fonts](https://fonts.google.com/).
@@ -151,8 +151,9 @@ export class GoogleFontURLGenerator {
     }
 
     // Both
-    return `${this.name}:${prefix}@`
-      + `${FontTypefaces.Normal},${width}${weight};${FontTypefaces.Italic},${width}${weight}`;
+    return (
+      `${this.name}:${prefix}@` + `${FontTypefaces.Normal},${width}${weight};${FontTypefaces.Italic},${width}${weight}`
+    );
   }
 
   /**

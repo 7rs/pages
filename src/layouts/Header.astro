@@ -1,5 +1,5 @@
 ---
-import LinkIcon from "@components/LinkIcon.astro";
+import LinkIcon from "@components/colorless/LinkIcon.astro";
 import ColorSchemeButton from "@components/header/ColorSchemeButton.svelte";
 import Menu from "@components/header/Menu.svelte";
 
@@ -25,7 +25,9 @@ const { ...props } = Astro.props;
     responsive-padding(x: 1rem, y: 0.5rem)
     flex(_gap: 1rem, justify-content: space-between)
     &::before
-      @extend $simple-blur
+      // @extend $simple-blur
+      @extend $layout-glassmorphism
+      set-absolute()
       z-index -1
 
   [data-link-icon]
@@ -38,7 +40,7 @@ const { ...props } = Astro.props;
       flex(_gap: 1.75rem)
 
     svg
-      hoverable()
+      @extend $zoomable-icon
       color var(--content)
       font-size 2rem
       display none

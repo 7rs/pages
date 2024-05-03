@@ -4,8 +4,8 @@ import qs from "qs";
 
 import { Icon } from "astro-icon/components";
 
-import Link from "@components/Link.astro";
-import Datetime from "@components/Datetime.astro";
+import Link from "@components/colorless/Link.astro";
+import Datetime from "@components/colorless/Datetime.astro";
 
 export interface Props {
   post: Frontmatter;
@@ -43,7 +43,7 @@ const { post, url, ...props } = Astro.props;
   @import "../../styles/api.styl"
 
   [data-post]
-    @extend $glassmorphism
+    @extend $widget-glassmorphism
     padding 1rem
     flex(column)
 

@@ -50,7 +50,7 @@
   @import "../../styles/api.styl"
 
   div[data-pagefind-control]
-    @extend $widget
+    @extend $widget-glassmorphism
     padding 0 1rem
     border-radius 1rem
     flex(0.25rem)

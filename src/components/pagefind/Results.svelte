@@ -23,7 +23,7 @@
   @import "../../styles/api.styl"
 
   div[data-search-results]
-    @extend $widget
+    @extend $widget-glassmorphism
     box-sizing border-box
     flex(column, 3rem)
     border-radius 1rem

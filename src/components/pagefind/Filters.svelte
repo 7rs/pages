@@ -33,7 +33,7 @@
   @import "../../styles/api.styl"
 
   fieldset[data-filter]
-    @extend $widget
+    @extend $widget-glassmorphism
     flex()
     flex-wrap wrap
     border none

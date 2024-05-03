@@ -12,12 +12,12 @@ export interface Props {
   frontmatter: Frontmatter;
 }
 
-const { frontmatter } = Astro.props;
+const { frontmatter,...props } = Astro.props;
 
 const url = Astro.site + Astro.url.pathname.slice(1);
 ---
 
-<div data-share-buttons>
+<div data-share-buttons {...props}>
   <Reddit title={frontmatter.title} url={url} />
   <Twitter text={frontmatter.title} hashtags={frontmatter.tags} url={url} />
   <Mastodon text={frontmatter.title} url={url} />

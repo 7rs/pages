@@ -1,23 +1,20 @@
 import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
+import path from 'node:path';
+
 import svelte from '@astrojs/svelte';
-import qwikdev from '@qwikdev/astro';
-import robotsTxt from 'astro-robots-txt';
-import sitemap from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx';
 import pagefind from 'astro-pagefind';
-import purgecss from 'astro-purgecss';
 import icon from 'astro-icon';
 
-import path from 'path';
+import robotsTxt from 'astro-robots-txt';
+import sitemap from '@astrojs/sitemap';
+
+import purgecss from 'astro-purgecss';
 import playformCompress from '@playform/compress';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://7rs.dev',
-  server: {
-    host: true,
-    port: 2999,
-  },
+  server: { host: true, port: 2999 },
   scopedStyleStrategy: 'attribute',
   i18n: {
     defaultLocale: 'ja',
@@ -34,17 +31,20 @@ export default defineConfig({
       theme: 'dracula',
     },
   },
+  site: 'https://7rs.dev',
   integrations: [
-    mdx(),
     svelte({ emitCss: false }),
-    qwikdev(),
+    mdx(),
+    pagefind(),
+    icon({ iconDir: 'src/icons' }),
+    // Metadata
     robotsTxt(),
     sitemap(),
-    pagefind(),
+    // Compress
     purgecss(),
-    icon({ iconDir: 'src/icons' }),
     playformCompress(),
   ],
+  // https://vitejs.dev/config/
   vite: {
     resolve: {
       alias: {

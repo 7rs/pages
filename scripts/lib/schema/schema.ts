@@ -1,4 +1,3 @@
-// import z from "zod";
 import { webSiteSchema, profilePageSchema, articleSchema, breadcrumbListSchema } from './schema-models.ts';
 
 export const Schemas = {
