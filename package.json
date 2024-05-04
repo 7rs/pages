@@ -19,9 +19,7 @@
         "search": "pnpm pagefind --site dist",
         "benchmark": "lighthouse http://localhost:2999/ --quiet --view --emulated-form-factor mobile --output-path mobile-lighthouse.html"
     },
-    "workspaces": [
-        "packages/*"
-    ],
+    "workspaces": ["packages/*"],
     "dependencies": {
         "@astrojs/check": "^0.5.10",
         "@astrojs/mdx": "^2.3.0",
@@ -47,7 +45,8 @@
         "qs": "^6.12.0",
         "sharp": "^0.33.2",
         "svelte": "^4.2.8",
-        "typescript": "^5.4.2"
+        "typescript": "^5.4.2",
+        "@pages/color-scheme": "workspace:^"
     },
     "devDependencies": {
         "@types/node": "^20.10.5",

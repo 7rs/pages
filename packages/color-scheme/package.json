@@ -1,0 +1,26 @@
+{
+    "type": "module",
+    "name": "@pages/color-scheme",
+    "version": "0.0.1",
+    "main": "index.ts",
+    "exports": {
+        ".": {
+            "default": "./index.ts"
+        },
+        "./components": "./components/index.ts"
+    },
+    "scripts": {
+        "build": "tsc"
+    },
+    "author": "Cbrnex",
+    "license": "CC0-1.0",
+    "dependencies": {
+        "@iconify/svelte": "^3.1.6",
+        "svelte": "^4.2.8"
+    },
+    "devDependencies": {
+        "stylus": "^0.63.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.4.2"
+    }
+}

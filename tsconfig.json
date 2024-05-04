@@ -1,5 +1,5 @@
 {
-    "exclude": ["*node_modules*", "*pagefind.js*"],
+    "exclude": ["*node_modules*", "./packages/**"],
     "compilerOptions": {
         // Dependencies
         "module": "nodenext",
