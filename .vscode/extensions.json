@@ -1,19 +1,22 @@
 {
     "recommendations": [
         "astro-build.astro-vscode",
-        "editorconfig.editorconfig",
-        "sysoev.language-stylus",
-        "esbenp.prettier-vscode",
-        "yzhang.markdown-all-in-one",
-        "davidanson.vscode-markdownlint",
         "svelte.svelte-vscode",
+        "sysoev.language-stylus",
+        "unifiedjs.vscode-mdx",
+        "redhat.vscode-yaml",
+        // Development tools
+        "editorconfig.editorconfig",
+        "antfu.iconify",
+        // Visualization
+        "usernamehw.errorlens",
+        "yoavbls.pretty-ts-errors",
+        "pkief.material-icon-theme",
+        "oderwat.indent-rainbow",
+        // Formatter
+        "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
         "stylelint.vscode-stylelint",
-        "antfu.iconify",
-        "usernamehw.errorlens",
-        "pkief.material-icon-theme",
-        "unifiedjs.vscode-mdx",
-        "yoavbls.pretty-ts-errors",
-        "redhat.vscode-yaml"
+        "davidanson.vscode-markdownlint"
     ]
 }

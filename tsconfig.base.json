@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "module": "nodenext",
+        "esModuleInterop": true,
+        "downlevelIteration": true,
+        "emitDeclarationOnly": true,
+        "allowImportingTsExtensions": true,
+        "strictNullChecks": true,
+        "allowJs": true,
+        "resolveJsonModule": true,
+        "declaration": true
+    }
+}
