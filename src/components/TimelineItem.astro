@@ -28,12 +28,11 @@ const { label, ...props } = Astro.props;
         translate 0 -50%
         width var(--point-size)
         height var(--point-size)
-        background radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 100%);
+        background gray
         border-radius 100%
     p
       @extend $widget-glassmorphism
       sans(1.25rem)
-      backdrop-filter blur(8px)
       padding 1rem
 
       a

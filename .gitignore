@@ -16,3 +16,5 @@ lighthouse.html
 # Environment-dependent files
 .DS_Store
 *.Identifier
+
+*storybook.log
