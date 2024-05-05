@@ -1,4 +1,4 @@
-import { ColorSchemes } from '../src/models.ts';
+import { ColorSchemes } from './models.ts';
 
 const colorSchemeAttributeName = 'data-color-scheme';
 

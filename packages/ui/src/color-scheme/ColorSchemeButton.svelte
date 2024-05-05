@@ -1,10 +1,12 @@
-<script lang="ts" context="module">
+<script lang="ts">
   import { blur } from 'svelte/transition';
   import { onMount } from 'svelte';
 
   import Icon from '@iconify/svelte';
 
-  import { initColorScheme, advanceColorScheme, activeColorScheme, ColorSchemes } from '../src';
+  import { ColorSchemes } from './models.ts';
+  import { activeColorScheme } from './state.ts';
+  import { initColorScheme, advanceColorScheme } from './main.ts';
 
   export let duration = 200;
 

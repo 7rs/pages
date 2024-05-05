@@ -1,19 +1,19 @@
 {
-    "type": "module",
-    "name": "@pages/color-scheme",
+    "name": "@pagesjs/ui",
     "version": "0.0.1",
-    "main": "index.ts",
-    "exports": {
-        ".": {
-            "default": "./index.ts"
-        },
-        "./components": "./components/index.ts"
-    },
+    "type": "module",
+    "license": "CC0-1.0",
+    "author": "Cbrnex",
     "scripts": {
         "build": "tsc"
     },
-    "author": "Cbrnex",
-    "license": "CC0-1.0",
+    "main": "./src/index.ts",
+    "exports": {
+        ".": {
+            "import": "./src/index.ts",
+            "types": "./dist/index.d.ts"
+        }
+    },
     "dependencies": {
         "@iconify/svelte": "^3.1.6",
         "svelte": "^4.2.8"

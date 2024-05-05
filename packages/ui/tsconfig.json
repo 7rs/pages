@@ -1,7 +1,7 @@
 {
     "extends": "../../tsconfig.base.json",
     "exclude": ["*node_modules*"],
-    "include": ["./src/*.ts", "./components/*.ts"],
+    "include": ["./src/*.ts", "./src/*.svelte"],
     "compilerOptions": {
         "baseUrl": "./",
         "outDir": "./dist"
