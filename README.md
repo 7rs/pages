@@ -20,9 +20,15 @@
   **Fast**, **Readable** and **Flexible**.  
   A tool to create awesome websites. And an website.  
 
+## What's new  
+
+  This project is under development.  
+  There are breaking changes and many bugs.
+  Please create Issues If you have any problems.  
+
 [pagespeed-insights]: https://pagespeed.web.dev/
 
-## Features (Goals)  
+## 🎁 Features (Goals)  
 
 ### 🚀 Fast  
 
@@ -35,13 +41,13 @@
   And reduces multi-line Flexboxes by using a grid layout instead.  
   So **components** and **semantics HTML**.  
 
-### 🍄 Flexible  
+### 🐣 Flexible  
 
   Pages has no `!important` and no class (css).  
   So you can override styles and use any class name!  
   Also, because used Astro, PostCSS, UI frameworks such as Svelte, etc., you can use their ecosystems.  
 
-### 🌟 For all users  
+### 🛸 For all users  
 
   For all visitors and all developers.  
 
@@ -54,11 +60,9 @@
 - [use VSCode](https://code.visualstudio.com/)
 <!--  -->
 
-## Benchmarks  
+## ⏱️ Benchmarks  
 
-  Images
-
-## Getting Started  
+## 💡 Getting Started  
 
 ### Clone  
 
@@ -81,24 +85,18 @@
   pnpm dev  
   ```  
 
-### Build  
-
-  ```sh
-  pnpm build
-  ```  
-
 [unsplash-badge]: https://img.shields.io/badge/Unsplash-black?style=for-the-badge&logo=unsplash
 [unsplash-license]: https://unsplash.com/license
 [cc0]: https://creativecommons.org/publicdomain/zero/1.0/
 
-## License  
+## ⚖️ License  
 
   **Pages** is published under [CC0][cc0] except for asset files.  
 
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/large.svg)](https://astro.build/)
 [![Unsplash][unsplash-badge]][unsplash-license]
 
-## Author  
+## ️🖋️ Author  
 
   No need to write this name.
 
@@ -106,7 +104,7 @@
 - [Cbrnex](https://github.com/7rs)  
 <!--  -->
 
-## Contributing  
+## 🛠️ Contributing  
 
   Please use **Japanese** or **English**.  
 
