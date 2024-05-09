@@ -10,10 +10,13 @@
   const languages = ['ja', 'en'];
   const activeLanguage = writable(languages[0]);
 
-  const themes = ["pages", "dracula", "tokyonight", "ayu"];
+  const themes = ['pages', 'dracula', 'tokyonight', 'ayu'];
   const activeTheme = writable(themes[0]);
 
   export let requiredStyles: string;
+
+  // Stupid vscode displays false error.
+  // go to hell fuckin' microsoft
 </script>
 
 {#if $menuOpened}

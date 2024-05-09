@@ -5,6 +5,8 @@
     "editor.fontFamily": "'Scriptex', 'Fira Code', 'HackGen35 Console NFJ', monospace",
     "editor.fontLigatures": true,
     "editor.insertSpaces": true,
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "eslint.workingDirectories": ["packages"],
     // Prettier
     "prettier.configPath": "./.prettierrc",
     "prettier.ignorePath": "./.prettierignore",

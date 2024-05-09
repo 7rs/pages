@@ -52,4 +52,7 @@ const { ...props } = Astro.props;
   [data-menu]
     @extends $widget-glassmorphism
     set-family("sans")
+    z-index 2
+    @media screen and (min-width widths.large)
+      z-index 9999
 </style>

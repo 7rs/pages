@@ -1,0 +1,22 @@
+{
+    "name": "@pagesjs/cli",
+    "version": "0.0.0",
+    "type": "module",
+    "license": "CC0-1.0",
+    "author": "Cbrnex",
+    "main": "./src/index.ts",
+    "exports": {
+        ".": {
+            "import": "./src/index.ts",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "scripts": {
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.5",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.4.2"
+    }
+}
