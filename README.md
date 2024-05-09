@@ -22,11 +22,15 @@
   **Fast**, **Readable** and **Flexible**.  
   A tool to create awesome websites. And an website.  
 
+<br />
+
 ## What's new  
 
   This project is **under development**.
   There are **breaking changes** and **many bugs**.  
   Please create an issue or report to the discord server If you have any issues.
+
+<br />
 
 [pagespeed-insights]: https://pagespeed.web.dev/
 
@@ -56,6 +60,8 @@
 - [Color schemes](https://en.wikipedia.org/wiki/Light-on-dark_color_scheme)
 <!--  -->
 
+<br />
+
 ## 💡 Getting Started  
 
   If cloning over HTTPS, replace to this url:
@@ -79,6 +85,8 @@
 [stackshare-badge]: https://img.shields.io/badge/stackshare-0690FA?style=for-the-badge&logo=stackshare&logoColor=white
 [license-badge]: https://img.shields.io/badge/license-black?style=for-the-badge
 
+<br />
+
 ## ⚖️ License  
 
   [Pages](https://github.com/7rs/pages) is published under [CC0][cc0] except for asset files.  
@@ -89,11 +97,15 @@
   [![Unsplash][unsplash-badge]](https://unsplash.com/license)
   [![stackshare-badge][stackshare-badge]](https://stackshare.io/7rs/pages)
 
+<br />
+
 ## ️🖋️ Author  
 
 <!--  -->
 - [Cbrnex](https://github.com/7rs)  
 <!--  -->
+
+<br />
 
 ## 🛠️ Contributing  
 
