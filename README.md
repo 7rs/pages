@@ -22,8 +22,6 @@
   **Fast**, **Readable** and **Flexible**.  
   A tool to create awesome websites. And an website.  
 
-<br />
-
 ## What's new  
 
   This project is **under development**.
@@ -85,9 +83,7 @@
 [stackshare-badge]: https://img.shields.io/badge/stackshare-0690FA?style=for-the-badge&logo=stackshare&logoColor=white
 [license-badge]: https://img.shields.io/badge/license-black?style=for-the-badge
 
-<br />
-
-## ⚖️ License  
+### ⚖️ License  
 
   [Pages](https://github.com/7rs/pages) is published under [CC0][cc0] except for asset files.  
 
@@ -97,17 +93,13 @@
   [![Unsplash][unsplash-badge]](https://unsplash.com/license)
   [![stackshare-badge][stackshare-badge]](https://stackshare.io/7rs/pages)
 
-<br />
-
-## ️🖋️ Author  
+### ️🖋️ Author  
 
 <!--  -->
 - [Cbrnex](https://github.com/7rs)  
 <!--  -->
 
-<br />
-
-## 🛠️ Contributing  
+### 🛠️ Contributing  
 
   Please use **Japanese** or **English**.  
 
