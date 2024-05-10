@@ -10,7 +10,6 @@ import robotsTxt from 'astro-robots-txt';
 import sitemap from '@astrojs/sitemap';
 
 import purgecss from 'astro-purgecss';
-import playformCompress from '@playform/compress';
 
 // https://astro.build/config
 export default defineConfig({
@@ -42,7 +41,6 @@ export default defineConfig({
     sitemap(),
     // Compress
     purgecss(),
-    playformCompress(),
   ],
   // https://vitejs.dev/config/
   vite: {

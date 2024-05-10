@@ -23,7 +23,6 @@ References:
 */
 
 default-font-size = 1rem
-default-line-height = 1.5rem
 golden-ratio = (1 + 5 ** 0.5) / 2
 
 
@@ -54,17 +53,25 @@ auto-line-height(size, _height = null)
   else
     line-height size * golden-ratio
 
+set-family(type = "sans")
+  if type == "sans"
+    font-family main-sans, alternative-sans
+  else if type == "serif"
+    font-family alternative-serif
+  else if type == "mono"
+    font-family main-mono, alternative-mono
+
 sans(size = default-font-size, height = null)
-  font-family main-sans, alternative-sans
   font-size size
+  set-family("sans")
   auto-line-height(size, height)
 
 serif(size = default-font-size, height = null)
-  font-family alternative-serif
   font-size size
+  set-family("serif")
   auto-line-height(size, height)
 
 mono(size = default-font-size, height = null)
-  font-family main-mono, alternative-mono
   font-size size
+  set-family("mono")
   auto-line-height(size, height)

@@ -1,5 +1,12 @@
 {
+    // Scriptex is not distributed
+    // Fira Code: https://github.com/tonsky/FiraCode
+    // HackGen (CJK Support): https://github.com/yuru7/HackGen
+    "editor.fontFamily": "'Scriptex', 'Fira Code', 'HackGen35 Console NFJ', monospace",
+    "editor.fontLigatures": true,
     "editor.insertSpaces": true,
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "eslint.workingDirectories": ["packages"],
     // Prettier
     "prettier.configPath": "./.prettierrc",
     "prettier.ignorePath": "./.prettierignore",
@@ -25,5 +32,7 @@
     },
     "[json]": {
         "editor.tabSize": 4
-    }
+    },
+    // Recommended: probably has to set up in user settings
+    "workbench.editor.enablePreview": false
 }
