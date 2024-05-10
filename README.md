@@ -1,34 +1,27 @@
 [main-version]: https://img.shields.io/github/package-json/v/7rs/pages/main?style=flat-square&label=main&labelColor=000&color=blue
 [main-modified]: https://flat.badgen.net/github/last-commit/7rs/pages/main?label&color=purple
-[pre-version]: https://img.shields.io/github/package-json/v/7rs/pages/pre?style=flat-square&label=pre&labelColor=000&color=blue
-[pre-modified]: https://flat.badgen.net/github/last-commit/7rs/pages/pre?label&color=purple
 [dev-version]: https://img.shields.io/github/package-json/v/7rs/pages/dev?style=flat-square&label=dev&labelColor=000&color=blue
 [dev-modified]: https://flat.badgen.net/github/last-commit/7rs/pages/dev?label&color=purple
 
-<!--
 <picture>
   <source srcset=".github/assets/banner.avif" />
   <source srcset=".github/assets/banner.webp" />
   <img src=".github/assets/banner.jpg" alt="banner" />
 </picture>
--->
 
 ![Version][main-version]![Last commit][main-modified]
-![Version][pre-version]![Last commit][pre-modified]
 ![Version][dev-version]![Last commit][dev-modified]  
 
 # [Pages](https://7rs.dev/)  
 
   **Fast**, **Readable** and **Flexible**.  
-  A tool to create awesome websites. And an website.  
+  The tools to create awesome websites. And an website.  
 
 ## What's new  
 
   This project is **under development**.
   There are **breaking changes** and **many bugs**.  
   Please create an issue or report to the discord server If you have any issues.
-
-<br />
 
 [pagespeed-insights]: https://pagespeed.web.dev/
 
@@ -58,8 +51,6 @@
 - [Color schemes](https://en.wikipedia.org/wiki/Light-on-dark_color_scheme)
 <!--  -->
 
-<br />
-
 ## 💡 Getting Started  
 
   If cloning over HTTPS, replace to this url:
@@ -77,13 +68,13 @@
   pnpm dev  
   ```  
 
+[cc0]: https://creativecommons.org/publicdomain/zero/1.0/
 [astro-badge]: https://astro.badg.es/v2/built-with-astro/large.svg
 [unsplash-badge]: https://img.shields.io/badge/Unsplash-black?style=for-the-badge&logo=unsplash
-[cc0]: https://creativecommons.org/publicdomain/zero/1.0/
 [stackshare-badge]: https://img.shields.io/badge/stackshare-0690FA?style=for-the-badge&logo=stackshare&logoColor=white
 [license-badge]: https://img.shields.io/badge/license-black?style=for-the-badge
 
-### ⚖️ License  
+## ⚖️ License  
 
   [Pages](https://github.com/7rs/pages) is published under [CC0][cc0] except for asset files.  
 
@@ -91,15 +82,9 @@
 
   [![License][license-badge]](https://github.com/7rs/pages/blob/main/LICENSE)
   [![Unsplash][unsplash-badge]](https://unsplash.com/license)
-  [![stackshare-badge][stackshare-badge]](https://stackshare.io/7rs/pages)
+  [![Stackshare][stackshare-badge]](https://stackshare.io/7rs/pages)
 
-### ️🖋️ Author  
-
-<!--  -->
-- [Cbrnex](https://github.com/7rs)  
-<!--  -->
-
-### 🛠️ Contributing  
+## 🛠️ Contributing  
 
   Please use **Japanese** or **English**.  
 

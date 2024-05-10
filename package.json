@@ -2,7 +2,7 @@
     "type": "module",
     "name": "root",
     "version": "0.4.2",
-    "description": "A tool to create awesome websites.",
+    "description": "The tools to create awesome websites.",
     "keywords": ["pages", "pagesjs", "7rs.dev"],
     "homepage": "https://7rs.dev/",
     "bugs": "https://github.com/7rs/pages/issues",
