@@ -1,9 +1,12 @@
 {
+    "type": "module",
     "name": "@pagesjs/cli",
     "version": "0.0.0",
-    "type": "module",
+    "description": "Pages CLI tools.",
+    "keywords": ["pages", "pagesjs", "7rs.dev"],
+    "homepage": "https://7rs.dev/",
+    "bugs": "https://github.com/7rs/pages/issues",
     "license": "CC0-1.0",
-    "author": "Cbrnex",
     "main": "./src/index.ts",
     "exports": {
         ".": {
@@ -11,6 +14,7 @@
             "types": "./dist/index.d.ts"
         }
     },
+    "repository": "github:7rs/pages",
     "scripts": {
         "build": "tsc"
     },
@@ -18,5 +22,9 @@
         "@types/node": "^20.10.5",
         "ts-node": "^10.9.2",
         "typescript": "^5.4.2"
+    },
+    "engines": {
+        "node": ">=18",
+        "pnpm": ">=8"
     }
 }

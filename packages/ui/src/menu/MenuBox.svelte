@@ -14,9 +14,6 @@
   const activeTheme = writable(themes[0]);
 
   export let requiredStyles: string;
-
-  // Stupid vscode displays false error.
-  // go to hell fuckin' microsoft
 </script>
 
 {#if $menuOpened}
