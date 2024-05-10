@@ -1,10 +1,9 @@
 ---
-import { getLangaugeLabel } from "@lib/meta";
-import { Frontmatter } from "@lib/metagg";
+import { Frontmatter, getLangaugeLabel } from "@lib/meta";
 
 import LinkFilters from "@components/blog/LinkFilters.astro";
-import LabeledIcon from "@components/LabeledIcon.astro";
-import Datetime from "@components/Datetime.astro";
+import LabeledIcon from "@components/colorless/LabeledIcon.astro";
+import Datetime from "@components/colorless/Datetime.astro";
 export interface Props {
   frontmatter: Frontmatter;
 }

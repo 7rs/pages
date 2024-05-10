@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 
-import "@styles/default.styl";
+import "@styles/global.styl";
 
 export async function getStaticPaths() {
   const pages = await getCollection("blog");

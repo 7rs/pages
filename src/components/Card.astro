@@ -10,35 +10,41 @@ export interface Props {
 const { icon, label, id, ...props } = Astro.props;
 ---
 
-<article id={id} data-card>
+<article id={id} data-card {...props}>
   <Icon name={icon} />
-  <h3>{label}</h3>
-  <p><slot /></p>
+  <h3 data-card-title>{label}</h3>
+  <p data-catd-content><slot /></p>
 </article>
 
 <style lang="stylus">
   @import "../styles/api.styl"
 
   [data-card]
-    @extend $glassmorphism
-    padding 1rem
+    @extend $widget-glassmorphism
     display grid
+    padding 1rem
+    gap 0.5rem
     grid-template-rows auto 1fr
     grid-template-columns auto 1fr
-    gap 0.5rem
     grid-template-areas "icon label" \
                         "desc desc ";
 
     [data-icon]
       grid-area icon
-      font-size 2rem
+      font-size 1.5rem
+      @media screen and (min-width widths.large)
+        font-size 1.75rem
 
-    h3
+    [data-card-title]
       grid-area label
-      sans(2rem, 2rem)
       width 100%
+      sans(1.5rem, 1.5rem)
+      @media screen and (min-width widths.large)
+        sans(1.75rem, 1.75rem)
 
-    p
+    [data-catd-content]
       grid-area desc
-      sans(1.25rem)
+      sans(1rem)
+      @media screen and (min-width widths.large)
+        sans(1.25rem)
 </style>

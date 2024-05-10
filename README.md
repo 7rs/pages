@@ -1,11 +1,7 @@
 [main-version]: https://img.shields.io/github/package-json/v/7rs/pages/main?style=flat-square&label=main&labelColor=000&color=blue
 [main-modified]: https://flat.badgen.net/github/last-commit/7rs/pages/main?label&color=purple
-[pre-version]: https://img.shields.io/github/package-json/v/7rs/pages/pre?style=flat-square&label=pre&labelColor=000&color=blue
-[pre-modified]: https://flat.badgen.net/github/last-commit/7rs/pages/pre?label&color=purple
 [dev-version]: https://img.shields.io/github/package-json/v/7rs/pages/dev?style=flat-square&label=dev&labelColor=000&color=blue
 [dev-modified]: https://flat.badgen.net/github/last-commit/7rs/pages/dev?label&color=purple
-
-[vscode]: https://code.visualstudio.com/  
 
 <picture>
   <source srcset=".github/assets/banner.avif" />
@@ -14,53 +10,48 @@
 </picture>
 
 ![Version][main-version]![Last commit][main-modified]
-![Version][pre-version]![Last commit][pre-modified]
 ![Version][dev-version]![Last commit][dev-modified]  
 
 # [Pages](https://7rs.dev/)  
 
   **Fast**, **Readable** and **Flexible**.  
-  A tool to create awesome websites. And an website.  
+  The tools to create awesome websites. And an website.  
+
+## What's new  
+
+  This project is **under development**.
+  There are **breaking changes** and **many bugs**.  
+  Please create an issue or report to the discord server If you have any issues.
 
 [pagespeed-insights]: https://pagespeed.web.dev/
 
-## Features (Goals)  
+## 🎁 Features (Goals)  
 
 ### 🚀 Fast  
 
-Pages is developed with the emphasis on performance.  
-A goal is to score 90+ on [PageSpeed Insights][pagespeed-insights].  
+  Pages is developed with an **emphasis on performance**.  
+  The goal is to get **scores of 90+** on [PageSpeed Insights][pagespeed-insights].  
 
 ### ✨ Readable  
 
-Splits huge codes and mark up semantically (Minimize div tags).  
-And reduces multi-line Flexboxes by using a grid layout instead.  
-So **components** and **semantics HTML**.  
+  Pages is developed with **component-based** and **semantics** in mind.  
+  Pages **doesn't use any CSS frameworks** and **Global styles is the minimum required**.  
 
-### 🍄 Flexible  
+### 🐣 Flexible  
 
-Pages has no `!important`. And the use of classes is minimal.  
-So you can override styles and use any class name!  
-Also, because used Astro, PostCSS, UI frameworks such as Svelte, etc., you can use their ecosystems.  
+  Pages has **no important** and **no style class**. Anyone can override styles.  
+  Also **ecosystems of frameworks** which used in Pages are **available**.  
 
-### 🌟 For all users  
+### 🛸 For all users  
 
-  For all visitors and all developers.  
-
+<!--  -->
 - [Responsive web design](https://developer.mozilla.org/docs/Learn/CSS/CSS_layout/Responsive_Design)
-- [Dark mode](https://en.wikipedia.org/wiki/Light-on-dark_color_scheme)
+- [Accessibility](https://developer.mozilla.org/docs/Learn/Accessibility/What_is_accessibility)
 - [i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization)
-- [use pnpm](https://pnpm.io/motivation)
-- [use TypeScript](https://www.typescriptlang.org/)
-- [use VSCode](https://code.visualstudio.com/)
+- [Color schemes](https://en.wikipedia.org/wiki/Light-on-dark_color_scheme)
+<!--  -->
 
-## Benchmarks  
-
-  Images
-
-## Getting Started  
-
-### Clone Pages  
+## 💡 Getting Started  
 
   If cloning over HTTPS, replace to this url:
   `https://github.com/7rs/pages.git`  
@@ -69,63 +60,34 @@ Also, because used Astro, PostCSS, UI frameworks such as Svelte, etc., you can u
   git clone git@github.com:7rs/pages.git --depth 1 && cd pages
   ```  
 
-### Install Node.js  
-
-  [fnm](https://github.com/Schniz/fnm)  
-
-  Not necessary when using stackblitz, etc.  
-
-  ```sh
-  fnm install lts/hydrogen
-  fnm use lts/hydrogen
-  ```
-
-### Install Pages  
-
-  [pnpm](https://pnpm.io/)  
-
-  You can start with npm or yarn, but don't officially support them.  
-
   ```sh
   pnpm install
   ```  
-
-### Preview  
 
   ```sh
   pnpm dev  
   ```  
 
-### Build  
-
-  ```sh
-  pnpm build
-  ```  
-
-[unsplash-badge]: https://img.shields.io/badge/Unsplash-black?style=for-the-badge&logo=unsplash
-[unsplash-license]: https://unsplash.com/license
 [cc0]: https://creativecommons.org/publicdomain/zero/1.0/
+[astro-badge]: https://astro.badg.es/v2/built-with-astro/large.svg
+[unsplash-badge]: https://img.shields.io/badge/Unsplash-black?style=for-the-badge&logo=unsplash
+[stackshare-badge]: https://img.shields.io/badge/stackshare-0690FA?style=for-the-badge&logo=stackshare&logoColor=white
+[license-badge]: https://img.shields.io/badge/license-black?style=for-the-badge
 
-## License  
+## ⚖️ License  
 
-  **Pages** is published under [CC0][cc0] except for asset files.  
+  [Pages](https://github.com/7rs/pages) is published under [CC0][cc0] except for asset files.  
 
-[![Built with Astro](https://astro.badg.es/v2/built-with-astro/large.svg)](https://astro.build/)  [![Unsplash][unsplash-badge]][unsplash-license]
+  [![Built with Astro][astro-badge]](https://astro.build/)
 
-## Contributing  
+  [![License][license-badge]](https://github.com/7rs/pages/blob/main/LICENSE)
+  [![Unsplash][unsplash-badge]](https://unsplash.com/license)
+  [![Stackshare][stackshare-badge]](https://stackshare.io/7rs/pages)
 
-### Languages  
+## 🛠️ Contributing  
 
   Please use **Japanese** or **English**.  
 
-### Style Guides  
-
-  Styleguides are controlled by tools. [VSCode][vscode] makes it so easy to complete the setup.  
-
-### Community  
-
-  [![Static Badge](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://7rs.dev/d)
-
-## Author  
-
-- [Cbrnex](https://github.com/7rs)  
+  [![Discord Badge](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://7rs.dev/d)
+  [![GitHub Issue Badge](https://img.shields.io/badge/issue-black?style=for-the-badge&logo=github)](https://github.com/7rs/pages/issues)
+  [![GitHub Issue Badge](https://img.shields.io/badge/discussions-black?style=for-the-badge&logo=github)](https://github.com/7rs/pages/discussions)

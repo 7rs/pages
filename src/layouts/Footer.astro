@@ -1,18 +1,14 @@
 ---
-import LinkIcon from "@components/LinkIcon.astro";
-import Link from "@components/Link.astro";
+import Link from "@components/colorless/Link.astro";
+import LinkIcon from "@components/colorless/LinkIcon.astro";
+import LabeledIcon from "@components/colorless/LabeledIcon.astro";
 ---
 
-<footer>
-  <!-- Website informations (Pages icon and License information) -->
-  <div site-info>
-    <LinkIcon icon="pages-icon" href="/" title="Main page" />
-    <p license-info>
-      Licensed by <Link href="https://creativecommons.org/public-domain/cc0" title="CC0 1.0" openInNewTab>CC0</Link>
-    </p>
-  </div>
-  <!-- Social icon list (link) -->
-  <div social-list>
+<footer data-main-footer>
+  <Link href="https://creativecommons.org/public-domain/cc0" title="CC0 1.0" openInNewTab>
+    <LabeledIcon icon="pages-icon">Licensed by CC0</LabeledIcon>
+  </Link>
+  <div data-social-icons>
     <LinkIcon icon="simple-icons:youtube" href="https://youtube.com/@qrze" title="YouTube (@qlze)" openInNewTab />
     <LinkIcon icon="simple-icons:github" href="https://github.com/7rs" title="GitHub (@7rs)" openInNewTab />
     <LinkIcon icon="simple-icons:zenn" href="https://zenn.dev/p/74" title="Zenn (74)" openInNewTab />
@@ -25,61 +21,43 @@ import Link from "@components/Link.astro";
 <style lang="stylus">
   @import "../styles/api.styl"
 
-  footer
+  [data-main-footer]
     z-index 1
     position relative
     bottom 0
     box-sizing border-box
     responsive-padding(x: 1rem, y: 1rem)
     width 100%
-    flex(column, 1rem)
+
+    flex(column, 1.5rem)
     @media screen and (min-width widths.large)
-      flex()
+      flex(justify-content: space-between)
+
     &::before
-      @extend $simple-blur
+      @extend $layout-glassmorphism
+      set-absolute()
       z-index -1
 
-  site-info-height = 3rem
-  div[site-info]
-    width 100%
-    flex()
-    justify-content center
+  [data-labeled-icon]
+    sans(1.5rem, 1.5rem)
+    flex(justify-content: center)
+    @media screen and (min-width widths.medium)
+      sans(1.75rem, 1.75rem)
     @media screen and (min-width widths.large)
-      justify-content flex-start
+      flex(justify-content: flex-start)
 
-    a[data-link-icon="pages-icon"] > svg[data-icon]
-      font-size site-info-height
-      &:hover
-        transition all 3s ease-in-out
-        transform rotate(50turn)
+    &:hover
+      text-decoration underline
 
-    p[license-info]
-      sans(site-info-height / golden-ratio, site-info-height)
-      a[data-link]:hover
-        text-decoration underline solid var(--content) 1px
+  [data-social-icons]
+    flex(_gap: 1.25rem, justify-content: center)
+    @media screen and (min-width widths.medium)
+      flex(_gap: 1.5rem, justify-content: center)
 
-  div[social-list]
-    flex(_gap: 1.25rem)
-    justify-content center
-
-    svg[data-icon]
+    [data-icon]
+      @extend $zoomable-icon
       height 100%
       font-size 1.5rem
       @media screen and (min-width widths.medium)
         font-size 1.75rem
-      &:hover
-        transition all 100ms ease-out
-        transform scale(125%)
-        &[data-icon="simple-icons:youtube"]
-          color #FF0000
-        &[data-icon="simple-icons:github"]
-          color #181717
-        &[data-icon="simple-icons:zenn"]
-          color #3EA8FF
-        &[data-icon="simple-icons:patreon"]
-          color #000000
-        &[data-icon="simple-icons:discord"]
-          color #5865F2
-        &[data-icon="simple-icons:rss"]
-          color #FFA500
 </style>

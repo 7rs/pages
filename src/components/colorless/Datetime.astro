@@ -1,0 +1,22 @@
+---
+import { formatDate } from "@lib/meta";
+
+export interface Props {
+  datetime: Date | undefined;
+  title?: string;
+}
+
+const { datetime, title = "Datetime", ...props } = Astro.props;
+---
+
+{
+  datetime != null ? (
+    <time datetime={String(datetime)} title={`${title}: ${String(datetime)}`} {...props} data-datetime>
+      {formatDate(datetime)}
+    </time>
+  ) : (
+    <p {...props} data-datetime>
+      Unknown
+    </p>
+  )
+}

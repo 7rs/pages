@@ -1,0 +1,77 @@
+---
+import LinkIcon from "@components/colorless/LinkIcon.astro";
+
+import SparkleText from "@components/SparkleText.astro";
+
+import Timeline from "@components/Timeline.astro";
+import TimelineItem from "@components/TimelineItem.astro";
+import Link from "@components/colorless/Link.astro";
+---
+
+<section data-community-section>
+  <SparkleText title="Communities">The Communities for engineers or gamers</SparkleText>
+  <Timeline>
+    <TimelineItem label="2017">
+      The community was radical and has no topic.
+      <Link href="https://line.me/" openInNewTab>LINE</Link> was used for chat.
+    </TimelineItem>
+    <TimelineItem label="2018">
+      New group was created for testing bots<br />
+      and they were divided into group for general chat and one for development.
+    </TimelineItem>
+    <TimelineItem label="2020">
+      The general group was no longer used and we were migrated to <Link href="https://telegram.org/" openInNewTab>
+        Telegram
+      </Link> and <Link href="https://discord.com/" openInNewTab>Discord</Link> gradually.
+    </TimelineItem>
+    <TimelineItem label="2022">
+      Telegram group has been removed because Telegram isn't for beginners. <br />
+      And admins were lefted from LINE group.
+    </TimelineItem>
+    <TimelineItem label="2024">
+      The community name was changed because the previous name was out of compliance. The name 74 comes from "nanashi
+      (名無し)" which means without a name in Japanese. <br />
+      Most members became adults and members are the fewest ever.
+    </TimelineItem>
+  </Timeline>
+  <div>
+    <LinkIcon icon="simple-icons:discord" href="https://7rs.dev/74gg" title="Join Discord server" openInNewTab />
+    <LinkIcon
+      icon="simple-icons:github"
+      href="https://github.com/74gg"
+      title="Visit GitHub organization"
+      openInNewTab
+    />
+  </div>
+</section>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  [data-sparkle-text]
+    margin 5rem 0
+
+    h2, p
+      background-image repeating-linear-gradient(135deg, rgba(white, 1), rgba(192, 192, 192, 1) 2%, rgba(white, 1) 5%);
+
+  div
+    flex()
+    justify-content space-around
+    @media screen and (min-width widths.medium)
+      flex(_gap: 10rem)
+      justify-content center
+
+    [data-icon]
+      font-size 2.5rem
+      @media screen and (min-width widths.medium)
+        font-size 5rem
+      filter drop-shadow(0 0 1rem white)
+
+      &:hover
+        transition all 100ms ease-out
+        transform scale(125%)
+        &[data-icon="simple-icons:discord"]
+          color #5865F2
+        &[data-icon="simple-icons:github"]
+          color var(--content-reversed)
+</style>

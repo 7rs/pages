@@ -1,14 +1,13 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
 
-import LandingHeader from "@components/index/LandingHeader.astro";
-import BlogIntroduction from "@components/index/BlogIntroduction.astro";
-import CommunityIntroduction from "@components/index/CommunityIntroduction.astro";
-import Profile from "@components/index/Profile.astro";
+import LandingSection from "@components/index/LandingSection.astro";
+import BlogSection from "@components/index/BlogSection.astro";
+import CommunitySection from "@components/index/CommunitySection.astro";
 ---
 
 <MainLayout published={true} title="Pages - Main Page">
-  <LandingHeader />
-  <BlogIntroduction />
-  <CommunityIntroduction />
+  <LandingSection />
+  <BlogSection />
+  <CommunitySection />
 </MainLayout>

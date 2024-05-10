@@ -1,15 +1,15 @@
 ---
-import { Frontmatter, Page, Website, toPage, getPersons, ThemeColor, Resources } from "@lib/metagg";
+import { Website, Page, Frontmatter, toPage, getPersons, ThemeColor, Resources } from "@lib/meta";
 import { articleSchema, Schemas, SchemaProps, webSiteSchema } from "@lib/schema";
 
-import favicon from "src/icons/favicon.svg";
-import persons from "static/persons.json";
-import siteData from "static/site.json";
-
 import PreAPI from "@components/meta/PreAPI.astro";
-
 import Meta from "@components/meta/Meta.astro";
-import "@styles/default.styl";
+
+import favicon from "@icons/favicon.svg";
+import persons from "@static/persons.json";
+import siteData from "@static/site.json";
+
+import "@styles/global.styl";
 
 export interface Prop extends SchemaProps {
   frontmatter?: Frontmatter;

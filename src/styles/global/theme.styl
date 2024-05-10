@@ -1,0 +1,68 @@
+gradient-alpha = 10%
+
+_light = {
+  background: rgb(240, 240, 248),
+  content: black,
+  content-reversed: white,
+  link: blue,
+  link-background-hover: rgba(blue, 0.25),
+  border: black,
+  glassmorphism-filter: contrast(90%) brightness(110%),
+  glassmorphism-background: linear-gradient(45deg, rgba(255,255,255,.25), rgba(224,224,255,.25)),
+  glassmorphism-shadow: rgba(40, 32, 48, 0.75),
+}
+
+_dark = {
+  background: rgb(8, 8, 16),
+  content: white,
+  content-reversed: black,
+  link: red,
+  link-background-hover: rgba(red, 0.25),
+  border: white,
+  glassmorphism-filter: contrast(90%) brightness(90%),
+  glassmorphism-background: linear-gradient(45deg, rgba(0,0,0,.25), rgba(0,0,32,.25)),
+  glassmorphism-shadow: rgba(8, 0, 16, 0.5),
+}
+
+:root
+  --background _light.background
+  --content _light.content
+  --content-reversed _light.content-reversed
+  --link _light.link
+  --link-background-hover _light.link-background-hover
+  --border _light.border
+  --glassmorphism-filter _light.glassmorphism-filter
+  --glassmorphism-background _light.glassmorphism-background
+  --glassmorphism-shadow _light.glassmorphism-shadow
+  @media (prefers-color-scheme dark)
+    --background _dark.background
+    --content _dark.content
+    --content-reversed _dark.content-reversed
+    --link _dark.link
+    --link-background-hover _dark.link-background-hover
+    --border _dark.border
+    --glassmorphism-filter _dark.glassmorphism-filter
+    --glassmorphism-background _dark.glassmorphism-background
+    --glassmorphism-shadow _dark.glassmorphism-shadow
+
+[data-color-scheme="light"]
+  --background _light.background
+  --content _light.content
+  --content-reversed _light.content-reversed
+  --link _light.link
+  --link-background-hover _light.link-background-hover
+  --border _light.border
+  --glassmorphism-filter _light.glassmorphism-filter
+  --glassmorphism-background _light.glassmorphism-background
+  --glassmorphism-shadow _light.glassmorphism-shadow
+
+[data-color-scheme="dark"]
+  --background _dark.background
+  --content _dark.content
+  --content-reversed _dark.content-reversed
+  --link _dark.link
+  --link-background-hover _dark.link-background-hover
+  --border _dark.border
+  --glassmorphism-filter _dark.glassmorphism-filter
+  --glassmorphism-background _dark.glassmorphism-background
+  --glassmorphism-shadow _dark.glassmorphism-shadow
