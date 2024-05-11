@@ -1,5 +1,5 @@
 ---
-import LinkButtons from "@components/LinkButtons.astro";
+import LinkButtonList from "@components/LinkButtonList.astro";
 import LinkButton from "@components/LinkButton.astro";
 ---
 
@@ -10,10 +10,10 @@ import LinkButton from "@components/LinkButton.astro";
     </h1>
     <p data-sub-text>The tools to create awesome websites. And an website.</p>
   </hgroup>
-  <LinkButtons>
-    <LinkButton href="https://github.com/7rs/pages" openInNewTab>Get Started</LinkButton>
-    <LinkButton href="/explore">Explore</LinkButton>
-  </LinkButtons>
+  <LinkButtonList>
+    <LinkButton href="https://github.com/7rs/pages" icon="mdi:code" openInNewTab>Get Started</LinkButton>
+    <LinkButton href="/explore" icon="mdi:lightbulb-outline">Explore</LinkButton>
+  </LinkButtonList>
 </section>
 
 <style lang="stylus">

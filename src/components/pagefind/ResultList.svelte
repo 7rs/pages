@@ -1,17 +1,17 @@
 <script lang="ts">
-  import type { PagefindSearchFragment } from '@lib/pagefind';
+  import type { PagefindSearchFragment } from '@pagesjs/pagefind';
+  import { query, displayResults } from '@pagesjs/pagefind';
 
-  import { query, displayResults } from '@lib/pagefind';
-  import SearchResult from './SearchResult.svelte';
+  import ResultItem from './ResultItem.svelte';
 
-  export let resultList: PagefindSearchFragment[];
+  export let resultList: PagefindSearchFragment[]
 </script>
 
 {#if $displayResults}
   <div data-search-results>
     {#if resultList.length > 0}
       {#each resultList as data}
-        <SearchResult  {data} />
+        <ResultItem {data} />
       {/each}
     {:else if $displayResults}
       <p>{`${$query} を検索したけど結果は0件！おつかれ！`}</p>

@@ -29,22 +29,16 @@ const { icon, label, id, ...props } = Astro.props;
     grid-template-areas "icon label" \
                         "desc desc ";
 
-    [data-icon]
-      grid-area icon
-      font-size 1.5rem
-      @media screen and (min-width widths.large)
-        font-size 1.75rem
+  [data-icon]
+    grid-area icon
+    set-font(size: "label")
 
-    [data-card-title]
-      grid-area label
-      width 100%
-      sans(1.5rem, 1.5rem)
-      @media screen and (min-width widths.large)
-        sans(1.75rem, 1.75rem)
+  [data-card-title]
+    grid-area label
+    width 100%
+    set-font("sans", "label")
 
-    [data-catd-content]
-      grid-area desc
-      sans(1rem)
-      @media screen and (min-width widths.large)
-        sans(1.25rem)
+  [data-catd-content]
+    grid-area desc
+    set-font("sans", "normal", "auto")
 </style>

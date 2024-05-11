@@ -11,6 +11,7 @@
 
 ![Version][main-version]![Last commit][main-modified]
 ![Version][dev-version]![Last commit][dev-modified]  
+[![Astro](https://astro.badg.es/v2/built-with-astro/large.svg)](https://astro.build/)
 
 # [Pages](https://7rs.dev/)  
 
@@ -69,7 +70,6 @@
   ```  
 
 [cc0]: https://creativecommons.org/publicdomain/zero/1.0/
-[astro-badge]: https://astro.badg.es/v2/built-with-astro/large.svg
 [unsplash-badge]: https://img.shields.io/badge/Unsplash-black?style=for-the-badge&logo=unsplash
 [stackshare-badge]: https://img.shields.io/badge/stackshare-0690FA?style=for-the-badge&logo=stackshare&logoColor=white
 [license-badge]: https://img.shields.io/badge/license-black?style=for-the-badge
@@ -77,8 +77,6 @@
 ## ⚖️ License  
 
   [Pages](https://github.com/7rs/pages) is published under [CC0][cc0] except for asset files.  
-
-  [![Built with Astro][astro-badge]](https://astro.build/)
 
   [![License][license-badge]](https://github.com/7rs/pages/blob/main/LICENSE)
   [![Unsplash][unsplash-badge]](https://unsplash.com/license)

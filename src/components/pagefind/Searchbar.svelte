@@ -1,8 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
-  import type { PagefindSearchFragment } from '@lib/pagefind';
-
+  import type { PagefindSearchFragment } from '@pagesjs/pagefind';
   import {
     filters,
     initFilters,
@@ -15,10 +14,10 @@
     showFiltersIfNeed,
     getErrorMessage,
     PagefindErrors,
-  } from '@lib/pagefind';
+  } from '@pagesjs/pagefind';
 
-  import Results from './Results.svelte';
-  import Control from './Control.svelte';
+  import ResultList from './ResultList.svelte';
+  import Control from './Control.svelte' 
   import Filters from './Filters.svelte';
 
   export let pagefindPath: string
@@ -75,7 +74,7 @@
       {/await}
       <!-- Result List -->
       {#await search($query) then results}
-        <Results resultList={results} />
+        <ResultList resultList={results} />
       {:catch err}
         <p data-error-message>{getErrorMessage(PagefindErrors.FailedSearch, err)}</p>
       {/await}
@@ -95,8 +94,8 @@
       sans(1.25rem)
 
   [data-additional-box]
-    margin-top 1rem
     box-sizing border-box
+    margin-top 1rem
     width 100%
     flex(column, 1rem)
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { PagefindSearchFragment } from '@lib/pagefind';
+  import type { PagefindSearchFragment } from '@pagesjs/pagefind';
 
   export let data: PagefindSearchFragment;
   export let requireSubResults: boolean = false;

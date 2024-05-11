@@ -1,29 +1,43 @@
 ---
 import Link from "@components/colorless/Link.astro";
 
+import LabeledIcon from "@components/colorless/LabeledIcon.astro";
+
+import { Icon } from "astro-icon/components";
+
 export interface Props {
   href: string;
   openInNewTab?: boolean;
+  icon?: string;
 }
 
-const { href, openInNewTab = false, ...props } = Astro.props;
+const { href, openInNewTab = false, icon, ...props } = Astro.props;
 ---
 
-<Link href={href} openInNewTab={openInNewTab} data-link-button {...props}><slot /></Link>
+<Link href={href} openInNewTab={openInNewTab} data-link-button {...props}>
+  {
+    icon ? (
+      <LabeledIcon icon={icon}>
+        <slot />
+      </LabeledIcon>
+    ) : (
+      <slot />
+    )
+  }
+</Link>
 
 <style lang="stylus">
   @import "../styles/api.styl"
 
   [data-link-button]
-    @extend $widget-glassmorphism
-
+    @extend $hoverable-widget-glassmorphism
     display block
+    set-font("sans", "input", "auto")
 
-    padding 0.5rem
-    sans(1rem)
-    @media screen and (min-width widths.medium)
-      padding 0.75rem
-      sans(1.5rem)
-    @media screen and (min-width widths.medium)
+    padding 0.75rem
+    @media screen and (min-width widths.large)
       padding 1rem
+
+  [data-icon]
+    set-font(size: "input")
 </style>
