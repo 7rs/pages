@@ -59,9 +59,6 @@ importers:
       astro-icon:
         specifier: ^1.1.0
         version: 1.1.0
-      astro-pagefind:
-        specifier: ^1.5.0
-        version: 1.5.0(astro@4.8.2(@types/node@20.12.11)(stylus@0.63.0)(typescript@5.4.5))
       astro-purgecss:
         specifier: ^4.1.1
         version: 4.1.1(astro@4.8.2(@types/node@20.12.11)(stylus@0.63.0)(typescript@5.4.5))(purgecss@6.0.0)
@@ -1697,9 +1694,6 @@ packages:
     cpu: [x64]
     os: [darwin]
 
-  '@pagefind/default-ui@1.1.0':
-    resolution: {integrity: sha512-+XiAJAK++C64nQcD7s3Prdmd5S92lT05fwjOxm0L1jj80jbL+tmvcqkkFnPpoqhnicIPgcAX/Y5W0HRZnBt35w==}
-
   '@pagefind/linux-arm64@1.1.0':
     resolution: {integrity: sha512-8zjYCa2BtNEL7KnXtysPtBELCyv5DSQ4yHeK/nsEq6w4ToAMTBl0K06khqxdSGgjMSwwrxvLzq3so0LC5Q14dA==}
     cpu: [arm64]
@@ -1721,9 +1715,6 @@ packages:
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
-
-  '@polka/url@1.0.0-next.25':
-    resolution: {integrity: sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==}
 
   '@puppeteer/browsers@2.2.3':
     resolution: {integrity: sha512-bJ0UBsk0ESOs6RFcLXOt99a3yTDcOKlzfjad+rhFwdaG1Lu/Wzq58GHYCDTlZ9z6mldf4g+NTb+TXEfe0PpnsQ==}
@@ -2455,11 +2446,6 @@ packages:
 
   astro-icon@1.1.0:
     resolution: {integrity: sha512-Nksc09p7UuHeMcPNS9w1pKqRw3+wEmmh0A3FJW+FNXvqaeWI4RLvD1MCWErpY3Z5Cvad317rvLdik/Hg8GEk8Q==}
-
-  astro-pagefind@1.5.0:
-    resolution: {integrity: sha512-CN7Afe9qW640U1qliCQMXN259Dl6VPUnl8FneLfKE7STV4HLiif4PbNZejylC6yXYyP6uyNVDHNOfJfBBW5h6A==}
-    peerDependencies:
-      astro: ^2.0.4 || ^3.0.0 || ^4.0.0
 
   astro-purgecss@4.1.1:
     resolution: {integrity: sha512-Lrtd+8iwznjQUBW1aqgdEYyc5xSgRa+Ir97EMsX17WvI6aVXGLoEWsVxQD9qtcGfLU5Qoq1hQOUKzVbCJSHcAg==}
@@ -5504,10 +5490,6 @@ packages:
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
 
-  sirv@2.0.4:
-    resolution: {integrity: sha512-94Bdh3cC2PKrbgSOUqTiGPWVZeSiXfKOVZNJniWoqrWrRkB1CJzBU3NEbiTsPcYy1lDsANA/THzS+9WBiy5nfQ==}
-    engines: {node: '>= 10'}
-
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
 
@@ -5866,10 +5848,6 @@ packages:
   toidentifier@1.0.1:
     resolution: {integrity: sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==}
     engines: {node: '>=0.6'}
-
-  totalist@3.0.1:
-    resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
-    engines: {node: '>=6'}
 
   tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
@@ -8018,8 +7996,6 @@ snapshots:
   '@pagefind/darwin-x64@1.1.0':
     optional: true
 
-  '@pagefind/default-ui@1.1.0': {}
-
   '@pagefind/linux-arm64@1.1.0':
     optional: true
 
@@ -8033,8 +8009,6 @@ snapshots:
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
-
-  '@polka/url@1.0.0-next.25': {}
 
   '@puppeteer/browsers@2.2.3':
     dependencies:
@@ -9214,13 +9188,6 @@ snapshots:
       '@iconify/utils': 2.1.23
     transitivePeerDependencies:
       - supports-color
-
-  astro-pagefind@1.5.0(astro@4.8.2(@types/node@20.12.11)(stylus@0.63.0)(typescript@5.4.5)):
-    dependencies:
-      '@pagefind/default-ui': 1.1.0
-      astro: 4.8.2(@types/node@20.12.11)(stylus@0.63.0)(typescript@5.4.5)
-      pagefind: 1.1.0
-      sirv: 2.0.4
 
   astro-purgecss@4.1.1(astro@4.8.2(@types/node@20.12.11)(stylus@0.63.0)(typescript@5.4.5))(purgecss@6.0.0):
     dependencies:
@@ -13077,12 +13044,6 @@ snapshots:
     dependencies:
       is-arrayish: 0.3.2
 
-  sirv@2.0.4:
-    dependencies:
-      '@polka/url': 1.0.0-next.25
-      mrmime: 2.0.0
-      totalist: 3.0.1
-
   sisteransi@1.0.5: {}
 
   sitemap@7.1.1:
@@ -13525,8 +13486,6 @@ snapshots:
   tocbot@4.27.20: {}
 
   toidentifier@1.0.1: {}
-
-  totalist@3.0.1: {}
 
   tr46@0.0.3: {}
 

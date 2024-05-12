@@ -22,7 +22,7 @@ const { filterList = [], title = "filter", prefix = "", key, href = "blog", ...p
         href={`/${href}?${qs.stringify({ [key]: [filterItem] })}`}
         {...props}
       >
-        {prefix}<span data-pagefind-filter={key} {...props}>{filterItem}</span>
+        {prefix}<span data-pagefind-weight="6" data-pagefind-filter={key} {...props}>{filterItem}</span>
       </Link>
     ))
   }

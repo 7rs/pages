@@ -51,6 +51,7 @@
 
     input:checked + label
       color #337ab7
+      text-decoration solid underline #337ab7 2px
 
     label
       set-font("sans", "input", "auto")

@@ -4,7 +4,7 @@
 
   import ResultItem from './ResultItem.svelte';
 
-  export let resultList: PagefindSearchFragment[]
+  export let resultList: PagefindSearchFragment[];
 </script>
 
 {#if $displayResults}
@@ -14,7 +14,7 @@
         <ResultItem {data} />
       {/each}
     {:else if $displayResults}
-      <p>{`${$query} を検索したけど結果は0件！おつかれ！`}</p>
+      <p>{`No article found: ${$query}`}</p>
     {/if}
   </div>
 {/if}
@@ -32,7 +32,5 @@
       padding 1.5rem
 
     p
-      sans(1.125rem)
-      @media screen and (min-width widths.medium)
-        sans(1.5rem)
+      set-font("sans", "input", "auto")
 </style>

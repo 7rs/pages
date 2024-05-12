@@ -3,7 +3,6 @@ import path from 'node:path';
 
 import svelte from '@astrojs/svelte';
 import mdx from '@astrojs/mdx';
-import pagefind from 'astro-pagefind';
 import icon from 'astro-icon';
 
 import robotsTxt from 'astro-robots-txt';
@@ -31,17 +30,7 @@ export default defineConfig({
     },
   },
   site: 'https://7rs.dev',
-  integrations: [
-    svelte({ emitCss: false }),
-    mdx(),
-    pagefind(),
-    icon({ iconDir: 'src/icons' }),
-    // Metadata
-    robotsTxt(),
-    sitemap(),
-    // Compress
-    purgecss(),
-  ],
+  integrations: [svelte({ emitCss: false }), mdx(), icon({ iconDir: 'src/icons' }), robotsTxt(), sitemap(), purgecss()],
   // https://vitejs.dev/config/
   vite: {
     resolve: {
