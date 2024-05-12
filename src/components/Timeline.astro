@@ -1,33 +1,42 @@
 ---
-const props = Astro.props;
+export interface Props {
+  label: string;
+}
+
+const { label, ...props } = Astro.props;
 ---
 
-<ul data-timeline {...props}>
-  <slot />
-</ul>
+<li data-timeline {...props}>
+  <h3 data-timeline-label>{label}</h4>
+  <p data-timeline-content><slot /></p>
+</li>
 
 <style lang="stylus">
   @import "../styles/api.styl"
 
-  :root
-    --point-size 1.25rem
-    --line-width 4px
-    --timeline-width 3rem
-    @media screen and (min-width widths.medium)
-      --timeline-width 4rem
-
-  ul
-    margin 5rem 0
-    padding-left var(--timeline-width)
-    list-style none
+  [data-timeline-label]
     position relative
-    flex(column, 1rem)
+    set-font("sans", "label", 3rem)
+    text-shadow 0 0 8px white
 
     &::before
       position absolute
-      height 100%
-      width var(--line-width)
       content ""
-      left calc(var(--timeline-width) / 2 - var(--line-width) / 2)
-      background linear-gradient(180deg, black 0%, white 100%);
+      top 50%
+      right calc(100% - var(--point-size) / 2 + var(--timeline-width) / 2)
+      translate 0 -50%
+      width var(--point-size)
+      height var(--point-size)
+      background gray
+      border-radius 100%
+
+  [data-timeline-content]
+    @extend $widget-glassmorphism
+    set-font("sans", "normal", "auto")
+    padding 1rem
+
+    a
+      color var(--link)
+      &:hover
+        text-decoration underline
 </style>

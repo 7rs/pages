@@ -4,7 +4,6 @@
 
   import Icon from '@iconify/svelte';
 
-
   import { activeColorScheme } from './state.ts';
   import { initColorScheme, advanceColorScheme } from './main.ts';
   import { getColorSchemeIcon } from "./icon.ts"

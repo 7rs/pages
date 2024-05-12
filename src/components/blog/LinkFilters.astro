@@ -18,12 +18,11 @@ const { filterList = [], title = "filter", prefix = "", key, href = "blog", ...p
   {
     filterList.map((filterItem) => (
       <Link
-        data-pagefind-filter={key}
         title={`${title}: ${filterItem}`}
         href={`/${href}?${qs.stringify({ [key]: [filterItem] })}`}
         {...props}
       >
-        {prefix + filterItem}
+        {prefix}<span data-pagefind-weight="6" data-pagefind-filter={key} {...props}>{filterItem}</span>
       </Link>
     ))
   }

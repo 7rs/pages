@@ -5,7 +5,7 @@
 
   import Icon from '@iconify/svelte';
 
-  import { query, displayFilters, displayDestroyButton, placeholderTextIndex } from '@lib/pagefind';
+  import { query, displayFilters, displayDestroyButton, placeholderTextIndex } from '@pagesjs/pagefind';
 
   export let destroyAction;
   export let placeholders = ['Search by Keyword', 'Powered by Pagefind', 'Written in Svelte'];
@@ -30,15 +30,15 @@
 
 <div data-pagefind-control>
   <button
-    data-filter-button
+    data-pagefind-control-button
     on:click={() => {
       $displayFilters = $displayFilters ? false : true;
     }}><Icon icon="mdi:hashtag" /></button
   >
-  <input bind:value={$query} placeholder={placeholders[$placeholderTextIndex]} />
+  <input data-pagefind-input bind:value={$query} placeholder={placeholders[$placeholderTextIndex]} />
   {#if $displayDestroyButton}
     <button
-      data-destroy-button
+      data-pagefind-control-button
       in:slide={{ duration: 100, easing: linear, axis: 'x' }}
       out:slide={{ duration: 100, easing: linear, axis: 'x' }}
       on:click={destroyAction}><Icon icon="material-symbols:close" /></button
@@ -49,44 +49,32 @@
 <style lang="stylus">
   @import "../../styles/api.styl"
 
-  div[data-pagefind-control]
+  [data-pagefind-control]
     @extend $widget-glassmorphism
-    padding 0 1rem
-    border-radius 1rem
-    flex(0.25rem)
+
+    padding 0.75rem
+    flex(_gap: 0.5rem)
     @media screen and (min-width widths.medium)
-      flex(0.5rem)
+      padding 1rem
+      flex(_gap: 1rem)
 
-    input
-      width 100% 
-      background none
-      border none
-      outline none
-      sans(1.5rem)
-      padding 1rem 0.5rem
-      @media screen and (min-width widths.medium)
-        sans(1.5rem)
-        padding 1rem
+  [data-pagefind-input], [data-pagefind-control-button]
+    background none
+    border none
 
-    button
-      background none
-      border none
-      height 100%
-      margin auto
+  [data-pagefind-input]
+    width 100% 
+    outline none
+    set-font("sans", "input")
 
-      :global(svg)
-        color var(--content)
+  [data-pagefind-control-button]
+    zoom()
 
-        width auto
-        height 1.5rem
-        @media screen and (min-width widths.medium)
-          height 2rem
+    :global(svg)
+      color var(--content)
+      set-font(size: "input", inline: false)
 
-        &:hover
-          transition all 100ms ease-out
-          transform scale(125%)
-
-        &:active
-          transition all 100ms ease-out
-          transform rotate(1.5turn)
+      &:active
+        transition all 100ms ease-out
+        transform rotate(1.5turn)
 </style>

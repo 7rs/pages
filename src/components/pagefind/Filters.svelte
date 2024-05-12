@@ -2,8 +2,8 @@
   import { slide } from 'svelte/transition';
   import { cubicIn } from 'svelte/easing';
 
-  import type { FilterObject } from '@lib/pagefind';
-  import { displayFilters, filters, toggleTag } from '@lib/pagefind';
+  import type { FilterObject } from '@pagesjs/pagefind';
+  import { displayFilters, filters, toggleTag } from '@pagesjs/pagefind';
 
   export let filterObject: FilterObject;
 
@@ -11,10 +11,10 @@
 </script>
 
 {#if $displayFilters}
-  <fieldset in:slide={animation} out:slide={animation} data-filter>
+  <fieldset in:slide={animation} out:slide={animation} data-filter-list>
     {#each Object.keys(filterObject.tag || []) as item}
       <!-- Tag Item -->
-      <div data-filter-button>
+      <div data-filter-item>
         <input
           type="checkbox"
           id={item}
@@ -22,7 +22,7 @@
           checked={$filters.tag.includes(item)}
           on:click={() => toggleTag(item)}
         />
-        <label for={item}>{filterObject.tag[item]} {item}</label>
+        <label for={item}>{item} <span data-tag-count>{filterObject.tag[item]}</span></label>
       </div>
       <!-- Tag Item -->
     {/each}
@@ -32,31 +32,33 @@
 <style lang="stylus">
   @import "../../styles/api.styl"
 
-  fieldset[data-filter]
+  [data-filter-list]
     @extend $widget-glassmorphism
-    flex()
+    flex(_gap: 1rem)
     flex-wrap wrap
-    border none
-    border-radius 1rem
 
-    div[data-filter-button]
-      padding 0 0.5rem
-      flex(_gap: 0.5rem)
-      @media screen and (min-width widths.medium)
-        padding 0 1rem
-        flex(_gap: 1rem)
+    padding 0.75rem
+    @media screen and (min-width widths.medium)
+      padding 1rem
 
-      input[type="checkbox"]
-        margin auto
-        transform scale(1.5)
-        @media screen and (min-width widths.medium)
-          transform scale(1.75)
+  [data-filter-item]
+    flex(_gap: 0.5rem)
+    @media screen and (min-width widths.medium)
+      flex(_gap: 1rem)
 
-      label
-        sans(1.125rem)
-        @media screen and (min-width widths.medium)
-          sans(1.25rem)
+    input
+      display none
 
-        &:hover
-          color var(--link)
+    input:checked + label
+      color #337ab7
+      text-decoration solid underline #337ab7 2px
+
+    label
+      set-font("sans", "input", "auto")
+
+      &:hover
+        color var(--link)
+
+  [data-tag-count]
+    color gray
 </style>

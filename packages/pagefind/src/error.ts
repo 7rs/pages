@@ -1,5 +1,5 @@
 export const PagefindErrors = {
-  FailedImport: "Couldn't import pagefind script",
+  FailedImport: "Pagefind script couldn't be imported.",
   FailedSearch: 'Searching is failed.',
 } as const;
 

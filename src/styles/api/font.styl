@@ -75,3 +75,34 @@ mono(size = default-font-size, height = null)
   font-size size
   set-family("mono")
   auto-line-height(size, height)
+
+set-font(family = null, size = null, line-height = null, inline = true)
+  text-size = 1rem
+  if size == "normal"
+    text-size = var(--normal-text-size)
+  else if size == "label"
+    text-size = var(--label-text-size)
+  else if size == "input"
+    text-size = var(--input-text-size)
+  else if size == "heading"
+    text-size = var(--heading-text-size)
+  else if size == "heading-sub"
+    text-size = var(--heading-sub-text-size)
+
+  if inline
+    if line-height == "auto"
+      if size == null
+        auto-line-height(text-size)
+      else
+        --text-size text-size
+        line-height calc(var(--text-size) * var(--golden-ratio))
+    else if line-height != null
+      line-height line-height
+
+    font-size text-size
+
+    if set-family != null
+      set-family(family)
+  else
+    width text-size
+    height text-size

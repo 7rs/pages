@@ -23,16 +23,16 @@ const { post, url, ...props } = Astro.props;
   <div data-post-tags>
     {post.tags?.map((tag) => <Link href={`/blog?${qs.stringify({ tag: [tag] })}`}>#{tag}</Link>)}
   </div>
-  <div data-post-details>
-    <div>
+  <div data-post-detail-list>
+    <div data-post-detail-item>
       <Icon name="material-symbols:upload-sharp" />
       <Datetime datetime={post.published_at} title="Published at" />
     </div>
-    <div>
+    <div data-post-detail-item>
       <Icon name="material-symbols:update" />
       <Datetime datetime={post.updated_at} title="Updated at" />
     </div>
-    <div>
+    <div data-post-detail-item>
       <Icon name="mdi:language" />
       <p data-post-language>{getLangaugeLabel(post.lang)}</p>
     </div>
@@ -43,45 +43,43 @@ const { post, url, ...props } = Astro.props;
   @import "../../styles/api.styl"
 
   [data-post]
-    @extend $widget-glassmorphism
+    @extend $hoverable-widget-glassmorphism
     padding 1rem
     flex(column)
 
-    [data-link]:hover
+  [data-post-title]
+    set-font("sans", "label", "auto")
+    &:hover
       text-decoration underline
 
-    [data-post-title]
-      sans(2rem)
+  [data-post-authors], [data-post-tags], [data-datetime], [data-post-language], [data-post-detail-item]
+    set-font("sans", "normal", "auto")
 
-    [data-post-authors], [data-post-tags], [data-datetime], [data-post-language]
-      sans(1.25rem)
+  [data-post-authors], [data-post-tags]
+    flex(_gap: 0.5rem)
 
-    [data-post-authors], [data-post-tags]
-      flex(_gap: 0.5rem)
+  [data-post-authors] > [data-link]:hover
+    color rgb(160, 0, 0)
 
-    [data-post-details]
-      padding-top 0.5rem
-      flex()
-      justify-content space-around
+  [data-post-tags] > [data-link]:hover
+    color rgb(51, 122, 183)
 
-    /* Hovered colors */
+  [data-post-detail-list]
+    flex(column, justify-content: flex-start)
+    @media screen and (min-width widths.medium)
+      flex(justify-content: space-around)
 
-    [data-post-authors] > [data-link]:hover
-      color rgb(160, 0, 0)
+  [data-post-detail-item]
+    align-items center
+    flex(_gap: 0.5rem, justify-content: flex-start)
+    @media screen and (min-width widths.medium)
+      flex(_gap: 0.5rem, justify-content: center)
 
-    [data-post-tags] > [data-link]:hover
-      color rgb(51, 122, 183)
+    &:hover
+      color rgb(255, 136, 0)
 
-    [data-post-details] > div
-      flex(_gap: 0.5rem)
-      justify-content center
-
-      sans(1.25rem, 1.5rem)
-      [data-icon]
-        display block
-        height 100%
-        font-size 1.5rem
-
-      &:hover
-        color rgb(255, 136, 0)
+  [data-icon]
+    display block
+    height 100%
+    set-font(size: "normal", line-height: "auto")
 </style>

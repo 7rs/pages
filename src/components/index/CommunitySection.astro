@@ -1,48 +1,34 @@
 ---
-import LinkIcon from "@components/colorless/LinkIcon.astro";
-
 import SparkleText from "@components/SparkleText.astro";
-
+import TimelineList from "@components/TimelineList.astro";
 import Timeline from "@components/Timeline.astro";
-import TimelineItem from "@components/TimelineItem.astro";
 import Link from "@components/colorless/Link.astro";
+import LinkButton from "@components/LinkButton.astro";
+import LinkButtonList from "@components/LinkButtonList.astro";
 ---
 
 <section data-community-section>
-  <SparkleText title="Communities">The Communities for engineers or gamers</SparkleText>
-  <Timeline>
-    <TimelineItem label="2017">
-      The community was radical and has no topic.
-      <Link href="https://line.me/" openInNewTab>LINE</Link> was used for chat.
-    </TimelineItem>
-    <TimelineItem label="2018">
-      New group was created for testing bots<br />
-      and they were divided into group for general chat and one for development.
-    </TimelineItem>
-    <TimelineItem label="2020">
-      The general group was no longer used and we were migrated to <Link href="https://telegram.org/" openInNewTab>
-        Telegram
-      </Link> and <Link href="https://discord.com/" openInNewTab>Discord</Link> gradually.
-    </TimelineItem>
-    <TimelineItem label="2022">
-      Telegram group has been removed because Telegram isn't for beginners. <br />
-      And admins were lefted from LINE group.
-    </TimelineItem>
-    <TimelineItem label="2024">
-      The community name was changed because the previous name was out of compliance. The name 74 comes from "nanashi
-      (名無し)" which means without a name in Japanese. <br />
-      Most members became adults and members are the fewest ever.
-    </TimelineItem>
-  </Timeline>
-  <div>
-    <LinkIcon icon="simple-icons:discord" href="https://7rs.dev/74gg" title="Join Discord server" openInNewTab />
-    <LinkIcon
-      icon="simple-icons:github"
-      href="https://github.com/74gg"
-      title="Visit GitHub organization"
-      openInNewTab
-    />
-  </div>
+  <SparkleText title="Communities">Community for engineers and gamers</SparkleText>
+  <TimelineList>
+    <Timeline label="2017">
+      Everything started from here.
+      <Link href="https://line.me/" openInNewTab>LINE</Link> was used.
+    </Timeline>
+    <Timeline label="2018"> We were only chatting, but we began to work on BOT development. </Timeline>
+    <Timeline label="2020">
+      The community was migrated to <Link href="https://telegram.org/" openInNewTab>Telegram</Link>. We were worked on
+      reverse engineering, etc.
+    </Timeline>
+    <Timeline label="2022">
+      The community was migrated to <Link href="https://discord.com/" openInNewTab>Discord</Link>. We stopped developing
+      and only played tv games.
+    </Timeline>
+    <Timeline label="2024"> The community became more open and got a new name. The name is '74'. </Timeline>
+  </TimelineList>
+  <LinkButtonList>
+    <LinkButton href="https://7rs.dev/74gg" icon="simple-icons:discord" openInNewTab>Join</LinkButton>
+    <LinkButton href="https://github.com/74gg" icon="simple-icons:github" openInNewTab>View</LinkButton>
+  </LinkButtonList>
 </section>
 
 <style lang="stylus">
@@ -52,26 +38,8 @@ import Link from "@components/colorless/Link.astro";
     margin 5rem 0
 
     h2, p
-      background-image repeating-linear-gradient(135deg, rgba(white, 1), rgba(192, 192, 192, 1) 2%, rgba(white, 1) 5%);
-
-  div
-    flex()
-    justify-content space-around
-    @media screen and (min-width widths.medium)
-      flex(_gap: 10rem)
-      justify-content center
-
-    [data-icon]
-      font-size 2.5rem
-      @media screen and (min-width widths.medium)
-        font-size 5rem
-      filter drop-shadow(0 0 1rem white)
-
-      &:hover
-        transition all 100ms ease-out
-        transform scale(125%)
-        &[data-icon="simple-icons:discord"]
-          color #5865F2
-        &[data-icon="simple-icons:github"]
-          color var(--content-reversed)
+      background-image repeating-linear-gradient(135deg,
+        rgba(white, 1),
+        rgba(192, 192, 192, 1) 2%,
+        rgba(white, 1) 5%);
 </style>

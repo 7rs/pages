@@ -1,8 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
-  import type { PagefindSearchFragment } from '@lib/pagefind';
-
+  import type { PagefindSearchFragment } from '@pagesjs/pagefind';
   import {
     filters,
     initFilters,
@@ -15,13 +14,15 @@
     showFiltersIfNeed,
     getErrorMessage,
     PagefindErrors,
-  } from '@lib/pagefind';
+  } from '@pagesjs/pagefind';
 
-  import Results from './Results.svelte';
+  import ResultList from './ResultList.svelte';
   import Control from './Control.svelte';
   import Filters from './Filters.svelte';
+  import Error from './Error.svelte';
 
-  export let pagefindPath: string
+  export let pagefindPath: string;
+  export let baseUrl: string = '/';
 
   onMount(() => {
     applyFilters();
@@ -30,6 +31,7 @@
 
   let pagefind = (async () => {
     const _pagefind = await import(/* @vite-ignore */ pagefindPath);
+    await _pagefind.options({ baseUrl: baseUrl, excerptLength: 50 });
     await _pagefind.init();
 
     return _pagefind;
@@ -75,12 +77,12 @@
       {/await}
       <!-- Result List -->
       {#await search($query) then results}
-        <Results resultList={results} />
+        <ResultList resultList={results} />
       {:catch err}
-        <p data-error-message>{getErrorMessage(PagefindErrors.FailedSearch, err)}</p>
+        <Error errorType={PagefindErrors.FailedSearch} error={err} />
       {/await}
-    {:catch}
-      <p data-error-message>{errorMessage}</p>
+    {:catch err}
+      <Error errorType={PagefindErrors.FailedImport} error={err} />
     {/await}
   </section>
 </article>
@@ -88,15 +90,9 @@
 <style lang="stylus">
   @import "../../styles/api.styl"
 
-  [data-error-message]
-    @extend $widget-glassmorphism
-    sans(1.125rem)
-    @media screen and (min-width widths.medium)
-      sans(1.25rem)
-
   [data-additional-box]
-    margin-top 1rem
     box-sizing border-box
+    margin-top 1rem
     width 100%
     flex(column, 1rem)
 </style>

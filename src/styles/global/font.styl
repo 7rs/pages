@@ -1,0 +1,30 @@
+@import "../api.styl"
+
+:root
+  --golden-ratio ((1 + 5 ** 0.5) / 2)
+
+  --normal-text-size 1rem
+  @media screen and (min-width widths.large)
+    --normal-text-size 1.25rem
+
+  --label-text-size 1.5rem
+  @media screen and (min-width widths.large)
+    --label-text-size 1.75rem
+
+  --input-text-size 1rem
+  @media screen and (min-width widths.medium)
+    --input-text-size 1.25rem
+  @media screen and (min-width widths.large)
+    --input-text-size 1.5rem
+
+  --heading-text-size 2.25rem
+  @media screen and (min-width widths.medium)
+    --heading-text-size 3.5rem
+  @media screen and (min-width widths.large)
+    --heading-text-size 4rem
+
+  --heading-sub-text-size 1.25rem
+  @media screen and (min-width widths.medium)
+    --heading-sub-text-size 1.5rem
+  @media screen and (min-width widths.large)
+    --heading-sub-text-size 2rem

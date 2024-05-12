@@ -22,12 +22,22 @@ glassmorphism(border = true, radius = 16px, blur = 16px, background = true)
 $widget-glassmorphism
   glassmorphism(border: true, radius: 16px, blur: 16px)
 
+$hoverable-widget-glassmorphism
+  @extends $widget-glassmorphism
+  transition all 300ms linear
+  &:hover
+    transition all 300ms linear
+    border-color white
+    color var(--content)
+    backdrop-filter blur(4px) grayscale(100%)
+
 $layout-glassmorphism
   glassmorphism(border: false, radius: null, blur: 24px)
 
 $neontext-static
   background-clip text
   color transparent
+
 neontext(text-color, shadow-color, shadow-strength = 8px)
   @extend $neontext-static
   background-image text-color

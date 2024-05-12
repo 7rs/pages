@@ -1,20 +1,24 @@
 {
     "type": "module",
     "name": "root",
-    "version": "0.4.2",
-    "description": "A tool to create awesome websites.",
-    "keywords": ["pages", "pagesjs", "7rs.dev"],
+    "version": "0.4.3",
+    "description": "The tools to create awesome websites.",
+    "keywords": [
+        "pages",
+        "pagesjs",
+        "7rs.dev"
+    ],
     "homepage": "https://7rs.dev/",
     "bugs": "https://github.com/7rs/pages/issues",
     "license": "CC0-1.0",
     "repository": "github:7rs/pages",
     "scripts": {
         "dev": "astro dev",
-        "build": "astro build",
+        "build": "astro build && pagefind --site dist --force-language en",
         "preview": "astro preview",
         "sync": "astro sync",
         "check": "astro check",
-        "search": "pnpm pagefind --site dist",
+        "search": "pagefind --site dist",
         "benchmark": "lighthouse http://localhost:2999/ --quiet --view --emulated-form-factor mobile --output-path mobile-lighthouse.html"
     },
     "dependencies": {
@@ -30,11 +34,11 @@
         "@iconify-json/simple-icons": "^1.1.101",
         "@iconify/svelte": "^4.0.2",
         "@pagesjs/cli": "workspace:^",
+        "@pagesjs/pagefind": "workspace:^",
         "@pagesjs/ui": "workspace:^",
         "@webcomponents/template-shadowroot": "^0.2.1",
         "astro": "^4.8.2",
         "astro-icon": "^1.1.0",
-        "astro-pagefind": "^1.5.0",
         "astro-purgecss": "^4.1.1",
         "astro-robots-txt": "^1.0.0",
         "autoprefixer": "^10.4.19",
@@ -63,5 +67,7 @@
         "pnpm": ">=8"
     },
     "private": true,
-    "workspaces": ["packages/*"]
+    "workspaces": [
+        "packages/*"
+    ]
 }
