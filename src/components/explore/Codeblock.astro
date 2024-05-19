@@ -1,0 +1,47 @@
+---
+import { Code } from "astro:components";
+
+import type {
+  BuiltinLanguage,
+  LanguageRegistration,
+  SpecialLanguage,
+  ThemeRegistration,
+  ThemeRegistrationRaw,
+} from "shiki";
+
+export interface Props {
+  label?: string;
+  code: string | string[];
+  lang?: BuiltinLanguage | LanguageRegistration | SpecialLanguage;
+  theme?: ThemeRegistration | ThemeRegistrationRaw;
+}
+
+const { label,code, lang = "sh", theme = "dracula", ...props } = Astro.props;
+---
+
+<article>
+  {label && <p>{label}</p>}
+  {
+    Array.isArray(code) ? (
+      <div>
+        {code.map((line) => (
+          <Code code={line} lang={lang} theme={theme} />
+        ))}
+      </div>
+    ) : (
+      <Code code={code} lang={lang} theme={theme} />
+    )
+  }
+</article>
+
+<style lang="stylus">
+  @import "../../styles/api.styl"
+
+  pre
+    padding 1rem
+    border-radius 1rem
+    set-font("sans", 1.25rem, "auto")
+
+  div
+    flex(column, 0.5rem)
+</style>

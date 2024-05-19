@@ -80,7 +80,7 @@ if (darkBackground != null) {
   }}
 >
   <Header />
-  <main {...props}>
+  <main data-main-layout {...props}>
     <slot />
   </main>
   <Footer />
@@ -116,23 +116,23 @@ if (darkBackground != null) {
     flex(column)
     scrollbar(5px)
 
-    main
-      z-index 0
-      position relative
-      flex-grow 1
-      min-height 100%
-      responsive-padding()
-      padding-bottom 3rem
-      flex(column, 10rem)
+  main
+    z-index 0
+    position relative
+    flex-grow 1
+    min-height 100%
+    responsive-padding()
+    padding-bottom 3rem
+    flex(column, 10rem)
 
-      &::before
-        z-index -1002
-        position fixed
-        top 0
-        left 0
-        width 100%
-        height 100vh
-        content ""
-        filter var(--background-filter)
-        background var(--background-image) center/cover no-repeat fixed, var(--background)
+    &::before
+      z-index -1002
+      position fixed
+      top 0
+      left 0
+      width 100%
+      height 100vh
+      content ""
+      filter var(--background-filter)
+      background var(--background-image) center/cover no-repeat fixed, var(--background)
 </style>

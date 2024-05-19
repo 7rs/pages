@@ -88,6 +88,8 @@ set-font(family = null, size = null, line-height = null, inline = true)
     text-size = var(--heading-text-size)
   else if size == "heading-sub"
     text-size = var(--heading-sub-text-size)
+  else if size != null
+    text-size = size
 
   if inline
     if line-height == "auto"

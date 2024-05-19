@@ -24,6 +24,50 @@ widths = {
   largest: 1200px,
 }
 
+margins(all-or-y-or-top, x-or-right = null, bottom = null, left = null)
+  if x-or-right == null
+    margin-top all-or-y-or-top
+    margin-right all-or-y-or-top
+    margin-bottom all-or-y-or-top
+    margin-left all-or-y-or-top
+  else if bottom == null
+    margin-top all-or-y-or-top
+    margin-bottom all-or-y-or-top
+    margin-right x-or-right
+    margin-left x-or-right
+  else if left == null
+    margin-top all-or-y-or-top
+    margin-right x-or-right
+    margin-left x-or-right
+    margin-bottom bottom
+  else
+    margin-top all-or-y-or-top
+    margin-right x-or-right
+    margin-bottom bottom
+    margin-left left
+
+paddings(all-or-y-or-top, x-or-right = null, bottom = null, left = null)
+  if x-or-right == null
+    padding-top all-or-y-or-top
+    padding-right all-or-y-or-top
+    padding-bottom all-or-y-or-top
+    padding-left all-or-y-or-top
+  else if bottom == null
+    padding-top all-or-y-or-top
+    padding-bottom all-or-y-or-top
+    padding-right x-or-right
+    padding-left x-or-right
+  else if left == null
+    padding-top all-or-y-or-top
+    padding-right x-or-right
+    padding-left x-or-right
+    padding-bottom bottom
+  else
+    padding-top all-or-y-or-top
+    padding-right x-or-right
+    padding-bottom bottom
+    padding-left left
+
 flex(direction = row, _gap = null, justify-content = null)
   display flex
   flex-direction direction

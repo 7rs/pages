@@ -1,0 +1,57 @@
+---
+import Codeblock from "@components/explore/Codeblock.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<section data-main-section>
+  <hgroup>
+    <h1>What is Pages?</h1>
+    <p>Pages is something for making website.</p>
+  </hgroup>
+
+  <article data-for-anything>
+    <p>Also, available for use as reference, for copying, for modification.</p>
+    <div>
+      <Icon name="mdi:lightbulb-on-outline" />
+      <Icon name="mdi:content-copy" />
+      <Icon name="mdi:tools" />
+    </div>
+  </article>
+
+  <article data-scope>
+    <p>Available in parts or as a whole.</p>
+    <Codeblock label="As a whole" code="git clone --depth 0 git@github.com:7rs/pages.git" />
+    <Codeblock
+      label="As a part"
+      code={["pnpm install @pagesjs/ui", "pnpm install @pagesjs/pagefind", "pnpm install @pagesjs/cli"]}
+    />
+  </article>
+
+  <article data-permission>
+    <p>Can't monopolize Pages, but Pages is FLOSS. Available almost as the public domain.</p>
+    <div>
+      <Icon name="mdi:share-variant" />
+      <Icon name="mdi:search" />
+      <Icon name="mdi:code" />
+      <Icon name="mdi:lock-outline" />
+      <Icon name="mdi:language" />
+      <Icon name="mdi:package-variant-closed" />
+      <Icon name="mdi:comment-outline" />
+      <Icon name="mdi:theme-light-dark" />
+    </div>
+    <div>
+      <Icon name="simple-icons:astro" />
+      <Icon name="simple-icons:svelte" />
+      <Icon name="simple-icons:typescript" />
+      <Icon name="simple-icons:stylus" />
+      <Icon name="simple-icons:postcss" />
+      <Icon name="simple-icons:html5" />
+      <Icon name="simple-icons:nodedotjs" />
+      <Icon name="simple-icons:javascript" />
+      <Icon name="simple-icons:markdown" />
+      <Icon name="simple-icons:cloudflare" />
+      <Icon name="simple-icons:github" />
+      <Icon name="simple-icons:visualstudiocode" />
+    </div>
+  </article>
+</section>

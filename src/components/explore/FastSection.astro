@@ -1,0 +1,65 @@
+<section data-fast-section>
+  <hgroup data-section-header>
+    <h2>Why is Fast?</h2>
+    <p>Because optimized and use faster frameworks.</p>
+  </hgroup>
+
+  <article data-astro-power>
+    <h3>Astro</h3>
+    <p>
+      Astro runs JS when build and output minimized JS. Also, all code is compressed by PurgeCSS and Vite's compression
+      tools.
+    </p>
+    <p>Reduced: 100KB</p>
+  </article>
+
+  <article data-svelte-power>
+    <h3>Svelte</h3>
+    <p>
+      Svelte doesn't use virtual DOM. And bundle size is lower than 3kb. <br />
+      In addition, Astro Island Architecture runs optimized interactive components with the best timing.
+    </p>
+    <p>Bundle Size Total: 10KB</p>
+  </article>
+
+  <article data-cloudflare-power>
+    <h3>Cloudflare</h3>
+    <p>
+      Cloudflare caches data on servers located around the world to provide faster response times. And optimize JS
+      Loading with Rocker Loader.
+    </p>
+    <p>Response: 50ms</p>
+  </article>
+
+  <article data-pages-power>
+    <h3>Pages</h3>
+    <p>
+      Pages is focused on minimize size of asset files. <br />
+      Iconify is used for icons, images are converted to MozJPEG and AVIF by sharp and compressed and, Fonts are minimize
+      loading resources and are self-hosted by Cloudflare Fonts. <br />
+      Also all resources are preloaded.
+    </p>
+    <p>File Size Total: 200KB</p>
+  </article>
+</section>
+
+<style lang="stylus">
+  [data-fast-section]
+    display grid
+    grid-template-areas "header header" \
+                        "astro svelte" \
+                        "cloudflare pages ";
+
+  [data-section-header]
+    grid-area header
+    text-align center
+
+  [data-astro-power]
+    grid-area astro
+  [data-svelte-power]
+    grid-area svelte
+  [data-cloudflare-power]
+    grid-area cloudflare
+  [data-pages-power]
+    grid-area pages
+</style>
