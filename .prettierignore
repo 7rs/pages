@@ -1,0 +1,13 @@
+# JS/TS Codes
+*.js
+*.ts
+*.mjs
+
+# JSON files
+*.json
+*.jsonc
+.prettierrc
+
+# Markdown
+*.md
+*.mdx

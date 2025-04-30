@@ -1,0 +1,10 @@
+# Node.js
+node_modules
+dist
+
+# Common
+.env
+.cache
+
+# OS Environment
+.DS_Store

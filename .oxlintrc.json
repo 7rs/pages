@@ -1,0 +1,3 @@
+{
+    "plugins": ["oxc", "typescript", "import", "node", "promise", "jsx-a11y"]
+}

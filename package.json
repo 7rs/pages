@@ -1,0 +1,23 @@
+{
+    "type": "module",
+    "private": true,
+    "name": "pages",
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview"
+    },
+    "dependencies": {
+        "astro": "^5.7.9"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "1.9.4",
+        "@types/node": "^22.15.3",
+        "oxlint": "^0.16.8",
+        "prettier": "3.5.3",
+        "prettier-plugin-astro": "^0.14.1",
+        "stylelint": "^16.19.1",
+        "stylelint-config-html": "^1.1.0",
+        "typescript": "^5.8.3"
+    }
+}
