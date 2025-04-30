@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Install dependencies",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "bun i"
+        },
+        {
+            "name": "Launch development server",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "bun dev"
+        },
+        {
+            "name": "Build",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "bun build"
+        },
+        {
+            "name": "Preview",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "bun prev"
+        }
+    ]
+}

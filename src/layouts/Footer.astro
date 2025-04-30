@@ -1,0 +1,11 @@
+---
+export interface Props {
+  navigations?: {[key: string]: {url: string, label: string}[]}
+}
+
+const {navigations} = Astro.props;
+---
+
+<footer>
+  <slot />
+</footer>

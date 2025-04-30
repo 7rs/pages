@@ -1,0 +1,21 @@
+import { getAliases } from "./scripts/alias.ts";
+import { defineConfig } from "astro/config";
+import UnoCSS from 'unocss/astro'
+
+import tsconfig from "./tsconfig.json" with { type: "json" };
+
+export default defineConfig({
+  integrations: [UnoCSS()],
+  vite: {
+    resolve: {
+      alias: getAliases(tsconfig.compilerOptions.paths),
+    },
+  },
+  site: "https://7rs.dev",
+  markdown: {
+    gfm: false,
+    shikiConfig: {
+      theme: "dracula",
+    },
+  },
+});

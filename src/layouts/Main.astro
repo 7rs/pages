@@ -1,0 +1,19 @@
+---
+import Head from "@layouts/Head.astro"
+import Header from "@layouts/Header.astro"
+import Footer from "@layouts/Footer.astro"
+
+import "@unocss/reset/tailwind.css";
+import "uno.css";
+---
+
+<html>
+  <Head />
+  <body>
+    <Header>7rs.dev</Header>
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

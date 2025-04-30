@@ -1,0 +1,31 @@
+---
+export interface Props {
+  favicon?: string;
+  noIndex?: boolean
+  noTranslate?: boolean;
+}
+
+const { favicon, noIndex = false, noTranslate = false} = Astro.props;
+
+const robots = [
+  (noIndex && "none"),
+  (noTranslate && "notranslate"),
+  "noarchive",
+  "nositelinkssearchbox"
+]
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="format-detection" content="telephone=no,email=no,address=no" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="google" content="nositelinkssearchbox" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="robots" content={robots.join(" ")} />
+  {noTranslate && <meta name="googlebot" content="notranslate" />}
+  {favicon && <link rel="icon" href={favicon} type="image/svg+xml" />}
+  <slot />
+</head>

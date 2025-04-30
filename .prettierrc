@@ -1,6 +1,14 @@
 {
     "printWidth": 120,
-    "tabWidth": 4,
+    "tabWidth": 2,
     "astroSkipFrontmatter": true,
-    "plugins": ["prettier-plugin-astro"]
+    "plugins": ["prettier-plugin-astro"],
+    "overrides": [
+        {
+            "files": "*.astro",
+            "options": {
+                "parser": "astro"
+            }
+        }
+    ]
 }

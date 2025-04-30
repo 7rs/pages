@@ -1,0 +1,11 @@
+---
+export interface Props {
+  icon?: string;
+}
+
+const {icon} = Astro.props;
+---
+
+<header>
+  <h1><slot /></h1>
+</header>
