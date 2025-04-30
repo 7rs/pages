@@ -1,6 +1,8 @@
 ---
 import type { Heading, Navigation } from "@scripts/components/header-types";
 import { Icon } from "astro-icon/components";
+import Search from "@components/common/Search.astro";
+
 
 interface Props {
   headerText?: string;
@@ -19,6 +21,7 @@ const { headerText, headerIcon, headings = [], navigatoins = []} = Astro.props;
       <h1>{headerText}</h1>
     </div>
     <div>
+      <Search />
       <Icon name="line-md:light-dark-loop" />
       <Icon name="line-md:menu" />
       <Icon name="line-md:chevron-small-down" />

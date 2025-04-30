@@ -1,10 +1,14 @@
-import _Header from '@components/Header.astro';
+import Header from '@components/Header.astro';
 
 export default {
-  component: _Header,
+  component: Header,
 };
 
-export const Header = {
+export const Empty = {
+  args: {},
+};
+
+export const Full = {
   args: {
     headerText: '7rs.dev',
   },
