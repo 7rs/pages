@@ -1,7 +1,7 @@
 {
     "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
     "files": {
-        "ignore": ["node_modules/**"]
+        "ignore": ["node_modules/**", "*.astro"]
     },
     "formatter": {
         "enabled": true,
@@ -19,5 +19,15 @@
         "parser": {
             "allowComments": true
         }
-    }
+    },
+    "overrides": [
+        {
+            "include": ["uno.config.ts"],
+            "javascript": {
+                "formatter": {
+                    "trailingCommas": "none"
+                }
+            }
+        }
+    ]
 }

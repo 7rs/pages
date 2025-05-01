@@ -1,7 +1,9 @@
 # Node.js
 node_modules
 dist
-.astro
+.astro/*
+
+!.astro/settings.json
 
 # Common
 .env

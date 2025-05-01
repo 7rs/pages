@@ -1,11 +1,18 @@
 ---
+import ThemeButton from "@/components/ThemeButton.astro";
+
 export interface Props {
   icon?: string;
 }
 
-const {icon} = Astro.props;
+const { icon } = Astro.props;
 ---
 
-<header>
-  <h1><slot /></h1>
+<header class="sticky top-0 px-4 navbar bg-base-100 shadow-sm">
+  <a class="flex-1" href="/" title="main page">
+    <h1 class="text-3xl font-bold"><slot /></h1>
+  </a>
+  <div class="flex-none flex text-2xl">
+    <ThemeButton />
+  </div>
 </header>

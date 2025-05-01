@@ -4,8 +4,10 @@ import UnoCSS from 'unocss/astro'
 
 import tsconfig from "./tsconfig.json" with { type: "json" };
 
+import icon from "astro-icon";
+
 export default defineConfig({
-  integrations: [UnoCSS()],
+  integrations: [UnoCSS(), icon()],
   vite: {
     resolve: {
       alias: getAliases(tsconfig.compilerOptions.paths),

@@ -1,0 +1,30 @@
+---
+import {  LIGHT_THEME, DARK_THEME } from 'uno.config';
+import { Icon } from 'astro-icon/components'
+---
+
+<label class="swap">
+  <input
+    id="theme-controller"
+    type="checkbox"
+    value={DARK_THEME}
+    class="theme-controller"
+    data-light-theme={LIGHT_THEME}
+  />
+  <Icon id="sunny-icon" class="swap-off" name="line-md:sunny-loop" />
+  <Icon id="moon-icon" class="swap-on" name="line-md:moon-loop" />
+</label>
+
+<script>
+  const controller = document.getElementById("theme-controller");
+
+  if (matchMedia("(prefers-color-scheme: dark)").matches && controller != null) {
+    controller.setAttribute("value", controller.dataset.lightTheme ?? "light");
+    document.getElementById("sunny-icon")?.classList.replace("swap-off", "swap-on");
+    document.getElementById("moon-icon")?.classList.replace("swap-on", "swap-off");
+
+    console.debug("device color scheme: dark")
+  } else {
+    console.debug("device color scheme: light")
+  }
+</script>

@@ -1,0 +1,22 @@
+---
+import { Icon } from "astro-icon/components";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+  icon: string;
+  openAsNew?: boolean;
+  color?: string;
+}
+const { icon, openAsNew = true, color, ...props } = Astro.props;
+---
+
+<a
+  {...props}
+  class="relative hover:scale-125 transition-all [&>svg]:hover:color-secondary"
+  target={openAsNew ? "_blank" : "_self"}
+  rel="noopener noreferrer"
+  referrerpolicy="no-referrer"
+>
+  <Icon class="text-2xl z-1" name={icon} />
+  <Icon class="text-2xl absolute top-0 hover:animate-ping z-0" name={icon} />
+</a>

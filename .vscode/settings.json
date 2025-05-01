@@ -15,6 +15,9 @@
     "[typescript]": {
         "editor.defaultFormatter": "biomejs.biome"
     },
+    "[astro]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "[javascriptreact]": {
         "editor.defaultFormatter": "biomejs.biome"
     },
@@ -29,7 +32,7 @@
     },
     "prettier.configPath": "./.prettierrc",
     "prettier.ignorePath": "./.prettierignore",
-    "stylelint.validate": ["css", "postcss", "stylus", "styl"],
+    "stylelint.validate": ["css", "postcss", "scsss"],
     "markdownlint.run": "onType",
     "stylelint.stylelintPath": "./node_modules/stylelint"
 }
