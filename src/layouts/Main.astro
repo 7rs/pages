@@ -10,10 +10,14 @@ import "@styles/index.scss";
 
 <html>
   <Head />
-  <body class="min-h-dvh w-full grid grid-rows-[auto_1fr_auto] bg-base-200">
-    <Header>7rs.dev</Header>
-    <main>
-      <slot />
+  <body class="min-h-dvh w-full | grid grid-rows-[auto_1fr_auto] | bg-base-200">
+    <Header>
+      <h1 class="text-3xl font-bold">7rs.dev</h1>
+    </Header>
+    <main class="w-full flex justify-center">
+      <div class="my-4 md:my-6 mx-2 sm:mx-4 min-[900px]:mx-0 max-w-[900px] w-full">
+        <slot />
+      </div>
     </main>
     <Footer
       navigations={[
@@ -22,12 +26,12 @@ import "@styles/index.scss";
         { url: "/license", label: "License" },
       ]}
       socials={[
-        {url: "https://youtube.com/@qRze", icon: "simple-icons:youtube", color: "#ff0000"},
-        {url: "https://7rs.dev/d", icon: "simple-icons:discord"},
-        {url: "https://github.com/7rs", icon: "simple-icons:github"},
-        {url: "https://zenn.dev/7rs", icon: "simple-icons:zenn"},
-        {url: "https://patreon.com/7rs", icon: "simple-icons:patreon"},
-        {url: "/", icon: "simple-icons:rss"},
+        { url: "https://youtube.com/@qRze", icon: "simple-icons:youtube", color: "#ff0000" },
+        { url: "https://7rs.dev/d", icon: "simple-icons:discord" },
+        { url: "https://github.com/7rs", icon: "simple-icons:github" },
+        { url: "https://zenn.dev/7rs", icon: "simple-icons:zenn" },
+        { url: "https://patreon.com/7rs", icon: "simple-icons:patreon" },
+        { url: "/", icon: "simple-icons:rss" },
       ]}
     />
   </body>

@@ -32,7 +32,7 @@
     },
     "prettier.configPath": "./.prettierrc",
     "prettier.ignorePath": "./.prettierignore",
-    "stylelint.validate": ["css", "postcss", "scsss"],
+    "stylelint.validate": ["css", "scss", "postcss"],
     "markdownlint.run": "onType",
     "stylelint.stylelintPath": "./node_modules/stylelint"
 }

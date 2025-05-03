@@ -9,6 +9,8 @@
     },
     "dependencies": {
         "@ameinhardt/unocss-preset-daisy": "^1.1.7",
+        "@fontsource/fira-code": "^5.2.5",
+        "@fontsource/inter": "^5.2.5",
         "@iconify-json/cib": "^1.2.2",
         "@iconify-json/line-md": "^1.2.7",
         "@iconify-json/simple-icons": "^1.2.33",
@@ -29,6 +31,7 @@
         "sass": "^1.87.0",
         "stylelint": "^16.19.1",
         "stylelint-config-html": "^1.1.0",
+        "stylelint-scss": "^6.11.1",
         "typescript": "^5.8.3",
         "vite": "^6.3.4"
     }

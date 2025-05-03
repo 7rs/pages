@@ -1,0 +1,47 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+/**
+ * An anchor tag component for common settings.
+ *
+ * ```html
+ * <Anchor><Anchor/>
+ * ```
+ *
+ * If no props are specified, renders as follows:
+ *
+ * ```html
+ * <a target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer"></a>
+ * ```
+ *
+ * Global attributes are available.
+ *
+ * @param openAsNew `"_blank" (true/default)` or `"_self" (false)` is set.
+ */
+export interface Props extends HTMLAttributes<"a"> {
+  /**
+   * __This option is enabled by default.__
+   *
+   * If you enabled this option, `_blank` is set as the `target` attribute on the anchor tag.
+   *
+   * ```html
+   * <a target="_blank"></a>
+   * ```
+   *
+   * If you disabled this option, `_self` is set.
+   *
+   * ```html
+   * <a target="_self"></a>
+   * ```
+   *
+   * @see [`<a>` The Anchor element | MDN](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/a#target)
+   */
+  openAsNew?: boolean;
+}
+
+const { openAsNew = true, ...props } = Astro.props;
+---
+
+<a target={openAsNew ? "_blank" : "_self"} rel="noopener noreferrer" referrerpolicy="no-referrer" {...props}>
+  <slot />
+</a>

@@ -1,12 +1,10 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-
-interface Props extends HTMLAttributes<"a"> {}
+import Anchor from "@components/Anchor.astro";
 
 const { ...props } = Astro.props;
 ---
 
-<a class="relative link [&>span]:hover:w-full" {...props}>
+<Anchor class="relative link [&>span]:hover:w-full" {...props}>
   <slot />
-  <span class="absolute top-0 left-0 h-full w-0 bg-secondary transition-all transition-duration-200 opacity-25"></span>
-</a>
+  <span class="absolute top-0 left-0 | h-full w-0 | opacity-25 bg-secondary transition-all transition-duration-200"></span>
+</Anchor>

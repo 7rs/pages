@@ -1,7 +1,8 @@
 ---
+import { Icon } from "astro-icon/components";
+
 import AnimatedAnchor from "@/components/AnimatedAnchor.astro";
 import LinkIcon from "@/components/LinkIcon.astro";
-import { Icon } from "astro-icon/components";
 
 interface Navigation {
   url: string;
@@ -20,21 +21,23 @@ export interface Props {
 }
 
 const { navigations = [], socials = [] } = Astro.props;
+
+const year = new Date().getFullYear();
 ---
 
-<footer
-  class="self-end justify-self-end footer footer-horizontal footer-center bg-base-100 text-base-content rounded p-10"
->
-  <nav class="w-full flex flex-wrap justify-center gap-x-4 md:gap-x-8">
-    {navigations.map((nav) => <AnimatedAnchor href={nav.url}>{nav.label}</AnimatedAnchor>)}
-  </nav>
+<footer class="w-full | flex justify-center | bg-base-100">
+  <div class="py-10 px-4 sm:px-0 max-w-[900px] w-full | flex flex-col gap-y-8 | text-base">
+    <nav class="w-full flex flex-wrap justify-center gap-x-8">
+      {navigations.map((nav) => <AnimatedAnchor openAsNew={false} href={nav.url}>{nav.label.toLocaleUpperCase()}</AnimatedAnchor>)}
+    </nav>
 
-  <nav class="w-full flex flex-wrap justify-around md:justify-center md:gap-x-8">
-    {socials.map((social) => <LinkIcon href={social.url} icon={social.icon} color={social.color} />)}
-  </nav>
+    <nav class="px-4 sm:px-0 w-full | flex flex-wrap justify-around sm:justify-center sm:gap-x-8">
+      {socials.map((social) => <LinkIcon href={social.url} icon={social.icon} color={social.color} />)}
+    </nav>
 
-  <p class="text-base inline">
-    No copyright <Icon class="inline" name="cib:creative-commons-zero" />
-    {new Date().getFullYear()} - No right reserved except for things that not made by me.
-  </p>
+    <p class="w-full inline text-center">
+      No copyright <Icon class="inline" name="cib:creative-commons-zero" />
+      {year} - No right reserved except for things that not made by me.
+    </p>
+  </div>
 </footer>

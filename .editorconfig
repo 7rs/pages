@@ -7,7 +7,7 @@ insert_final_newline = true
 indent_style = space
 indent_size = 4
 
-[{*.html,*.css,*.styl,*.ts,*.js,*.mjs,*.astro,*.md,*.mdx}]
+[{*.html,*.css,*.scss,*.ts,*.js,*.mjs,*.astro,*.md,*.mdx}]
 indent_size = 2
 
 [{*.md,*.mdx}]

@@ -1,4 +1,5 @@
-import { defineConfig, type Rule } from "unocss";
+import { defineConfig, transformerDirectives, type Rule } from "unocss";
+import { createRemToPxProcessor } from "@unocss/preset-wind4/utils";
 import presetWind4 from "@unocss/preset-wind4";
 import { presetDaisy } from "@ameinhardt/unocss-preset-daisy";
 
@@ -18,12 +19,19 @@ function convertDaisyColorsToUnoRules(names: string[]) {
 
 export default defineConfig({
   presets: [
-    presetWind4(),
+    presetWind4({
+      preflights: {
+        theme: {
+          process: createRemToPxProcessor()
+        }
+      }
+    }),
     presetDaisy({
       styled: false,
       themes: [`${LIGHT_THEME} --default`, `${DARK_THEME} --prefersdark`]
     })
   ],
+  transformers: [transformerDirectives()],
   rules: convertDaisyColorsToUnoRules([
     "primary",
     "secondary",

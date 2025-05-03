@@ -1,6 +1,6 @@
 ---
-import {  LIGHT_THEME, DARK_THEME } from 'uno.config';
-import { Icon } from 'astro-icon/components'
+import { LIGHT_THEME, DARK_THEME } from "uno.config";
+import { Icon } from "astro-icon/components";
 ---
 
 <label class="swap">
@@ -10,21 +10,55 @@ import { Icon } from 'astro-icon/components'
     value={DARK_THEME}
     class="theme-controller"
     data-light-theme={LIGHT_THEME}
+    data-dark-theme={DARK_THEME}
   />
   <Icon id="sunny-icon" class="swap-off" name="line-md:sunny-loop" />
   <Icon id="moon-icon" class="swap-on" name="line-md:moon-loop" />
 </label>
 
-<script>
+<script is:inline>
   const controller = document.getElementById("theme-controller");
 
-  if (matchMedia("(prefers-color-scheme: dark)").matches && controller != null) {
-    controller.setAttribute("value", controller.dataset.lightTheme ?? "light");
+  const LIGHT_THEME = controller?.dataset.lightTheme ?? "light";
+  const DARK_THEME = controller?.dataset.darkTheme ?? "dark";
+
+  if (matchMedia("(prefers-color-scheme: dark)").matches) {
+    controller != null && controller.setAttribute("value", LIGHT_THEME);
     document.getElementById("sunny-icon")?.classList.replace("swap-off", "swap-on");
     document.getElementById("moon-icon")?.classList.replace("swap-on", "swap-off");
 
-    console.debug("device color scheme: dark")
+    console.debug("device color scheme: dark -> moon(off) / sunny(on)");
   } else {
-    console.debug("device color scheme: light")
+    console.debug("device color scheme: light -> sunny(off) / moon(on)");
   }
+
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme != null && savedTheme.length > 0 && controller != null) {
+    console.debug(`loaded saved theme: ${savedTheme}`)
+    const optionTheme = controller.getAttribute("value");
+    const optionEnabled = controller.checked;
+
+    if (optionTheme !== savedTheme && optionEnabled) {
+      controller.checked = false;
+      console.debug(`disabled: ${optionTheme} (off)`)
+    } else if (optionTheme === savedTheme && !optionEnabled) {
+      controller.checked = true;
+      console.debug(`enabled: ${optionTheme} (on)`)
+    }
+  }
+
+  controller?.addEventListener("change", (event) => {
+    const optionTheme = controller.getAttribute("value");
+    const optionEnabled = event.target.checked;
+
+    if (optionTheme === DARK_THEME) {
+      const changedTheme = optionEnabled ? DARK_THEME : LIGHT_THEME
+      localStorage.setItem("theme", changedTheme);
+      console.debug(`saved theme: ${changedTheme}`)
+    } else {
+      const changedTheme = optionEnabled ? LIGHT_THEME : DARK_THEME
+      localStorage.setItem("theme", changedTheme);
+      console.debug(`saved theme: ${changedTheme}`)
+    }
+  });
 </script>

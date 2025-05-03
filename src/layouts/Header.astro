@@ -8,11 +8,13 @@ export interface Props {
 const { icon } = Astro.props;
 ---
 
-<header class="sticky top-0 px-4 navbar bg-base-100 shadow-sm">
-  <a class="flex-1" href="/" title="main page">
-    <h1 class="text-3xl font-bold"><slot /></h1>
-  </a>
-  <div class="flex-none flex text-2xl">
-    <ThemeButton />
+<header class="w-full  | flex justify-center | bg-base-100 shadow-sm">
+  <div class="navbar | sticky top-0 | px-4 max-w-[900px]">
+    <a class="flex-1" href="/" title="main page">
+      <slot />
+    </a>
+    <div class="flex-none flex text-2xl">
+      <ThemeButton />
+    </div>
   </div>
 </header>

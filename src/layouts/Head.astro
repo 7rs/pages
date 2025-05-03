@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from 'astro:transitions';
+
 export interface Props {
   favicon?: string;
   noIndex?: boolean
@@ -27,5 +29,8 @@ const robots = [
   <meta name="robots" content={robots.join(" ")} />
   {noTranslate && <meta name="googlebot" content="notranslate" />}
   {favicon && <link rel="icon" href={favicon} type="image/svg+xml" />}
+
+  <ClientRouter />
+
   <slot />
 </head>
