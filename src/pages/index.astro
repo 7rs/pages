@@ -1,9 +1,166 @@
 ---
+import Anchor from "@/components/Anchor.astro";
+import Card from "@/components/Card.astro";
+import Description from "@/components/Description.astro";
+import DescriptionList from "@/components/DescriptionList.astro";
+import Repository from "@/components/Repository.astro";
+import Ring from "@/components/Ring.astro";
+import RingContent from "@/components/RingContent.astro";
 import Main from "@layouts/Main.astro";
+import { Icon } from "astro-icon/components";
+
+const a = "";
 ---
 
-<Main>
-  <hgroup class="text-center">
-    <h2 class="text-5xl font-bold">Welcome to 7rs.dev</h2>
-  </hgroup>
+<Main className="flex flex-col gap-y-36">
+  <section class="h-svh | flex flex-col justify-center items-center gap-y-4">
+    <hgroup class="flex flex-col justify-center gap-y-2 | text-center">
+      <h2 class="text-5xl font-bold">Fast, Lean and Customizable!</h2>
+      <p>
+        A FLOSS website for all visitors and all developers🤩 Astro maximizes performance, UnoCSS removes styling
+        complexity, and daisyUI helps creating UIs. Enjoy the new world!
+      </p>
+    </hgroup>
+    <div class="flex justify-center gap-x-4">
+      <Anchor class="btn btn-soft btn-primary">Source code</Anchor>
+      <Anchor class="btn btn-soft btn-primary">Learn more</Anchor>
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-y-4">
+    <h2 class="text-5xl font-bold">What the modern website?</h2>
+    <div class="grid grid-cols-3 gap-4">
+      <Card icon="line-md:speed-loop" title="Performance">
+        Astro reduces JavaScript code from the website as much as possible. Browsers only need to execute minimal JS
+        code, so maximizing performance.
+      </Card>
+      <Card icon="line-md:iconify1" title="Without complexity">
+        Iconify generates icon components using only the icon source and the icon name. So, <span class="font-bold"
+          >templates won't bloated by raw SVG tag.</span
+        >
+      </Card>
+      <Card icon="line-md:cloud-alt-print-loop" title="Minimal styling">
+        UnoCSS and daisyUI can create most UI and, UnoCSS generates only minimal classes and minimal styling.
+      </Card>
+      <Card icon="line-md:sun-rising-loop" title="Freedom">
+        <span class="font-bold">UnoCSS is more flexible than TailwindCSS</span>, allowing to create utilities that you
+        can specify any size. And, of course can use as Twind.
+      </Card>
+      <Card icon="line-md:star-pulsating-loop" title="Modern design">
+        daisyUI makes it easy to build <span class="font-bold">a modern design website</span>. Supports responsive web
+        design, dark mode, and has high accessibility.
+      </Card>
+      <Card icon="line-md:edit" title="Customizable">
+        daisyUI only use tailwindCSS (Wind4 preset), customizable as much as you want! Can use the existing color scheme
+        or create a new theme.
+      </Card>
+    </div>
+  </section>
+
+  <section class="flex flex-col gap-y-4">
+    <h2 class="text-5xl font-bold text-end">What does Pages (7rs.dev) have?</h2>
+    <article class="tabs tabs-border bg-none justify-center">
+      <label class="tab text-base">
+        <input type="radio" name="tab-button" checked="checked" />
+        <Icon class="size-4 me-2" name="material-symbols:article-outline" />
+        Pages Blog
+      </label>
+
+      <div class="tab-content p-6">
+        <RingContent
+          mainText="Pages Blog"
+          subText="Readable but no shitpost"
+          icons={[
+            { name: "material-symbols:search-rounded", alt: "Search" },
+            { name: "mdi:comment-multiple-outline", alt: "Comments/Chat" },
+            { name: "line-md:light-dark-loop", alt: "Dark Mode" },
+            { name: "mdi:share-variant", alt: "Share" },
+            { name: "material-symbols:translate-rounded", alt: "Multi Language" },
+          ]}
+        >
+          <Description title="Search" icon="material-symbols:search-rounded">
+            "Pagefind" written in Rust is amazing fast and, only requires once hydration.
+          </Description>
+          <Description title="Comments" icon="mdi:comment-multiple-outline"> Not planned </Description>
+          <Description title="Dark Mode" icon="line-md:light-dark-loop">
+            Used emerald for the light theme and dracula for the dark theme. You can change the theme without JS!
+          </Description>
+          <Description title="Share" icon="mdi:share-variant">
+            URLs can be copied unrelated to your device, and can be share to SNS.
+          </Description>
+          <Description title="i18n" icon="material-symbols:translate-rounded">
+            Japanese and English are supported. Also, you can translate the website with Google Translate.
+          </Description>
+        </RingContent>
+      </div>
+
+      <label class="tab text-base">
+        <input type="radio" name="tab-button" />
+        <Icon class="size-4 me-2" name="mdi:lightning-bolt" />
+        7rs.dev
+      </label>
+      <div class="tab-content p-6">
+        <RingContent
+          mainText="7rs.dev"
+          subText="Fasted"
+          icons={[
+            { name: "simple-icons:cloudflare", alt: "Low-latency" },
+            { name: "material-symbols:compress-rounded", alt: "Low-transfer" },
+            { name: "line-md:light-dark-loop", alt: "Dark Mode" },
+            { name: "mdi:share-variant", alt: "Share" },
+            { name: "material-symbols:translate-rounded", alt: "Multi Language" },
+          ]}
+        >
+          <Description title="Low-latency" icon="simple-icons:cloudflare">
+            By HTTP/3 (QUIC), CDN, Caches, Rocket Loader and Cloudflare Pages etc.
+          </Description>
+          <Description title="Low-transfer" icon="material-symbols:compress-rounded">
+            By FontSource, Sharp, Brotil and PurgeCSS etc.
+          </Description>
+          <Description title="Dark Mode" icon="line-md:light-dark-loop">
+            Used emerald for the light theme and dracula for the dark theme. You can change the theme without JS!
+          </Description>
+          <Description title="Share" icon="mdi:share-variant">
+            URLs can be copied unrelated to your device, and can be share to SNS.
+          </Description>
+          <Description title="i18n" icon="material-symbols:translate-rounded">
+            Japanese and English are supported. Also, you can translate the website with Google Translate.
+          </Description>
+        </RingContent>
+      </div>
+
+      <label class="tab text-base">
+        <input type="radio" name="tab-button" />
+        <Icon class="size-4 me-2" name="cib:creative-commons-zero" />
+        FLOSS
+      </label>
+      <div class="tab-content p-6">
+        <RingContent
+          mainText="Pages Blog"
+          subText="Readable but no shitpost"
+          icons={[
+            { name: "material-symbols:search-rounded", alt: "Search" },
+            { name: "mdi:comment-multiple-outline", alt: "Comments/Chat" },
+            { name: "line-md:light-dark-loop", alt: "Dark Mode" },
+            { name: "mdi:share-variant", alt: "Share" },
+            { name: "material-symbols:translate-rounded", alt: "Multi Language" },
+          ]}
+        >
+          <Description title="Search" icon="material-symbols:search-rounded">
+            "Pagefind" written in Rust is amazing fast and, only requires once hydration.
+          </Description>
+          <Description title="Comments" icon="mdi:comment-multiple-outline"> Not planned </Description>
+          <Description title="Dark Mode" icon="line-md:light-dark-loop">
+            Used emerald for the light theme and dracula for the dark theme. You can change the theme without JS!
+          </Description>
+          <Description title="Share" icon="mdi:share-variant">
+            URLs can be copied unrelated to your device, and can be share to SNS.
+          </Description>
+          <Description title="i18n" icon="material-symbols:translate-rounded">
+            Japanese and English are supported. Also, you can translate the website with Google Translate.
+          </Description>
+        </RingContent>
+      </div>
+    </article>
+  </section>
 </Main>

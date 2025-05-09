@@ -44,5 +44,6 @@ export default defineConfig({
     "success",
     "warning",
     "error"
-  ])
+  ]),
+  safelist: [...Array.from({ length: 96 }, (_, i) => `p-${i + 1}`)]
 });

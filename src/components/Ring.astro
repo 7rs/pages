@@ -1,0 +1,66 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface RingIcon {
+  name: string;
+  alt?: string;
+  className?: string;
+}
+
+export interface Props {
+  icons: RingIcon[];
+  subText?: string;
+  playbackTime?: number;
+  size?: number;
+}
+
+const { icons, subText, playbackTime = 15000, size = 8 } = Astro.props;
+
+const delay = Math.floor(playbackTime / icons.length);
+---
+
+<article>
+  <div class=`relative flex items-center`>
+    <hgroup class="relative z-1 | flex flex-col text-center justify-center gap-y-2">
+      <h2 class="text-4xl font-bold"><slot /></h2>
+      {subText && <p>{subText}</p>}
+    </hgroup>
+    {
+      icons.map((icon, i) => (
+        <Icon
+          style={`--playbackTime: ${playbackTime}ms; animation-delay: ${Math.floor(playbackTime / icons.length) * i}ms`}
+          class:list={[
+            "absolute top-1/2 left-1/2 z-0 | translate-x--1/2 translate-y--1/2 | h-full | text-3xl",
+            "animate-[rotate_var(--playbackTime)_linear_infinite_forwards]",
+            "opacity-0",
+            icon.className && icon.className,
+          ]}
+          title={icon.alt}
+          name={icon.name}
+        />
+      ))
+    }
+  </div>
+</article>
+
+<style lang="scss" define:vars={{ ringSize: `${size}rem` }}>
+  @keyframes rotate {
+    from {
+      opacity: 100%;
+      transform: rotate(0deg) translateY(100%) rotate(0deg);
+    }
+    to {
+      opacity: 100%;
+      transform: rotate(360deg) translateY(100%) rotate(-360deg);
+    }
+  }
+
+  article {
+    padding-top: var(--ringSize);
+    padding-bottom: var(--ringSize);
+  }
+
+  div {
+    height: var(--ringSize);
+  }
+</style>

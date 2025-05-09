@@ -3,9 +3,18 @@ import Head from "@layouts/Head.astro";
 import Header from "@layouts/Header.astro";
 import Footer from "@layouts/Footer.astro";
 
+/* eslint-disable */
 import "@unocss/reset/tailwind.css";
 import "uno.css";
+/* eslint-enable */
+
 import "@styles/index.scss";
+
+interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
 ---
 
 <html>
@@ -15,7 +24,7 @@ import "@styles/index.scss";
       <h1 class="text-3xl font-bold">7rs.dev</h1>
     </Header>
     <main class="w-full flex justify-center">
-      <div class="my-4 md:my-6 mx-2 sm:mx-4 min-[900px]:mx-0 max-w-[900px] w-full">
+      <div class:list={["my-4 md:my-6 mx-2 sm:mx-4 min-[900px]:mx-0 max-w-[900px] w-full", className]}>
         <slot />
       </div>
     </main>

@@ -7,6 +7,7 @@ import tsconfig from "./tsconfig.json" with { type: "json" };
 import icon from "astro-icon";
 
 export default defineConfig({
+  server: { host: true, port: 2999 },
   integrations: [UnoCSS(), icon()],
   vite: {
     resolve: {

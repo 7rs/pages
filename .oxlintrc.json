@@ -1,3 +1,4 @@
 {
-    "plugins": ["oxc", "typescript", "import", "node", "promise", "jsx-a11y"]
+    "plugins": ["oxc", "typescript", "import", "node", "promise", "jsx-a11y"],
+    "ignorePatterns": ["node_modules/**", "astro/**"]
 }
