@@ -1,0 +1,17 @@
+---
+import IconProgress from "@components/IconProgress.astro";
+import type { Props as IconProgressProps } from "@components/IconProgress.astro";
+
+// interface Props extends IconProgressProps {}
+type Props = IconProgressProps;
+
+const { ...props } = Astro.props;
+---
+
+<article class="card card-md flex-row items-center | bg-base-100 shadow-sm">
+  <IconProgress {...props} />
+  <div class="divider divider-horizontal flex-none m-0"></div>
+  <p>
+    <slot />
+  </p>
+</article>

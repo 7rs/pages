@@ -1,0 +1,20 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  progress: number;
+  label: string;
+  icon: string;
+}
+
+const { progress, icon, label } = Astro.props;
+---
+
+<article class="w-fit flex flex-col items-center">
+  <div class="radial-progress" style={`--value:${progress};`} aria-valuenow={progress} role="progressbar">
+    <div class="tooltip" data-tip={label}>
+      <Icon class="text-2xl" name={icon} />
+    </div>
+  </div>
+  <p>{progress}%</p>
+</article>

@@ -1,166 +1,89 @@
 ---
-import Anchor from "@/components/Anchor.astro";
-import Card from "@/components/Card.astro";
-import Description from "@/components/Description.astro";
-import DescriptionList from "@/components/DescriptionList.astro";
-import Repository from "@/components/Repository.astro";
-import Ring from "@/components/Ring.astro";
-import RingContent from "@/components/RingContent.astro";
 import Main from "@layouts/Main.astro";
-import { Icon } from "astro-icon/components";
+import Hero from "@layouts/index/Hero.astro";
+import Philosophy from "@layouts/index/Philosophy.astro";
+import About from "@layouts/index/About.astro";
+import LandingSection from "@/components/LandingSection.astro";
+import { Picture, getImage } from "astro:assets";
 
-const a = "";
+import AvatarSource from "@assets/1b6f182a11eba357a5b85085b74acccd.png";
+import Avatar from "@components/Avatar.astro";
+import IconProgress from "@/components/IconProgress.astro";
+import { Icon } from "astro-icon/components";
+import LanguageCard from "@/components/LanguageCard.astro";
+import StackIcon from "@/components/StackIcon.astro";
 ---
 
 <Main className="flex flex-col gap-y-36">
-  <section class="h-svh | flex flex-col justify-center items-center gap-y-4">
-    <hgroup class="flex flex-col justify-center gap-y-2 | text-center">
-      <h2 class="text-5xl font-bold">Fast, Lean and Customizable!</h2>
-      <p>
-        A FLOSS website for all visitors and all developers🤩 Astro maximizes performance, UnoCSS removes styling
-        complexity, and daisyUI helps creating UIs. Enjoy the new world!
-      </p>
-    </hgroup>
-    <div class="flex justify-center gap-x-4">
-      <Anchor class="btn btn-soft btn-primary">Source code</Anchor>
-      <Anchor class="btn btn-soft btn-primary">Learn more</Anchor>
-    </div>
-  </section>
+  <Hero />
+  <Philosophy />
+  <About />
 
-  <section class="flex flex-col gap-y-4">
-    <h2 class="text-5xl font-bold">What the modern website?</h2>
-    <div class="grid grid-cols-3 gap-4">
-      <Card icon="line-md:speed-loop" title="Performance">
-        Astro reduces JavaScript code from the website as much as possible. Browsers only need to execute minimal JS
-        code, so maximizing performance.
-      </Card>
-      <Card icon="line-md:iconify1" title="Without complexity">
-        Iconify generates icon components using only the icon source and the icon name. So, <span class="font-bold"
-          >templates won't bloated by raw SVG tag.</span
-        >
-      </Card>
-      <Card icon="line-md:cloud-alt-print-loop" title="Minimal styling">
-        UnoCSS and daisyUI can create most UI and, UnoCSS generates only minimal classes and minimal styling.
-      </Card>
-      <Card icon="line-md:sun-rising-loop" title="Freedom">
-        <span class="font-bold">UnoCSS is more flexible than TailwindCSS</span>, allowing to create utilities that you
-        can specify any size. And, of course can use as Twind.
-      </Card>
-      <Card icon="line-md:star-pulsating-loop" title="Modern design">
-        daisyUI makes it easy to build <span class="font-bold">a modern design website</span>. Supports responsive web
-        design, dark mode, and has high accessibility.
-      </Card>
-      <Card icon="line-md:edit" title="Customizable">
-        daisyUI only use tailwindCSS (Wind4 preset), customizable as much as you want! Can use the existing color scheme
-        or create a new theme.
-      </Card>
-    </div>
-  </section>
-
-  <section class="flex flex-col gap-y-4">
-    <h2 class="text-5xl font-bold text-end">What does Pages (7rs.dev) have?</h2>
-    <article class="tabs tabs-border bg-none justify-center">
-      <label class="tab text-base">
-        <input type="radio" name="tab-button" checked="checked" />
-        <Icon class="size-4 me-2" name="material-symbols:article-outline" />
-        Pages Blog
-      </label>
-
-      <div class="tab-content p-6">
-        <RingContent
-          mainText="Pages Blog"
-          subText="Readable but no shitpost"
-          icons={[
-            { name: "material-symbols:search-rounded", alt: "Search" },
-            { name: "mdi:comment-multiple-outline", alt: "Comments/Chat" },
-            { name: "line-md:light-dark-loop", alt: "Dark Mode" },
-            { name: "mdi:share-variant", alt: "Share" },
-            { name: "material-symbols:translate-rounded", alt: "Multi Language" },
-          ]}
-        >
-          <Description title="Search" icon="material-symbols:search-rounded">
-            "Pagefind" written in Rust is amazing fast and, only requires once hydration.
-          </Description>
-          <Description title="Comments" icon="mdi:comment-multiple-outline"> Not planned </Description>
-          <Description title="Dark Mode" icon="line-md:light-dark-loop">
-            Used emerald for the light theme and dracula for the dark theme. You can change the theme without JS!
-          </Description>
-          <Description title="Share" icon="mdi:share-variant">
-            URLs can be copied unrelated to your device, and can be share to SNS.
-          </Description>
-          <Description title="i18n" icon="material-symbols:translate-rounded">
-            Japanese and English are supported. Also, you can translate the website with Google Translate.
-          </Description>
-        </RingContent>
-      </div>
-
-      <label class="tab text-base">
-        <input type="radio" name="tab-button" />
-        <Icon class="size-4 me-2" name="mdi:lightning-bolt" />
-        7rs.dev
-      </label>
-      <div class="tab-content p-6">
-        <RingContent
-          mainText="7rs.dev"
-          subText="Fasted"
-          icons={[
-            { name: "simple-icons:cloudflare", alt: "Low-latency" },
-            { name: "material-symbols:compress-rounded", alt: "Low-transfer" },
-            { name: "line-md:light-dark-loop", alt: "Dark Mode" },
-            { name: "mdi:share-variant", alt: "Share" },
-            { name: "material-symbols:translate-rounded", alt: "Multi Language" },
-          ]}
-        >
-          <Description title="Low-latency" icon="simple-icons:cloudflare">
-            By HTTP/3 (QUIC), CDN, Caches, Rocket Loader and Cloudflare Pages etc.
-          </Description>
-          <Description title="Low-transfer" icon="material-symbols:compress-rounded">
-            By FontSource, Sharp, Brotil and PurgeCSS etc.
-          </Description>
-          <Description title="Dark Mode" icon="line-md:light-dark-loop">
-            Used emerald for the light theme and dracula for the dark theme. You can change the theme without JS!
-          </Description>
-          <Description title="Share" icon="mdi:share-variant">
-            URLs can be copied unrelated to your device, and can be share to SNS.
-          </Description>
-          <Description title="i18n" icon="material-symbols:translate-rounded">
-            Japanese and English are supported. Also, you can translate the website with Google Translate.
-          </Description>
-        </RingContent>
-      </div>
-
-      <label class="tab text-base">
-        <input type="radio" name="tab-button" />
-        <Icon class="size-4 me-2" name="cib:creative-commons-zero" />
-        FLOSS
-      </label>
-      <div class="tab-content p-6">
-        <RingContent
-          mainText="Pages Blog"
-          subText="Readable but no shitpost"
-          icons={[
-            { name: "material-symbols:search-rounded", alt: "Search" },
-            { name: "mdi:comment-multiple-outline", alt: "Comments/Chat" },
-            { name: "line-md:light-dark-loop", alt: "Dark Mode" },
-            { name: "mdi:share-variant", alt: "Share" },
-            { name: "material-symbols:translate-rounded", alt: "Multi Language" },
-          ]}
-        >
-          <Description title="Search" icon="material-symbols:search-rounded">
-            "Pagefind" written in Rust is amazing fast and, only requires once hydration.
-          </Description>
-          <Description title="Comments" icon="mdi:comment-multiple-outline"> Not planned </Description>
-          <Description title="Dark Mode" icon="line-md:light-dark-loop">
-            Used emerald for the light theme and dracula for the dark theme. You can change the theme without JS!
-          </Description>
-          <Description title="Share" icon="mdi:share-variant">
-            URLs can be copied unrelated to your device, and can be share to SNS.
-          </Description>
-          <Description title="i18n" icon="material-symbols:translate-rounded">
-            Japanese and English are supported. Also, you can translate the website with Google Translate.
-          </Description>
-        </RingContent>
-      </div>
+  <LandingSection title="Who are you?" titleClassName="text-center from-white/0 via-rose-500 to-white/0">
+    <article class="flex items-center gap-x-4">
+      <Avatar src={AvatarSource} className="h-20" />
+      <p class="text-2xl">Cbrnex</p>
     </article>
-  </section>
+    <div class="flex justify-center gap-x-4">
+      <IconProgress progress={90} icon="simple-icons:python" label="Python" />
+      <IconProgress progress={50} icon="simple-icons:go" label="Golang" />
+      <IconProgress progress={70} icon="simple-icons:typescript" label="TypeScript" />
+      <IconProgress progress={30} icon="simple-icons:lua" label="Lua" />
+      <IconProgress progress={50} icon="mdi:language-java" label="Java" />
+    </div>
+    <div class="flex justify-center gap-x-2">
+      <StackIcon icon="simple-icons:springboot" label="SpringBoot" />
+      <StackIcon icon="simple-icons:fastapi" label="FastAPI" />
+      <StackIcon icon="simple-icons:sqlalchemy" label="SQLAlchemy" />
+      <StackIcon icon="simple-icons:astro" label="Astro" />
+      <StackIcon icon="simple-icons:nextdotjs" label="NextJS" />
+      <StackIcon icon="simple-icons:vite" label="Vite" />
+      <StackIcon icon="simple-icons:svelte" label="Svelte" />
+      <StackIcon icon="simple-icons:react" label="React" />
+      <StackIcon icon="simple-icons:qwik" label="Qwik" />
+      <StackIcon icon="simple-icons:bootstrap" label="Bootstrap" />
+      <StackIcon icon="simple-icons:tailwindcss" label="TailwindCSS" />
+      <StackIcon icon="simple-icons:unocss" label="UnoCSS" />
+      <StackIcon icon="simple-icons:daisyui" label="daisyUI" />
+      <StackIcon icon="simple-icons:mui" label="MUI" />
+    </div>
+    <div class="flex justify-center gap-x-2">
+      <StackIcon icon="simple-icons:sqlite" label="SQLite" />
+      <StackIcon icon="simple-icons:postgresql" label="PostgreSQL" />
+      <StackIcon icon="simple-icons:redis" label="Redis" />
+      <StackIcon icon="simple-icons:stylus" label="Stylus" />
+      <StackIcon icon="simple-icons:sass" label="SASS" />
+      <StackIcon icon="simple-icons:gnubash" label="Bash" />
+      <StackIcon icon="simple-icons:zsh" label="Zsh" />
+      <StackIcon icon="simple-icons:fishshell" label="fish" />
+      <StackIcon icon="simple-icons:powershell" label="PowerShell" />
+      <StackIcon icon="simple-icons:nushell" label="NuShell" />
+      <StackIcon icon="simple-icons:git" label="Git" />
+      <StackIcon icon="simple-icons:npm" label="Npm" />
+      <StackIcon icon="simple-icons:pnpm" label="pnpm" />
+      <StackIcon icon="simple-icons:bun" label="Bun" />
+    </div>
+    <div class="flex justify-center gap-x-2">
+      <StackIcon icon="simple-icons:windows" label="Windows" />
+      <StackIcon icon="simple-icons:macos" label="MacOS" />
+      <StackIcon icon="simple-icons:linux" label="Linux" />
+      <StackIcon icon="simple-icons:eclipseide" label="Eclipse" />
+      <StackIcon icon="simple-icons:visualstudiocode" label="VSCode" />
+      <StackIcon icon="simple-icons:sublimetext" label="Sublime Text" />
+      <StackIcon icon="simple-icons:zedindustries" label="Zed" />
+      <StackIcon icon="simple-icons:stackblitz" label="StackBlitz" />
+      <StackIcon icon="simple-icons:neovim" label="NeoVim" />
+      <StackIcon icon="simple-icons:iterm2" label="iTerm2" />
+      <StackIcon icon="simple-icons:alacritty" label="Alacritty" />
+      <StackIcon icon="simple-icons:github" label="GitHub" />
+      <StackIcon icon="simple-icons:gitlab" label="GitLab" />
+      <StackIcon icon="simple-icons:githubactions" label="GitHub Actions" />
+      <StackIcon icon="simple-icons:docker" label="Docker" />
+      <StackIcon icon="simple-icons:heroku" label="Heroku" />
+      <StackIcon icon="simple-icons:vultr" label="Vultr" />
+      <StackIcon icon="simple-icons:amazonwebservices" label="AWS" />
+      <StackIcon icon="simple-icons:cloudflarepages" label="Cloudflare Pages" />
+      <StackIcon icon="simple-icons:githubpages" label="GitHub Pages" />
+    </div>
+  </LandingSection>
 </Main>

@@ -1,0 +1,26 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  tabName: string;
+  icon: string;
+  isChecked?: boolean;
+}
+
+const { tabName, icon, isChecked = false } = Astro.props;
+---
+
+<label class="tab text-base">
+  {
+    isChecked ? (
+      <input type="radio" name="tab-button" checked="checked" />
+    ) : (
+      <input type="radio" name="tab-button" />
+    )
+  }
+  <Icon class="size-4 me-2" name={icon} />
+  <span class="hidden md:inline">{tabName}</span>
+</label>
+<div class="tab-content">
+  <slot />
+</div>

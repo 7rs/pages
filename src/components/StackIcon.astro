@@ -1,0 +1,15 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  icon: string;
+  label: string;
+}
+
+const { icon, label } = Astro.props;
+---
+
+<article class="tooltip relative" data-tip={label}>
+  <Icon class="text-2xl" name={icon} />
+  <Icon class="text-2xl absolute top-0 hover:animate-ping z-0" name={icon} />
+</article>

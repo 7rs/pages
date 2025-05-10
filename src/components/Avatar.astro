@@ -1,0 +1,15 @@
+---
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: ImageMetadata;
+  className: string;
+}
+
+const { src, className = "" } = Astro.props;
+---
+
+<article class:list={["avatar", className]}>
+  <Picture class="rounded-full" src={src} formats={["avif", "jpg"]} alt="avatar" />
+</article>

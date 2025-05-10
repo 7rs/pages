@@ -1,0 +1,34 @@
+---
+import Card from "@/components/Card.astro";
+import CardGrid from "@/components/CardGrid.astro";
+import LandingSection from "@/components/LandingSection.astro";
+---
+
+<LandingSection title="What the modern website?" titleClassName="text-start from-violet-500 to-white/0">
+  <CardGrid>
+    <Card icon="line-md:speed-loop" title="Performance">
+      Astro reduces JavaScript code from the website as much as possible. Browsers only need to execute minimal JS code,
+      so maximizing performance.
+    </Card>
+    <Card icon="line-md:iconify1" title="Without complexity">
+      Iconify generates icon components using only the icon source and the icon name. So, <span class="font-bold"
+        >templates won't bloated by raw SVG tag.</span
+      >
+    </Card>
+    <Card icon="line-md:cloud-alt-print-loop" title="Minimal styling">
+      UnoCSS and daisyUI can create most UI and, UnoCSS generates only minimal classes and minimal styling.
+    </Card>
+    <Card icon="line-md:sun-rising-loop" title="Freedom">
+      <span class="font-bold">UnoCSS is more flexible than TailwindCSS</span>, allowing to create utilities that you can
+      specify any size. And, of course can use as Twind.
+    </Card>
+    <Card icon="line-md:star-pulsating-loop" title="Modern design">
+      daisyUI makes it easy to build <span class="font-bold">a modern design website</span>. Supports responsive web
+      design, dark mode, and has high accessibility.
+    </Card>
+    <Card icon="line-md:edit" title="Customizable">
+      daisyUI only use tailwindCSS (Wind4 preset), customizable as much as you want! Can use the existing color scheme
+      or create a new theme.
+    </Card>
+  </CardGrid>
+</LandingSection>
