@@ -1,0 +1,106 @@
+---
+import ExperienceGroup from "@components/ExperienceGroup.astro";
+import Group from "@components/Group.astro";
+import GroupGrid from "@components/GroupGrid.astro";
+import IconProgress from "@components/IconProgress.astro";
+import LandingSection from "@components/LandingSection.astro";
+import ProfileCard from "@components/ProfileCard.astro";
+import StackIcon from "@components/StackIcon.astro";
+
+import AvatarSource from "@assets/1b6f182a11eba357a5b85085b74acccd.png";
+---
+
+<LandingSection title="Who are you?" titleClassName="text-center from-white/0 via-rose-500 to-white/0">
+  <section class="flex flex-col gap-y-8">
+    <ProfileCard name="Cbrnex" avatar={AvatarSource}>
+      I'm employed as engineer. Especially good at the backend. I always work with Java and TypeScript, but Python is
+      the longest for me.
+    </ProfileCard>
+
+    <div class="flex flex-col gap-y-6">
+      <ExperienceGroup>
+        <IconProgress progress={90} icon="logos:python" label="Python" />
+        <IconProgress progress={70} icon="logos:java" label="Java" />
+        <IconProgress progress={70} icon="logos:typescript-icon" label="TypeScript" />
+        <IconProgress progress={50} icon="logos:gopher" label="Golang" />
+        <IconProgress progress={30} icon="logos:lua" label="Lua" />
+      </ExperienceGroup>
+      <GroupGrid>
+        <Group label="Languages" icon="mdi:code-tags">
+          <StackIcon icon="simple-icons:sqlite" label="SQLite" />
+          <StackIcon icon="simple-icons:postgresql" label="PostgreSQL" />
+          <StackIcon icon="simple-icons:redis" label="Redis" />
+          <StackIcon icon="simple-icons:stylus" label="Stylus" />
+          <StackIcon icon="simple-icons:sass" label="SASS" />
+          <StackIcon icon="simple-icons:gnubash" label="Bash" />
+          <StackIcon icon="simple-icons:zsh" label="Zsh" />
+          <StackIcon icon="simple-icons:fishshell" label="fish" />
+          <StackIcon icon="simple-icons:powershell" label="PowerShell" />
+          <StackIcon icon="simple-icons:nushell" label="NuShell" />
+        </Group>
+        <Group label="Environments / Platforms" icon="material-symbols:settings">
+          <StackIcon icon="simple-icons:windows" label="Windows" />
+          <StackIcon icon="simple-icons:macos" label="MacOS" />
+          <StackIcon icon="simple-icons:linux" label="Linux" />
+          <StackIcon icon="simple-icons:github" label="GitHub" />
+          <StackIcon icon="simple-icons:gitlab" label="GitLab" />
+          <StackIcon icon="simple-icons:githubactions" label="GitHub Actions" />
+          <StackIcon icon="simple-icons:docker" label="Docker" />
+          <StackIcon icon="simple-icons:heroku" label="Heroku" />
+          <StackIcon icon="simple-icons:vultr" label="Vultr" />
+          <StackIcon icon="simple-icons:amazonwebservices" label="AWS" />
+          <StackIcon icon="simple-icons:cloudflarepages" label="Cloudflare Pages" />
+          <StackIcon icon="simple-icons:githubpages" label="GitHub Pages" />
+        </Group>
+        <Group label="Frameworks" icon="material-symbols:layers-outline-rounded">
+          <StackIcon icon="simple-icons:springboot" label="SpringBoot" />
+          <StackIcon icon="simple-icons:fastapi" label="FastAPI" />
+          <StackIcon icon="simple-icons:astro" label="Astro" />
+          <StackIcon icon="simple-icons:nextdotjs" label="NextJS" />
+          <StackIcon icon="simple-icons:vite" label="Vite" />
+          <StackIcon icon="simple-icons:svelte" label="Svelte" />
+          <StackIcon icon="simple-icons:react" label="React" />
+          <StackIcon icon="simple-icons:qwik" label="Qwik" />
+          <StackIcon icon="simple-icons:lit" label="Lit" />
+          <StackIcon icon="simple-icons:bootstrap" label="Bootstrap" />
+          <StackIcon icon="simple-icons:tailwindcss" label="TailwindCSS" />
+          <StackIcon icon="simple-icons:unocss" label="UnoCSS" />
+          <StackIcon icon="simple-icons:daisyui" label="daisyUI" />
+          <StackIcon icon="simple-icons:mui" label="MUI" />
+        </Group>
+        <Group label="Libraries / Packages" icon="mdi:bookshelf">
+          <StackIcon icon="simple-icons:sqlalchemy" label="SQLAlchemy" />
+          <StackIcon icon="simple-icons:fontforge" label="FontForge" />
+          <StackIcon icon="simple-icons:sharp" label="Sharp" />
+          <StackIcon icon="simple-icons:purgecss" label="PurgeCSS" />
+          <StackIcon icon="simple-icons:iconify" label="Iconify" />
+        </Group>
+        <Group label="Tools" icon="mdi:tools">
+          <StackIcon icon="simple-icons:git" label="Git" />
+          <StackIcon icon="simple-icons:rye" label="Rye" />
+          <StackIcon icon="simple-icons:poetry" label="Poetry" />
+          <StackIcon icon="simple-icons:pipx" label="pipx" />
+          <StackIcon icon="simple-icons:npm" label="npm" />
+          <StackIcon icon="simple-icons:pnpm" label="pnpm" />
+          <StackIcon icon="simple-icons:bun" label="Bun" />
+          <StackIcon icon="simple-icons:prettier" label="Prettier" />
+          <StackIcon icon="simple-icons:eslint" label="ESLint" />
+          <StackIcon icon="simple-icons:biome" label="Biome" />
+          <StackIcon icon="simple-icons:stylelint" label="Stylelint" />
+        </Group>
+        <Group label="Development Apps" icon="mdi:hammer">
+          <StackIcon icon="simple-icons:eclipseide" label="Eclipse" />
+          <StackIcon icon="simple-icons:visualstudiocode" label="VSCode" />
+          <StackIcon icon="simple-icons:atom" label="Atom" />
+          <StackIcon icon="simple-icons:sublimetext" label="Sublime Text" />
+          <StackIcon icon="simple-icons:zedindustries" label="Zed" />
+          <StackIcon icon="simple-icons:stackblitz" label="StackBlitz" />
+          <StackIcon icon="simple-icons:vim" label="Vim" />
+          <StackIcon icon="simple-icons:neovim" label="NeoVim" />
+          <StackIcon icon="simple-icons:iterm2" label="iTerm2" />
+          <StackIcon icon="simple-icons:alacritty" label="Alacritty" />
+        </Group>
+      </GroupGrid>
+    </div>
+  </section>
+</LandingSection>

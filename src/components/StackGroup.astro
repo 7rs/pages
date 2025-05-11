@@ -1,0 +1,20 @@
+---
+import Group from "@components/Group.astro";
+import type { Props as GroupProps } from "@components/Group.astro";
+import StackIcon from "@components/StackIcon.astro";
+
+export interface Stack {
+  icon: string;
+  label: string;
+}
+
+interface Props extends GroupProps {
+  stacks: Stack[];
+}
+
+const { stacks = [], ...props } = Astro.props;
+---
+
+<Group {...props}>
+  {stacks.map((stack) => <StackIcon icon={stack.icon} label={stack.label} />)}
+</Group>

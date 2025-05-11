@@ -3,87 +3,12 @@ import Main from "@layouts/Main.astro";
 import Hero from "@layouts/index/Hero.astro";
 import Philosophy from "@layouts/index/Philosophy.astro";
 import About from "@layouts/index/About.astro";
-import LandingSection from "@/components/LandingSection.astro";
-import { Picture, getImage } from "astro:assets";
-
-import AvatarSource from "@assets/1b6f182a11eba357a5b85085b74acccd.png";
-import Avatar from "@components/Avatar.astro";
-import IconProgress from "@/components/IconProgress.astro";
-import { Icon } from "astro-icon/components";
-import LanguageCard from "@/components/LanguageCard.astro";
-import StackIcon from "@/components/StackIcon.astro";
+import Profile from "@/layouts/index/Profile.astro";
 ---
 
-<Main className="flex flex-col gap-y-36">
+<Main className="flex flex-col gap-y-36 mb-12">
   <Hero />
   <Philosophy />
   <About />
-
-  <LandingSection title="Who are you?" titleClassName="text-center from-white/0 via-rose-500 to-white/0">
-    <article class="flex items-center gap-x-4">
-      <Avatar src={AvatarSource} className="h-20" />
-      <p class="text-2xl">Cbrnex</p>
-    </article>
-    <div class="flex justify-center gap-x-4">
-      <IconProgress progress={90} icon="simple-icons:python" label="Python" />
-      <IconProgress progress={50} icon="simple-icons:go" label="Golang" />
-      <IconProgress progress={70} icon="simple-icons:typescript" label="TypeScript" />
-      <IconProgress progress={30} icon="simple-icons:lua" label="Lua" />
-      <IconProgress progress={50} icon="mdi:language-java" label="Java" />
-    </div>
-    <div class="flex justify-center gap-x-2">
-      <StackIcon icon="simple-icons:springboot" label="SpringBoot" />
-      <StackIcon icon="simple-icons:fastapi" label="FastAPI" />
-      <StackIcon icon="simple-icons:sqlalchemy" label="SQLAlchemy" />
-      <StackIcon icon="simple-icons:astro" label="Astro" />
-      <StackIcon icon="simple-icons:nextdotjs" label="NextJS" />
-      <StackIcon icon="simple-icons:vite" label="Vite" />
-      <StackIcon icon="simple-icons:svelte" label="Svelte" />
-      <StackIcon icon="simple-icons:react" label="React" />
-      <StackIcon icon="simple-icons:qwik" label="Qwik" />
-      <StackIcon icon="simple-icons:bootstrap" label="Bootstrap" />
-      <StackIcon icon="simple-icons:tailwindcss" label="TailwindCSS" />
-      <StackIcon icon="simple-icons:unocss" label="UnoCSS" />
-      <StackIcon icon="simple-icons:daisyui" label="daisyUI" />
-      <StackIcon icon="simple-icons:mui" label="MUI" />
-    </div>
-    <div class="flex justify-center gap-x-2">
-      <StackIcon icon="simple-icons:sqlite" label="SQLite" />
-      <StackIcon icon="simple-icons:postgresql" label="PostgreSQL" />
-      <StackIcon icon="simple-icons:redis" label="Redis" />
-      <StackIcon icon="simple-icons:stylus" label="Stylus" />
-      <StackIcon icon="simple-icons:sass" label="SASS" />
-      <StackIcon icon="simple-icons:gnubash" label="Bash" />
-      <StackIcon icon="simple-icons:zsh" label="Zsh" />
-      <StackIcon icon="simple-icons:fishshell" label="fish" />
-      <StackIcon icon="simple-icons:powershell" label="PowerShell" />
-      <StackIcon icon="simple-icons:nushell" label="NuShell" />
-      <StackIcon icon="simple-icons:git" label="Git" />
-      <StackIcon icon="simple-icons:npm" label="Npm" />
-      <StackIcon icon="simple-icons:pnpm" label="pnpm" />
-      <StackIcon icon="simple-icons:bun" label="Bun" />
-    </div>
-    <div class="flex justify-center gap-x-2">
-      <StackIcon icon="simple-icons:windows" label="Windows" />
-      <StackIcon icon="simple-icons:macos" label="MacOS" />
-      <StackIcon icon="simple-icons:linux" label="Linux" />
-      <StackIcon icon="simple-icons:eclipseide" label="Eclipse" />
-      <StackIcon icon="simple-icons:visualstudiocode" label="VSCode" />
-      <StackIcon icon="simple-icons:sublimetext" label="Sublime Text" />
-      <StackIcon icon="simple-icons:zedindustries" label="Zed" />
-      <StackIcon icon="simple-icons:stackblitz" label="StackBlitz" />
-      <StackIcon icon="simple-icons:neovim" label="NeoVim" />
-      <StackIcon icon="simple-icons:iterm2" label="iTerm2" />
-      <StackIcon icon="simple-icons:alacritty" label="Alacritty" />
-      <StackIcon icon="simple-icons:github" label="GitHub" />
-      <StackIcon icon="simple-icons:gitlab" label="GitLab" />
-      <StackIcon icon="simple-icons:githubactions" label="GitHub Actions" />
-      <StackIcon icon="simple-icons:docker" label="Docker" />
-      <StackIcon icon="simple-icons:heroku" label="Heroku" />
-      <StackIcon icon="simple-icons:vultr" label="Vultr" />
-      <StackIcon icon="simple-icons:amazonwebservices" label="AWS" />
-      <StackIcon icon="simple-icons:cloudflarepages" label="Cloudflare Pages" />
-      <StackIcon icon="simple-icons:githubpages" label="GitHub Pages" />
-    </div>
-  </LandingSection>
+  <Profile />
 </Main>

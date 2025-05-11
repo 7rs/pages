@@ -1,0 +1,17 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  icon?: string;
+  label: string;
+}
+
+const { icon, label } = Astro.props;
+---
+
+<fieldset class="px-2 border border-white hover:border-[var(--color-primary)] transition-all rounded-md">
+  <legend class="px-2 text-base flex items-center gap-x-1">{icon && <Icon name={icon} />}<p>{label}</p></legend>
+  <div class="p-4 flex flex-wrap gap-2 items-center content-center">
+    <slot />
+  </div>
+</fieldset>

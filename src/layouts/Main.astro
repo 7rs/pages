@@ -24,7 +24,7 @@ const { className = "" } = Astro.props;
       <h1 class="text-3xl font-bold">7rs.dev</h1>
     </Header>
     <main class="w-full flex justify-center">
-      <div class:list={["my-4 md:my-6 mx-2 sm:mx-4 min-[900px]:mx-0 max-w-[900px] w-full", className]}>
+      <div class:list={["min-[900px]:mx-0 max-w-[900px] w-full", className]}>
         <slot />
       </div>
     </main>
