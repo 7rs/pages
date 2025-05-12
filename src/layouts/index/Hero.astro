@@ -3,16 +3,25 @@ import Anchor from "@components/Anchor.astro";
 ---
 
 <section class="h-svh | flex flex-col justify-center items-center gap-y-4">
-  <hgroup class="flex flex-col justify-center gap-y-2 | text-center">
+  <hgroup class="flex flex-col justify-center gap-y-3 | text-center">
     <h2 class="text-3xl md:text-5xl font-bold">Fast, Lean and Customizable!</h2>
     <p>
       A FLOSS website for all visitors and all developers🤩 Astro maximizes performance, UnoCSS removes styling
       complexity, and daisyUI helps creating UIs. Enjoy the new world!
     </p>
   </hgroup>
-  <div class="flex justify-center gap-x-4">
-    <Anchor class="btn btn-soft btn-primary" href="https://github.com/7rs/pages">Source code</Anchor>
-    <Anchor class="btn btn-soft btn-primary" href="#what-the-modern-website?" openAsNew={false}>Learn more</Anchor>
-    <Anchor class="btn btn-soft btn-primary" href="/blog" openAsNew={false}>Blog</Anchor>
+  <div class="flex flex-wrap justify-center gap-4">
+    <Anchor class="btn btn-soft btn-primary" href="https://github.com/7rs/pages">
+      <span class="md:hidden">Code</span>
+      <span class="hidden md:inline">Source code</span>
+    </Anchor>
+    <Anchor class="btn btn-soft btn-primary" href="#what-the-modern-website?" openAsNew={false}>
+      <span class="md:hidden">Learn</span>
+      <span class="hidden md:inline">Learn more</span>
+    </Anchor>
+    <Anchor class="btn btn-soft btn-primary" href="/blog" openAsNew={false}>
+      <span class="md:hidden">Blog</span>
+      <span class="hidden md:inline">Explore blog</span>
+    </Anchor>
   </div>
 </section>

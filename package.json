@@ -2,6 +2,8 @@
     "type": "module",
     "private": true,
     "name": "pages",
+    "version": "0.7.0",
+    "workspaces": ["packages/*"],
     "scripts": {
         "dev": "astro dev",
         "build": "astro build",

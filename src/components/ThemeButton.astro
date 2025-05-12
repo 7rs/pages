@@ -3,7 +3,7 @@ import { LIGHT_THEME, DARK_THEME } from "uno.config";
 import { Icon } from "astro-icon/components";
 ---
 
-<label class="swap">
+<label class="swap [&>svg]:hover:header-icon [&>svg]:transition-all">
   <input
     id="theme-controller"
     type="checkbox"

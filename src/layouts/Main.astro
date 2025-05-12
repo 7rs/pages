@@ -11,20 +11,21 @@ import "uno.css";
 import "@styles/index.scss";
 
 interface Props {
+  title: string;
   className?: string;
 }
 
-const { className = "" } = Astro.props;
+const { title, className = "" } = Astro.props;
 ---
 
 <html>
-  <Head />
+  <Head title={title} />
   <body class="min-h-dvh w-full | grid grid-rows-[auto_1fr_auto] | bg-base-200">
     <Header>
       <h1 class="text-3xl font-bold">7rs.dev</h1>
     </Header>
     <main class="w-full flex justify-center">
-      <div class:list={["min-[900px]:mx-0 max-w-[900px] w-full", className]}>
+      <div class:list={["px-2 lg:px-0 min-[900px]:mx-0 max-w-[900px] w-full", className]}>
         <slot />
       </div>
     </main>

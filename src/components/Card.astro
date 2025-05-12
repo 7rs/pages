@@ -10,7 +10,7 @@ interface Props extends HTMLAttributes<"article"> {
 const { icon, title, ...props } = Astro.props;
 ---
 
-<article class="card card-md | bg-base-100 shadow-sm" {...props}>
+<article class="card card-md | bg-base-100 hover:bg-base-300 transition-all shadow-sm" {...props}>
   <div class="card-body">
     <h2 class="card-title">
       <Icon class="inline" name={icon} />{title}

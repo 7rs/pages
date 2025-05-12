@@ -49,5 +49,8 @@ export default defineConfig({
     "warning",
     "error"
   ]),
+  shortcuts: {
+    "header-icon": "scale-125 color-primary"
+  },
   safelist: [...Array.from({ length: 96 }, (_, i) => `p-${i + 1}`)]
 });

@@ -1,5 +1,6 @@
 ---
 import ThemeButton from "@/components/ThemeButton.astro";
+import { Icon } from "astro-icon/components";
 
 export interface Props {
   icon?: string;
@@ -8,13 +9,37 @@ export interface Props {
 const { icon } = Astro.props;
 ---
 
-<header class="fixed top-0 z-999 | w-full | flex justify-center | bg-[var(--color-base-100)]/50 backdrop-blur-md backdrop-brightness-125 shadow-sm">
+<header
+  class="fixed top-0 z-900 | w-full | flex justify-center | bg-[var(--color-base-100)]/50 backdrop-blur-md backdrop-brightness-125 shadow-sm"
+>
   <div class="navbar | px-4 max-w-[900px]">
     <a class="flex-1" href="/" title="main page">
       <slot />
     </a>
-    <div class="flex-none flex text-2xl">
+    <div class="flex-none flex gap-x-4 text-2xl">
       <ThemeButton />
+      <Icon name="line-md:search" onclick="searchModal.showModal()" class="hover:header-icon transition-all" />
+      <article class="dropdown dropdown-end">
+        <Icon
+          tabindex="0"
+          role="button"
+          name="line-md:menu"
+          class="hover:header-icon focus:header-icon transition-all"
+        />
+        <div tabindex="0" class="dropdown-content top-12 menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">No content</div>
+      </article>
     </div>
   </div>
 </header>
+
+<dialog id="searchModal" class="modal">
+  <div class="modal-box">
+    search
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
