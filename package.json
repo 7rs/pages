@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "astro dev",
         "build": "astro build",
-        "preview": "astro preview"
+        "prev": "astro build && astro preview"
     },
     "dependencies": {
         "@ameinhardt/unocss-preset-daisy": "^1.1.7",
@@ -19,6 +19,8 @@
         "@iconify-json/simple-icons": "^1.2.33",
         "@iconify-json/tabler": "^1.2.17",
         "astro": "^5.7.9",
+        "astro-compress": "^2.3.8",
+        "astro-compressor": "^1.0.0",
         "astro-icon": "^1.1.5",
         "autoprefixer": "^10.4.21",
         "daisyui": "^5.0.32",

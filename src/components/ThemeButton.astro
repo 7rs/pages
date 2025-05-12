@@ -12,8 +12,8 @@ import { Icon } from "astro-icon/components";
     data-light-theme={LIGHT_THEME}
     data-dark-theme={DARK_THEME}
   />
-  <Icon id="sunny-icon" class="swap-off" name="line-md:sunny-loop" />
-  <Icon id="moon-icon" class="swap-on" name="line-md:moon-loop" />
+  <Icon id="sunny-icon" name="line-md:sunny-loop" class="swap-off" />
+  <Icon id="moon-icon" name="line-md:moon-loop" class="swap-on" />
 </label>
 
 <script is:inline>
@@ -34,16 +34,16 @@ import { Icon } from "astro-icon/components";
 
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme != null && savedTheme.length > 0 && controller != null) {
-    console.debug(`loaded saved theme: ${savedTheme}`)
+    console.debug(`loaded saved theme: ${savedTheme}`);
     const optionTheme = controller.getAttribute("value");
     const optionEnabled = controller.checked;
 
     if (optionTheme !== savedTheme && optionEnabled) {
       controller.checked = false;
-      console.debug(`disabled: ${optionTheme} (off)`)
+      console.debug(`disabled: ${optionTheme} (off)`);
     } else if (optionTheme === savedTheme && !optionEnabled) {
       controller.checked = true;
-      console.debug(`enabled: ${optionTheme} (on)`)
+      console.debug(`enabled: ${optionTheme} (on)`);
     }
   }
 
@@ -52,13 +52,13 @@ import { Icon } from "astro-icon/components";
     const optionEnabled = event.target.checked;
 
     if (optionTheme === DARK_THEME) {
-      const changedTheme = optionEnabled ? DARK_THEME : LIGHT_THEME
+      const changedTheme = optionEnabled ? DARK_THEME : LIGHT_THEME;
       localStorage.setItem("theme", changedTheme);
-      console.debug(`saved theme: ${changedTheme}`)
+      console.debug(`saved theme: ${changedTheme}`);
     } else {
-      const changedTheme = optionEnabled ? LIGHT_THEME : DARK_THEME
+      const changedTheme = optionEnabled ? LIGHT_THEME : DARK_THEME;
       localStorage.setItem("theme", changedTheme);
-      console.debug(`saved theme: ${changedTheme}`)
+      console.debug(`saved theme: ${changedTheme}`);
     }
   });
 </script>

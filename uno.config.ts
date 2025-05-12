@@ -12,6 +12,10 @@ function convertDaisyColorsToUnoRules(names: string[]) {
   for (const name of names) {
     rules.push([`color-${name}`, { color: `var(--color-${name})` }]);
     rules.push([`bg-${name}`, { "background-color": `var(--color-${name})` }]);
+
+    if (!(name.startsWith("base") && name.endsWith("00"))) {
+      rules.push([`color-${name}-content`, { color: `var(--color-${name})-content` }]);
+    }
   }
 
   return rules;

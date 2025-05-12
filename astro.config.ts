@@ -1,24 +1,37 @@
 import { getAliases } from "./scripts/alias.ts";
 import { defineConfig } from "astro/config";
-import UnoCSS from 'unocss/astro'
+
+import icon from "astro-icon";
+import UnoCSS from "unocss/astro";
+import compress from "astro-compress";
+import compressor from "astro-compressor";
 
 import tsconfig from "./tsconfig.json" with { type: "json" };
 
-import icon from "astro-icon";
-
 export default defineConfig({
-  server: { host: true, port: 2999 },
-  integrations: [UnoCSS(), icon()],
   vite: {
     resolve: {
       alias: getAliases(tsconfig.compilerOptions.paths),
     },
   },
-  site: "https://7rs.dev",
   markdown: {
     gfm: false,
     shikiConfig: {
       theme: "dracula",
     },
   },
+  server: { host: true, port: 2999 },
+  site: "https://7rs.dev",
+  integrations: [
+    icon(),
+    UnoCSS(),
+    compress({
+      HTML: {
+        "html-minifier-terser": {
+          sortClassName: false,
+        },
+      },
+    }),
+    compressor({ gzip: false, brotli: true }),
+  ],
 });

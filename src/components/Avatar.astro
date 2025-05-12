@@ -5,11 +5,12 @@ import type { ImageMetadata } from 'astro';
 interface Props {
   src: ImageMetadata;
   className: string;
+  size?: number;
 }
 
-const { src, className = "" } = Astro.props;
+const { src, className = "", size = 128 } = Astro.props;
 ---
 
 <article class:list={["avatar", className]}>
-  <Picture class="rounded-full" src={src} formats={["avif", "jpg"]} alt="avatar" />
+  <Picture class="rounded-full" src={src} formats={["avif", "jpg"]} alt="avatar" width={size} height={size} />
 </article>

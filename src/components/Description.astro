@@ -9,10 +9,12 @@ interface Props {
 const { title, icon } = Astro.props;
 ---
 
-<article class="grid grid-cols-[auto_auto_1fr] items-center w-full gap-x-1">
-  <div class="tooltip px-2 md:px-0" data-tip={title}>
-    <Icon class="block flex-none w-8 h-8 hover:scale-125 transition-all p-1 md:p-0" name={icon} />
+<article class="w-full | grid grid-cols-[auto_auto_1fr] items-center gap-x-1">
+  <div class="flex-none | tooltip | px-2 md:px-0" data-tip={title}>
+    <Icon class="p-1 md:p-0 w-8 h-8 | block | hover:scale-125 transition-all" name={icon} />
   </div>
-  <div class="divider divider-horizontal flex-none m-0"></div>
-  <p class="flex-1"><slot /></p>
+  <div class="flex-none | divider divider-horizontal | m-0" />
+  <p class="flex-1">
+    <slot />
+  </p>
 </article>

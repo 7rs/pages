@@ -8,7 +8,7 @@ export interface Props {
 const { icon } = Astro.props;
 ---
 
-<header class="fixed top-0 z-999 | w-full | flex justify-center | bg-base-100 shadow-sm">
+<header class="fixed top-0 z-999 | w-full | flex justify-center | bg-[var(--color-base-100)]/50 backdrop-blur-md backdrop-brightness-125 shadow-sm">
   <div class="navbar | px-4 max-w-[900px]">
     <a class="flex-1" href="/" title="main page">
       <slot />
