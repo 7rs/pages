@@ -54,7 +54,13 @@ export default tseslint.config(
           version: ">=22.0.0",
         },
       ],
-      'n/no-missing-import': 'off',
+      "n/no-missing-import": "off",
+      "import/no-unresolved": [
+        "error",
+        {
+          ignore: ["^astro:content$"],
+        },
+      ],
     },
   },
 );

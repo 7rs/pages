@@ -8,6 +8,8 @@ import compressor from "astro-compressor";
 
 import tsconfig from "./tsconfig.json" with { type: "json" };
 
+import mdx from "@astrojs/mdx";
+
 export default defineConfig({
   vite: {
     resolve: {
@@ -20,9 +22,14 @@ export default defineConfig({
       theme: "dracula",
     },
   },
+  i18n: {
+    locales: ["ja", "en"],
+    defaultLocale: "ja",
+  },
   server: { host: true, port: 2999 },
   site: "https://7rs.dev",
   integrations: [
+    mdx(),
     icon(),
     UnoCSS(),
     compress({

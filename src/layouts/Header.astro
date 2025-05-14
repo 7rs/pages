@@ -3,11 +3,13 @@ import ThemeButton from "@/components/ThemeButton.astro";
 import { Icon } from "astro-icon/components";
 
 export interface Props {
-  icon?: string;
+  showFakeHeader?: boolean;
 }
 
-const { icon } = Astro.props;
+const { showFakeHeader = true } = Astro.props;
 ---
+
+{showFakeHeader && <div class="bg-transparent color-transparent navbar">fake header</div>}
 
 <header
   class="fixed top-0 z-900 | w-full | flex justify-center | bg-[var(--color-base-100)]/50 backdrop-blur-md backdrop-brightness-125 shadow-sm"
@@ -26,7 +28,9 @@ const { icon } = Astro.props;
           name="line-md:menu"
           class="hover:header-icon focus:header-icon transition-all"
         />
-        <div tabindex="0" class="dropdown-content top-12 menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">No content</div>
+        <div tabindex="0" class="dropdown-content top-12 menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+          No content
+        </div>
       </article>
     </div>
   </div>

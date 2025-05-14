@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "@ameinhardt/unocss-preset-daisy": "^1.1.7",
+        "@astrojs/mdx": "^4.2.6",
         "@fontsource/fira-code": "^5.2.5",
         "@fontsource/inter": "^5.2.5",
         "@iconify-json/cib": "^1.2.2",

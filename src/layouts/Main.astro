@@ -13,15 +13,16 @@ import "@styles/index.scss";
 interface Props {
   title: string;
   className?: string;
+  showFakeHeader?: boolean;
 }
 
-const { title, className = "" } = Astro.props;
+const { title, className = "", showFakeHeader } = Astro.props;
 ---
 
 <html>
   <Head title={title} />
   <body class="min-h-dvh w-full | grid grid-rows-[auto_1fr_auto] | bg-base-200">
-    <Header>
+    <Header showFakeHeader={showFakeHeader}>
       <h1 class="text-3xl font-bold">7rs.dev</h1>
     </Header>
     <main class="w-full flex justify-center">

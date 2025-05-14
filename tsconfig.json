@@ -17,5 +17,6 @@
             "@icons/*": ["src/icons/*"],
             "@scripts/*": ["scripts/*"]
         }
-    }
+    },
+    "include": [".astro/*.d.ts", "**/*"]
 }
