@@ -1,0 +1,129 @@
+@keyframes expand {
+  0% {
+    transform: scaleX(0%);
+  }
+  to {
+    transform: scaleX(100%);
+  }
+}
+
+div[data-content-type="md"]:not(#_) {
+  $basefont-size: 1rem;
+
+  :root {
+    --base-font-size: 1rem;
+  }
+
+  * {
+    font-size: $basefont-size;
+  }
+
+  /* DO NOT USE h1 in markdown/mdx. */
+
+  h1 {
+    display: none;
+  }
+
+  h2 {
+    position: relative;
+    font-size: $basefont-size * 2.5;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+
+    &::before {
+      z-index: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      content: "";
+      border-bottom: 1px solid #fff;
+      animation: 1s ease-out 0s 1 normal forwards running expand;
+      transform-origin: left;
+    }
+  }
+
+  h3 {
+    font-size: $basefont-size * 2;
+  }
+
+  h4 {
+    font-size: $basefont-size * 1.5;
+  }
+
+  h5 {
+    font-size: $basefont-size * 1.25;
+  }
+
+  p {
+    line-height: 1.6;
+  }
+
+  a {
+    z-index: 1;
+    position: relative;
+    text-decoration: underline;
+
+    &::before {
+      z-index: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      content: "";
+      background-color: var(--color-secondary);
+      opacity: 25%;
+      transform-origin: left;
+      transform: scaleX(0%);
+      transition: all 200ms ease;
+    }
+
+    &:hover::before {
+      transform: scaleX(100%);
+    }
+  }
+
+  code {
+    font-family: var(--font-mono);
+  }
+
+  blockquote {
+    border-left: 4px solid #ccc;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: #666;
+    font-style: italic;
+  }
+
+  ul,
+  ol {
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+
+  * {
+    ul, ol {
+      margin-left: 2rem;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+
+  th,
+  td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f0f0f0;
+  }
+}

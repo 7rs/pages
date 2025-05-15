@@ -16,7 +16,7 @@ interface Props {
   showFakeHeader?: boolean;
 }
 
-const { title, className = "", showFakeHeader } = Astro.props;
+const { title, className = "", showFakeHeader, ...props } = Astro.props;
 ---
 
 <html>
@@ -26,7 +26,7 @@ const { title, className = "", showFakeHeader } = Astro.props;
       <h1 class="text-3xl font-bold">7rs.dev</h1>
     </Header>
     <main class="w-full flex justify-center">
-      <div class:list={["px-2 lg:px-0 min-[900px]:mx-0 max-w-[900px] w-full", className]}>
+      <div class:list={["px-2 lg:px-0 min-[900px]:mx-0 max-w-[900px] w-full", className]} {...props}>
         <slot />
       </div>
     </main>

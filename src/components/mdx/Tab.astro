@@ -1,0 +1,11 @@
+---
+import BaseTab from "@components/Tab.astro";
+import type { Props as BaseTabProps } from "@components/Tab.astro";
+
+interface Props extends BaseTabProps {}
+const { ...props } = Astro.props;
+---
+
+<BaseTab className="py-2 px-6" {...props}>
+  <slot />
+</BaseTab>

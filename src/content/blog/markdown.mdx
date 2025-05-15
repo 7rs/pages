@@ -2,3 +2,129 @@
 title: "Markdownの記法"
 tags: []
 ---
+
+import Tab from "@components/mdx/Tab.astro";
+import TabList from "@components/mdx/TabList.astro";
+import Window from "@components/mdx/Window.astro";
+
+# Markdownの記法  
+
+  まあ、今更書き残すほどの事ではないのだが。  
+
+## 見出し／ヘッダー  
+
+  <TabList align="left">
+    <Tab tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      # Header #x1  
+      ## Header #x2  
+      ### Header #x3  
+      #### Header #x4  
+      ##### Header #x5  
+      ###### Header #x6  
+      ```
+    </Tab>
+    <Tab tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        {/*  */}
+        # Header x1  
+        ## Header x2  
+        ### Header x3  
+        #### Header x4  
+        ##### Header x5  
+        ###### Header x6  
+        {/*  */}
+      </Window> 
+    </Tab>
+  </TabList>
+
+  恐らく、6段階までかと思われる。
+  というのも、これはHTML要素のh1 - h6要素に変換されるから  
+
+  [`<h1>–<h6>`: HTML の見出し要素](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/Heading_Elements)
+
+  <blockquote>
+    1つのページに複数の`<h1>`要素を使用することは HTML 標準では認められていますが（入れ子でない限り）、これはよい習慣とはみなされません。
+    1 つのページには、ページの内容を説明する1つの`<h1>`要素（文書の`<title>`要素と同様）を置くのが一般的です。
+  </blockquote>
+
+  h1(#x1)は１ページにつき１つというのが通例になっている  
+  また、h1(#x1)と(#x2)は下線が引かれる場合が多い  
+
+## テキストの装飾  
+
+  <TabList align="left">
+    <Tab tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      - 斜線
+        - *アスタリスク*
+        - _アンダースコア_
+      - 太文字
+        - **アスタリスク**
+        - __アンダースコア__
+      - 打ち消し
+        - ~~チルダ~~
+      ```
+    </Tab>
+    <Tab tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        {/*  */}
+        - 斜線
+          - *アスタリスク*
+          - _アンダースコア_
+        - 太文字
+          - **アスタリスク**
+          - __アンダースコア__
+        - 打ち消し
+          - ~~チルダ~~
+        {/*  */}
+      </Window> 
+    </Tab>
+  </TabList>
+
+  `~`を利用した打ち消しは基本文法じゃないから、環境によっては動作しない  
+  斜線は`<em>`、太文字は`<strong>`、打ち消しは`<del>`に変換される  
+
+## リスト  
+
+  <TabList align="left">
+    <Tab tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      * アスタリスク
+        * アスタリスク入れ子
+      * アスタリスク
+      + プラス
+        + プラス入れ子
+      + プラス
+      - ハイフン
+          - ハイフン入れ子
+      - ハイフン
+      ```
+    </Tab>
+    <Tab tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        {/*  */}
+        * アスタリスク
+          * アスタリスク入れ子
+        * アスタリスク
+        + プラス
+          + プラス入れ子
+        + プラス
+        - ハイフン
+            - ハイフン入れ子
+        - ハイフン
+        {/*  */}
+      </Window> 
+    </Tab>
+  </TabList>
+
+  リストは`*`, `+`, `-`を使うことが出来る。
+  全て順序なしリスト`<ul>`に変換される  
+
+{/*  */}
+1. 順序付き
+  1. 順序付き入れ子
+2. 順序付き
+{/*  */}
+
+  順序つきリスト`<ol>`に変換される  

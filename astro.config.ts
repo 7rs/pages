@@ -10,6 +10,8 @@ import tsconfig from "./tsconfig.json" with { type: "json" };
 
 import mdx from "@astrojs/mdx";
 
+import expressiveCode from "astro-expressive-code";
+
 export default defineConfig({
   vite: {
     resolve: {
@@ -29,6 +31,7 @@ export default defineConfig({
   server: { host: true, port: 2999 },
   site: "https://7rs.dev",
   integrations: [
+    expressiveCode(),
     mdx(),
     icon(),
     UnoCSS(),

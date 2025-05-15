@@ -24,6 +24,7 @@
         "astro": "^5.7.9",
         "astro-compress": "^2.3.8",
         "astro-compressor": "^1.0.0",
+        "astro-expressive-code": "^0.41.2",
         "astro-icon": "^1.1.5",
         "autoprefixer": "^10.4.21",
         "daisyui": "^5.0.32",

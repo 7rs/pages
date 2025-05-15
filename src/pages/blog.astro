@@ -6,9 +6,14 @@ const entries = await getCollection("blog");
 ---
 
 <Main title="Fast, Lean and Customizable! - 7rs.dev" className="mb-12 | flex flex-col gap-y-36">
-  {
-    entries.map((entry) => {
-      return <a href={`/b/${entry.slug}`}>{entry.data.title}</a>;
-    })
-  }
+  <article class="flex flex-col">
+    <p>{entries.length}</p>
+    <div class="flex flex-col">
+    {
+      entries.map((entry) => {
+        return <a href={`/b/${entry.slug}`}>{entry.data.title}</a>;
+      })
+    }
+  </div>
+  </article>
 </Main>

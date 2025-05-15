@@ -1,0 +1,29 @@
+---
+const Aligns = {
+  Center: "center",
+  Left: "left",
+  Right: "right",
+} as const;
+type Aligns = (typeof Aligns)[keyof typeof Aligns];
+
+interface Props {
+  align?: Aligns;
+}
+
+const { align = Aligns.Center } = Astro.props;
+
+const justifyContent = ((align: Aligns) => {
+  switch (align) {
+    case "left":
+      return "justify-left";
+    case "right":
+      return "justify-right";
+    default:
+      return "justify-center";
+  }
+})(align);
+---
+
+<article class:list={["tabs tabs-border | mt-8 mb-4 | bg-none", justifyContent]}>
+  <slot />
+</article>

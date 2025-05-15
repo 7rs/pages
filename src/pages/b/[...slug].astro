@@ -1,5 +1,8 @@
 ---
+import Main from "@/layouts/Main.astro";
 import { getCollection } from "astro:content";
+
+import "@styles/markdown.scss"
 
 export async function getStaticPaths() {
   const entries = await getCollection("blog");
@@ -14,4 +17,6 @@ const entry = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Content />
+<Main title="" className="my-4" data-content-type="md">
+  <Content />
+</Main>
