@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @keyframes expand {
   0% {
     transform: scaleX(0%);
@@ -7,15 +9,22 @@
   }
 }
 
-div[data-content-type="md"]:not(#_) {
-  $basefont-size: 1rem;
+div[data-content-type="md"] {
+  $base-font-size: 1rem;
+  $golden-ratio: math.div((1 + math.sqrt(5)), 2);
 
-  :root {
-    --base-font-size: 1rem;
+  @mixin full-size {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
   }
 
-  * {
-    font-size: $basefont-size;
+  :where(*) {
+    font-size: $base-font-size;
+    line-height: $golden-ratio;
   }
 
   /* DO NOT USE h1 in markdown/mdx. */
@@ -26,57 +35,51 @@ div[data-content-type="md"]:not(#_) {
 
   h2 {
     position: relative;
-    font-size: $basefont-size * 2.5;
+    font-size: $base-font-size * 2.5;
     margin-top: 3rem;
     margin-bottom: 1.5rem;
 
     &::before {
-      z-index: 0;
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      content: "";
-      border-bottom: 1px solid #fff;
-      animation: 1s ease-out 0s 1 normal forwards running expand;
+      @include full-size;
+      border-bottom: 1.5px solid var(--color-base-content);
+      transform: scaleX(100%);
       transform-origin: left;
+      animation: 1s ease-out 0s 1 normal forwards running expand;
     }
   }
 
   h3 {
-    font-size: $basefont-size * 2;
+    font-size: $base-font-size * 2;
   }
 
   h4 {
-    font-size: $basefont-size * 1.5;
+    font-size: $base-font-size * 1.5;
   }
 
   h5 {
-    font-size: $basefont-size * 1.25;
+    font-size: $base-font-size * 1.25;
   }
 
-  p {
-    line-height: 1.6;
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: bold;
   }
 
   a {
     z-index: 1;
     position: relative;
+    color: var(--color-accent);
     text-decoration: underline;
 
     &::before {
-      z-index: 0;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      content: "";
-      background-color: var(--color-secondary);
+      @include full-size;
       opacity: 25%;
-      transform-origin: left;
+      background-color: var(--color-secondary);
       transform: scaleX(0%);
+      transform-origin: left;
       transition: all 200ms ease;
     }
 
@@ -85,16 +88,12 @@ div[data-content-type="md"]:not(#_) {
     }
   }
 
-  code {
+  & > *:not(.expressive-code) > code {
+    background-color: var(--color-base-300);
+    color: var(--color-base-content);
     font-family: var(--font-mono);
-  }
-
-  blockquote {
-    border-left: 4px solid #ccc;
-    padding-left: 1rem;
-    margin: 1rem 0;
-    color: #666;
-    font-style: italic;
+    padding: 0 math.div($base-font-size, 2);
+    border-radius: math.div($base-font-size, 4);
   }
 
   ul,
@@ -103,8 +102,14 @@ div[data-content-type="md"]:not(#_) {
     list-style-position: inside;
   }
 
+  & > ul,
+  ol {
+    margin: 1rem 0;
+  }
+
   * {
-    ul, ol {
+    ul,
+    ol {
       margin-left: 2rem;
     }
   }

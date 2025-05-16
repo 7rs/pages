@@ -2,21 +2,22 @@
 import { Icon } from "astro-icon/components";
 
 export interface Props {
+  tabGroup?: string;
   tabName: string;
   icon?: string;
   checked?: boolean;
   className?: string;
 }
 
-const { tabName, icon, checked = false, className = "" } = Astro.props;
+const { tabGroup, tabName, icon, checked = false, className = "" } = Astro.props;
 ---
 
 <label class="tab text-base">
   {
     checked ? (
-      <input type="radio" name="tab-button" checked="checked" />
+      <input type="radio" name={tabGroup ?? "tab-button"} checked="checked" />
     ) : (
-      <input type="radio" name="tab-button" />
+      <input type="radio" name={tabGroup ?? "tab-button"} />
     )
   }
   {icon && <Icon class="size-4 me-2" name={icon} />}

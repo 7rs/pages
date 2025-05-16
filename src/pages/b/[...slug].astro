@@ -1,8 +1,8 @@
 ---
-import Main from "@/layouts/Main.astro";
 import { getCollection } from "astro:content";
 
 import "@styles/markdown.scss"
+import Blog from "@layouts/Blog.astro";
 
 export async function getStaticPaths() {
   const entries = await getCollection("blog");
@@ -17,6 +17,6 @@ const entry = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Main title="" className="my-4" data-content-type="md">
+<Blog frontmatter={entry.data} title="" className="my-4 max-w-[700px]!" data-content-type="md">
   <Content />
-</Main>
+</Blog>

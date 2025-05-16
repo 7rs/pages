@@ -1,0 +1,15 @@
+---
+import type { Blog as BlogFrontmatter } from "@content/config";
+import type { Props as MainProps } from "@layouts/Main.astro";
+import Main from "@layouts/Main.astro";
+
+interface Props extends MainProps {
+  frontmatter?: BlogFrontmatter;
+}
+
+const { frontmatter, ...props } = Astro.props;
+---
+
+<Main {...props}>
+  <slot />
+</Main>

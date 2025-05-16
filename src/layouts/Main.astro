@@ -1,7 +1,7 @@
 ---
-import Head from "@layouts/Head.astro";
-import Header from "@layouts/Header.astro";
-import Footer from "@layouts/Footer.astro";
+import Head from "@layouts/_common/Head.astro";
+import Header from "@layouts/_common/Header.astro";
+import Footer from "@layouts/_common/Footer.astro";
 
 /* eslint-disable */
 import "@unocss/reset/tailwind.css";
@@ -10,7 +10,7 @@ import "uno.css";
 
 import "@styles/index.scss";
 
-interface Props {
+export interface Props {
   title: string;
   className?: string;
   showFakeHeader?: boolean;
