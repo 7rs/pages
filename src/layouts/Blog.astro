@@ -10,6 +10,21 @@ interface Props extends MainProps {
 const { frontmatter, ...props } = Astro.props;
 ---
 
-<Main {...props}>
+<Main
+  title={frontmatter.title || "No title"}
+  className="my-4 !min-[700px]:max-w-[700px]"
+  data-content-type="md"
+  {...props}
+>
+  <div>
+    <p>{frontmatter.title}</p>
+    <p class="flex gap-x-2">
+      {frontmatter.tags.map((tag) => <span>#{tag}</span>)}
+    </p>
+    <p class="flex gap-x-2">
+      {frontmatter.authors.map((author) => <span>@{author}</span>)}
+    </p>
+    <p>{frontmatter.created}</p>
+  </div>
   <slot />
 </Main>

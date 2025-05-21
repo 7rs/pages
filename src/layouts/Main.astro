@@ -10,13 +10,14 @@ import "uno.css";
 
 import "@styles/index.scss";
 
+
 export interface Props {
-  title: string;
+  title?: string;
   className?: string;
   showFakeHeader?: boolean;
 }
 
-const { title, className = "", showFakeHeader, ...props } = Astro.props;
+const { title = "No title", className = "", showFakeHeader, ...props } = Astro.props;
 ---
 
 <html>
@@ -26,7 +27,7 @@ const { title, className = "", showFakeHeader, ...props } = Astro.props;
       <h1 class="text-3xl font-bold">7rs.dev</h1>
     </Header>
     <main class="w-full flex justify-center">
-      <div class:list={["px-2 lg:px-0 min-[900px]:mx-0 max-w-[900px] w-full", className]} {...props}>
+      <div class:list={["px-3 lg:px-0 min-[900px]:mx-0 max-w-svw min-[900px]:max-w-[900px] w-full", className]} {...props}>
         <slot />
       </div>
     </main>

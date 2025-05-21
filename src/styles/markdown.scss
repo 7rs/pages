@@ -14,6 +14,7 @@ div[data-content-type="md"] {
   $golden-ratio: math.div((1 + math.sqrt(5)), 2);
 
   @mixin full-size {
+    z-index: -1;
     position: absolute;
     left: 0;
     top: 0;
@@ -27,6 +28,17 @@ div[data-content-type="md"] {
     line-height: $golden-ratio;
   }
 
+  code {
+    font-size: 14px;
+  }
+
+  div.expressive-code {
+    margin: 1rem 0rem;
+    * {
+      font-size: 14px;
+    }
+  }
+
   /* DO NOT USE h1 in markdown/mdx. */
 
   h1 {
@@ -34,17 +46,22 @@ div[data-content-type="md"] {
   }
 
   h2 {
+    z-index: 1;
     position: relative;
-    font-size: $base-font-size * 2.5;
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
+    font-size: $base-font-size * 1.75;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
 
     &::before {
       @include full-size;
-      border-bottom: 1.5px solid var(--color-base-content);
+      border-bottom: 2px solid var(--color-base-content);
       transform: scaleX(100%);
       transform-origin: left;
       animation: 1s ease-out 0s 1 normal forwards running expand;
+    }
+
+    @media screen and (min-width: 900px) {
+      font-size: $base-font-size * 2;
     }
   }
 
@@ -66,6 +83,7 @@ div[data-content-type="md"] {
   h5,
   h6 {
     font-weight: bold;
+    text-wrap: wrap;
   }
 
   a {
@@ -115,20 +133,14 @@ div[data-content-type="md"] {
   }
 
   table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    font-size: 0.95rem;
+    margin: 1rem 0;
   }
 
-  th,
-  td {
-    border: 1px solid #ccc;
-    padding: 0.5rem;
-    text-align: left;
-  }
-
-  th {
-    background-color: #f0f0f0;
+  blockquote {
+    background-color: var(--color-base-300);
+    border-left: 4px solid var(--color-info);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
   }
 }

@@ -6,6 +6,8 @@
       "dependencies": {
         "@ameinhardt/unocss-preset-daisy": "^1.1.7",
         "@astrojs/mdx": "^4.2.6",
+        "@expressive-code/plugin-line-numbers": "^0.41.2",
+        "@fontsource/biz-udgothic": "^5.2.5",
         "@fontsource/fira-code": "^5.2.5",
         "@fontsource/inter": "^5.2.5",
         "@iconify-json/cib": "^1.2.2",
@@ -271,9 +273,13 @@
 
     "@expressive-code/plugin-frames": ["@expressive-code/plugin-frames@0.41.2", "", { "dependencies": { "@expressive-code/core": "^0.41.2" } }, "sha512-pfy0hkJI4nbaONjmksFDcuHmIuyPTFmi1JpABe4q2ajskiJtfBf+WDAL2pg595R9JNoPrrH5+aT9lbkx2noicw=="],
 
+    "@expressive-code/plugin-line-numbers": ["@expressive-code/plugin-line-numbers@0.41.2", "", { "dependencies": { "@expressive-code/core": "^0.41.2" } }, "sha512-xdRoScuFWQbYEpWTh6G7kJ0VK46kcUPHPMjRo3CG2ynZ1rqiJCC9FnZQQWQ7U8aGd/n7EnU3vJBkBeVqhZyEWg=="],
+
     "@expressive-code/plugin-shiki": ["@expressive-code/plugin-shiki@0.41.2", "", { "dependencies": { "@expressive-code/core": "^0.41.2", "shiki": "^3.2.2" } }, "sha512-xD4zwqAkDccXqye+235BH5bN038jYiSMLfUrCOmMlzxPDGWdxJDk5z4uUB/aLfivEF2tXyO2zyaarL3Oqht0fQ=="],
 
     "@expressive-code/plugin-text-markers": ["@expressive-code/plugin-text-markers@0.41.2", "", { "dependencies": { "@expressive-code/core": "^0.41.2" } }, "sha512-JFWBz2qYxxJOJkkWf96LpeolbnOqJY95TvwYc0hXIHf9oSWV0h0SY268w/5N3EtQaD9KktzDE+VIVwb9jdb3nw=="],
+
+    "@fontsource/biz-udgothic": ["@fontsource/biz-udgothic@5.2.5", "", {}, "sha512-mRun595QgJhcFgs9UEVkSiE/A3lK8JRqhEvErKJz+AQc80/fiWEl94tOiTI0UDf9WQykzXLFc2m7HLcE5l6gCA=="],
 
     "@fontsource/fira-code": ["@fontsource/fira-code@5.2.5", "", {}, "sha512-Rn9PJoyfRr5D6ukEhZpzhpD+rbX2rtoz9QjkOuGxqFxrL69fQvhadMUBxQIOuTF4sTTkPRSKlAEpPjTKaI12QA=="],
 

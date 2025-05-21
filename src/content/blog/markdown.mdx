@@ -1,5 +1,9 @@
 ---
-title: "Markdownの記法"
+title: "今更Markdownの記法を見直す"
+description: "実は知らないかもしれないMarkdownの仕様を洗い出す"
+tags: ["markdown", "mdx", "gfm"]
+authors: ["Cbrnex"]
+created: "2025-05-22"
 ---
 
 import Tab from "@components/mdx/Tab.astro";
@@ -7,14 +11,15 @@ import TabList from "@components/mdx/TabList.astro";
 import Window from "@components/mdx/Window.astro";
 import Blockquote from "@components/mdx/Blockquote.astro";
 
-# Markdownの記法  
+## なんで？  
 
   まあ、今更書き残すほどの事ではないのだが。  
+  ただ、調べてみると今まで知らなかったことも出てくる。そんな備忘録である  
 
 ## 見出し／ヘッダー  
 
   <TabList align="left">
-    <Tab tabGroup="1" tabName="コード" icon="material-symbols:code" checked>
+    <Tab tabGroup="header" tabName="コード" icon="material-symbols:code" checked>
       ```mdx
       # Header #x1  
       ## Header #x2  
@@ -24,7 +29,7 @@ import Blockquote from "@components/mdx/Blockquote.astro";
       ###### Header #x6  
       ```
     </Tab>
-    <Tab tabGroup="1" tabName="プレビュー" icon="material-symbols:preview">
+    <Tab tabGroup="header" tabName="プレビュー" icon="material-symbols:preview">
       <Window>
         # Header x1  
         ## Header x2  
@@ -36,11 +41,8 @@ import Blockquote from "@components/mdx/Blockquote.astro";
     </Tab>
   </TabList>
 
-  たぶん、6段階まで。
-  HTML要素のh1 - h6要素に変換されるから  
-
-  h1(#x1)は１ページに１つというのが通例になっている。
-  また、h1(#x1)と(#x2)は下線が引かれる場合が多い  
+  たぶん、6段階まで。HTML要素のh1 - h6要素に変換されるから  
+  h1(#x1)は１ページに１つというのが通例になっている。また、h1(#x1)と(#x2)は下線が引かれる場合が多い  
 
   <Blockquote  url="https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/Heading_Elements">
     1つのページに複数の`<h1>`要素を使用することは HTML 標準では認められていますが（入れ子でない限り）、これはよい習慣とはみなされません。
@@ -50,7 +52,7 @@ import Blockquote from "@components/mdx/Blockquote.astro";
 ## テキストの装飾  
 
   <TabList align="left">
-    <Tab tabGroup="2" tabName="コード" icon="material-symbols:code" checked>
+    <Tab tabGroup="decoration" tabName="コード" icon="material-symbols:code" checked>
       ```mdx
       - 斜線
         - *アスタリスク*
@@ -62,7 +64,7 @@ import Blockquote from "@components/mdx/Blockquote.astro";
         - ~~チルダ~~
       ```
     </Tab>
-    <Tab tabGroup="2" tabName="プレビュー" icon="material-symbols:preview">
+    <Tab tabGroup="decoration" tabName="プレビュー" icon="material-symbols:preview">
       <Window>
         - 斜線
           - *アスタリスク*
@@ -76,13 +78,13 @@ import Blockquote from "@components/mdx/Blockquote.astro";
     </Tab>
   </TabList>
 
-  `~`を利用した打ち消しは基本文法じゃないから、環境によっては動作しない  
+  `~`を利用した打ち消しはGFMの仕様  
   斜線は`<em>`、太文字は`<strong>`、打ち消しは`<del>`に変換される  
 
 ## リスト  
 
   <TabList align="left">
-    <Tab tabGroup="3" tabName="コード" icon="material-symbols:code" checked>
+    <Tab tabGroup="list" tabName="コード" icon="material-symbols:code" checked>
       ```mdx
       * アスタリスク
         * アスタリスク入れ子
@@ -95,7 +97,7 @@ import Blockquote from "@components/mdx/Blockquote.astro";
       - ハイフン
       ```
     </Tab>
-    <Tab tabGroup="3" tabName="プレビュー" icon="material-symbols:preview">
+    <Tab tabGroup="list" tabName="プレビュー" icon="material-symbols:preview">
       <Window>
         * アスタリスク
           * アスタリスク入れ子
@@ -114,14 +116,14 @@ import Blockquote from "@components/mdx/Blockquote.astro";
   全て順序なしリスト`<ul>`に変換される  
 
   <TabList align="left">
-    <Tab tabGroup="4" tabName="コード" icon="material-symbols:code" checked>
+    <Tab tabGroup="ordered-list" tabName="コード" icon="material-symbols:code" checked>
       ```mdx
       1. 順序付き
         1. 順序付き入れ子
       2. 順序付き
       ```
     </Tab>
-    <Tab tabGroup="4" tabName="プレビュー" icon="material-symbols:preview">
+    <Tab tabGroup="ordered-list" tabName="プレビュー" icon="material-symbols:preview">
       <Window>
         1. 順序付き
           1. 順序付き入れ子
@@ -130,4 +132,163 @@ import Blockquote from "@components/mdx/Blockquote.astro";
     </Tab>
   </TabList>
 
-  順序つきリスト`<ol>`に変換される  
+  `0-9`までの数字を使うと、順序つきリスト`<ol>`に変換される  
+  順番はごっちゃでも変換される  
+
+## テーブル  
+
+  <TabList align="left">
+    <Tab tabGroup="table" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      | column1 | column2 | column3 |
+      |:-------:|:--------|--------:|
+      |  真ん中  |  ひだり  |   みぎ   |
+      ```
+    </Tab>
+    <Tab tabGroup="table" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        | column1 | column2 | column3 |
+        |:-------:|:--------|--------:|
+        |  真ん中  |  ひだり  |   みぎ   |
+      </Window> 
+    </Tab>
+  </TabList>
+
+  テーブル自体がGFMの仕様  
+  配置の指定は列ごと。`:-:`で真ん中、`:-`で左、`-:`で右。文法的には枠線を整える必要はない  
+
+## 引用  
+
+  <TabList align="left">
+    <Tab tabGroup="blockquote" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      > `<blockquote>` は HTML 要素で、内包する要素のテキストが引用文であることを示します。
+      > 通常、字下げして表示されます（整形方法については注意の項を参照してください）。
+      > 引用元の URL は cite 属性により与えることができ、
+      > 引用元のテキスト表現は `<cite>` 要素を用いて与えることができます。
+      > <br />
+      > `<blockquote>`: ブロック引用要素 | MDN
+      ```
+    </Tab>
+    <Tab tabGroup="blockquote" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        > `<blockquote>` は HTML 要素で、内包する要素のテキストが引用文であることを示します。
+        > 通常、字下げして表示されます（整形方法については注意の項を参照してください）。
+        > 引用元の URL は cite 属性により与えることができ、
+        > 引用元のテキスト表現は `<cite>` 要素を用いて与えることができます。  
+        > <br />
+        > `<blockquote>`: ブロック引用要素 | MDN
+        {/*  */}
+      </Window> 
+    </Tab>
+  </TabList>
+
+  引用は`>`で単行指定でき、`blockquote`に変換される  
+  作法は無いが、一番下の行に元サイトのリンクや著者を記載しておくと良いだろう  
+
+## コードブロック  
+
+  <TabList align="left">
+    <Tab tabGroup="code" tabName="コード" icon="material-symbols:code" checked>
+      ````md {"1":1} {"2":9}
+        ```go
+        package main
+
+        import "fmt"
+
+        func main() {
+          fmt.Println("Hello, world!");
+        }
+        ```
+      ````
+    </Tab>
+    <Tab tabGroup="code" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        ```go
+        package main
+
+        import "fmt"
+
+        func main() {
+          fmt.Println("Hello, world!");
+        }
+        ```
+      </Window> 
+    </Tab>
+  </TabList>
+
+  最初と最後の行で<code>`</code>を三つ並べて囲えば、内側の行がコードブロックとなる。
+  ~~スペース四行でもできるが、必要ない~~  
+  最初の行で言語を指定できる。
+  使用できる言語は[github-linguist/linguist - languages.yml](https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml)から確認できる  
+
+  単行は<code>`</code>一つで囲むだけ  
+
+  `````md
+    ````md {"1":1} {"2":9}
+      ```go
+      package main
+
+      import "fmt"
+
+      func main() {
+        fmt.Println("Hello, world!");
+      }
+      ```
+    ````
+  `````
+
+  一つ上のコードブロックはこうやって記述している。
+  コードブロックは子よりも多い<code>`</code>で囲えば、コードブロック自体を見せることが出来る  
+
+## 改行  
+
+  <TabList align="left">
+    <Tab tabGroup="br" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      a  
+      b<br />
+      c
+      ```
+    </Tab>
+    <Tab tabGroup="br" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        a  
+        b<br />
+        c
+      </Window> 
+    </Tab>
+  </TabList>
+
+  行の最後にスペース２個で改行になる。
+  また、`<br />`で改行させることも可能  
+
+  <Blockquote url="https://zenn.dev/nullheader/articles/fb24ead4938c9a">
+    mdファイルにおいて、テキスト行末の空白が削除される（Pretteirでフォーマットすると）。  
+    なお、筆者の環境でPrettierを無効化したときは、上記の状態にはならない。
+  </Blockquote>
+
+  残念ながら、Pretteierはmarkdownのフォーマットに向いていない  
+
+## 水平線  
+
+  <TabList align="left">
+    <Tab tabGroup="hr" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      ---
+      hr
+      ***
+      ```
+    </Tab>
+    <Tab tabGroup="hr" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        ---
+        hr
+        ***
+      </Window> 
+    </Tab>
+  </TabList>
+
+  水平線は`-`か`*`を三つ以上並べる。間のスペースは自動削除される  
+  だが、これを使ってスタイリングするのは
+  あまりMarkdownとして意味を成していないような気がする  

@@ -19,7 +19,7 @@ export default defineConfig({
     },
   },
   markdown: {
-    gfm: false,
+    gfm: true,
     shikiConfig: {
       theme: "dracula",
     },

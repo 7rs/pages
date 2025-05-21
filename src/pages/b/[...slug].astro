@@ -17,6 +17,6 @@ const entry = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<Blog frontmatter={entry.data} title="" className="my-4 max-w-[700px]!" data-content-type="md">
+<Blog frontmatter={entry.data}>
   <Content />
 </Blog>
