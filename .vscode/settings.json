@@ -27,6 +27,9 @@
     "[markdown]": {
         "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
     },
+    "[mdx]": {
+        "editor.defaultFormatter": "unifiedjs.vscode-mdx"
+    },
     "[stylus]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -34,5 +37,6 @@
     "prettier.ignorePath": "./.prettierignore",
     "stylelint.validate": ["css", "scss", "postcss"],
     "markdownlint.run": "onType",
-    "stylelint.stylelintPath": "./node_modules/stylelint"
+    "stylelint.stylelintPath": "./node_modules/stylelint",
+    "files.trimTrailingWhitespace": false
 }

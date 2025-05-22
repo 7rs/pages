@@ -13,8 +13,8 @@ import Blockquote from "@components/mdx/Blockquote.astro";
 
 ## なんで？  
 
-  まあ、今更書き残すほどの事ではないのだが。  
-  ただ、調べてみると今まで知らなかったことも出てくる。そんな備忘録である  
+  今更書き残すほどの事ではないよね。  
+  でも、調べてみると今まで知らなかったことも出てくる。そんな備忘録である  
 
 ## 見出し／ヘッダー  
 
@@ -292,3 +292,44 @@ import Blockquote from "@components/mdx/Blockquote.astro";
   水平線は`-`か`*`を三つ以上並べる。間のスペースは自動削除される  
   だが、これを使ってスタイリングするのは
   あまりMarkdownとして意味を成していないような気がする  
+
+## リンク  
+
+  <TabList align="left">
+    <Tab tabGroup="link" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      [7rs-dev]: https://7rs.dev/
+
+      - [7rs.dev](https://7rs.dev/)
+      - [7rs.dev][7rs-dev]
+      ```
+    </Tab>
+    <Tab tabGroup="link" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        [7rs-dev]: https://7rs.dev/
+
+        - [7rs.dev](https://7rs.dev/)
+        - [7rs.dev][7rs-dev]
+      </Window> 
+    </Tab>
+  </TabList>
+
+  `[]`の中に表示するテキスト、`()`の中にURL。
+  で、並べる。`[Example](https://example.com)`  
+
+  まあ、これだと  
+
+  ```mdx
+  [Too long](https://www.google.com/search?q=markdown+link&rlz=1C1GCEA_enJP1093JP1093&oq=markdown+link&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCTQ4ODVqMGoxNagCArACAQ&sourceid=chrome&ie=UTF-8)
+  ```
+  こうなる。
+  なので、`[<name>]: <url>`のようにしてリンクを定義しておける。
+  使うときは表示するテキストとリンク名を並べる。`[<text>][<link>]`
+
+  ```mdx
+  [too-long]: https://www.google.com/search?q=markdown+link&rlz=1C1GCEA_enJP1093JP1093&oq=markdown+link&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCTQ4ODVqMGoxNagCArACAQ&sourceid=chrome&ie=UTF-8
+
+  [Too long][too-long]
+  ```
+
+  長いことには変わりないが、本文が汚れるのを防ぐことが出来る  

@@ -1,4 +1,4 @@
-import { load, type BasicAcceptedElems, type CheerioAPI } from "cheerio";
+import { load, type BasicAcceptedElems } from "cheerio";
 import type { AnyNode } from "domhandler";
 
 async function getBodyText(response: Response) {
