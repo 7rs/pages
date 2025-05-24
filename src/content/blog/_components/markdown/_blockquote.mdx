@@ -1,0 +1,33 @@
+import Tab from "@components/mdx/Tab.astro";
+import TabList from "@components/mdx/TabList.astro";
+import Window from "@components/mdx/Window.astro";
+import Blockquote from "@components/mdx/Blockquote.astro";
+
+## 引用  
+
+  <TabList align="left">
+    <Tab tabGroup="blockquote" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      > `<blockquote>` は HTML 要素で、内包する要素のテキストが引用文であることを示します。
+      > 通常、字下げして表示されます（整形方法については注意の項を参照してください）。
+      > 引用元の URL は cite 属性により与えることができ、
+      > 引用元のテキスト表現は `<cite>` 要素を用いて与えることができます。
+      > <br />
+      > `<blockquote>`: ブロック引用要素 | MDN
+      ```
+    </Tab>
+    <Tab tabGroup="blockquote" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        > `<blockquote>` は HTML 要素で、内包する要素のテキストが引用文であることを示します。
+        > 通常、字下げして表示されます（整形方法については注意の項を参照してください）。
+        > 引用元の URL は cite 属性により与えることができ、
+        > 引用元のテキスト表現は `<cite>` 要素を用いて与えることができます。  
+        > <br />
+        > `<blockquote>`: ブロック引用要素 | MDN
+        {/*  */}
+      </Window> 
+    </Tab>
+  </TabList>
+
+  引用は`>`で単行指定でき、`blockquote`に変換される  
+  作法は無いが、一番下の行に元サイトのリンクや著者を記載しておくと良いだろう  

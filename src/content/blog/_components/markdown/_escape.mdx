@@ -1,0 +1,22 @@
+import Tab from "@components/mdx/Tab.astro";
+import TabList from "@components/mdx/TabList.astro";
+import Window from "@components/mdx/Window.astro";
+import Blockquote from "@components/mdx/Blockquote.astro";
+
+## エスケープ  
+
+  <TabList align="left">
+    <Tab tabGroup="escape" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      \*\*Normal\*\*
+      ```
+    </Tab>
+    <Tab tabGroup="escape" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        \*\*Normal\*\*
+      </Window> 
+    </Tab>
+  </TabList>
+
+  Markdownの構文はエスケープできる。`\`を使う。
+  [ただし、エスケープできる構文にも制限がある](https://daringfireball.net/projects/markdown/syntax#backslash)  

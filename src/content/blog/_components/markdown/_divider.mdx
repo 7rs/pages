@@ -1,0 +1,56 @@
+import Tab from "@components/mdx/Tab.astro";
+import TabList from "@components/mdx/TabList.astro";
+import Window from "@components/mdx/Window.astro";
+import Blockquote from "@components/mdx/Blockquote.astro";
+
+## 改行  
+
+  <TabList align="left">
+    <Tab tabGroup="br" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      a  
+      b<br />
+      c
+      ```
+    </Tab>
+    <Tab tabGroup="br" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        a  
+        b<br />
+        c
+      </Window> 
+    </Tab>
+  </TabList>
+
+  行の最後にスペース２個で改行になる。
+  また、`<br />`で改行させることも可能  
+
+  <Blockquote url="https://zenn.dev/nullheader/articles/fb24ead4938c9a">
+    mdファイルにおいて、テキスト行末の空白が削除される（Pretteirでフォーマットすると）。  
+    なお、筆者の環境でPrettierを無効化したときは、上記の状態にはならない。
+  </Blockquote>
+
+  残念ながら、Pretteierはmarkdownのフォーマットに向いていない  
+
+## 水平線  
+
+  <TabList align="left">
+    <Tab tabGroup="hr" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      ---
+      hr
+      ***
+      ```
+    </Tab>
+    <Tab tabGroup="hr" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        ---
+        hr
+        ***
+      </Window> 
+    </Tab>
+  </TabList>
+
+  水平線は`-`か`*`を三つ以上並べる。間のスペースは自動削除される  
+  だが、これを使ってスタイリングするのは
+  あまりMarkdownとして意味を成していないような気がする  

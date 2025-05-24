@@ -1,0 +1,59 @@
+import Tab from "@components/mdx/Tab.astro";
+import TabList from "@components/mdx/TabList.astro";
+import Window from "@components/mdx/Window.astro";
+import Blockquote from "@components/mdx/Blockquote.astro";
+
+## コードブロック  
+
+  <TabList align="left">
+    <Tab tabGroup="code" tabName="コード" icon="material-symbols:code" checked>
+      ````md {"1":1} {"2":9}
+        ```go
+        package main
+
+        import "fmt"
+
+        func main() {
+          fmt.Println("Hello, world!");
+        }
+        ```
+      ````
+    </Tab>
+    <Tab tabGroup="code" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        ```go
+        package main
+
+        import "fmt"
+
+        func main() {
+          fmt.Println("Hello, world!");
+        }
+        ```
+      </Window> 
+    </Tab>
+  </TabList>
+
+  最初と最後の行で<code>`</code>を三つ並べて囲えば、内側の行がコードブロックとなる。
+  ~~スペース四行でもできるが、必要ない~~  
+  最初の行で言語を指定できる。
+  使用できる言語は[github-linguist/linguist - languages.yml](https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml)から確認できる  
+
+  単行は<code>`</code>一つで囲むだけ  
+
+  `````md
+    ````md {"1":1} {"2":9}
+      ```go
+      package main
+
+      import "fmt"
+
+      func main() {
+        fmt.Println("Hello, world!");
+      }
+      ```
+    ````
+  `````
+
+  一つ上のコードブロックはこうやって記述している。
+  コードブロックは子よりも多い<code>`</code>で囲えば、コードブロック自体を見せることが出来る  

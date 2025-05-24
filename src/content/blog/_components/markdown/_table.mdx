@@ -1,0 +1,26 @@
+import Tab from "@components/mdx/Tab.astro";
+import TabList from "@components/mdx/TabList.astro";
+import Window from "@components/mdx/Window.astro";
+import Blockquote from "@components/mdx/Blockquote.astro";
+
+## テーブル  
+
+  <TabList align="left">
+    <Tab tabGroup="table" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      | column1 | column2 | column3 |
+      |:-------:|:--------|--------:|
+      |  真ん中  |  ひだり  |   みぎ   |
+      ```
+    </Tab>
+    <Tab tabGroup="table" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        | column1 | column2 | column3 |
+        |:-------:|:--------|--------:|
+        |  真ん中  |  ひだり  |   みぎ   |
+      </Window> 
+    </Tab>
+  </TabList>
+
+  テーブル自体がGFMの仕様  
+  配置の指定は列ごと。`:-:`で真ん中、`:-`で左、`-:`で右。文法的には枠線を整える必要はない  

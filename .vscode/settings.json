@@ -38,5 +38,6 @@
     "stylelint.validate": ["css", "scss", "postcss"],
     "markdownlint.run": "onType",
     "stylelint.stylelintPath": "./node_modules/stylelint",
-    "files.trimTrailingWhitespace": false
+    "files.trimTrailingWhitespace": false,
+    "emojisense.unicodeCompletionsEnabled": false
 }

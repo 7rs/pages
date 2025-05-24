@@ -32,12 +32,16 @@
         "astro": "^5.8.0",
         "astro-compress": "^2.3.8",
         "astro-compressor": "^1.0.0",
+        "astro-d2": "^0.8.0",
         "astro-expressive-code": "^0.41.2",
         "astro-icon": "^1.1.5",
         "autoprefixer": "^10.4.21",
         "cheerio": "^1.0.0",
         "daisyui": "^5.0.37",
+        "mdx-mermaid": "^2.0.3",
+        "mermaid": "^11.6.0",
         "postcss-preset-env": "^10.1.6",
+        "remark-emoji": "^5.0.1",
         "unocss": "^66.1.2"
     },
     "devDependencies": {

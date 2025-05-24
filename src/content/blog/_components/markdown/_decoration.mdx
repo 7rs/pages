@@ -1,0 +1,36 @@
+import Tab from "@components/mdx/Tab.astro";
+import TabList from "@components/mdx/TabList.astro";
+import Window from "@components/mdx/Window.astro";
+import Blockquote from "@components/mdx/Blockquote.astro";
+
+## テキストの装飾  
+
+  <TabList align="left">
+    <Tab tabGroup="decoration" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      - 斜線
+        - *アスタリスク*
+        - _アンダースコア_
+      - 太文字
+        - **アスタリスク**
+        - __アンダースコア__
+      - 打ち消し
+        - ~~チルダ~~
+      ```
+    </Tab>
+    <Tab tabGroup="decoration" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        - 斜線
+          - *アスタリスク*
+          - _アンダースコア_
+        - 太文字
+          - **アスタリスク**
+          - __アンダースコア__
+        - 打ち消し
+          - ~~チルダ~~
+      </Window> 
+    </Tab>
+  </TabList>
+
+  `~`を利用した打ち消しはGFMの仕様  
+  斜線は`<em>`、太文字は`<strong>`、打ち消しは`<del>`に変換される  

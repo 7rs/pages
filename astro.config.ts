@@ -1,16 +1,20 @@
 import { getAliases } from "./scripts/alias.ts";
 import { defineConfig } from "astro/config";
 
-import icon from "astro-icon";
+// Astro Integrations
+import mdx from "@astrojs/mdx";
+import expressiveCode from "astro-expressive-code";
 import UnoCSS from "unocss/astro";
+import icon from "astro-icon";
 import compress from "astro-compress";
 import compressor from "astro-compressor";
+import d2 from "astro-d2";
+
+// remark/rehype plugins
+import emoji from "remark-emoji";
+import mdxMermaid from "mdx-mermaid";
 
 import tsconfig from "./tsconfig.json" with { type: "json" };
-
-import mdx from "@astrojs/mdx";
-
-import expressiveCode from "astro-expressive-code";
 
 export default defineConfig({
   vite: {
@@ -19,10 +23,15 @@ export default defineConfig({
     },
   },
   markdown: {
-    gfm: true,
-    shikiConfig: {
-      theme: "dracula",
+    syntaxHighlight: {
+      type: "shiki",
+      excludeLangs: ["mermaid", "d2"],
     },
+    gfm: true,
+    remarkPlugins: [
+      [emoji, { accessible: true }],
+      [mdxMermaid, { output: "svg" }],
+    ],
   },
   i18n: {
     locales: ["ja", "en"],
@@ -32,6 +41,7 @@ export default defineConfig({
   site: "https://7rs.dev",
   integrations: [
     expressiveCode(),
+    d2(),
     mdx(),
     icon(),
     UnoCSS(),
