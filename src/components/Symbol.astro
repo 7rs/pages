@@ -1,0 +1,43 @@
+---
+import { getTwemojiSVG } from "@scripts/emoji";
+import { Icon } from "astro-icon/components";
+
+const SymbolTypes = {
+  Twemoji: "twemoji",
+  Icon: "icon",
+  Image: "image",
+} as const;
+type SymbolTypes = (typeof SymbolTypes)[keyof typeof SymbolTypes];
+
+interface Props {
+  image?: string;
+  className?: string
+}
+
+const { image, className, ...props } = Astro.props;
+
+const symbolType = (() => {
+  if (image.startsWith(":") && image.endsWith(":")) {
+    return SymbolTypes.Twemoji;
+  } else if (image.indexOf(".") == -1) {
+    return SymbolTypes.Icon;
+  }
+
+  return SymbolTypes.Image;
+})();
+---
+
+{
+  async () => {
+    switch (symbolType) {
+      case SymbolTypes.Twemoji:
+        const outputSVG = await getTwemojiSVG(image, className, props);
+
+        return outputSVG && <Fragment set:html={outputSVG} />;
+      case SymbolTypes.Icon:
+        return <Icon class={className} name={image} {...props} />;
+      default:
+        return <img src={image} class={className} {...props} />;
+    }
+  }
+}

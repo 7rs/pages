@@ -13,6 +13,8 @@ import d2 from "astro-d2";
 // remark/rehype plugins
 import emoji from "remark-emoji";
 import mdxMermaid from "mdx-mermaid";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 
 import tsconfig from "./tsconfig.json" with { type: "json" };
 
@@ -22,16 +24,18 @@ export default defineConfig({
       alias: getAliases(tsconfig.compilerOptions.paths),
     },
   },
+  image: {
+    remotePatterns: [{ protocol: "https" }],
+    domains: ["cdn.jsdelivr.net"],
+  },
   markdown: {
     syntaxHighlight: {
       type: "shiki",
       excludeLangs: ["mermaid", "d2"],
     },
     gfm: true,
-    remarkPlugins: [
-      [emoji, { accessible: true }],
-      [mdxMermaid, { output: "svg" }],
-    ],
+    remarkPlugins: [[emoji, { accessible: true }], [mdxMermaid, { output: "svg" }], remarkMath],
+    rehypePlugins: [rehypeKatex],
   },
   i18n: {
     locales: ["ja", "en"],
@@ -43,7 +47,19 @@ export default defineConfig({
     expressiveCode(),
     d2(),
     mdx(),
-    icon(),
+    icon({
+      svgoOptions: {
+        multipass: true,
+        plugins: [
+          {
+            name: "convertPathData",
+            params: {
+              floatPrecision: 2,
+            },
+          },
+        ],
+      },
+    }),
     UnoCSS(),
     compress({
       HTML: {

@@ -9,7 +9,7 @@
   }
 }
 
-div[data-content-type="md"] {
+[data-content-type="md"] {
   $base-font-size: 1rem;
   $golden-ratio: math.div((1 + math.sqrt(5)), 2);
 
@@ -37,6 +37,10 @@ div[data-content-type="md"] {
     * {
       font-size: 14px;
     }
+  }
+
+  span.katex-html {
+    display: none;
   }
 
   /* DO NOT USE h1 in markdown/mdx. */
@@ -67,6 +71,7 @@ div[data-content-type="md"] {
 
   h3 {
     font-size: $base-font-size * 2;
+    margin-top: 3rem;
   }
 
   h4 {

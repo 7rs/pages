@@ -1,10 +1,15 @@
 ---
 import Anchor from "@components/Anchor.astro";
+import type {Props as AnchorProps} from "@components/Anchor.astro";
 
-const { ...props } = Astro.props;
+interface Props extends AnchorProps {
+  className?: string
+}
+
+const { className = "", ...props } = Astro.props;
 ---
 
-<Anchor class="relative link [&>span]:hover:w-full" {...props}>
+<Anchor class:list={["relative link [&>span]:hover:w-full", className]} {...props}>
   <slot />
   <span class="absolute top-0 left-0 | h-full w-0 | opacity-25 bg-secondary transition-all transition-duration-200"></span>
 </Anchor>

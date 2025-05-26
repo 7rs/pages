@@ -1,0 +1,85 @@
+---
+title: "今更Markdownの記法を見直す MDX編"
+description: "実は知らないかもしれないMarkdownの仕様を洗い出す"
+tags: ["markdown", "mdx", "github", "gfm", "remark-emoji", "mermaid", "d2"]
+authors: ["Cbrnex"]
+created: "2025-05-27"
+image: "simple-icons:markdown"
+---
+
+import Tab from "@components/mdx/Tab.astro";
+import TabList from "@components/mdx/TabList.astro";
+import Window from "@components/mdx/Window.astro";
+import Blockquote from "@components/mdx/Blockquote.astro";
+
+[github_emoji]: https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#using-emojis
+
+## 絵文字  
+
+  <TabList align="left">
+    <Tab tabGroup="emoji" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      :joy:
+      :hugs:
+      :thinking:
+      :sunglasses:
+      :pleading:
+      :sob:
+      :scream:
+      :skull:
+      :poop:
+      ```
+    </Tab>
+    <Tab tabGroup="emoji" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        :joy:
+        :hugs:
+        :thinking:
+        :sunglasses:
+        :pleading:
+        :sob:
+        :scream:
+        :skull:
+        :poop:
+      </Window> 
+    </Tab>
+  </TabList>
+
+  [GitHub上のMarkdownのみ対応している。][github_emoji]  
+  [remarkプラグインを介しても使用できる](https://unifiedjs.com/explore/package/remark-emoji/)  
+  絵文字名は[GitHub Docsにも記載されているリポジトリから参照できる](https://github.com/ikatyang/emoji-cheat-sheet)  
+
+  絵文字自体は画像やSVGでもなく、ただの文字なので直接入力してもいいが、絵文字キーボードを持たないPCなどでは重宝するかもしれない  
+
+## グラフ  
+
+  MarkdownにもGFMにもGitHubにも、それどころか基本的にはない  
+  ただ、Obsidianやフレームワークにプラグインを入れることで使用可能  
+
+  ```mermaid
+  pie title Browser
+    "Chrome" : 66.19
+    "Safari" : 17.25
+    "Edge" : 5.2
+    "Firefox" : 2.55
+    "Samsung Internet" : 2.23
+    "Opera" : 2.08
+  ```
+
+  Markdown上でテキストベースで[グラフを作成できるMermaid](https://mermaid.js.org/)  
+  Obsidianでは標準搭載となっているメジャーなグラフ作成ツール  
+
+  ```d2
+  direction: right
+  食う -> 寝る -> 遊ぶ
+  遊ぶ -> 食う
+  ```
+
+  Goで記述されたグラフ作成ツール  
+  Markdown用に作られたわけでは無いが、対応させたインテグレーションなどがある  
+
+## KaTeX  
+
+  $$
+  L = \frac{1}{2} \rho v^2 S C_L
+  $$

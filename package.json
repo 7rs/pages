@@ -22,6 +22,7 @@
         "@fontsource/biz-udgothic": "^5.2.5",
         "@fontsource/fira-code": "^5.2.6",
         "@fontsource/inter": "^5.2.5",
+        "@formkit/tempo": "^0.1.2",
         "@iconify-json/cib": "^1.2.2",
         "@iconify-json/line-md": "^1.2.8",
         "@iconify-json/logos": "^1.2.4",
@@ -29,6 +30,7 @@
         "@iconify-json/mdi": "^1.2.3",
         "@iconify-json/simple-icons": "^1.2.35",
         "@iconify-json/tabler": "^1.2.18",
+        "@twemoji/api": "^16.0.1",
         "astro": "^5.8.0",
         "astro-compress": "^2.3.8",
         "astro-compressor": "^1.0.0",
@@ -40,8 +42,12 @@
         "daisyui": "^5.0.37",
         "mdx-mermaid": "^2.0.3",
         "mermaid": "^11.6.0",
+        "node-emoji": "^2.2.0",
         "postcss-preset-env": "^10.1.6",
+        "rehype-katex": "^7.0.1",
         "remark-emoji": "^5.0.1",
+        "remark-math": "^6.0.0",
+        "svgo": "^3.3.2",
         "unocss": "^66.1.2"
     },
     "devDependencies": {
