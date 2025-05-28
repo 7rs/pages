@@ -1,7 +1,7 @@
 ---
 title: "今更Markdownの記法を見直す"
 description: "実は知らないかもしれないMarkdownの仕様を洗い出す"
-tags: ["markdown", "mdx", "github", "gfm"]
+tags: ["markdown", "github", "gfm"]
 authors: ["Cbrnex"]
 created: "2025-05-22"
 image: "simple-icons:markdown"
@@ -11,11 +11,13 @@ import Tab from "@components/mdx/Tab.astro";
 import TabList from "@components/mdx/TabList.astro";
 import Window from "@components/mdx/Window.astro";
 import Blockquote from "@components/mdx/Blockquote.astro";
+import Sources from "@components/mdx/Sources.astro"
 
 ## なんで？  
 
   今更書き残すほどの事ではないよね。  
-  でも、調べてみると今まで知らなかったことも出てくる。そんな備忘録である  
+  でも、調べてみると今まで知らなかったことも出てくる。そんな備忘録  
+  そんなんいくらでもあるわ！ここしかないのを出せやという方は[こちらからどうぞ](/b/mdx)  
 
 ## 見出し／ヘッダー  
 
@@ -38,13 +40,14 @@ import Blockquote from "@components/mdx/Blockquote.astro";
         #### Header x4  
         ##### Header x5  
         ###### Header x6  
-      </Window> 
+      </Window>
     </Tab>
   </TabList>
 
-  たぶん、6段階まで。HTML要素のh1 - h6要素に変換されるから  
+  `#`とスペースを開けて見出しテキストを記述する。
+  たぶん6段階まで。HTML要素の`h1` - `h6`要素に変換されるから  
 
-  **`h1`は1ページに1つ**というのが通例になっている。
+  **`h1`は1ページに1つ**というのが通例。
   `h4`, `h5`, `h6`あたりは使う事もないし、使ってるとこも見たことないけど使う事あるのかな？  
 
   <Blockquote  url="https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/Heading_Elements">
@@ -52,16 +55,19 @@ import Blockquote from "@components/mdx/Blockquote.astro";
     1 つのページには、ページの内容を説明する1つの`<h1>`要素（文書の`<title>`要素と同様）を置くのが一般的です。  
   </Blockquote>
 
-  markdownlintでは、1 -> 2 -> 3のように順番に使わないと怒られる。まあ、理由が無い限りその書き方が美しいだろう  
+  markdownlintでは**`h1` -> `h2` -> `h3`**のように順番に使わないと怒られる。
+  さらに、見出しの上下1行は空けることもルールとなっている。まあ、理由が無い限りはその方が美しいかもね  
 
-- [Header - Daring Fireball](https://daringfireball.net/projects/markdown/syntax#header)
-- [4.2 ATX headings - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#atx-headings)
-- [見出し - GitHub Docs](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#headings)
-- [見出し - ZennのMarkdown記法一覧 (zenn.dev/zenn)](https://zenn.dev/zenn/articles/markdown-guide#%E8%A6%8B%E5%87%BA%E3%81%97)
-- [Headings - 見出し - Markdown記法 チートシート (qiita.com/Qiita)](https://qiita.com/Qiita/items/c686397e4a0f4f11683d#headings---%E8%A6%8B%E5%87%BA%E3%81%97)
-- [`<h1>–<h6>`: HTML の見出し要素 - MDN Web Docs](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/Heading_Elements)
+  <Sources label="参考">
+    - [Header - Daring Fireball](https://daringfireball.net/projects/markdown/syntax#header)
+    - [4.2 ATX headings - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#atx-headings)
+    - [見出し - GitHub Docs](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#headings)
+    - [見出し - ZennのMarkdown記法一覧 (zenn.dev/zenn)](https://zenn.dev/zenn/articles/markdown-guide#%E8%A6%8B%E5%87%BA%E3%81%97)
+    - [見出し - Markdown記法 チートシート (qiita.com/Qiita)](https://qiita.com/Qiita/items/c686397e4a0f4f11683d#headings---%E8%A6%8B%E5%87%BA%E3%81%97)
+    - [`<h1>–<h6>`: HTML の見出し要素 - MDN Web Docs](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/Heading_Elements)
+  </Sources>
 
-## テキストの装飾  
+## テキストの装飾 (一部GFM)  
 
   <TabList align="left">
     <Tab tabGroup="decoration" tabName="コード" icon="material-symbols:code" checked>
@@ -72,6 +78,9 @@ import Blockquote from "@components/mdx/Blockquote.astro";
       - 太文字
         - **アスタリスク**
         - __アンダースコア__
+      - 斜線・太文字
+        - ***アスタリスク***
+        - ___アンダースコア___
       - 打ち消し
         - ~~チルダ~~
       ```
@@ -84,21 +93,32 @@ import Blockquote from "@components/mdx/Blockquote.astro";
         - 太文字
           - **アスタリスク**
           - __アンダースコア__
+        - 斜線・太文字
+          - ***アスタリスク***
+          - ___アンダースコア___
         - 打ち消し
           - ~~チルダ~~
-      </Window> 
+      </Window>
     </Tab>
   </TabList>
 
-  *斜線*は`<em>`、**太文字**は`<strong>`、~~打ち消し~~は`<del>`に変換される  
-  `~`を利用した打ち消しはGFMの仕様  
+  `*`か`_`を使って囲む。一個ずつで囲めば*斜線*、二個ずつで囲めば**太文字**。
+  三個ずつで囲むと***斜線かつ太文字***になる。打ち消し線は`~`二個ずつで囲むのみ  
 
-- [Emphasis - Daring Fireball](https://daringfireball.net/projects/markdown/syntax#em)
-- [6.4Emphasis and strong emphasis - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#emphasis-and-strong-emphasis)
-- [テキストのスタイル設定 - GitHub Docs](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#styling-text)
-- [インラインスタイル - ZennのMarkdown記法一覧 (zenn.dev/zenn)](https://zenn.dev/zenn/articles/markdown-guide#%E3%82%A4%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB)
-- [Emphasis / Strong Emphasis - 強調・強勢 - Markdown記法 チートシート (qiita.com/Qiita)](https://qiita.com/Qiita/items/c686397e4a0f4f11683d#emphasis--strong-emphasis---%E5%BC%B7%E8%AA%BF%E5%BC%B7%E5%8B%A2)
-- [`<em>`: 強調要素 - MDN Web Docs](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/em)
+  *斜線*は`<em>`、**太文字**は`<strong>`、~~打ち消し~~は`<del>`に変換される  
+  [`~`を使った打ち消しはGFMの仕様](https://github.github.com/gfm/#strikethrough-extension-)  
+
+  <Sources label="参考">
+    - [Emphasis - Daring Fireball](https://daringfireball.net/projects/markdown/syntax#em)
+    - [6.4 Emphasis and strong emphasis - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#emphasis-and-strong-emphasis)
+    - [6.5 Strikethrough (extension) - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#strikethrough-extension-)
+    - [テキストのスタイル設定 - GitHub Docs](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#styling-text)
+    - [インラインスタイル - ZennのMarkdown記法一覧 (zenn.dev/zenn)](https://zenn.dev/zenn/articles/markdown-guide#%E3%82%A4%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB)
+    - [強調・強勢 - Markdown記法 チートシート (qiita.com/Qiita)](https://qiita.com/Qiita/items/c686397e4a0f4f11683d#emphasis--strong-emphasis---%E5%BC%B7%E8%AA%BF%E5%BC%B7%E5%8B%A2)
+    - [`<em>`: 強調要素 - MDN Web Docs](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/em)
+    - [`<strong>`: 強い重要性要素 - MDN Web Docs](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/strong)
+    - [`<del>`: 削除済みテキスト要素 - MDN Web Docs](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/del)
+  </Sources>
 
 ## リンク  
 
@@ -113,21 +133,48 @@ import Blockquote from "@components/mdx/Blockquote.astro";
     <Tab tabGroup="link" tabName="プレビュー" icon="material-symbols:preview">
       <Window>
         [7rs.dev](https://7rs.dev/)
-      </Window> 
+      </Window>
     </Tab>
   </TabList>
 
   `[]`の中に表示するテキスト、`()`の中にURL。
-  で、並べる。`[Example](https://example.com)`  
+  `[Example](https://example.com)`のように記述する  
+  `<a>`タグに変換される  
 
-  まあ、これだと  
+  <TabList align="left">
+    <Tab tabGroup="link-title" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      [7rs.dev](https://7rs.dev/ "Cbrnex's website")
+      ```
+    </Tab>
+    <Tab tabGroup="link-title" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        [7rs.dev](https://7rs.dev/ "Cbrnex's website")
+      </Window>
+    </Tab>
+  </TabList>
+
+  `()`内で、スペースを開けて`"`で囲んだ中の文字はtitle属性として設定される。
+  ダブルクオート`"`とシングルクオート`'`、どちらでも良い  
+
+  <Sources label="参考">
+    - [Links - Daring Fireball](https://daringfireball.net/projects/markdown/syntax#link)
+    - [6.6 Links - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#links)
+    - [リンク - GitHub Docs](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#links)
+    - [テキストリンク - ZennのMarkdown記法一覧 (zenn.dev/zenn)](https://zenn.dev/zenn/articles/markdown-guide#%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%83%AA%E3%83%B3%E3%82%AF)
+    - [リンク - Markdown記法 チートシート (qiita.com/Qiita)](https://qiita.com/Qiita/items/c686397e4a0f4f11683d#links---%E3%83%AA%E3%83%B3%E3%82%AF)
+    - [`<a>`: アンカー要素 - MDN Web Docs](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/a)
+    - [title - MDN Web Docs](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Global_attributes/title)
+  </Sources>
+
+### リンク定義 (Link definitions)  
 
   ```mdx
   [Too long](https://www.google.com/search?q=markdown+link&rlz=1C1GCEA_enJP1093JP1093&oq=markdown+link&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCTQ4ODVqMGoxNagCArACAQ&sourceid=chrome&ie=UTF-8)
   ```
-  こうなる。
-  なので、`[<name>]: <url>`のようにしてリンクを定義しておける。
-  使うときは表示するテキストとリンク名を並べる。`[<text>][<link>]`
+  URLが長すぎると、本文が大変なことになる  
+  なので、`[<link_name>]: <url>`のようにしてリンクを定義しておける。
+  表示する文字列とリンク名を`[<text>][<link_name>]`のように並べて使う  
 
   ```mdx
   [too-long]: https://www.google.com/search?q=markdown+link&rlz=1C1GCEA_enJP1093JP1093&oq=markdown+link&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCTQ4ODVqMGoxNagCArACAQ&sourceid=chrome&ie=UTF-8
@@ -136,6 +183,29 @@ import Blockquote from "@components/mdx/Blockquote.astro";
   ```
 
   長いことには変わりないが、本文が汚れるのを防ぐことが出来る  
+
+  <TabList align="left">
+    <Tab tabGroup="link-definitions-title" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      [7rs.dev]: https://7rs.dev/ "Cbrnex's website"
+
+      [7rs.dev][7rs.dev]
+      ```
+    </Tab>
+    <Tab tabGroup="link-definitions-title" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        [7rs.dev]: https://7rs.dev/ "Cbrnex's website"
+
+        [7rs.dev][7rs.dev]
+      </Window>
+    </Tab>
+  </TabList>
+
+  同様に、title属性を指定できる  
+
+  <Sources label="参考">
+    - [4.7 Link reference definitions - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#link-reference-definitions)
+  </Sources>
 
 ### 画像  
 
@@ -148,19 +218,33 @@ import Blockquote from "@components/mdx/Blockquote.astro";
     <Tab tabGroup="link-image" tabName="プレビュー" icon="material-symbols:preview">
       <Window>
         ![image](/i/yeshi-kangrang-PM_VwL2ypes-unsplash.jpg)
-      </Window> 
+      </Window>
     </Tab>
   </TabList>
 
-  また、`![alt](<image link>)`とすることで、画像を表示できる  
+  `![<alt>](<image link>)`とすることで、画像を表示できる  
+  この場合は`<a>`要素ではなく`<img>`要素に変換される。通常、表示される文字列はalt属性として設定される
 
   ```mdx
   [![image](/i/yeshi-kangrang-PM_VwL2ypes-unsplash.jpg)](https://unsplash.com/photos/PM_VwL2ypes)
   ```
 
   さらに、画像をラベルとして使用することで画像自体にリンクを張ることができる  
+  URLが長くなりがちな[Shields.io](https://shields.io/)や[Badgen](https://badgen.net/)も、
+  リンク定義を併用すればREADMEがいくらか綺麗になるかもね  
+
+  <Sources label="参考">
+    - [Images - Daring Fireball](https://daringfireball.net/projects/markdown/syntax#img)
+    - [6.7 Images - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#images)
+    - [画像 - GitHub Docs](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#images)
+    - [画像 - ZennのMarkdown記法一覧 (zenn.dev/zenn)](https://zenn.dev/zenn/articles/markdown-guide#%E7%94%BB%E5%83%8F)
+    - [画像埋め込み - Markdown記法 チートシート (qiita.com/Qiita)](https://qiita.com/Qiita/items/c686397e4a0f4f11683d#images---%E7%94%BB%E5%83%8F%E5%9F%8B%E3%82%81%E8%BE%BC%E3%81%BF)
+    - [`<img>`: 画像埋め込み要素 - MDN Web Docs](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/img)
+  </Sources>
 
 ## リスト  
+
+### 順序なしリスト  
 
   <TabList align="left">
     <Tab tabGroup="list" tabName="コード" icon="material-symbols:code" checked>
@@ -172,7 +256,7 @@ import Blockquote from "@components/mdx/Blockquote.astro";
         + プラス入れ子
       + プラス
       - ハイフン
-          - ハイフン入れ子
+        - ハイフン入れ子
       - ハイフン
       ```
     </Tab>
@@ -185,14 +269,28 @@ import Blockquote from "@components/mdx/Blockquote.astro";
           + プラス入れ子
         + プラス
         - ハイフン
-            - ハイフン入れ子
+          - ハイフン入れ子
         - ハイフン
-      </Window> 
+      </Window>
     </Tab>
   </TabList>
 
-  リストは`*`, `+`, `-`を使うことが出来る。
-  全て順序なしリスト`<ul>`に変換される  
+  リストは`*`, `+`, `-`を使って記述する。インデントすると、入れ子になる  
+  順序なしリストである`<ul>`要素に変換され、項目は`<li>`要素に変換される  
+
+  <Sources label="参考">
+    - [Lists - Daring Fireball](https://daringfireball.net/projects/markdown/syntax#list)
+    - [5.2 List items - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#list-items)
+    - [5.4 Lists - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#lists)
+    - [リスト - GitHub Docs](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#lists)
+    - [入れ子になったリスト - GitHub Docs](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#nested-lists)
+    - [リスト - ZennのMarkdown記法一覧 (zenn.dev/zenn)](https://zenn.dev/zenn/articles/markdown-guide#%E3%83%AA%E3%82%B9%E3%83%88)
+    - [順序なしリスト - Markdown記法 チートシート (qiita.com/Qiita)](https://qiita.com/Qiita/items/c686397e4a0f4f11683d#bullet-list---%E9%A0%86%E5%BA%8F%E3%81%AA%E3%81%97%E3%83%AA%E3%82%B9%E3%83%88)
+    - [`<ul>`: 順序なしリスト要素 - MDN Web Docs](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/ul)
+    - [`<li>`: リスト項目要素](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/li)
+  </Sources>
+
+### 順序つきリスト  
 
   <TabList align="left">
     <Tab tabGroup="ordered-list" tabName="コード" icon="material-symbols:code" checked>
@@ -207,15 +305,22 @@ import Blockquote from "@components/mdx/Blockquote.astro";
         1. 順序付き
           1. 順序付き入れ子
         2. 順序付き
-      </Window> 
+      </Window>
     </Tab>
   </TabList>
 
-  `0-9`までの数字を使うと、順序つきリスト`<ol>`に変換される  
-  順番はごっちゃでも変換される  
+  `0-9`の数字と`.`を使うって記述する。順番はごっちゃでも良い  
+  順序つきリスト`<ol>`要素に変換され、項目は`<li>`要素に変換される  
+
+  <Sources label="参考">
+    - [番号付きリスト - Markdown記法 チートシート (qiita.com/Qiita)](https://qiita.com/Qiita/items/c686397e4a0f4f11683d#ordered-list---%E7%95%AA%E5%8F%B7%E4%BB%98%E3%81%8D%E3%83%AA%E3%82%B9%E3%83%88)
+    - [`<ol>`: 順序付きリスト要素](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/ol)
+  </Sources>
+
+### タスクリスト (GFM)  
 
   <TabList align="left">
-    <Tab tabGroup="ordered-list" tabName="コード" icon="material-symbols:code" checked>
+    <Tab tabGroup="task-list" tabName="コード" icon="material-symbols:code" checked>
       ```mdx
       - [x] 完了済タスク
       - [ ] 未完了タスク
@@ -224,7 +329,7 @@ import Blockquote from "@components/mdx/Blockquote.astro";
       - [] Not work
       ```
     </Tab>
-    <Tab tabGroup="ordered-list" tabName="プレビュー" icon="material-symbols:preview">
+    <Tab tabGroup="task-list" tabName="プレビュー" icon="material-symbols:preview">
       <Window>
         - [x] 完了済タスク
         - [ ] 未完了タスク
@@ -235,8 +340,16 @@ import Blockquote from "@components/mdx/Blockquote.astro";
     </Tab>
   </TabList>
 
-  GFMでは通常のリストのあとに、`[ ]`か`[x]`を記述することでチェックボックスが表示される。
-  これにより、タスクリストを作成できる。`[ ]`のスペースは必須  
+  順序なしリストの後に、`[ ]`か`[x]`を記述する。
+  スペースの場合はボックスのみで、xの場合はボックスにチェックされる  
+  通常の`<ul>`要素と`<li>`要素にそれぞれ変換されるが、
+  `<li>`要素の中にtype属性に`checkbox`が設定された`<input>`要素が挿入される  
+
+  <Sources label="参考">
+    - [5.3 Task list items (extension) - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#task-list-items-extension-)
+    - [タスク リスト - GitHub Docs](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#task-lists)
+    - [チェックボックス - Markdown記法 チートシート (qiita.com/Qiita)](https://qiita.com/Qiita/items/c686397e4a0f4f11683d#checkbox---%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%83%9C%E3%83%83%E3%82%AF%E3%82%B9)
+  </Sources>
 
 ## 引用  
 
@@ -248,7 +361,7 @@ import Blockquote from "@components/mdx/Blockquote.astro";
       > 引用元の URL は cite 属性により与えることができ、
       > 引用元のテキスト表現は `<cite>` 要素を用いて与えることができます。
       > <br />
-      > `<blockquote>`: ブロック引用要素 | MDN
+      > > `<blockquote>`: ブロック引用要素 | MDN
       ```
     </Tab>
     <Tab tabGroup="blockquote" tabName="プレビュー" icon="material-symbols:preview">
@@ -258,14 +371,23 @@ import Blockquote from "@components/mdx/Blockquote.astro";
         > 引用元の URL は cite 属性により与えることができ、
         > 引用元のテキスト表現は `<cite>` 要素を用いて与えることができます。  
         > <br />
-        > `<blockquote>`: ブロック引用要素 | MDN
+        > > `<blockquote>`: ブロック引用要素 | MDN
         {/*  */}
-      </Window> 
+      </Window>
     </Tab>
   </TabList>
 
-  引用は`>`で単行指定でき、`blockquote`に変換される  
-  作法は無いが、一番下の行に元サイトのリンクや著者を記載しておくと良いだろう  
+  引用は`>`を記述し、スペースを空けて文を記述する。`> >`のように引用の中に引用を記述することもできる  
+  `<blockquote>`要素に変換される  
+
+  <Sources label="参考">
+    - [Blockquotes - Daring Fireball](https://daringfireball.net/projects/markdown/syntax#blockquote)
+    - [5.1 Block quotes - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#block-quotes)
+    - [テキストの引用 - GitHub Docs](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#quoting-text)
+    - [引用 - ZennのMarkdown記法一覧 (zenn.dev/zenn)](https://zenn.dev/zenn/articles/markdown-guide#%E5%BC%95%E7%94%A8)
+    - [引用 - Markdown記法 チートシート (qiita.com/Qiita)](https://qiita.com/Qiita/items/c686397e4a0f4f11683d#blockquotes---%E5%BC%95%E7%94%A8)
+    - [`<blockquote>`: ブロック引用要素](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/blockquote)
+  </Sources>
 
 ## コードブロック  
 
@@ -294,16 +416,16 @@ import Blockquote from "@components/mdx/Blockquote.astro";
           fmt.Println("Hello, world!");
         }
         ```
-      </Window> 
+      </Window>
     </Tab>
   </TabList>
 
-  最初と最後の行で<code>`</code>を三つ並べて囲えば、内側の行がコードブロックとなる。
+  最初と最後の行で<code>\`</code>を三つ並べて囲えば、内側の行がコードブロックとなる。
   ~~スペース四行でもできるが、必要ない~~  
-  最初の行で言語を指定できる。
+  最初の行で言語を指定でき、
   使用できる言語は[github-linguist/linguist - languages.yml](https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml)から確認できる  
-
-  単行は<code>`</code>一つで囲むだけ  
+  コードスパンは<code>\`</code>一つで囲むだけ  
+  コードスパンは`<code>`に変換されるが、コードブロックは一番上で`<pre>`要素に囲まれる  
 
   `````md
     ````md {"1":1} {"2":9}
@@ -320,9 +442,132 @@ import Blockquote from "@components/mdx/Blockquote.astro";
   `````
 
   一つ上のコードブロックはこうやって記述している。
-  コードブロックは子よりも多い<code>`</code>で囲えば、コードブロック自体を見せることが出来る  
+  子よりも多い<code>`</code>で囲えば、コードブロック自体を記述出来る  
+  コードブロックには更に機能があることが**多いが**、ここでは解説しない  
 
-## テーブル  
+  <Sources label="参考">
+    - [Code Blocks - Daring Fireball](https://daringfireball.net/projects/markdown/syntax#precode)
+    - [6.3 Code spans - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#code-spans)
+    - [4.4 Indented code blocks - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#indented-code-blocks)
+    - [4.5 Fenced code blocks - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#fenced-code-blocks)
+    - [コードの引用 - GitHub Docs](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#quoting-code)
+    - [コードブロック - ZennのMarkdown記法一覧 (zenn.dev/zenn)](https://zenn.dev/zenn/articles/markdown-guide#%E3%82%B3%E3%83%BC%E3%83%89%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF)
+    - [コードの挿入 - Markdown記法 チートシート (qiita.com/Qiita)](https://qiita.com/Qiita/items/c686397e4a0f4f11683d#code---%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E6%8C%BF%E5%85%A5)
+    - [`<code>`: インラインコード要素](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/code)
+    - [`<pre>`: 整形済みテキスト要素](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/pre)
+  </Sources>
+
+## 区切り  
+
+### 改行  
+
+  <TabList align="left">
+    <Tab tabGroup="br" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      a  
+      b<br />
+      c
+      ```
+    </Tab>
+    <Tab tabGroup="br" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        a  
+        b<br />
+        c
+      </Window>
+    </Tab>
+  </TabList>
+
+  行の最後にスペース2個で改行になる。また、`<br />`で改行させることも可能  
+  スペース2個も結果的には`<br>`要素に変換される  
+
+  <Blockquote url="https://zenn.dev/nullheader/articles/fb24ead4938c9a">
+    mdファイルにおいて、テキスト行末の空白が削除される。  
+    なお、筆者の環境でPrettierを無効化したときは、上記の状態にはならない。
+  </Blockquote>
+
+  残念ながら、Pretteierはmarkdownのフォーマットに向いていない  
+
+  <Sources label="参考">
+    - [Paragraphs and Line Breaks - Daring Fireball](https://daringfireball.net/projects/markdown/syntax#p)
+    - [6.12 Hard line breaks - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#hard-line-breaks)
+    - [改行 - GitHub Docs](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#line-breaks)
+  </Sources>
+
+### 段落  
+
+  <TabList align="left">
+    <Tab tabGroup="paragraphs" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      段落1
+
+      段落2
+      ```
+    </Tab>
+    <Tab tabGroup="paragraphs" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        段落1
+
+        段落2
+      </Window>
+    </Tab>
+  </TabList>
+
+  改行して、一行以上空けると段落が分かれる。通常の改行との違いは、`<p>`要素が別に挿入されること  
+
+  <Sources label="参考">
+    - [4.8 Paragraphs  - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#paragraphs)
+    - [段落 - GitHub Docs](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#paragraphs)
+  </Sources>
+
+### 水平線  
+
+  <TabList align="left">
+    <Tab tabGroup="hr" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      ---
+      hr
+      ***
+      ```
+    </Tab>
+    <Tab tabGroup="hr" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        ---
+        hr
+        ***
+      </Window>
+    </Tab>
+  </TabList>
+
+  `-`か`*`を三つ以上並べる。間のスペースは自動削除される  
+  `<hr>`要素に変換される  
+
+  <Sources label="参考">
+    - [Horizontal Rules - Daring Fireball](https://daringfireball.net/projects/markdown/syntax#hr)
+    - [4.1 Thematic breaks - GitHub Flavored Markdown Spec](https://github.github.com/gfm/#thematic-breaks)
+    - [区切り線 - ZennのMarkdown記法一覧 (zenn.dev/zenn)](https://zenn.dev/zenn/articles/markdown-guide#%E5%8C%BA%E5%88%87%E3%82%8A%E7%B7%9A)
+    - [水平線 - Markdown記法 チートシート (qiita.com/Qiita)](https://qiita.com/Qiita/items/c686397e4a0f4f11683d#horizontal-rules---%E6%B0%B4%E5%B9%B3%E7%B7%9A)
+  </Sources>
+
+## エスケープ  
+
+  <TabList align="left">
+    <Tab tabGroup="escape" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      \*\*Normal\*\*
+      ```
+    </Tab>
+    <Tab tabGroup="escape" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        \*\*Normal\*\*
+      </Window>
+    </Tab>
+  </TabList>
+
+  Markdownの構文はエスケープできる。`\`を使う。
+  [ただし、エスケープできる構文にも制限がある](https://daringfireball.net/projects/markdown/syntax#backslash)  
+
+## テーブル (GFM)  
 
   <TabList align="left">
     <Tab tabGroup="table" tabName="コード" icon="material-symbols:code" checked>
@@ -337,7 +582,7 @@ import Blockquote from "@components/mdx/Blockquote.astro";
         | column1 | column2 | column3 |
         |:-------:|:--------|--------:|
         |  真ん中  |  ひだり  |   みぎ   |
-      </Window> 
+      </Window>
     </Tab>
   </TabList>
 
@@ -357,73 +602,3 @@ import Blockquote from "@components/mdx/Blockquote.astro";
   [^1]: そうそう。あれだわ
 
   この脚注のジャンプ先は大体ページの一番下である  
-
-## 改行  
-
-  <TabList align="left">
-    <Tab tabGroup="br" tabName="コード" icon="material-symbols:code" checked>
-      ```mdx
-      a  
-      b<br />
-      c
-      ```
-    </Tab>
-    <Tab tabGroup="br" tabName="プレビュー" icon="material-symbols:preview">
-      <Window>
-        a  
-        b<br />
-        c
-      </Window> 
-    </Tab>
-  </TabList>
-
-  行の最後にスペース２個で改行になる。
-  また、`<br />`で改行させることも可能  
-
-  <Blockquote url="https://zenn.dev/nullheader/articles/fb24ead4938c9a">
-    mdファイルにおいて、テキスト行末の空白が削除される（Pretteirでフォーマットすると）。  
-    なお、筆者の環境でPrettierを無効化したときは、上記の状態にはならない。
-  </Blockquote>
-
-  残念ながら、Pretteierはmarkdownのフォーマットに向いていない  
-
-## 水平線  
-
-  <TabList align="left">
-    <Tab tabGroup="hr" tabName="コード" icon="material-symbols:code" checked>
-      ```mdx
-      ---
-      hr
-      ***
-      ```
-    </Tab>
-    <Tab tabGroup="hr" tabName="プレビュー" icon="material-symbols:preview">
-      <Window>
-        ---
-        hr
-        ***
-      </Window> 
-    </Tab>
-  </TabList>
-
-  水平線は`-`か`*`を三つ以上並べる。間のスペースは自動削除される  
-  だが、これを使ってスタイリングするのは
-  あまりMarkdownとして意味を成していないような気がする  
-
-## エスケープ  
-
-  <TabList align="left">
-    <Tab tabGroup="escape" tabName="コード" icon="material-symbols:code" checked>
-      ```mdx
-      \*\*Normal\*\*
-      ```
-    </Tab>
-    <Tab tabGroup="escape" tabName="プレビュー" icon="material-symbols:preview">
-      <Window>
-        \*\*Normal\*\*
-      </Window> 
-    </Tab>
-  </TabList>
-
-  Markdownの構文はエスケープできる。`\`を使う。
-  [ただし、エスケープできる構文にも制限がある](https://daringfireball.net/projects/markdown/syntax#backslash)  

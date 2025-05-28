@@ -1,18 +1,16 @@
 {
     "type": "module",
-    "private": true,
-    "name": "pages",
     "version": "0.7.0",
     "scripts": {
         "dev": "astro dev",
         "build": "astro build",
         "prev": "astro build && astro preview"
     },
-    "engines": {
-        "node": ">=22.0.0"
-    },
     "lint-staged": {
         "**/*.{js,mjs,jsx,ts,cts}": "oxlint"
+    },
+    "engines": {
+        "node": ">=22.0.0"
     },
     "workspaces": ["packages/*"],
     "dependencies": {
@@ -48,6 +46,7 @@
         "remark-emoji": "^5.0.1",
         "remark-math": "^6.0.0",
         "svgo": "^3.3.2",
+        "unist-util-visit": "^5.0.0",
         "unocss": "^66.1.2"
     },
     "devDependencies": {
@@ -75,5 +74,7 @@
         "typescript": "^5.8.3",
         "typescript-eslint": "^8.32.1",
         "vite": "^6.3.5"
-    }
+    },
+    "private": true,
+    "name": "pages"
 }
