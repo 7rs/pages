@@ -1,7 +1,7 @@
 ---
 title: "もっと踏み込むMarkdown/MDX"
 description: "Markdownの仕様外の機能を知る"
-tags: ["markdown", "mdx", "github", "gfm", "remark-emoji", "mermaid", "d2", "katex"]
+tags: ["markdown", "github", "gfm", "unified", "remark", "rehype", "mdx", "remark-emoji", "expressive-code", "katex", "mermaid", "d2", ]
 authors: ["Cbrnex"]
 created: "2025-05-27"
 image: "simple-icons:mdx"
@@ -11,17 +11,61 @@ import Tab from "@components/mdx/Tab.astro";
 import TabList from "@components/mdx/TabList.astro";
 import Window from "@components/mdx/Window.astro";
 import Blockquote from "@components/mdx/Blockquote.astro";
+import Sources from "@components/mdx/Sources.astro"
+import LinkCard from "@components/mdx/LinkCard.astro"
 
-## なんで  
+## なんで？  
 
-  Markdownと一言で言っても、実際のWebサイトはオリジナルのMarkdownだけではない。
-  あくまで準拠しているGFMだったりすることがほとんど  
+  Markdownと言っても、実際はピュアなMarkdownではないことが多い。
+  GFMやSmartyPantsが導入されていたり、独自機能が追加されていたり。
   GitHub, Qiita, Zennなどは独自構文や独自機能を追加している  
-  そんなMarkdownの追加機能やMDXの機能を書き残していく備忘録だ  
 
+  そんなMarkdownの追加機能やMDXの機能を書き残していく備忘録だ  
   Markdown？何それおいしいの？って方は[こちらからどうぞ](/b/markdown)  
 
-[github_emoji]: https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#using-emojis
+## 追加概念  
+
+  構文や機能の前に、これらの前提となるものを紹介しておく  
+
+[mdast]: https://github.com/syntax-tree/mdast
+
+### Remark  
+
+  <LinkCard url="https://github.com/remarkjs/remark" />
+
+  Unifiedの一部で、Markdownの構文を[mdast (Markdown Abstract Syntax Tree)][mdast]に変換する  
+  これにはプラグインを導入でき、MarkdownがHTMLに変換される前に処理を差し込める  
+
+[hast]: https://github.com/syntax-tree/hast
+
+### Rehype  
+
+  <LinkCard url="https://github.com/rehypejs/rehype" />
+
+  Unifiedの一部で、HTMLの構文を[hast (Hypertext Abstract Syntax Tree format)][hast]に変換する  
+  これにもプラグインを導入でき、MarkdownがHTMLに変換された後に処理を差し込める  
+
+### Unified  
+
+  <LinkCard url="https://unifiedjs.com/" />
+
+  RemarkとRehypeをまとめあげるもの。
+  Markdownの最古の実装はPerlであるが、
+  RemarkプラグインやRehypeプラグインを用いるためにUnifiedがよく使われる  
+
+### MDX  
+
+  <LinkCard url="https://mdxjs.com/" />
+
+  これはプラグインを導入するのものでは無く、新しいMarkdownの拡張言語  
+  Markdownと基本的には同じだが
+
+  - ES Module形式のimport文が使用できる
+  - JSXコンポーネントを呼び出すことができる
+  - JSXコンポーネントの中でもMarkdownの構文が有効
+
+  などの機能が追加されている  
+  MDXにおいても、Remark, Rehypeのプラグインを使用できる  
 
 ## 絵文字  
 
@@ -54,41 +98,170 @@ import Blockquote from "@components/mdx/Blockquote.astro";
     </Tab>
   </TabList>
 
-  [GitHub上のMarkdownのみ対応している。][github_emoji]  
-  [remarkプラグインを介しても使用できる](https://unifiedjs.com/explore/package/remark-emoji/)  
-  絵文字名は[GitHub Docsにも記載されているリポジトリから参照できる](https://github.com/ikatyang/emoji-cheat-sheet)  
+  GitHubやZenn、Qiitaなどでは実装されており、使用可能。
+  基本的にはremarkプラグインを介して使用できる  
 
-  絵文字自体は画像やSVGでもなく、ただの文字なので直接入力してもいいが、絵文字キーボードを持たないPCなどでは重宝するかもしれない  
+  <LinkCard url="https://unifiedjs.com/explore/package/remark-emoji" />
+
+  この、`remark-emoji`は`node-emoji`に基づいている  
+  絵文字名についてはいまいちわからん。リストがほしいところではあるね
+
+  <Sources label="参考">
+    - [絵文字の使用 - GitHub Docs](https://docs.github.com/ja/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#using-emojis)
+    - [絵文字（Emoji） - ZennのMarkdown記法一覧 (zenn.dev/zenn)](https://zenn.dev/zenn/articles/markdown-guide#%E7%B5%B5%E6%96%87%E5%AD%97%EF%BC%88emoji%EF%BC%89)
+    - [絵文字 - Markdown記法 チートシート (qiita.com/Qiita)](https://qiita.com/Qiita/items/c686397e4a0f4f11683d#%E7%B5%B5%E6%96%87%E5%AD%97)
+  </Sources>
+
+## Expressive Code  
+
+  <TabList align="left">
+    <Tab tabGroup="expressive-code" tabName="コード" icon="material-symbols:code" checked>
+      ````mdx
+        ```ts showLineNumbers title="hoge.ts" {"1":1} ins={"存在とは別に取得に失敗する場合がある": 4-6} del={"唯一DOM操作いらない": 7-8}
+          export interface Detail {
+            title?: string;
+            description?: string;
+
+            image?: string;
+            favicon?: string;
+
+            baseDomain: string;
+          }
+        ```
+      ````
+    </Tab>
+    <Tab tabGroup="expressive-code" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        ```ts showLineNumbers title="hoge.ts" {"1":1} ins={"存在とは別に取得に失敗する場合がある": 4-6} del={"唯一DOM操作いらない": 7-8}
+          export interface Detail {
+            title?: string;
+            description?: string;
+
+            image?: string;
+            favicon?: string;
+
+            baseDomain: string;
+          }
+        ```
+      </Window> 
+    </Tab>
+  </TabList>
+
+  Shikiを利用したrehypeプラグイン。ではあるが、Astroではインテグレーションとして存在している  
+  なので、Markdownの枠組みを出て、Astroコンポーネントとして使用できる  
+
+  テーマやDiff、コピー機能等は標準で搭載される。
+  プラグインとして行番号などを追加できる  
+
+  <LinkCard url="https://expressive-code.com/" />
+
+  <TabList align="left">
+    <Tab tabGroup="expressive-term" tabName="コード" icon="material-symbols:code" checked>
+      ````mdx
+        ```nushell title="Nushell k*ll wsl"
+          wsl --shutdown
+        ```
+      ````
+    </Tab>
+    <Tab tabGroup="expressive-term" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        ```nushell title="Nushell k*ll wsl"
+          wsl --shutdown
+        ```
+      </Window> 
+    </Tab>
+  </TabList>
+
+  デフォルトのプロパティの設定や、
+  枠のカスタマイズなど様々なユースケースに対応しやすくなっている  
+
+## KaTex  
+
+  <TabList align="left">
+    <Tab tabGroup="katex" tabName="コード" icon="material-symbols:code" checked>
+      ```mdx
+      $$
+      L = \frac{1}{2} \rho v^2 S C_L
+      $$
+      ```
+    </Tab>
+    <Tab tabGroup="katex" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        $$
+        L = \frac{1}{2} \rho v^2 S C_L
+        $$
+      </Window> 
+    </Tab>
+  </TabList>
+
+  数式を記述できるツールで、ZennとQiitaも似たような数式の記述をサポートしている  
+  Remark/Rehypeプラグインとして使用できる  
+
+  <LinkCard url="https://katex.org/" />
 
 ## グラフ  
 
-  MarkdownにもGFMにもGitHubにも、それどころか基本的にはない  
-  ただ、Obsidianやフレームワークにプラグインを入れることで使用可能  
+### Mermaid  
 
-  ```mermaid
-  pie title Browser
-    "Chrome" : 66.19
-    "Safari" : 17.25
-    "Edge" : 5.2
-    "Firefox" : 2.55
-    "Samsung Internet" : 2.23
-    "Opera" : 2.08
-  ```
+  <TabList align="left">
+    <Tab tabGroup="mermaid" tabName="コード" icon="material-symbols:code" checked>
+      ````mdx
+        ```mermaid
+        pie title Browser
+          "Chrome" : 66.19
+          "Safari" : 17.25
+          "Edge" : 5.2
+          "Firefox" : 2.55
+          "Samsung Internet" : 2.23
+          "Opera" : 2.08
+        ```
+      ````
+    </Tab>
+    <Tab tabGroup="mermaid" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        ```mermaid
+        pie title Browser
+          "Chrome" : 66.19
+          "Safari" : 17.25
+          "Edge" : 5.2
+          "Firefox" : 2.55
+          "Samsung Internet" : 2.23
+          "Opera" : 2.08
+        ```
+      </Window> 
+    </Tab>
+  </TabList>
 
-  Markdown上でテキストベースで[グラフを作成できるMermaid](https://mermaid.js.org/)  
-  Obsidianでは標準搭載となっているメジャーなグラフ作成ツール  
+  グラフや図式を記述できるツールで、ZennとQiita、ObsidianなどもMermaidをサポートしている  
+  基本的には`mdx-mermaid`というremarkプラグインで実現できる。
+  ただし、コードブロックで記述されるので、mermaidのみコードブロックにされないように設定が必要  
 
-  ```d2
-  direction: right
-  食う -> 寝る -> 遊ぶ
-  遊ぶ -> 食う
-  ```
+  <LinkCard url="https://mermaid.js.org/" />
 
-  Goで記述されたグラフ作成ツール  
-  Markdown用に作られたわけでは無いが、対応させたインテグレーションなどがある  
+### D2  
 
-## KaTeX  
+  <TabList align="left">
+    <Tab tabGroup="d2" tabName="コード" icon="material-symbols:code" checked>
+      ````mdx
+        ```d2
+        direction: right
+        食う -> 寝る -> 遊ぶ
+        遊ぶ -> 食う
+        ```
+      ````
+    </Tab>
+    <Tab tabGroup="d2" tabName="プレビュー" icon="material-symbols:preview">
+      <Window>
+        ```d2
+        direction: right
+        食う -> 寝る -> 遊ぶ
+        遊ぶ -> 食う
+        ```
+      </Window> 
+    </Tab>
+  </TabList>
 
-  $$
-  L = \frac{1}{2} \rho v^2 S C_L
-  $$
+  Goで記述されたグラフ作成ツールで、対応しているサービスはなさそう  
+  Astroにはこれに対応させたインテグレーションなどがあるので、そのまま使用可能  
+
+  <LinkCard url="https://d2lang.com/" />

@@ -1,7 +1,7 @@
 import { load, type BasicAcceptedElems } from "cheerio";
 import type { AnyNode } from "domhandler";
 
-async function getBodyText(response: Response) {
+async function getBodyText(response: Response): Promise<string | undefined> {
   if (!response.ok) {
     return;
   }

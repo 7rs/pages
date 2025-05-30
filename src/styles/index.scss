@@ -4,9 +4,23 @@
   box-sizing: border-box;
 }
 
+:root {
+  --header-height: 64px;
+  --header-padding: 8px;
+}
+
+:where(html) {
+  scroll-padding-top: calc(var(--header-height) + var(--header-padding) * 2);
+}
+
 :root:not(#_) {
-  --font-mono: "Fira Code", 'BIZ UDGothic', monospace;
+  --font-mono: "Fira Code", "BIZ UDGothic", monospace;
   --font-sans:
     "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif, "Apple Color Emoji", "Noto Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.navbar:not(#_#_#_) {
+  height: var(--header-height) !important;
+  padding: var(--header-padding) !important;
 }

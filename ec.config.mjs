@@ -6,7 +6,7 @@ export default defineEcConfig({
   styleOverrides: {
     codeFontFamily: "var(--font-mono)",
   },
-  plugins: [pluginLineNumbers()],
+  plugins: [ pluginLineNumbers()],
   themes: ["dracula", "github-light"],
   defaultProps: {
     showLineNumbers: false,

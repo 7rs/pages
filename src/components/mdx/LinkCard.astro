@@ -1,0 +1,49 @@
+---
+import Anchor from "@components/Anchor.astro";
+import { getDetail } from "@scripts/detail";
+
+interface Props {
+  url: string;
+}
+const { url } = Astro.props;
+
+const data = await getDetail(url);
+
+const MAX_DESCRIPTION_LENGTH = 100;
+const shortenDescription = (() => {
+  if (data.description == null) {
+    return "";
+  } else if (data.description.length > MAX_DESCRIPTION_LENGTH) {
+    data.description.slice(0, MAX_DESCRIPTION_LENGTH) + "...";
+  }
+
+  return data.description;
+})();
+---
+
+{
+  data == null ? (
+    <p>failed</p>
+  ) : (
+    <Anchor class="link-card" href={url}>
+      <article
+        class:list={[
+          "my-4 p-2 md:p-4 min-h-32 h-fit | flex items-center gap-x-2",
+          "border-1 border-base-content hover:border-primary rounded-md | transition-all",
+        ]}
+      >
+        <section class="flex-grow | h-full min-w-2/3 w-full | flex flex-col justify-between gap-y-2">
+          <p class="text-xl truncate font-bold">{data.title}</p>
+          <p class="m-0! text-sm">{shortenDescription}</p>
+          <div class="flex items-center gap-x-1">
+            {data.favicon && <img class="h-4 bg-white" src={data.favicon} />}
+            <p class="text-sm">{data.baseDomain}</p>
+          </div>
+        </section>
+        <section class="hidden sm:block">
+          <img src={data.image} class="object-contain" />
+        </section>
+      </article>
+    </Anchor>
+  )
+}

@@ -15,6 +15,8 @@ import emoji from "remark-emoji";
 import mdxMermaid from "mdx-mermaid";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
+import { rehypeHeadingIds } from "@astrojs/markdown-remark";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 import tsconfig from "./tsconfig.json" with { type: "json" };
 
@@ -35,7 +37,22 @@ export default defineConfig({
     },
     gfm: true,
     remarkPlugins: [[emoji, { accessible: true }], [mdxMermaid, { output: "svg" }], remarkMath],
-    rehypePlugins: [rehypeKatex],
+    rehypePlugins: [
+      rehypeKatex,
+      rehypeHeadingIds,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "wrap",
+          headingProperties: {
+            class: "markdown-heading",
+          },
+          properties: {
+            class: "heading-link",
+          },
+        },
+      ],
+    ],
   },
   i18n: {
     locales: ["ja", "en"],
