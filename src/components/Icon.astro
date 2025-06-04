@@ -1,0 +1,55 @@
+---
+import { getSimpleIconsColor } from "@scripts/simple-icons-color";
+import { Icon as AstroIcon } from "astro-icon/components";
+import type { HTMLAttributes } from "astro/types";
+
+interface AstroIconProps extends HTMLAttributes<"svg"> {
+  name: string;
+  "is:inline"?: boolean;
+  title?: string;
+  desc?: string;
+  size?: number | string;
+  width?: number | string;
+  height?: number | string;
+  colorHex?: string;
+}
+
+const Behaviors = {
+  NoColor: "nocolor",
+  Always: "always",
+  Hover: "hover",
+} as const;
+type Behaviors = (typeof Behaviors)[keyof typeof Behaviors];
+
+interface Props extends AstroIconProps {
+  behavior?: Behaviors;
+  className?: string;
+}
+const { behavior = Behaviors.NoColor, className, colorHex, ...props } = Astro.props;
+
+let colorProperty = "";
+if (colorHex != null) {
+  let colorProperty = `${colorHex}`;
+} else {
+  const [provider, name] = props.name.split(":");
+  if (provider === "simple-icons") {
+    colorProperty = await getSimpleIconsColor(name);
+  }
+}
+---
+
+<AstroIcon
+  style={`--colorProperty: #${colorProperty}`}
+  class:list={[
+    className,
+    behavior === Behaviors.Always && "color-[var(--colorProperty)]",
+    behavior === Behaviors.Hover && "hover:color-[var(--colorProperty)]",
+  ]}
+  {...props}
+/>
+
+<style lang="scss">
+  svg:hover {
+    color: var(--colorProperty);
+  }
+</style>

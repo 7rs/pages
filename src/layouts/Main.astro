@@ -1,50 +1,22 @@
 ---
-import Head from "@layouts/_common/Head.astro";
-import Header from "@layouts/_common/Header.astro";
-import Footer from "@layouts/_common/Footer.astro";
-
-/* eslint-disable */
-import "@unocss/reset/tailwind.css";
-import "uno.css";
-/* eslint-enable */
+import Base from "@layouts/Base.astro";
 
 import "@styles/index.scss";
-
+import type { MarkdownHeading } from "astro";
+import type { Blog as BlogFrontmatter } from "@content/config";
 
 export interface Props {
   title?: string;
   className?: string;
+  lang?: string;
   showFakeHeader?: boolean;
 }
 
-const { title = "No title", className = "", showFakeHeader, ...props } = Astro.props;
+const { title = "No title", className = "", lang, showFakeHeader, ...props } = Astro.props;
 ---
 
-<html>
-  <Head title={title} />
-  <body class="min-h-dvh w-full | grid grid-rows-[auto_1fr_auto] | bg-base-200">
-    <Header showFakeHeader={showFakeHeader}>
-      <h1 class="text-3xl font-bold">7rs.dev</h1>
-    </Header>
-    <main class="w-full flex justify-center">
-      <div class:list={["px-3 lg:px-0 min-[900px]:mx-0 max-w-svw min-[900px]:max-w-[900px] w-full", className]} {...props}>
-        <slot />
-      </div>
-    </main>
-    <Footer
-      navigations={[
-        { url: "/", label: "Main" },
-        { url: "/blog", label: "Blog" },
-        { url: "/license", label: "License" },
-      ]}
-      socials={[
-        { url: "https://youtube.com/@qRze", icon: "simple-icons:youtube" },
-        { url: "https://7rs.dev/d", icon: "simple-icons:discord" },
-        { url: "https://github.com/7rs", icon: "simple-icons:github" },
-        { url: "https://zenn.dev/7rs", icon: "simple-icons:zenn" },
-        { url: "https://patreon.com/7rs", icon: "simple-icons:patreon" },
-        { url: "/", icon: "simple-icons:rss" },
-      ]}
-    />
-  </body>
-</html>
+<Base title={title} lang={lang} showFakeHeader={showFakeHeader}>
+  <div class:list={["px-3 lg:px-0 min-[900px]:mx-0 max-w-svw min-[900px]:max-w-[900px] w-full", className]} {...props}>
+    <slot />
+  </div>
+</Base>

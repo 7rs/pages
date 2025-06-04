@@ -1,22 +1,43 @@
 ---
+import type { GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType } from "astro";
 import { getCollection } from "astro:content";
 
-import "@styles/markdown.scss"
+import "@styles/markdown.scss";
 import Blog from "@layouts/Blog.astro";
 
-export async function getStaticPaths() {
-  const entries = await getCollection("blog");
-  return entries.map((entry) => {
-    const [lang, ...slug] = entry.slug.split("/");
-    return { params: { lang: slug ? lang : undefined, slug: entry.slug }, props: entry };
-  });
+import { i18n } from "astro:config/client";
+
+function getLang(_slug: string) {
+  const [lang, ...slug] = _slug.split("/");
+
+  if (slug.length <= 0) {
+    return i18n.defaultLocale;
+  }
+
+  return lang;
 }
 
-const { lang, slug } = Astro.params;
-const entry = Astro.props;
-const { Content } = await entry.render();
+export const getStaticPaths = (async () => {
+  const entries = await getCollection("blog");
+
+  return entries.map((entry) => {
+    return {
+      params: { slug: entry.slug },
+      props: entry,
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { slug } = Astro.params as InferGetStaticParamsType<typeof getStaticPaths>;
+const entry = Astro.props as InferGetStaticPropsType<typeof getStaticPaths>;
+const { Content, headings } = await entry.render();
+
+const textContent = entry.body
+    .replace(/^import\s.+?from\s.+?;?$/gm, '')
+    .replace(/<\/?[\w\d]+(?:\s[^>]*)?>/g, '')
+    .replace(/\s+/g, '')
 ---
 
-<Blog frontmatter={entry.data}>
+<Blog frontmatter={entry.data} headings={headings} lang={getLang(slug)} slug={slug} length={textContent.length}>
   <Content />
 </Blog>

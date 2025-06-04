@@ -1,17 +1,21 @@
 ---
-import { Icon } from "astro-icon/components";
+import Icon from "@components/Icon.astro";
 
 import Anchor from "@components/Anchor.astro";
 import type { Props as AnchorProps } from "@components/Anchor.astro";
+import { getSimpleIconsColor } from "@scripts/simple-icons-color";
 
 interface Props extends AnchorProps {
   icon: string;
-  color?: string;
+  colorHex?: string;
 }
-const { icon, color, ...props } = Astro.props;
+const { icon, colorHex, ...props } = Astro.props;
 ---
 
-<Anchor class="relative hover:scale-125 transition-all [&>svg]:hover:color-secondary" {...props}>
-  <Icon class="text-2xl z-1" name={icon} />
-  <Icon class="text-2xl absolute top-0 hover:animate-ping z-0" name={icon} />
+<Anchor
+  class="relative hover:scale-125 transition-all [&>svg]:hover:color-[var(--colorProperty)]"
+  {...props}
+>
+  <Icon className="text-2xl z-1" name={icon} />
+  <Icon className="text-2xl absolute top-0 hover:animate-ping z-0" name={icon} />
 </Anchor>

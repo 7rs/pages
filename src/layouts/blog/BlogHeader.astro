@@ -1,0 +1,76 @@
+---
+import AnimatedAnchor from "@components/AnimatedAnchor.astro";
+import Icon from "@components/Icon.astro";
+import Symbol from "@components/Symbol.astro";
+import type { Blog as BlogFrontmatter } from "@content/config";
+import type { MarkdownHeading } from "astro";
+import { format } from "@formkit/tempo";
+import { hasIcon } from "@scripts/icon";
+import { categoryToJapanese } from "@scripts/blog-category";
+
+
+
+interface Props {
+  frontmatter?: BlogFrontmatter;
+  headings?: MarkdownHeading[];
+  length?: number;
+}
+
+const { frontmatter = {}, headings = [], length, ...props } = Astro.props;
+const title = frontmatter.title || "No title";
+---
+
+<header class="min-[900px]:max-w-[900px] flex flex-col justify-center gap-y-8 pt-16 min-h-svh">
+  <hgroup class="flex flex-col items-center gap-y-8">
+    {frontmatter.image && <Symbol image={frontmatter.image} className="size-24 md:size-32" />}
+    <h1 class="text-2xl md:text-5xl text-center font-bold w-full">{title}</h1>
+  </hgroup>
+  <section class="flex flex-col items-center gap-y-2 w-full">
+    <div class="flex flex-wrap gap-x-2 color-[#A00] w-full justify-center">
+      {
+        frontmatter.authors.map((author) => (
+          <AnimatedAnchor href={`/authors/${author}`} openAsNew={false}>
+            @{author}
+          </AnimatedAnchor>
+        ))
+      }
+    </div>
+    <section class="w-full flex flex-wrap justify-center gap-x-2 color-[#f80]">
+      <div class="flex justify-center items-center gap-x-1">
+        <Icon name="line-md:folder" />
+        <p>{categoryToJapanese(frontmatter.category)}</p>
+      </div>
+      <div class="flex justify-center items-center gap-x-1">
+        <Icon name="line-md:text-box" />
+        <p>約{length}文字</p>
+      </div>
+      {
+        frontmatter.created && (
+          <div class="flex justify-center items-center gap-x-1">
+            <Icon name="line-md:edit" />
+            <time datetime={frontmatter.created.toString()}>
+              {format({ date: frontmatter.created, format: "YYYY-MM-DD Z", tz: "Asia/Tokyo" })}
+            </time>
+          </div>
+        )
+      }
+    </section>
+    <div class="flex flex-wrap gap-x-2 color-[#337ab7] border-color-[#337ab7] w-full justify-center text-base">
+      {
+        frontmatter.tags.map((tag) => (
+          <AnimatedAnchor href={`/tags/${tag}`} openAsNew={false}>
+            {() => {
+              const provider = hasIcon(tag);
+              if (provider == null) {
+                return;
+              }
+
+              return <Icon class="inline no-underline border-b-1" name={`${provider.provider}:${provider.name}`} />;
+            }}
+            #{tag}
+          </AnimatedAnchor>
+        ))
+      }
+    </div>
+  </section>
+</header>

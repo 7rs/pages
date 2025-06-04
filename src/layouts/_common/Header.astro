@@ -10,10 +10,10 @@ export interface Props {
 const { showFakeHeader = true } = Astro.props;
 ---
 
-{showFakeHeader && <div class="bg-transparent color-transparent navbar">fake header</div>}
+{showFakeHeader && <div class="bg-transparent color-transparent opacity-0 navbar">fake header</div>}
 
 <header
-  class="fixed top-0 z-900 | w-full | flex justify-center | bg-[var(--color-base-100)]/50 backdrop-blur-md backdrop-brightness-125 shadow-sm"
+  class="grid-area-[header] fixed top-0 z-900 | w-full | flex justify-center | bg-[var(--color-base-100)]/50 backdrop-blur-md backdrop-brightness-125 shadow-sm"
 >
   <div class="navbar | px-4 max-w-[900px]">
     <a class="flex-1" href="/" title="main page">

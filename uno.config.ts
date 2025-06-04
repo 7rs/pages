@@ -3,6 +3,9 @@ import { createRemToPxProcessor } from "@unocss/preset-wind4/utils";
 import presetWind4 from "@unocss/preset-wind4";
 import { presetDaisy } from "@ameinhardt/unocss-preset-daisy";
 
+export const LIGHT_THEME = "emerald";
+export const DARK_THEME = "dracula";
+
 const DAISYUI_COLORS = [
   "primary",
   "secondary",
@@ -77,7 +80,7 @@ export default defineConfig({
       }
     }),
     presetDaisy({
-      ...getDaisyUITheme("emerald", "dracula")
+      ...getDaisyUITheme(LIGHT_THEME, DARK_THEME)
     })
   ],
   transformers: [transformerDirectives()],

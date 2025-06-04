@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
+import Icon from "@components/Icon.astro";
 
 interface Props {
   icon: string;
@@ -9,7 +9,7 @@ interface Props {
 const { icon, label } = Astro.props;
 ---
 
-<article class="relative | tooltip" data-tip={label}>
+<article class="relative | tooltip [&>svg]:hover:color-[var(--colorProperty)]" data-tip={label}>
   <Icon class="text-2xl" name={icon} />
   <Icon class="z-0 absolute top-0 | text-2xl | hover:animate-ping" name={icon} />
 </article>

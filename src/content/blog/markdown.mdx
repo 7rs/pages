@@ -1,9 +1,10 @@
 ---
 title: "今更Markdownの記法を見直す"
 description: "Markdownの仕様を知る"
-tags: ["markdown", "github", "gfm"]
 authors: ["Cbrnex"]
 created: "2025-05-22"
+category: "tech"
+tags: ["markdown", "github", "gfm"]
 image: "simple-icons:markdown"
 ---
 
@@ -605,6 +606,33 @@ import Sources from "@components/mdx/Sources.astro"
   `-`の数は1個以上であれば良い  
   3行目からは任意のデータを入力する。列の数は全体で決まり、行は追加した分だけ  
 
+  ```html
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: center">column1</th>
+        <th style="text-align: left">column2</th>
+        <th style="text-align: right">column3</th>
+        <th>column4</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: center">真ん中</td>
+        <td style="text-align: left">ひだり</td>
+        <td style="text-align: right">みぎ</td>
+        <td>なし</td>
+      </tr>
+      <tr>
+        <td style="text-align: center">真ん中2</td>
+        <td style="text-align: left">ひだり2</td>
+        <td style="text-align: right">みぎ2</td>
+        <td>なし</td>
+      </tr>
+    </tbody>
+  </table>
+  ```
+
   ヘッダー行では、ヘッダー名はそれぞれ`<th>`要素に変換され、`<tr>`要素で囲われ、更に`<thead>`要素で囲われる  
   列配置の設定の実装はそれぞれ異なるが、align要素かCSSのtext-alignプロパティで制御される  
   データ行（3行目以降）では、各データが`<td>`要素に変換され、`<tr>`要素で囲われ、更に`<tbody>`要素で囲われる  
@@ -627,7 +655,7 @@ import Sources from "@components/mdx/Sources.astro"
     - [`<tr>`: 表の行要素 - MDN Web Docs](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/tr)
   </Sources>
 
-## 脚注  
+## 脚注 (Remark)  
 
   ```mdx
   Wikipedia[^wiki]のよくあるあれ[^1]ですよ。

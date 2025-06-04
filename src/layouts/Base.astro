@@ -1,0 +1,104 @@
+---
+import Head from "@layouts/_common/Head.astro";
+import Header from "@layouts/_common/Header.astro";
+import Footer from "@layouts/_common/Footer.astro";
+
+/* eslint-disable */
+import "@unocss/reset/tailwind.css";
+import "uno.css";
+/* eslint-enable */
+
+import "@styles/index.scss";
+
+export interface Props {
+  title?: string;
+  lang?: string;
+  showFakeHeader?: boolean;
+  showHero?: boolean;
+  showSidebar?: boolean;
+}
+
+const { title = "No title", lang, showFakeHeader, showHero = false, showSidebar = false } = Astro.props;
+---
+
+<html lang={lang}>
+  <Head title={title} />
+  <body
+    data-show-hero={showHero}
+    data-show-sidebar={showSidebar}
+    class:list={[
+      "min-h-dvh w-full | grid place-items-center | bg-base-200",
+      showHero ? "grid-rows-[auto_auto_1fr_auto]" : "grid-rows-[auto_1fr_auto]",
+    ]}
+  >
+    <Header showFakeHeader={showFakeHeader}>
+      <h1 class="text-3xl font-bold">7rs.dev</h1>
+    </Header>
+    {
+      showHero && (
+        <section class="grid-area-[hero]">
+          <slot name="hero" />
+        </section>
+      )
+    }
+    <main
+      class="grid-area-[main] relative px-4 max-w-svw min-[900px]:max-w-[1064px] w-full flex flex-col items-center justify-center"
+    >
+      <slot />
+    </main>
+    {
+      showSidebar && (
+        <aside class="grid-area-[sidebar] hidden sticky top-0 min-[900px]:block overflow-scroll max-h-svh">
+          <slot name="sidebar" />
+        </aside>
+      )
+    }
+    <Footer
+      navigations={[
+        { url: "/", label: "Main" },
+        { url: "/blog", label: "Blog" },
+        { url: "/license", label: "License" },
+      ]}
+      socials={[
+        { url: "https://youtube.com/@qRze", icon: "simple-icons:youtube" },
+        { url: "https://7rs.dev/d", icon: "simple-icons:discord" },
+        { url: "https://github.com/7rs", icon: "simple-icons:github" },
+        { url: "https://zenn.dev/7rs", icon: "simple-icons:zenn" },
+        { url: "https://patreon.com/7rs", icon: "simple-icons:patreon" },
+        { url: "/", icon: "simple-icons:rss" },
+      ]}
+    />
+  </body>
+</html>
+
+<style lang="scss">
+  body[data-show-hero="false"][data-show-sidebar="false"] {
+    grid-template-areas:
+      "header "
+      "main"
+      "footer";
+  }
+
+  body[data-show-hero="true"][data-show-sidebar="false"] {
+    grid-template-areas:
+      "header"
+      "hero"
+      "main"
+      "footer";
+  }
+
+  body[data-show-hero="false"][data-show-sidebar="true"] {
+    grid-template-areas:
+      "header   header "
+      "main     sidebar"
+      "footer  footer";
+  }
+
+  body[data-show-hero="true"][data-show-sidebar="true"] {
+    grid-template-areas:
+      "header   header "
+      "hero     hero   "
+      "main     sidebar"
+      "footer  footer";
+  }
+</style>
