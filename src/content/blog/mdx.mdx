@@ -183,91 +183,91 @@ import LinkCard from "@components/mdx/LinkCard.astro"
 
 ## KaTex  
 
-  <TabList align="left">
-    <Tab tabGroup="katex" tabName="コード" icon="material-symbols:code" checked>
-      ```mdx
+<TabList align="left">
+  <Tab tabGroup="katex" tabName="コード" icon="material-symbols:code" checked>
+    ```mdx
+    $$
+    L = \frac{1}{2} \rho v^2 S C_L
+    $$
+    ```
+  </Tab>
+  <Tab tabGroup="katex" tabName="プレビュー" icon="material-symbols:preview">
+    <Window>
       $$
       L = \frac{1}{2} \rho v^2 S C_L
       $$
-      ```
-    </Tab>
-    <Tab tabGroup="katex" tabName="プレビュー" icon="material-symbols:preview">
-      <Window>
-        $$
-        L = \frac{1}{2} \rho v^2 S C_L
-        $$
-      </Window> 
-    </Tab>
-  </TabList>
+    </Window> 
+  </Tab>
+</TabList>
 
-  数式を記述できるツールで、ZennとQiitaも似たような数式の記述をサポートしている  
-  Remark/Rehypeプラグインとして使用できる  
+数式を記述できるツールで、ZennとQiitaも似たような数式の記述をサポートしている  
+Remark/Rehypeプラグインとして使用できる  
 
-  <LinkCard url="https://katex.org/" />
+<LinkCard url="https://katex.org/" />
 
 ## グラフ  
 
 ### Mermaid  
 
-  <TabList align="left">
-    <Tab tabGroup="mermaid" tabName="コード" icon="material-symbols:code" checked>
-      ````mdx
-        ```mermaid
-        pie title Browser
-          "Chrome" : 66.19
-          "Safari" : 17.25
-          "Edge" : 5.2
-          "Firefox" : 2.55
-          "Samsung Internet" : 2.23
-          "Opera" : 2.08
-        ```
-      ````
-    </Tab>
-    <Tab tabGroup="mermaid" tabName="プレビュー" icon="material-symbols:preview">
-      <Window>
-        ```mermaid
-        pie title Browser
-          "Chrome" : 66.19
-          "Safari" : 17.25
-          "Edge" : 5.2
-          "Firefox" : 2.55
-          "Samsung Internet" : 2.23
-          "Opera" : 2.08
-        ```
-      </Window> 
-    </Tab>
-  </TabList>
+<TabList align="left">
+  <Tab tabGroup="mermaid" tabName="コード" icon="material-symbols:code" checked>
+    ````mdx
+      ```mermaid
+      pie title Browser
+        "Chrome" : 66.19
+        "Safari" : 17.25
+        "Edge" : 5.2
+        "Firefox" : 2.55
+        "Samsung Internet" : 2.23
+        "Opera" : 2.08
+      ```
+    ````
+  </Tab>
+  <Tab tabGroup="mermaid" tabName="プレビュー" icon="material-symbols:preview">
+    <Window>
+      ```mermaid
+      pie title Browser
+        "Chrome" : 66.19
+        "Safari" : 17.25
+        "Edge" : 5.2
+        "Firefox" : 2.55
+        "Samsung Internet" : 2.23
+        "Opera" : 2.08
+      ```
+    </Window> 
+  </Tab>
+</TabList>
 
-  グラフや図式を記述できるツールで、ZennとQiita、ObsidianなどもMermaidをサポートしている  
-  基本的には`mdx-mermaid`というremarkプラグインで実現できる。
-  ただし、コードブロックで記述されるので、mermaidのみコードブロックにされないように設定が必要  
+グラフや図式を記述できるツールで、ZennとQiita、ObsidianなどもMermaidをサポートしている  
+基本的には`mdx-mermaid`というremarkプラグインで実現できる。
+ただし、コードブロックで記述されるので、mermaidのみコードブロックにされないように設定が必要  
 
-  <LinkCard url="https://mermaid.js.org/" />
+<LinkCard url="https://mermaid.js.org/" />
 
 ### D2  
 
-  <TabList align="left">
-    <Tab tabGroup="d2" tabName="コード" icon="material-symbols:code" checked>
-      ````mdx
-        ```d2
-        direction: right
-        食う -> 寝る -> 遊ぶ
-        遊ぶ -> 食う
-        ```
-      ````
-    </Tab>
-    <Tab tabGroup="d2" tabName="プレビュー" icon="material-symbols:preview">
-      <Window>
-        ```d2
-        direction: right
-        食う -> 寝る -> 遊ぶ
-        遊ぶ -> 食う
-        ```
-      </Window> 
-    </Tab>
-  </TabList>
+<TabList align="left">
+  <Tab tabGroup="d2" tabName="コード" icon="material-symbols:code" checked>
+    ````mdx
+      ```d2
+      direction: right
+      食う -> 寝る -> 遊ぶ
+      遊ぶ -> 食う
+      ```
+    ````
+  </Tab>
+  <Tab tabGroup="d2" tabName="プレビュー" icon="material-symbols:preview">
+    <Window>
+      ```d2
+      direction: right
+      食う -> 寝る -> 遊ぶ
+      遊ぶ -> 食う
+      ```
+    </Window> 
+  </Tab>
+</TabList>
 
-  Goで記述されたグラフ作成ツールで、対応しているサービスはなさそう  
-  Astroにはこれに対応させたインテグレーションなどがあるので、そのまま使用可能  
+Goで記述されたグラフ作成ツールで、対応しているサービスはなさそう  
+Astroにはこれに対応させたインテグレーションなどがあるので、そのまま使用可能  
 
-  <LinkCard url="https://d2lang.com/" />
+<LinkCard url="https://d2lang.com/" />

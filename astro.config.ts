@@ -6,17 +6,17 @@ import mdx from "@astrojs/mdx";
 import expressiveCode from "astro-expressive-code";
 import UnoCSS from "unocss/astro";
 import icon from "astro-icon";
-import compress from "astro-compress";
-import compressor from "astro-compressor";
-import d2 from "astro-d2";
+// import compress from "astro-compress";
+// import compressor from "astro-compressor";
+// import d2 from "astro-d2";
 
 // remark/rehype plugins
-import emoji from "remark-emoji";
-import mdxMermaid from "mdx-mermaid";
-import rehypeKatex from "rehype-katex";
-import remarkMath from "remark-math";
-import { rehypeHeadingIds } from "@astrojs/markdown-remark";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
+// import emoji from "remark-emoji";
+// import mdxMermaid from "mdx-mermaid";
+// import rehypeKatex from "rehype-katex";
+// import remarkMath from "remark-math";
+// import { rehypeHeadingIds } from "@astrojs/markdown-remark";
+// import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 import tsconfig from "./tsconfig.json" with { type: "json" };
 
@@ -30,30 +30,30 @@ export default defineConfig({
     remotePatterns: [{ protocol: "https" }],
     domains: ["cdn.jsdelivr.net"],
   },
-  markdown: {
-    syntaxHighlight: {
-      type: "shiki",
-      excludeLangs: ["mermaid", "d2"],
-    },
-    gfm: true,
-    remarkPlugins: [[emoji, { accessible: true }], [mdxMermaid, { output: "svg" }], remarkMath],
-    rehypePlugins: [
-      rehypeKatex,
-      rehypeHeadingIds,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "wrap",
-          headingProperties: {
-            class: "markdown-heading",
-          },
-          properties: {
-            class: "heading-link",
-          },
-        },
-      ],
-    ],
-  },
+  // markdown: {
+  //   syntaxHighlight: {
+  //     type: "shiki",
+  //     excludeLangs: ["mermaid", "d2"],
+  //   },
+  //   gfm: true,
+  //   remarkPlugins: [[emoji, { accessible: true }], [mdxMermaid, { output: "svg" }], remarkMath],
+  //   rehypePlugins: [
+  //     rehypeKatex,
+  //     rehypeHeadingIds,
+  //     [
+  //       rehypeAutolinkHeadings,
+  //       {
+  //         behavior: "wrap",
+  //         headingProperties: {
+  //           class: "markdown-heading",
+  //         },
+  //         properties: {
+  //           class: "heading-link",
+  //         },
+  //       },
+  //     ],
+  //   ],
+  // },
   i18n: {
     locales: ["ja", "en"],
     defaultLocale: "ja",
@@ -62,7 +62,7 @@ export default defineConfig({
   site: "https://7rs.dev",
   integrations: [
     expressiveCode(),
-    d2(),
+    // d2(),
     mdx(),
     icon({
       svgoOptions: {
@@ -78,13 +78,13 @@ export default defineConfig({
       },
     }),
     UnoCSS(),
-    compress({
-      HTML: {
-        "html-minifier-terser": {
-          sortClassName: false,
-        },
-      },
-    }),
-    compressor({ gzip: false, brotli: true }),
+    // compress({
+    //   HTML: {
+    //     "html-minifier-terser": {
+    //       sortClassName: false,
+    //     },
+    //   },
+    // }),
+    // compressor({ gzip: false, brotli: true }),
   ],
 });
