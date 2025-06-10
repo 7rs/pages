@@ -84,6 +84,36 @@ export default defineConfig({
     })
   ],
   transformers: [transformerDirectives()],
+  extendTheme(theme) {
+    /* { Default breakpoints
+      sm: '40rem', "640px"
+      md: '48rem', "768px"
+      lg: '64rem', "1024px"
+      xl: '80rem', "1280px"
+      '2xl': '96rem' "1536px"
+    } */
+
+    const extendSizes = {
+      ...theme.breakpoint,
+      xxs: "12rem", // 192px
+      xs: "16rem", // 256px
+      sm: "40rem", // 640px
+      md: "48rem", // 768px
+      lg: "56rem", // 896px
+      xl: "60rem", // 960px
+      "2xl": "64rem", // 1024px
+      "sb-min": "12rem", // 192px
+      "sb-max": "18rem", // 288px
+      "sb-display": "60rem" // 960px
+    };
+    theme.breakpoint = {
+      ...extendSizes
+    };
+    theme.container = {
+      ...extendSizes
+    };
+    theme.breakpoints = theme.breakpoint;
+  },
   rules: [...generateDaisyUIColorRules(DAISYUI_COLOR_PROPERTY_MAPS, DAISYUI_COLORS)],
   shortcuts: {
     "header-icon": "scale-125 color-primary"

@@ -39,5 +39,6 @@
     "markdownlint.run": "onType",
     "stylelint.stylelintPath": "./node_modules/stylelint",
     "files.trimTrailingWhitespace": false,
-    "emojisense.unicodeCompletionsEnabled": false
+    "emojisense.unicodeCompletionsEnabled": false,
+    "unocss.exclude": ["*.scss"]
 }

@@ -16,24 +16,31 @@ export interface Props {
   showFakeHeader?: boolean;
   showHero?: boolean;
   showSidebar?: boolean;
+  mainClassName?: string;
 }
 
-const { title = "No title", lang, showFakeHeader, showHero = false, showSidebar = false } = Astro.props;
+const {
+  title = "No title",
+  lang,
+  showFakeHeader,
+  showHero = false,
+  showSidebar = false,
+  mainClassName = "",
+} = Astro.props;
 ---
 
 <html lang={lang}>
   <Head title={title} />
   <body
+    class="min-h-dvh w-full relative | grid grid-cols-[100%] grid-rows-[auto_1fr_auto] place-items-center bg-base-200"
     data-show-hero={showHero}
-    data-show-sidebar={showSidebar}
-    class:list={[
-      "min-h-dvh w-full | grid place-items-center | bg-base-200",
-      showHero ? "grid-rows-[auto_auto_1fr_auto]" : "grid-rows-[auto_1fr_auto]",
-    ]}
   >
+    <!-- grid-area: header -->
     <Header showFakeHeader={showFakeHeader}>
       <h1 class="text-3xl font-bold">7rs.dev</h1>
     </Header>
+
+    <!-- grid-area: hero -->
     {
       showHero && (
         <section class="grid-area-[hero]">
@@ -41,18 +48,26 @@ const { title = "No title", lang, showFakeHeader, showHero = false, showSidebar 
         </section>
       )
     }
+
+    <!-- grid-area: main -->
     <main
-      class="grid-area-[main] relative px-4 max-w-svw min-[900px]:max-w-[1064px] w-full flex flex-col items-center justify-center"
+      class:list={[
+        "grid-area-[main] relative | px-4 w-full | flex gap-x-2rem justify-center",
+        showSidebar ? "xl:max-w-2xl" : "lg:max-w-lg",
+        mainClassName,
+      ]}
     >
       <slot />
+      {
+        showSidebar && (
+          <section class="grow xl:min-w-xxs xl:max-w-xs | hidden xl:flex flex place-items-initial items-initial">
+            <slot name="sidebar" />
+          </section>
+        )
+      }
     </main>
-    {
-      showSidebar && (
-        <aside class="grid-area-[sidebar] hidden sticky top-0 min-[900px]:block overflow-scroll max-h-svh">
-          <slot name="sidebar" />
-        </aside>
-      )
-    }
+
+    <!-- grid-area: footer -->
     <Footer
       navigations={[
         { url: "/", label: "Main" },
@@ -70,35 +85,3 @@ const { title = "No title", lang, showFakeHeader, showHero = false, showSidebar 
     />
   </body>
 </html>
-
-<style lang="scss">
-  body[data-show-hero="false"][data-show-sidebar="false"] {
-    grid-template-areas:
-      "header "
-      "main"
-      "footer";
-  }
-
-  body[data-show-hero="true"][data-show-sidebar="false"] {
-    grid-template-areas:
-      "header"
-      "hero"
-      "main"
-      "footer";
-  }
-
-  body[data-show-hero="false"][data-show-sidebar="true"] {
-    grid-template-areas:
-      "header   header "
-      "main     sidebar"
-      "footer  footer";
-  }
-
-  body[data-show-hero="true"][data-show-sidebar="true"] {
-    grid-template-areas:
-      "header   header "
-      "hero     hero   "
-      "main     sidebar"
-      "footer  footer";
-  }
-</style>

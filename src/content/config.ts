@@ -1,6 +1,8 @@
 import { Categories } from "@scripts/blog-category.ts";
 import { defineCollection, z } from "astro:content";
 
+const optionalStringArray = z.optional(z.array(z.string())).default([]);
+
 export const Blog = z.object({
   /** A title of the article. */
   title: z.ostring().default("No title"),
@@ -9,7 +11,7 @@ export const Blog = z.object({
   description: z.ostring().default("No description"),
 
   /** The authors of the article */
-  authors: z.optional(z.array(z.string())).default([]),
+  authors: optionalStringArray,
 
   /** A date the article is created */
   created: z.optional(z.coerce.date()),
@@ -18,10 +20,12 @@ export const Blog = z.object({
   category: z.ostring().default(Categories.Uncategorized),
 
   /** The tags related to the article  */
-  tags: z.optional(z.array(z.string())).default([]),
+  tags: optionalStringArray,
 
   /** A image related to the article */
   image: z.ostring(),
+
+  _excludeHeadings: optionalStringArray,
 });
 export type Blog = z.infer<typeof Blog>;
 

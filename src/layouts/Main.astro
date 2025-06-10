@@ -1,10 +1,6 @@
 ---
 import Base from "@layouts/Base.astro";
 
-import "@styles/index.scss";
-import type { MarkdownHeading } from "astro";
-import type { Blog as BlogFrontmatter } from "@content/config";
-
 export interface Props {
   title?: string;
   className?: string;
@@ -16,7 +12,7 @@ const { title = "No title", className = "", lang, showFakeHeader, ...props } = A
 ---
 
 <Base title={title} lang={lang} showFakeHeader={showFakeHeader}>
-  <div class:list={["px-3 lg:px-0 min-[900px]:mx-0 max-w-svw min-[900px]:max-w-[900px] w-full", className]} {...props}>
+  <div class:list={["max-w-svw main:max-w-main w-full", className]} {...props}>
     <slot />
   </div>
 </Base>

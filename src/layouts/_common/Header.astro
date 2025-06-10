@@ -13,9 +13,9 @@ const { showFakeHeader = true } = Astro.props;
 {showFakeHeader && <div class="bg-transparent color-transparent opacity-0 navbar">fake header</div>}
 
 <header
-  class="grid-area-[header] fixed top-0 z-900 | w-full | flex justify-center | bg-[var(--color-base-100)]/50 backdrop-blur-md backdrop-brightness-125 shadow-sm"
+  class="grid-area-[header] sticky top-0 z-900 | w-full | flex justify-center bg-[var(--color-base-100)]/50 backdrop-blur-md backdrop-brightness-125 shadow-sm"
 >
-  <div class="navbar | px-4 max-w-[900px]">
+  <div class="navbar | px-4 max-w-lg">
     <a class="flex-1" href="/" title="main page">
       <slot />
     </a>
@@ -37,7 +37,7 @@ const { showFakeHeader = true } = Astro.props;
   </div>
 </header>
 
-<dialog id="searchModal" class="modal">
+<dialog id="searchModal" class="modal absolute">
   <div class="modal-box">
     search
     <form method="dialog">
@@ -48,3 +48,9 @@ const { showFakeHeader = true } = Astro.props;
     <button>close</button>
   </form>
 </dialog>
+
+<style lang="scss">
+  dialog#searchModal[open] {
+    display: grid;
+  }
+</style>

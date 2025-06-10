@@ -1,10 +1,11 @@
 ---
-import type { Props as MainProps } from "@layouts/Main.astro";
-import type { Blog as BlogFrontmatter } from "@content/config";
-
 import type { MarkdownHeading } from "astro";
-import BlogHeader from "./blog/BlogHeader.astro";
-import Base from "./Base.astro";
+import Base from "@layouts/Base.astro";
+import type { Props as MainProps } from "@layouts/Main.astro";
+import BlogHeader from "@layouts/blog/BlogHeader.astro";
+import type { Blog as BlogFrontmatter } from "@content/config";
+import Anchor from "@components/Anchor.astro";
+import TableOfContents from "@layouts/blog/TableOfContents.astro";
 
 interface Props extends MainProps {
   frontmatter?: BlogFrontmatter;
@@ -16,15 +17,14 @@ interface Props extends MainProps {
 
 const { frontmatter = {}, headings, lang, slug, length, ...props } = Astro.props;
 const title = frontmatter.title || "No title";
+
+// mainClassName="!lg:min-w-[600px] !lg:max-w-[700px]"
 ---
 
 <Base title={title} lang={lang} showFakeHeader={false} showHero showSidebar>
   <BlogHeader slot="hero" frontmatter={frontmatter} headings={headings} length={length} />
-  <section class="w-full min-[900px]:min-w-[600px] min-[900px]:max-w-[700px]">
+  <section class="sm:max-w-sm w-full" data-content-type="md">
     <slot />
   </section>
-  <section slot="sidebar" class="h-full min-[900px]:min-w-[200px] min-[900px]:max-w-[300px] sticky top-0 right-0 mt-0 mb-auto">
-    <div>{headings.map(heading => <p>{heading.slug}</p>)
-      }</div>
-  </section>
+  <TableOfContents slot="sidebar" frontmatter={frontmatter} headings={headings} />
 </Base>

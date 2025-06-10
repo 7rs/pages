@@ -55,7 +55,7 @@ export default tseslint.config(
         },
       ],
       "n/no-missing-import": "off",
-      "import/no-unresolved": [
+      "import-x/no-unresolved": [
         "error",
         {
           ignore: ["^astro:content$"],

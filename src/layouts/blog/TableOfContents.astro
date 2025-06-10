@@ -1,0 +1,47 @@
+---
+import type { MarkdownHeading } from "astro";
+import type { Blog as BlogFrontmatter } from "@content/config";
+import Anchor from "@components/Anchor.astro";
+
+interface Props {
+  frontmatter?: BlogFrontmatter;
+  headings?: MarkdownHeading[];
+}
+
+const { frontmatter = {}, headings, ...props } = Astro.props;
+---
+
+<aside
+  class="sticky top-[var(--header-height)] | max-h-[calc(100svh-var(--header-height))] w-full overflow-y-scroll overflow-x-hidden text-wrap"
+>
+  <ul>
+    {
+      headings.map((heading) => {
+        for (const ex of frontmatter._excludeHeadings) {
+          if (heading.slug === ex) {
+            return;
+          }
+        }
+        const n = heading.depth - 2;
+
+        return (
+          <Anchor href={`#${heading.slug}`} openAsNew={false}>
+            <li class="text-xl p-2" style={n > 0 && `padding-left: ${heading.depth}rem`}>
+              {heading.slug}
+            </li>
+          </Anchor>
+        );
+      })
+    }
+  </ul>
+</aside>
+
+<script>
+  requestAnimationFrame(() => {
+    console.log(window.scrollY);
+  });
+
+  setTimeout(() => {
+    console.log(window.scrollY)
+  }, 100)
+</script>
