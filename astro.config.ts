@@ -20,6 +20,8 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 import tsconfig from "./tsconfig.json" with { type: "json" };
 
+import svelte from "@astrojs/svelte";
+
 export default defineConfig({
   vite: {
     resolve: {
@@ -62,6 +64,7 @@ export default defineConfig({
   site: "https://7rs.dev",
   integrations: [
     expressiveCode(),
+    svelte(),
     d2(),
     mdx(),
     icon({

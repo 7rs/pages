@@ -4,8 +4,7 @@ import Base from "@layouts/Base.astro";
 import type { Props as MainProps } from "@layouts/Main.astro";
 import BlogHeader from "@layouts/blog/BlogHeader.astro";
 import type { Blog as BlogFrontmatter } from "@content/config";
-import Anchor from "@components/Anchor.astro";
-import TableOfContents from "@layouts/blog/TableOfContents.astro";
+import TableOfContents from "@components/mdx/TableOfContents.svelte";
 
 interface Props extends MainProps {
   frontmatter?: BlogFrontmatter;
@@ -17,8 +16,6 @@ interface Props extends MainProps {
 
 const { frontmatter = {}, headings, lang, slug, length, ...props } = Astro.props;
 const title = frontmatter.title || "No title";
-
-// mainClassName="!lg:min-w-[600px] !lg:max-w-[700px]"
 ---
 
 <Base title={title} lang={lang} showFakeHeader={false} showHero showSidebar>
@@ -26,5 +23,11 @@ const title = frontmatter.title || "No title";
   <section class="sm:max-w-sm w-full" data-content-type="md">
     <slot />
   </section>
-  <TableOfContents slot="sidebar" frontmatter={frontmatter} headings={headings} />
+  <TableOfContents
+    slot="sidebar"
+    client:idle
+    headings={headings}
+    excludeHeadings={frontmatter._excludeHeadings}
+    class="sticky top-[var(--header-height)] | max-h-[calc(100svh-var(--header-height))] w-full overflow-y-scroll overflow-x-hidden text-wrap"
+  />
 </Base>

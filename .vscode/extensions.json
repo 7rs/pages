@@ -6,6 +6,7 @@
         "davidanson.vscode-markdownlint",
         "esbenp.prettier-vscode",
         "oxc.oxc-vscode",
-        "stylelint.vscode-stylelint"
+        "stylelint.vscode-stylelint",
+        "svelte.svelte-vscode"
     ]
 }

@@ -33,6 +33,9 @@
     "[stylus]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "[svelte]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "prettier.configPath": "./.prettierrc",
     "prettier.ignorePath": "./.prettierignore",
     "stylelint.validate": ["css", "scss", "postcss"],
