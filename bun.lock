@@ -28,6 +28,7 @@
         "astro-icon": "^1.1.5",
         "autoprefixer": "^10.4.21",
         "cheerio": "^1.0.0",
+        "clsx": "^2.1.1",
         "daisyui": "^5.0.43",
         "mdx-mermaid": "^2.0.3",
         "mermaid": "^11.6.0",
