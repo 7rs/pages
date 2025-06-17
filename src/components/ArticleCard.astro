@@ -4,54 +4,45 @@ import Symbol from "@components/Symbol.astro";
 import { hasIcon } from "@scripts/icon";
 import AnimatedAnchor from "@components/AnimatedAnchor.astro";
 import Icon from "@components/Icon.astro";
+import type { Categories } from "@scripts/blog-category";
+import ArticleDetail from "./ArticleDetail.astro";
+import Authors from "./Authors.astro";
+import Tags from "./Tags.astro";
 
 interface Props {
   slug: string;
   frontmatter: BlogFrontmatter;
+  length: number;
 }
 
-const { slug, frontmatter } = Astro.props;
+const { slug, frontmatter, length = 0 } = Astro.props;
+
+// `/b/${slug}`
 ---
 
-<a href={`/b/${slug}`}>
-  <article
-    class:list={[
-      "p-4 hover:b-1",
-      "grid grid-cols-[auto_1fr] justify-center items-center gap-y-1 gap-x-2",
-      "shadow-md rounded-xl border-white bg-base-100",
-    ]}
-  >
-    <div class="grid-area-[symbol] | size-12 | flex justify-center items-center">
-      <Symbol image={frontmatter.image ? frontmatter.image : ":question:"} className="size-8" />
-    </div>
-    <hgroup class="grid-area-[summary] flex flex-col gap-y-1 text-wrap">
-      <h3 class="text-base font-bold">{frontmatter.title}</h3>
-      <p class="color-[var(--color-base-content)]/75 text-sm">
-        {frontmatter.description.length <= 0 ? "説明なし" : frontmatter.description}
-      </p>
-    </hgroup>
-    <section class="grid-area-[content]">
-      {
-        frontmatter.tags.map((tag) => {
-          return (
-            <AnimatedAnchor href={`/tags/${tag}`} openAsNew={false}>
-              {() => {
-                const provider = hasIcon(tag);
-                if (provider == null) {
-                  return;
-                }
-
-                return <Icon class="inline no-underline border-b-1" name={`${provider.provider}:${provider.name}`} />;
-              }}
-              #{tag}
-            </AnimatedAnchor>
-          );
-        })
-      }
-      {frontmatter.tags.length <= 0 && "No tags"}
-    </section>
-  </article>
-</a>
+<article
+  class:list={[
+    "relative z-0 p-4 b-1 hover:border-primary transition-all",
+    "grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] justify-center items-center gap-y-1 gap-x-2",
+    "shadow-md rounded-xl border-base-300 bg-base-100",
+  ]}
+>
+  <div class="grid-area-[symbol] | size-12 | flex justify-center items-center">
+    <Symbol image={frontmatter.image ? frontmatter.image : ":question:"} className="size-8" />
+  </div>
+  <hgroup class="grid-area-[summary] flex flex-col gap-y-1 text-wrap">
+    <h3 class="text-base font-bold">{frontmatter.title}</h3>
+    <p class="color-[var(--color-base-content)]/75 text-sm">
+      {frontmatter.description.length <= 0 ? "説明なし" : frontmatter.description}
+    </p>
+  </hgroup>
+  <section class="grid-area-[content] self-start flex flex-col">
+    <ArticleDetail category={frontmatter.category as Categories} length={length} created={frontmatter.created} />
+    <Authors authors={frontmatter.authors} childClassName="relative z-1" />
+    <Tags tags={frontmatter.tags} childClassName="relative z-1" />
+  </section>
+  <a href={`/b/${slug}`} class="z-0 absolute top-0 left-0 w-full h-full content-['']"></a>
+</article>
 
 <style lang="scss">
   article {

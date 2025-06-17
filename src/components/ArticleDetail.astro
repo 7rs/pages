@@ -1,0 +1,33 @@
+---
+import { format } from "@formkit/tempo";
+import Icon from "@components/Icon.astro";
+import { categoryToJapanese, Categories } from "@scripts/blog-category";
+
+interface Props {
+  category?: Categories;
+  length?: number;
+  created?: Date;
+  className?: string;
+}
+
+const { category = Categories.Uncategorized, length = 0, created, className = "" } = Astro.props;
+---
+
+<section class:list={["w-full flex flex-wrap gap-x-2 | color-[#f80]", className]}>
+  <div class="flex items-center gap-x-1">
+    <Icon name="line-md:folder" />
+    <p>{categoryToJapanese(category)}</p>
+  </div>
+  <div class="flex items-center gap-x-1">
+    <Icon name="line-md:text-box" />
+    <p>約{length}文字</p>
+  </div>
+  {
+    created && (
+      <div class="flex items-center gap-x-1">
+        <Icon name="line-md:edit" />
+        <time datetime={created.toString()}>{format({ date: created, format: "YYYY-MM-DD Z", tz: "Asia/Tokyo" })}</time>
+      </div>
+    )
+  }
+</section>

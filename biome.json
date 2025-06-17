@@ -1,33 +1,30 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-    "files": {
-        "ignore": ["node_modules/**", "*.astro"]
-    },
-    "formatter": {
-        "enabled": true,
-        "formatWithErrors": true,
-        "indentStyle": "space",
-        "indentWidth": 4,
-        "lineWidth": 120
-    },
-    "javascript": {
-        "formatter": {
-            "indentWidth": 2
-        }
-    },
-    "json": {
-        "parser": {
-            "allowComments": true
-        }
-    },
-    "overrides": [
-        {
-            "include": ["uno.config.ts"],
-            "javascript": {
-                "formatter": {
-                    "trailingCommas": "none"
-                }
-            }
-        }
-    ]
+	"$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+	"formatter": {
+		"enabled": true,
+		"formatWithErrors": true,
+		"indentStyle": "space",
+		"indentWidth": 4,
+		"lineWidth": 120
+	},
+	"javascript": {
+		"formatter": {
+			"indentWidth": 2
+		}
+	},
+	"json": {
+		"parser": {
+			"allowComments": true
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["uno.config.ts"],
+			"javascript": {
+				"formatter": {
+					"trailingCommas": "none"
+				}
+			}
+		}
+	]
 }

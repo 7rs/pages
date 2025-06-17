@@ -7,42 +7,49 @@
     <title>Playground</title>
     <meta charset="UTF-8" />
   </head>
-  <body
-    data-show-hero={false}
-    data-show-sidebar={true}
-    class="min-h-dvh w-full | grid grid-rows-[auto_1fr_auto] place-items-center | bg-base-200"
-  >
+  <body>
+    <main>
+      <div class="collapse collapse-arrow">
+        <input title="what" type="checkbox" />
+        <div class="collapse-title">what</div>
+        <div class="collapse-content">your content here should display</div>
+      </div>
+    </main>
   </body>
 </html>
 
-<style lang="scss">
-  body[data-show-hero="false"][data-show-sidebar="false"] {
-    grid-template-areas:
-      "header "
-      "main"
-      "footer";
+<style>
+  .collapse {
+    position: relative;
+    display: grid;
+    overflow: hidden;
+    border-radius: var(--radius-box, 1rem);
+    width: 100%;
+    grid-template-rows: max-content 0fr;
+    transition: grid-template-rows 0.2s;
+    isolation: isolate;
   }
 
-  body[data-show-hero="true"][data-show-sidebar="false"] {
-    grid-template-areas:
-      "header"
-      "hero"
-      "main"
-      "footer";
+  .collapse-title {
+    position: relative;
+    width: 100%;
+    padding: 1rem;
+    padding-inline-end: 3rem;
+    min-height: 1lh;
+    transition: background-color 0.2s ease-out;
   }
 
-  body[data-show-hero="false"][data-show-sidebar="true"] {
-    grid-template-areas:
-      "header   header "
-      "main     sidebar"
-      "footer  footer";
-  }
-
-  body[data-show-hero="true"][data-show-sidebar="true"] {
-    grid-template-areas:
-      "header   header "
-      "hero     hero   "
-      "main     sidebar"
-      "footer  footer";
+  .collapse-content {
+    visibility: hidden;
+    grid-column-start: 1;
+    grid-row-start: 2;
+    min-height: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    cursor: unset;
+    transition:
+      visibility 0.2s,
+      padding 0.2s ease-out,
+      background-color 0.2s ease-out;
   }
 </style>
