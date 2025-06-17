@@ -5,10 +5,10 @@ const optionalStringArray = z.optional(z.array(z.string())).default([]);
 
 export const Blog = z.object({
   /** A title of the article. */
-  title: z.ostring().default("No title"),
+  title: z.ostring().default(""),
 
   /** A description about the article */
-  description: z.ostring().default("No description"),
+  description: z.ostring().default(""),
 
   /** The authors of the article */
   authors: optionalStringArray,

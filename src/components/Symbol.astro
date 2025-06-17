@@ -11,7 +11,7 @@ type SymbolTypes = (typeof SymbolTypes)[keyof typeof SymbolTypes];
 
 interface Props {
   image?: string;
-  className?: string
+  className?: string;
 }
 
 const { image, className, ...props } = Astro.props;
@@ -30,10 +30,11 @@ const symbolType = (() => {
 {
   async () => {
     switch (symbolType) {
-      case SymbolTypes.Twemoji:
+      case SymbolTypes.Twemoji: {
         const outputSVG = await getTwemojiSVG(image, className, props);
 
-        return outputSVG && <Fragment set:html={outputSVG} />;
+        return outputSVG && <Fragment set:html={outputSVG} {...props} />;
+      }
       case SymbolTypes.Icon:
         return <Icon class={className} name={image} {...props} />;
       default:
