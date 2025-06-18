@@ -1,30 +1,52 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
-	"formatter": {
-		"enabled": true,
-		"formatWithErrors": true,
-		"indentStyle": "space",
-		"indentWidth": 4,
-		"lineWidth": 120
-	},
-	"javascript": {
-		"formatter": {
-			"indentWidth": 2
-		}
-	},
-	"json": {
-		"parser": {
-			"allowComments": true
-		}
-	},
-	"overrides": [
-		{
-			"includes": ["uno.config.ts"],
-			"javascript": {
-				"formatter": {
-					"trailingCommas": "none"
-				}
-			}
-		}
-	]
+    "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+    "assist": {
+        "actions": {
+            "source": {
+                "organizeImports": "off"
+            }
+        }
+    },
+    "formatter": {
+        "enabled": true,
+        "formatWithErrors": true,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineWidth": 120
+    },
+    "javascript": {
+        "formatter": {
+            "indentWidth": 2
+        }
+    },
+    "json": {
+        "parser": {
+            "allowComments": true
+        }
+    },
+    "overrides": [
+        {
+            "includes": ["uno.config.ts"],
+            "javascript": {
+                "formatter": {
+                    "trailingCommas": "none"
+                }
+            }
+        },
+        {
+            "includes": ["**/*.svelte", "**/*.astro"],
+            "linter": {
+                "rules": {
+                    "style": {
+                        "useConst": "off",
+                        "useImportType": "off"
+                    },
+                    "correctness": {
+                        "noUnusedVariables": "off",
+                        "noUnusedImports": "off"
+                    }
+                }
+            }
+        }
+    ]
 }

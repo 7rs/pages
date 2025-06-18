@@ -1,8 +1,6 @@
 ---
-import Main from "@layouts/Main.astro";
 import { getCollection } from "astro:content";
-import Symbol from "@components/Symbol.astro";
-import type { Blog as BlogFrontmatter } from "@content/config";
+import Main from "@layouts/Main.astro";
 import ArticleCard from "@components/ArticleCard.astro";
 import { getRawTextContent } from "@scripts/blogUtil";
 
@@ -19,22 +17,4 @@ const entries = await getCollection("blog");
       }
     </div>
   </article>
-  <div class="collapse | my-4 | border-1 border-base-100 bg-base-300 shadow-md">
-    <input type="checkbox" />
-    <div class="collapse-title color-base-content">b</div>
-    <div class="collapse-content">a</div>
-  </div>
-  <div class="bg-base-100 border-base-300 collapse border">
-    <input type="checkbox" class="peer" />
-    <div
-      class="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content"
-    >
-      How do I create an account?
-    </div>
-    <div
-      class="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content"
-    >
-      Click the "Sign Up" button in the top right corner and follow the registration process.
-    </div>
-  </div>
 </Main>
