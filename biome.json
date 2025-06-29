@@ -34,7 +34,7 @@
             }
         },
         {
-            "includes": ["**/*.svelte", "**/*.astro"],
+            "includes": ["**/*.astro"],
             "linter": {
                 "rules": {
                     "style": {
@@ -46,6 +46,12 @@
                         "noUnusedImports": "off"
                     }
                 }
+            }
+        },
+        {
+            "includes": ["**/*.svelte"],
+            "linter": {
+                "enabled": false
             }
         }
     ]

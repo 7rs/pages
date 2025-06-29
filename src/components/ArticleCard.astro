@@ -1,9 +1,6 @@
 ---
 import type { Blog as BlogFrontmatter } from "@content/config";
-import Symbol from "@components/Symbol.astro";
-import { hasIcon } from "@scripts/icon";
-import AnimatedAnchor from "@components/AnimatedAnchor.astro";
-import Icon from "@components/Icon.astro";
+import ArticleImage from "@components/ArticleImage.astro";
 import type { Categories } from "@scripts/blog-category";
 import ArticleDetail from "./ArticleDetail.astro";
 import Authors from "./Authors.astro";
@@ -16,38 +13,41 @@ interface Props {
 }
 
 const { slug, frontmatter, length = 0 } = Astro.props;
-
-// `/b/${slug}`
 ---
 
 <article
+  tabindex="0"
   class:list={[
-    "relative z-0 p-4 b-1 hover:border-primary transition-all",
-    "grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] justify-center items-center gap-y-1 gap-x-2",
-    "shadow-md rounded-xl border-base-300 bg-base-100",
+    "collapse [&:is(.collapse-close)>.collapse-content]:p-4!",
+    "h-fit b-1 hover:border-primary",
+    "border-base-300 bg-base-100 transition-all",
   ]}
 >
-  <div class="grid-area-[symbol] | size-12 | flex justify-center items-center">
-    <Symbol image={frontmatter.image ? frontmatter.image : ":question:"} className="size-8" />
-  </div>
-  <hgroup class="grid-area-[summary] flex flex-col gap-y-1 text-wrap">
-    <h3 class="text-base font-bold">{frontmatter.title}</h3>
-    <p class="color-[var(--color-base-content)]/75 text-sm">
+  <input type="checkbox" class="peer block" />
+  <section class="collapse-title p-4! | grid grid-cols-[auto_1fr] gap-x-2 gap-y-1 | text-wrap">
+    <ArticleImage
+      image={frontmatter.image ? frontmatter.image : ":question:"}
+      className="grid-area-[image] hidden 2xs:block p-2 size-12 justify-self-center self-center"
+    />
+    <h3 class="grid-area-[title] text-base font-bold">{frontmatter.title}</h3>
+    <p class="grid-area-[desc] color-[var(--color-base-content)]/75 text-sm">
       {frontmatter.description.length <= 0 ? "説明なし" : frontmatter.description}
     </p>
-  </hgroup>
-  <section class="grid-area-[content] self-start flex flex-col">
-    <ArticleDetail category={frontmatter.category as Categories} length={length} created={frontmatter.created} />
-    <Authors authors={frontmatter.authors} childClassName="relative z-1" />
-    <Tags tags={frontmatter.tags} childClassName="relative z-1" />
   </section>
-  <a href={`/b/${slug}`} class="z-0 absolute top-0 left-0 w-full h-full content-['']"></a>
+  <section class="collapse-content flex flex-col gap-y-4">
+    <div class="flex flex-col">
+      <ArticleDetail category={frontmatter.category as Categories} length={length} created={frontmatter.created} />
+      <Authors authors={frontmatter.authors} childClassName="relative z-1" />
+      <Tags tags={frontmatter.tags} childClassName="relative z-1" />
+    </div>
+    <a href={`/b/${slug}`} class="btn btn-soft">Read</a>
+  </section>
 </article>
 
 <style lang="scss">
-  article {
+  section.collapse-title {
     grid-template-areas:
-      "symbol  summary"
-      "content content";
+      "image title"
+      "image desc";
   }
 </style>

@@ -8,15 +8,22 @@ interface Props {
   length?: number;
   created?: Date;
   className?: string;
+  definePagefindMeta?: boolean;
 }
 
-const { category = Categories.Uncategorized, length = 0, created, className = "" } = Astro.props;
+const {
+  category = Categories.Uncategorized,
+  length = 0,
+  created,
+  className = "",
+  definePagefindMeta = false,
+} = Astro.props;
 ---
 
 <section class:list={["w-full flex flex-wrap gap-x-2 | color-[#f80]", className]}>
   <div class="flex items-center gap-x-1">
     <Icon name="line-md:folder" />
-    <p>{categoryToJapanese(category)}</p>
+    <p data-pagefind-filter={`category:${category}`}>{categoryToJapanese(category)}</p>
   </div>
   <div class="flex items-center gap-x-1">
     <Icon name="line-md:text-box" />
@@ -26,7 +33,9 @@ const { category = Categories.Uncategorized, length = 0, created, className = ""
     created && (
       <div class="flex items-center gap-x-1">
         <Icon name="line-md:edit" />
-        <time datetime={created.toString()}>{format({ date: created, format: "YYYY-MM-DD Z", tz: "Asia/Tokyo" })}</time>
+        <time datetime={created.toString()} data-pagefind-meta={definePagefindMeta ? `created:${created}` : undefined}>
+          {format({ date: created, format: "YYYY-MM-DD Z", tz: "Asia/Tokyo" })}
+        </time>
       </div>
     )
   }

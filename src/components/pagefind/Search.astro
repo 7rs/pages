@@ -1,0 +1,8 @@
+---
+import Pagefind from "@components/pagefind/Pagefind.svelte"
+
+const dir = import.meta.env.DEV ? "dist/" : "";
+const pagefindPath = `/${dir}pagefind/pagefind`;
+---
+
+<Pagefind pagefindPath={pagefindPath} client:load />

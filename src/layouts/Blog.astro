@@ -5,6 +5,7 @@ import type { Props as MainProps } from "@layouts/Main.astro";
 import BlogHeader from "@layouts/blog/BlogHeader.astro";
 import type { Blog as BlogFrontmatter } from "@content/config";
 import TableOfContents from "@components/mdx/TableOfContents.svelte";
+import { Categories } from "@scripts/blog-category";
 
 interface Props extends MainProps {
   frontmatter?: BlogFrontmatter;
@@ -18,9 +19,13 @@ const { frontmatter = {}, headings, lang, slug, length, ...props } = Astro.props
 const title = frontmatter.title || "No title";
 ---
 
-<Base title={title} lang={lang} showFakeHeader={false} showHero showSidebar>
+<Base title={title} lang={lang} showFakeHeader={false} showHero showSidebar mainClassName="mb-8">
   <BlogHeader slot="hero" frontmatter={frontmatter} headings={headings} length={length} />
-  <section class="sm:max-w-sm w-full" data-content-type="md">
+  <section
+    class="sm:max-w-sm w-full"
+    data-content-type="md"
+    data-pagefind-body={frontmatter.category !== Categories.Uncategorized ? "" : undefined}
+  >
     <slot />
   </section>
   <TableOfContents

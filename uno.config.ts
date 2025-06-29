@@ -95,8 +95,10 @@ export default defineConfig({
 
     const extendSizes = {
       ...theme.breakpoint,
-      xxs: "12rem", // 192px
-      xs: "16rem", // 256px
+      "4xs": "12rem", // 192px
+      "3xs": "16rem", // 256px
+      "2xs": "22rem", // 348px
+      xs: "30rem", // 480px
       sm: "40rem", // 640px
       md: "48rem", // 768px
       lg: "56rem", // 896px

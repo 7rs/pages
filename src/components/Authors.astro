@@ -5,15 +5,21 @@ interface Props {
   authors?: string[];
   className?: string;
   childClassName?: string;
+  definePagefindMeta?: boolean;
 }
-const { authors = [], className = "", childClassName = "" } = Astro.props;
+const { authors = [], className = "", childClassName = "", definePagefindMeta = false } = Astro.props;
 ---
 
 <div class:list={["w-full flex flex-wrap gap-x-2 | color-[#A00]", className]}>
   {
     authors.length > 0 ? (
       authors.map((author) => (
-        <AnimatedAnchor href={`/authors/${author}`} openAsNew={false} class={childClassName}>
+        <AnimatedAnchor
+          href={`/authors/${author}`}
+          openAsNew={false}
+          class={childClassName}
+          data-pagefind-filter={definePagefindMeta ? `authors:${author}` : undefined}
+        >
           @{author}
         </AnimatedAnchor>
       ))

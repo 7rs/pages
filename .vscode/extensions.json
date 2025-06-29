@@ -7,6 +7,10 @@
         "esbenp.prettier-vscode",
         "oxc.oxc-vscode",
         "stylelint.vscode-stylelint",
-        "svelte.svelte-vscode"
+        "svelte.svelte-vscode",
+        "oven.bun-vscode",
+        "dbaeumer.vscode-eslint",
+        "unifiedjs.vscode-mdx",
+        "antfu.unocss"
     ]
 }

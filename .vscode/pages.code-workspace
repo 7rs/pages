@@ -1,0 +1,26 @@
+{
+    "folders": [
+        {
+            "path": ".."
+        }
+    ],
+    "settings": {
+        "unocss.exclude": ["*.scss", "**/*.scss"],
+        "unocss.include": ["*.html", "*.astro"],
+        "unocss.colorPreview": false,
+        "oxc.enable": true,
+        "oxc.path.server": "./node_modules/oxlint",
+        "biome.lsp.bin": "./node_modules/@biomejs/biome",
+        "prettier.documentSelectors": ["**/*.astro"],
+        "workbench.colorCustomizations": {
+            "activityBar.activeBackground": "#ff6433",
+            "activityBar.background": "#ff6433",
+            "activityBar.foreground": "#15202b",
+            "activityBar.inactiveForeground": "#15202b99",
+            "activityBarBadge.background": "#00ff3d",
+            "activityBarBadge.foreground": "#15202b",
+            "sash.hoverBorder": "#ff6433"
+        },
+        "peacock.color": "#ff3d00"
+    },
+}

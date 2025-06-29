@@ -19,7 +19,7 @@ const { image, className, ...props } = Astro.props;
 const symbolType = (() => {
   if (image.startsWith(":") && image.endsWith(":")) {
     return SymbolTypes.Twemoji;
-  } else if (image.indexOf(".") == -1) {
+  } else if (image.indexOf(".") === -1) {
     return SymbolTypes.Icon;
   }
 
@@ -33,12 +33,20 @@ const symbolType = (() => {
       case SymbolTypes.Twemoji: {
         const outputSVG = await getTwemojiSVG(image, className, props);
 
-        return outputSVG && <Fragment set:html={outputSVG} {...props} />;
+        return outputSVG && <Fragment set:html={outputSVG} data-pagefind-meta={`image_alt:${image}`} {...props} />;
       }
       case SymbolTypes.Icon:
-        return <Icon class={className} name={image} {...props} />;
+        return <Icon name={image} data-pagefind-meta="image_alt[name]" class={className} {...props} />;
       default:
-        return <img src={image} class={className} {...props} />;
+        return (
+          <img
+            src={image}
+            alt="article image"
+            data-pagefind-meta="image[src], image_alt[alt]"
+            class={className}
+            {...props}
+          />
+        );
     }
   }
 }

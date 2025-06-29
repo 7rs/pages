@@ -1,12 +1,8 @@
 ---
-import AnimatedAnchor from "@components/AnimatedAnchor.astro";
-import Icon from "@components/Icon.astro";
-import Symbol from "@components/Symbol.astro";
+import ArticleImage from "@components/ArticleImage.astro";
 import type { Blog as BlogFrontmatter } from "@content/config";
 import type { MarkdownHeading } from "astro";
-import { format } from "@formkit/tempo";
-import { hasIcon } from "@scripts/icon";
-import { Categories, categoryToJapanese } from "@scripts/blog-category";
+import { Categories } from "@scripts/blog-category";
 import Authors from "@components/Authors.astro";
 import Tags from "@components/Tags.astro";
 import ArticleDetail from "@components/ArticleDetail.astro";
@@ -22,18 +18,20 @@ const title = frontmatter.title || "No title";
 ---
 
 <header class="px-4 lg:max-w-lg flex flex-col justify-center gap-y-8 h-[calc(100svh-var(--header-height))]">
-  <hgroup class="flex flex-col items-center gap-y-8">
-    {frontmatter.image && <Symbol image={frontmatter.image} className="size-24 md:size-32" />}
-    <h1 class="text-2xl md:text-5xl text-center font-bold w-full">{title}</h1>
-  </hgroup>
+  <section class="flex flex-col items-center gap-y-8">
+    {frontmatter.image && <ArticleImage image={frontmatter.image} className="size-24 md:size-32" />}
+    <h1 data-pagefind-meta="title" class="text-2xl md:text-5xl text-center font-bold w-full">{title}</h1>
+  </section>
   <section class="flex flex-col items-center gap-y-2 w-full">
+    {frontmatter.description && <p data-pagefind-meta="description">{frontmatter.description}</p>}
     <ArticleDetail
       category={frontmatter.category as Categories}
       length={length}
       created={frontmatter.created}
       className="justify-center"
+      definePagefindMeta
     />
-    <Authors authors={frontmatter.authors} className="justify-center" />
-    <Tags tags={frontmatter.tags} className="justify-center" />
+    <Authors authors={frontmatter.authors} className="justify-center" definePagefindMeta />
+    <Tags tags={frontmatter.tags} className="justify-center" definePagefindMeta />
   </section>
 </header>

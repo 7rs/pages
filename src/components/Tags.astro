@@ -7,23 +7,24 @@ interface Props {
   tags?: string[];
   className?: string;
   childClassName?: string;
+  definePagefindMeta?: boolean;
 }
-const { tags = [], className = "", childClassName = "" } = Astro.props;
+const { tags = [], className = "", childClassName = "", definePagefindMeta = false } = Astro.props;
 ---
 
-<div
-  class:list={[
-    "w-full flex flex-wrap gap-x-2 | border-color-[#337ab7] color-[#337ab7] text-base",
-    className,
-  ]}
->
+<div class:list={["w-full flex flex-wrap gap-x-2 | border-color-[#337ab7] color-[#337ab7] text-base", className]}>
   {
     tags.length > 0 ? (
       tags.map((tag) => {
         const provider = hasIcon(tag);
 
         return (
-          <AnimatedAnchor href={`/tags/${tag}`} openAsNew={false} class={childClassName}>
+          <AnimatedAnchor
+            href={`/tags/${tag}`}
+            openAsNew={false}
+            class={childClassName}
+            data-pagefind-filter={definePagefindMeta ? `tags:${tag}` : undefined}
+          >
             {provider && <Icon class="inline no-underline border-b-1" name={`${provider.provider}:${provider.name}`} />}
             #{tag}
           </AnimatedAnchor>

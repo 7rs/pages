@@ -17,6 +17,7 @@ export interface Props {
   showHero?: boolean;
   showSidebar?: boolean;
   mainClassName?: string;
+  noIndex?: boolean;
 }
 
 const {
@@ -26,11 +27,12 @@ const {
   showHero = false,
   showSidebar = false,
   mainClassName = "",
+  noIndex = false,
 } = Astro.props;
 ---
 
 <html lang={lang}>
-  <Head title={title} />
+  <Head title={title} noIndex={noIndex} />
   <body
     class="min-h-dvh w-full relative | grid grid-cols-[100%] grid-rows-[auto_1fr_auto] place-items-center bg-base-200"
     data-show-hero={showHero}
@@ -52,7 +54,7 @@ const {
     <!-- grid-area: main -->
     <main
       class:list={[
-        "grid-area-[main] relative | px-4 w-full | flex gap-x-2rem justify-center",
+        "grid-area-[main] relative | px-4 h-full w-full | flex gap-x-2rem justify-center",
         showSidebar ? "xl:max-w-2xl" : "lg:max-w-lg",
         mainClassName,
       ]}
@@ -60,7 +62,7 @@ const {
       <slot />
       {
         showSidebar && (
-          <section class="grow xl:min-w-xxs xl:max-w-xs | hidden xl:flex flex place-items-initial items-initial">
+          <section class="grow xl:min-w-4xs xl:max-w-3xs | hidden xl:flex flex place-items-initial items-initial">
             <slot name="sidebar" />
           </section>
         )

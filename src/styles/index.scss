@@ -39,3 +39,14 @@ body[data-show-hero="true"] {
   height: var(--header-height) !important;
   padding: var(--header-padding) !important;
 }
+
+input.pagenation-input[type="number"]::-webkit-outer-spin-button,
+input.pagenation-input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input.pagenation-input[type="number"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: textfield !important;
+}

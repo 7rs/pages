@@ -29,17 +29,19 @@ const { behavior = Behaviors.NoColor, className, colorHex, ...props } = Astro.pr
 
 let colorProperty = "";
 if (colorHex != null) {
-  let colorProperty = `${colorHex}`;
+  colorProperty = `${colorHex}`;
 } else {
   const [provider, name] = props.name.split(":");
   if (provider === "simple-icons") {
     colorProperty = await getSimpleIconsColor(name);
   }
 }
+
+colorProperty = colorProperty?.match(/^(?:0{3}|0{6}|f{3}|f{6})$/) ? "var(--color-base-content)" : `#${colorProperty}`;
 ---
 
 <AstroIcon
-  style={`--colorProperty: #${colorProperty}`}
+  style={`--colorProperty: ${colorProperty}`}
   class:list={[
     className,
     behavior === Behaviors.Always && "color-[var(--colorProperty)]",

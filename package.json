@@ -3,9 +3,11 @@
     "version": "0.7.0",
     "scripts": {
         "dev": "astro dev",
-        "build": "astro build",
         "prev": "astro preview",
-        "start": "astro build && astro preview"
+        "build": "astro build && pagefind --site dist",
+        "start": "astro build && pagefind --site dist && astro preview",
+        "dev-s": "astro build && pagefind --site dist && astro dev",
+        "sync": "pagefind --site dist && astro sync"
     },
     "lint-staged": {
         "**/*.{js,mjs,jsx,ts,cts}": "oxlint"
@@ -46,6 +48,7 @@
         "mdx-mermaid": "2.0.3",
         "mermaid": "11.6.0",
         "node-emoji": "2.2.0",
+        "pagefind": "^1.3.0",
         "postcss-preset-env": "10.2.3",
         "rehype-autolink-headings": "7.1.0",
         "rehype-katex": "7.0.1",
