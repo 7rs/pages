@@ -118,6 +118,18 @@ export default defineConfig({
   },
   rules: [...generateDaisyUIColorRules(DAISYUI_COLOR_PROPERTY_MAPS, DAISYUI_COLORS)],
   shortcuts: {
-    "header-icon": "scale-125 color-primary"
+    "header-icon": "scale-125 color-primary",
+    "article-grid": "w-full grid grid-cols-1 md:grid-cols-2 auto-rows-auto gap-2",
+
+    "header-layout":
+      "grid-area-[header] sticky top-0 z-900 | w-full | flex justify-center bg-[var(--color-base-100)]/50 backdrop-blur-md backdrop-brightness-125 shadow-sm",
+    "header-body": "navbar | px-4 max-w-lg",
+    "header-actions": "flex-none flex gap-x-4 text-2xl",
+
+    "footer-layout": "grid-area-[footer] w-full | flex justify-center | bg-base-100",
+    "footer-body": "py-10 px-4 sm:px-0 max-w-lg w-full | flex flex-col gap-y-8 | text-base",
+    "footer-navs": "w-full flex flex-wrap justify-center gap-x-8",
+    "footer-socials": "px-4 sm:px-0 w-full | flex flex-wrap justify-around sm:justify-center sm:gap-x-8",
+    "footer-copyright": "w-full inline text-center"
   }
 });

@@ -12,14 +12,12 @@ const { showFakeHeader = true } = Astro.props;
 
 {showFakeHeader && <div class="bg-transparent color-transparent opacity-0 navbar">fake header</div>}
 
-<header
-  class="grid-area-[header] sticky top-0 z-900 | w-full | flex justify-center bg-[var(--color-base-100)]/50 backdrop-blur-md backdrop-brightness-125 shadow-sm"
->
-  <div class="navbar | px-4 max-w-lg">
+<header class="header-layout">
+  <div class="header-body">
     <a class="flex-1" href="/" title="main page">
       <slot />
     </a>
-    <div class="flex-none flex gap-x-4 text-2xl">
+    <div class="header-actions">
       <ThemeButton />
       <Icon name="line-md:search" onclick="searchModal.showModal()" class="hover:header-icon transition-all" />
       <article class="dropdown dropdown-end">

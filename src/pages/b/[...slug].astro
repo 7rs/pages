@@ -1,12 +1,12 @@
 ---
 import type { GetStaticPaths, InferGetStaticParamsType, InferGetStaticPropsType } from "astro";
 import { getCollection } from "astro:content";
+import { i18n } from "astro:config/client";
 
-import "@styles/markdown.scss";
 import Blog from "@layouts/Blog.astro";
 import { getRawTextContent } from "@scripts/blogUtil";
 
-import { i18n } from "astro:config/client";
+import "@styles/markdown.scss";
 
 function getLang(_slug: string) {
   const [lang, ...slug] = _slug.split("/");
@@ -34,6 +34,12 @@ const entry = Astro.props as InferGetStaticPropsType<typeof getStaticPaths>;
 const { Content, headings } = await entry.render();
 ---
 
-<Blog frontmatter={entry.data} headings={headings} lang={getLang(slug)} slug={slug} length={getRawTextContent(entry.body).length}>
+<Blog
+  frontmatter={entry.data}
+  headings={headings}
+  lang={getLang(slug)}
+  slug={slug}
+  length={getRawTextContent(entry.body).length}
+>
   <Content />
 </Blog>

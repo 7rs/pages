@@ -5,8 +5,8 @@
         }
     ],
     "settings": {
-        "unocss.exclude": ["*.scss", "**/*.scss"],
-        "unocss.include": ["*.html", "*.astro"],
+        "unocss.exclude": ["*.css", "*.scss", "**/*.scss"],
+        "unocss.include": ["*.html", "*.astro", "*.svelte", "*.tsx"],
         "unocss.colorPreview": false,
         "oxc.enable": true,
         "oxc.path.server": "./node_modules/oxlint",
@@ -22,5 +22,5 @@
             "sash.hoverBorder": "#ff6433"
         },
         "peacock.color": "#ff3d00"
-    },
+    }
 }

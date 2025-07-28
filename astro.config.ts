@@ -28,6 +28,12 @@ export default defineConfig({
       alias: getAliases(tsconfig.compilerOptions.paths),
     },
   },
+  redirects: {
+    "/blog": {
+      status: 308,
+      destination: "/blog/1",
+    },
+  },
   image: {
     remotePatterns: [{ protocol: "https" }],
     domains: ["cdn.jsdelivr.net"],

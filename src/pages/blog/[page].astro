@@ -1,10 +1,12 @@
 ---
-import Main from "@layouts/Main.astro";
-import ArticleCard from "@components/ArticleCard.astro";
-import { getRawTextContent } from "@scripts/blogUtil";
-import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import { getCollection } from "astro:content";
-import Pagenation from "@components/Pagenation.astro";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+
+import Main from "@layouts/Main.astro";
+import Pagenation from "@components/Pagenation.svelte";
+import ArticleCard from "@components/ArticleCard.svelte";
+import Search from "@components/pagefind/Search.astro";
+import { getRawTextContent } from "@scripts/blogUtil";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const getTimestamp = (date) => (date ? date.getTime() : 0);
@@ -13,22 +15,36 @@ export const getStaticPaths = (async ({ paginate }) => {
     (await getCollection("blog")).sort(
       (prev, next) => getTimestamp(next.data.created) - getTimestamp(prev.data.created),
     ),
-    { pageSize: 12 },
+    { pageSize: 2 },
   );
 }) satisfies GetStaticPaths;
 
 const entries = Astro.props as InferGetStaticPropsType<typeof getStaticPaths>;
 ---
 
-<Main title="Blog articles - 7rs.dev" className="my-12 | flex flex-col gap-y-36 justify-between" showFakeHeader={false}>
-  <section class="flex flex-col">
-    <div class="grid grid-cols-1 md:grid-cols-2 auto-rows-auto gap-2">
+<Main title="Blog articles - 7rs.dev" className="h-full my-12 | flex flex-col gap-y-36" showFakeHeader={false}>
+  <Search>
+    <div class="article-grid">
       {
         entries.page.data.map((entry) => (
-          <ArticleCard slug={entry.slug} frontmatter={entry.data} length={getRawTextContent(entry.body).length} />
+          <ArticleCard
+            slug={entry.slug}
+            frontmatter={entry.data}
+            length={getRawTextContent(entry.body).length}
+            baseUrl="/b/"
+            client:load
+          />
         ))
       }
     </div>
-  </section>
-  {entries.page.lastPage > 1 && <Pagenation page={entries.page} baseUrl="/blog" />}
+    <Pagenation
+      first={{ page: 1, href: entries.page.url.first }}
+      prev={{ page: entries.page.currentPage - 1, href: entries.page.url.prev }}
+      current={{ page: entries.page.currentPage, href: entries.page.url.current }}
+      next={{ page: entries.page.currentPage + 1, href: entries.page.url.next }}
+      last={{ page: entries.page.lastPage, href: entries.page.url.last }}
+      goto="/blog/"
+      client:load
+    />
+  </Search>
 </Main>

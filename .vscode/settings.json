@@ -3,6 +3,12 @@
     "editor.fontLigatures": true,
     "editor.insertSpaces": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.configPath": "./.prettierrc",
+    "prettier.ignorePath": "./.prettierignore",
+    "stylelint.validate": ["css", "scss", "postcss"],
+    "markdownlint.run": "onType",
+    "stylelint.stylelintPath": "./node_modules/stylelint",
+    "files.trimTrailingWhitespace": false,
     "[json]": {
         "editor.defaultFormatter": "biomejs.biome"
     },
@@ -36,12 +42,7 @@
     "[svelte]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "prettier.configPath": "./.prettierrc",
-    "prettier.ignorePath": "./.prettierignore",
-    "stylelint.validate": ["css", "scss", "postcss"],
-    "markdownlint.run": "onType",
-    "stylelint.stylelintPath": "./node_modules/stylelint",
-    "files.trimTrailingWhitespace": false,
-    "emojisense.unicodeCompletionsEnabled": false,
-    "unocss.exclude": ["*.scss"]
+    "[go]": {
+        "editor.defaultFormatter": "golang.go"
+    }
 }

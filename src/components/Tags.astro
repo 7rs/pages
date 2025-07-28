@@ -26,7 +26,7 @@ const { tags = [], className = "", childClassName = "", definePagefindMeta = fal
             data-pagefind-filter={definePagefindMeta ? `tags:${tag}` : undefined}
           >
             {provider && <Icon class="inline no-underline border-b-1" name={`${provider.provider}:${provider.name}`} />}
-            #{tag}
+            #<span data-pagefind-weight={definePagefindMeta ? 6.0 : undefined}>{tag}</span>
           </AnimatedAnchor>
         );
       })

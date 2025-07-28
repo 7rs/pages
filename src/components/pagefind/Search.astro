@@ -5,4 +5,6 @@ const dir = import.meta.env.DEV ? "dist/" : "";
 const pagefindPath = `/${dir}pagefind/pagefind`;
 ---
 
-<Pagefind pagefindPath={pagefindPath} client:load />
+<Pagefind pagefindPath={pagefindPath} client:load>
+  <slot />
+</Pagefind>

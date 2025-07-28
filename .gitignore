@@ -11,3 +11,5 @@ dist
 
 # OS Environment
 .DS_Store
+
+boorufind/boorufind-wasm/**

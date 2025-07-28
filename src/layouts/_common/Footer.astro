@@ -21,23 +21,25 @@ export interface Props {
 }
 
 const { navigations = [], socials = [] } = Astro.props;
-
-const year = new Date().getFullYear();
 ---
 
-<footer class="grid-area-[footer] w-full | flex justify-center | bg-base-100">
-  <div class="py-10 px-4 sm:px-0 max-w-lg w-full | flex flex-col gap-y-8 | text-base">
-    <nav class="w-full flex flex-wrap justify-center gap-x-8">
-      {navigations.map((nav) => <AnimatedAnchor openAsNew={false} href={nav.url}>{nav.label.toLocaleUpperCase()}</AnimatedAnchor>)}
+<footer class="footer-layout">
+  <div class="footer-body">
+    <nav class="footer-navs">
+      {
+        navigations.map((nav) => (
+          <AnimatedAnchor openAsNew={false} href={nav.url}>
+            {nav.label.toLocaleUpperCase()}
+          </AnimatedAnchor>
+        ))
+      }
     </nav>
-
-    <nav class="px-4 sm:px-0 w-full | flex flex-wrap justify-around sm:justify-center sm:gap-x-8">
+    <nav class="footer-socials">
       {socials.map((social) => <LinkIcon href={social.url} icon={social.icon} color={social.color} />)}
     </nav>
-
-    <p class="w-full inline text-center">
+    <p class="footer-copyright">
       No copyright <Icon class="inline" name="cib:creative-commons-zero" />
-      {year} - No right reserved except for things that not made by me.
+      {new Date().getFullYear()} - No right reserved except for things that not made by me.
     </p>
   </div>
 </footer>

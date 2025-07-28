@@ -20,7 +20,7 @@ const { authors = [], className = "", childClassName = "", definePagefindMeta = 
           class={childClassName}
           data-pagefind-filter={definePagefindMeta ? `authors:${author}` : undefined}
         >
-          @{author}
+          @<span data-pagefind-weight={definePagefindMeta ? 6.0 : undefined}>{author}</span>
         </AnimatedAnchor>
       ))
     ) : (

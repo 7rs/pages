@@ -1,41 +1,54 @@
 <script lang="ts">
-  import { AutoComplete, type CursorEvent } from "@scripts/autocomplete.svelte.ts";
-  import { PagesPagefind } from "@scripts/pagefind.svelte.ts";
+  import { onMount } from "svelte";
+  import { getRawTextContent } from "@scripts/blogUtil.ts";
+  import { PagesPagefind } from "@scripts/pagefind/pages-pagefind.svelte.ts";
+  import { AutoComplete, type CursorEvent } from "@scripts/pagefind/autocomplete.svelte.ts";
+  import { ParamParser } from "@scripts/pagefind/param-manager.ts";
+  import ArticleCard from "@components/ArticleCard.svelte";
 
   interface Props {
     pagefindPath: string;
+    children?: any;
   }
-  const { pagefindPath }: Props = $props();
+  const { pagefindPath, children }: Props = $props();
 
-  let pp = new PagesPagefind(pagefindPath);
-  let ac: AutoComplete = new AutoComplete();
+  const pp = new PagesPagefind(pagefindPath);
+  const ac = new AutoComplete();
 
-  pp.syncAutoComplete(ac);
-
-  async function onKeyup(e: CursorEvent<KeyboardEvent>, pagefind: Pagefind) {
+  async function onKeyup(e: CursorEvent<KeyboardEvent>) {
     if (e.key === "Enter") {
-      return pp.updateQuery(...ac.getQuerr());
+      pp.updateQuery(...ac.getSearchData());
+      return;
     }
 
-    ac.updateSuggests(e);
-    await pp.preload(pagefind, ...ac.getQuerr());
+    ac.updateSuggestedFilters(e);
+    await pp.preload(...ac.getSearchData());
   }
+
+  pp.setFilters(ac);
+
+  onMount(() => {
+    pp.setWindow(window);
+
+    const parser = new ParamParser();
+    ac.setQuery(parser.toParamArray(parser.parseParams(new URLSearchParams(window.document.location.search))));
+  });
 </script>
 
 <article class="flex flex-col gap-y-32">
-  {#await pp.pagefind then pagefind}
+  {#await pp.unResolvedPagefind then _}
     <!-- Input -->
-    <section class="flex flex-col">
+    <section class="max-w-128 w-full flex flex-col">
       <input
         bind:value={ac.query}
         type="text"
-        class="input"
-        onkeyup={async (e) => await onKeyup(e, pagefind)}
-        onclick={(e) => ac.updateSuggests(e)}
+        onkeyup={onKeyup}
+        onclick={(e) => ac.updateSuggestedFilters(e)}
+        class="input w-full"
       />
       <div class="flex flex-col items-start text-start">
-        {#each ac.getSuggests() as suggest}
-          <button onclick={() => ac.addSuggest(suggest[0])}>
+        {#each ac.getSuggestedFilters() as suggest}
+          <button onclick={() => ac.sendFilterKey(suggest[0])} class="w-full text-start hover:bg-base-300">
             {suggest[0]}
             {suggest[1]}
           </button>
@@ -44,32 +57,25 @@
     </section>
 
     <!-- Result -->
-    <section class="flex flex-col gap-2">
-      {#await pp.search(pagefind) then results}
+    <section class="flex flex-col gap-2 items-center">
+      {#await pp.search() then results}
         {#each results as data}
-          <!-- Card -->
-
-          <article class="border-base-300 bg-base-100">
-            <hgroup class="flex flex-col">
-              <h3 class="text-2xl">{data.meta.title}</h3>
-              <p>{data.meta.description}</p>
-            </hgroup>
-            <section class="flex flex-col">
-              <div class="flex flex-wrap gap-x-2 | border-color-[#337ab7] color-[#337ab7]">
-                {#each data.filters.tags as tag}
-                  <p class="inline no-underline border-b-1">#{tag}</p>
-                {/each}
-              </div>
-              <div class="flex flex-wrap color-[#A00]">
-                {#each data.filters.authors as authors}
-                  <p>@{authors}</p>
-                {/each}
-              </div>
-            </section>
-            <a href={data.url} class="btn">Read</a>
-          </article>
-
-          <!-- Card -->
+          <div class="article-grid">
+            <ArticleCard
+              slug={data.url}
+              frontmatter={{
+                title: data.meta.title,
+                description: data.meta.description,
+                image: data.meta.image,
+                tags: data.filters.tags,
+                authors: data.filters.authors,
+                category: data.filters.category[0],
+              }}
+              length={getRawTextContent(data.content).length}
+            />
+          </div>
+        {:else}
+          {@render children?.()}
         {/each}
       {/await}
     </section>
