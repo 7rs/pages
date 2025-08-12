@@ -11,3 +11,6 @@
 # Markdown
 *.md
 *.mdx
+
+node_modules/**
+dist/**

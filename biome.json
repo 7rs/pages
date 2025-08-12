@@ -49,7 +49,7 @@
             }
         },
         {
-            "includes": ["**/*.svelte"],
+            "includes": ["**/*.svelte", "node_modules/**", "dist/**", "public/**", "boorufind-wasm/**"],
             "linter": {
                 "enabled": false
             }

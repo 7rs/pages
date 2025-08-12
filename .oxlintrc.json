@@ -1,4 +1,4 @@
 {
     "plugins": ["oxc", "typescript", "import", "node", "promise", "jsx-a11y"],
-    "ignorePatterns": ["node_modules/**", "astro/**"]
+    "ignorePatterns": ["node_modules/**", "astro/**", "dist/**", "public/**", "boorufind-wasm/**"]
 }

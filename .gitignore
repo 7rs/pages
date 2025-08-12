@@ -12,4 +12,4 @@ dist
 # OS Environment
 .DS_Store
 
-boorufind/boorufind-wasm/**
+scripts/boorufind/boorufind-wasm/target

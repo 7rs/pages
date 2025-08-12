@@ -8,9 +8,9 @@
         "oxc.oxc-vscode",
         "stylelint.vscode-stylelint",
         "svelte.svelte-vscode",
-        "oven.bun-vscode",
         "dbaeumer.vscode-eslint",
         "unifiedjs.vscode-mdx",
-        "antfu.unocss"
+        "antfu.unocss",
+        "rust-lang.rust-analyzer"
     ]
 }

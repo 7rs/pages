@@ -17,5 +17,6 @@
             "@scripts/*": ["scripts/*"]
         }
     },
-    "include": [".astro/*.d.ts", "**/*"]
+    "include": [".astro/*.d.ts", "**/*"],
+    "exclude": ["node_modules/**", "astro/**", "dist/**", "public/**", "boorufind-wasm/**"]
 }

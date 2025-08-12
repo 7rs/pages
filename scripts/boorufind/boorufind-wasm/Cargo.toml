@@ -1,0 +1,36 @@
+[package]
+name = "boorufind-wasm"
+version = "0.1.0"
+authors = ["Cbrnex <_@7rs.dev>"]
+description = "Inspired by Danbooru and Pagefind."
+license = "CC0-1.0"
+repository = "https://github.com/7rs/pages"
+edition = "2024"
+
+[profile.dev]
+debug = false
+debug-assertions = false
+overflow-checks = false
+panic = "abort"
+
+[profile.release]
+opt-level = "s"
+strip = "symbols"
+lto = "fat"
+panic = "abort"
+codegen-units = 1
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = { version = "0.2", features = ["serde-serialize"] }
+web-sys = { version = "0.3.77", features = [
+  "console",
+  "Window",
+  "Performance",
+] }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1.0" }
+serde-wasm-bindgen = "0.6.5"
+console_error_panic_hook = "0.1"

@@ -12,6 +12,7 @@
         "oxc.path.server": "./node_modules/oxlint",
         "biome.lsp.bin": "./node_modules/@biomejs/biome",
         "prettier.documentSelectors": ["**/*.astro"],
+        "rust-analyzer.linkedProjects": ["boorufind/boorufind-wasm/Cargo.toml"],
         "workbench.colorCustomizations": {
             "activityBar.activeBackground": "#ff6433",
             "activityBar.background": "#ff6433",

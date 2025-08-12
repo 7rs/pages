@@ -2,28 +2,35 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Install dependencies (Bun)",
+            "name": "i",
             "type": "node-terminal",
             "request": "launch",
             "command": "bun i"
         },
         {
-            "name": "Launch development server (Bun)",
+            "name": "dev",
             "type": "node-terminal",
             "request": "launch",
             "command": "bun run dev"
         },
         {
-            "name": "Build (Bun)",
+            "name": "build",
             "type": "node-terminal",
             "request": "launch",
             "command": "bun run build"
         },
         {
-            "name": "Build & Preview (Bun)",
+            "name": "build & preview",
             "type": "node-terminal",
             "request": "launch",
             "command": "bun run prev"
+        },
+        {
+            "name": "wasm",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "wasm-pack build --target web --out-dir ../../../public/boorufind",
+            "cwd": "${workspaceFolder}/scripts/boorufind/boorufind-wasm"
         }
     ]
 }

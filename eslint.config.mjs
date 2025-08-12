@@ -19,6 +19,8 @@ export default tseslint.config(
       "**/.vscode/**",
       "**/dist/**",
       "**/node_modules/**",
+      "**/public/**",
+      "**/boorufind-wasm/**",
     ],
   },
   eslint.configs.recommended,

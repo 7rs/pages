@@ -5,12 +5,28 @@ export const ImageTypes = {
 } as const;
 export type ImageTypes = (typeof ImageTypes)[keyof typeof ImageTypes];
 
+/** An item be searched. */
 export interface Result {
-  resultId: string;
+  /** It must be unique and will generate automatically if not specified. */
+  resultId?: string;
+
+  /** A title of the item. */
   title: string;
-  image?: string;
-  imageType?: ImageTypes;
+
+  /** A description of the item. */
   description?: string;
+
+  /**
+   * An image of the item. Supports Iconify's icons and Twemoji.
+   *
+   * - Iconify `line-md:brake-abs`
+   * - Twemoji `:hugs:`
+   */
+  image?: string;
+
+  /** By default, it's recognized as the image URL. */
+  imageType?: ImageTypes;
+
   filters: { [key: string]: string };
   metadatas: { [key: string]: string };
 }
