@@ -9,6 +9,13 @@
     "markdownlint.run": "onType",
     "stylelint.stylelintPath": "./node_modules/stylelint",
     "files.trimTrailingWhitespace": false,
+    "files.watcherExclude": {
+        "**/.git/**": true,
+        "**/node_modules/**": true,
+        "**/dist/**": true,
+        "**/.astro/**": true,
+        "**/boorufind-wasm/target/**": true
+    },
     "[json]": {
         "editor.defaultFormatter": "biomejs.biome"
     },
@@ -41,9 +48,6 @@
     },
     "[svelte]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[go]": {
-        "editor.defaultFormatter": "golang.go"
     },
     "[rust]": {
         "editor.defaultFormatter": "rust-lang.rust-analyzer"

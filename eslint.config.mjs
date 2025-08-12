@@ -16,7 +16,6 @@ export default tseslint.config(
       "**/*.{js,mjs,jsx,ts,tsx,config.mjs,config.ts}",
       "**/.astro/**",
       "**/.vscode/**",
-      "**/.vscode/**",
       "**/dist/**",
       "**/node_modules/**",
       "**/public/**",
