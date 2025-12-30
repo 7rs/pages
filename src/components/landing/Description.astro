@@ -6,15 +6,21 @@ interface Props {
   icon: string;
 }
 
-const { title, icon } = Astro.props;
+const { title, icon, ...props } = Astro.props;
 ---
 
 <article class="w-full | grid grid-cols-[auto_auto_1fr] items-center gap-x-1">
   <div class="flex-none | tooltip | px-2 md:px-0" data-tip={title}>
     <Icon class="p-1 md:p-0 w-8 h-8 | block | hover:scale-125 transition-all" name={icon} />
   </div>
-  <div class="flex-none | divider divider-horizontal | m-0" />
-  <p class="flex-1">
+  <div class="flex-none | divider divider-horizontal | m-0"></div>
+  <p class="flex-1 md-description">
     <slot />
   </p>
 </article>
+
+<style lang="scss" is:global>
+  .md-description > a {
+    text-decoration: underline;
+  }
+</style>

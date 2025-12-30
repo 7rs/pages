@@ -1,11 +1,11 @@
 ---
-import ArticleImage from "@components/ArticleImage.astro";
+import ArticleImage from "@components/blog/ArticleImage.astro";
 import type { Blog as BlogFrontmatter } from "@content/config";
 import type { MarkdownHeading } from "astro";
 import { Categories } from "@scripts/blog-category";
-import Authors from "@components/Authors.astro";
-import Tags from "@components/Tags.astro";
-import ArticleDetail from "@components/ArticleDetail.astro";
+import Authors from "@components/blog/Authors.astro";
+import Tags from "@components/blog/Tags.astro";
+import ArticleDetail from "@components/blog/ArticleDetail.astro";
 
 interface Props {
   frontmatter?: BlogFrontmatter;
@@ -13,7 +13,7 @@ interface Props {
   length?: number;
 }
 
-const { frontmatter = {}, headings = [], length, ...props } = Astro.props;
+const { frontmatter = {} as BlogFrontmatter, headings = [], length, ...props } = Astro.props;
 const title = frontmatter.title || "No title";
 ---
 

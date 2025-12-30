@@ -1,10 +1,10 @@
 <script lang="ts">
   import type { Blog } from "@content/config.ts";
   import clsx from "clsx";
-  import "@components/ArticleImage.svelte";
-  import ArticleImage from "@components/ArticleImage.svelte";
-  import Tags from "@components/Tags.svelte";
-  import Authors from "@components/Authors.svelte";
+  import "@components/blog/ArticleImage.svelte";
+  import ArticleImage from "@components/blog/ArticleImage.svelte";
+  import Tags from "@components/blog/Tags.svelte";
+  import Authors from "@components/blog/Authors.svelte";
 
   interface Props {
     slug: string;

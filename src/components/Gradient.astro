@@ -1,0 +1,792 @@
+---
+import { loadAllShaders } from "@scripts/graphic/shader-loader.ts";
+import {
+  parseSVGPathStatic,
+  generateGaussianKernel,
+  generateEllipseVertices,
+} from "@scripts/graphic/precompute-utils.ts";
+import type { Path } from "@scripts/graphic/types.d.ts";
+
+export interface Props {
+  className?: string;
+}
+const { className = "", ...props } = Astro.props;
+
+const shaders = loadAllShaders();
+
+// 色テーマ定義
+const colorThemes = {
+  dracula: [
+    [1.0, 0.475, 0.776, 1],    // #ff79c6 ピンク
+    [0.741, 0.576, 0.976, 1],  // #bd93f9 紫
+    [1.0, 0.722, 0.424, 1],    // #ffb86c オレンジ
+    [0.255, 0.271, 0.345, 1],  // #414558 ダークグレー
+    [0.839, 0.843, 0.859, 1],  // #d6d7db ライトグレー
+    [0.157, 0.165, 0.212, 1],  // #282a36 ダークブルー
+    [0.545, 0.914, 0.992, 1],  // #8be9fd シアン
+    [0.318, 0.980, 0.482, 1],  // #51fa7b 緑
+    [0.945, 0.980, 0.549, 1],  // #f1fa8c 黄
+    [1.0, 0.333, 0.333, 1],    // #ff5555 赤
+  ],
+  random: [
+    [Math.random(), Math.random(), Math.random(), 1],
+    [Math.random(), Math.random(), Math.random(), 1],
+    [Math.random(), Math.random(), Math.random(), 1],
+    [Math.random(), Math.random(), Math.random(), 1],
+  ],
+};
+
+// 使用する色テーマを選択（ここで変更可能）
+const selectedTheme = "dracula";
+
+// テーマからランダムに色を選択する関数
+function getRandomThemeColor(theme: string, usedColors: number[][] = []): number[] {
+  if (theme === "random") {
+    return [Math.random(), Math.random(), Math.random(), 1];
+  }
+  
+  const themeColors = colorThemes[theme];
+  const availableColors = themeColors.filter(color => 
+    !usedColors.some(used => 
+      Math.abs(used[0] - color[0]) < 0.01 && 
+      Math.abs(used[1] - color[1]) < 0.01 && 
+      Math.abs(used[2] - color[2]) < 0.01
+    )
+  );
+  
+  // 使用可能な色がない場合は全色から選択
+  const colorsToChooseFrom = availableColors.length > 0 ? availableColors : themeColors;
+  return [...colorsToChooseFrom[Math.floor(Math.random() * colorsToChooseFrom.length)]];
+}
+
+// パス用の色をランダム選択（重複回避）
+const pathColors: number[][] = [];
+for (let i = 0; i < 4; i++) {
+  pathColors.push(getRandomThemeColor(selectedTheme, pathColors));
+}
+
+// 事前生成された色遷移シーケンス（30ステップ分）
+function generateColorSequence(theme: string, pathCount: number, sequenceLength: number = 30): number[][][] {
+  const sequence: number[][][] = [];
+  const themeColors = colorThemes[theme];
+  
+  if (!themeColors && theme !== "random") {
+    console.warn(`Theme "${theme}" not found, using random colors`);
+    theme = "random";
+  }
+  
+  // 初期色設定（重複なし）
+  let currentColors: number[][] = [];
+  for (let i = 0; i < pathCount + 1; i++) { // +1は楕円用
+    let newColor: number[];
+    let attempts = 0;
+    do {
+      newColor = theme === "random" 
+        ? [Math.random(), Math.random(), Math.random(), 1]
+        : [...themeColors[Math.floor(Math.random() * themeColors.length)]];
+      attempts++;
+    } while (
+      attempts < 50 && 
+      currentColors.some(color => 
+        Math.abs(color[0] - newColor[0]) < 0.01 && 
+        Math.abs(color[1] - newColor[1]) < 0.01 && 
+        Math.abs(color[2] - newColor[2]) < 0.01
+      )
+    );
+    currentColors.push(newColor);
+  }
+  
+  // 各図形の色履歴を管理（直近3ステップ）
+  const colorHistory: number[][][] = [];
+  for (let i = 0; i < pathCount + 1; i++) {
+    colorHistory[i] = [currentColors[i]]; // 初期色を履歴に追加
+  }
+  
+  // シーケンス生成
+  for (let step = 0; step < sequenceLength; step++) {
+    const nextColors: number[][] = [];
+    const usedInThisStep: number[][] = [];
+    
+    for (let shapeIndex = 0; shapeIndex < pathCount + 1; shapeIndex++) {
+      let newColor: number[];
+      let attempts = 0;
+      
+      do {
+        newColor = theme === "random" 
+          ? [Math.random(), Math.random(), Math.random(), 1]
+          : [...themeColors[Math.floor(Math.random() * themeColors.length)]];
+        attempts++;
+      } while (
+        attempts < 100 && (
+          // 直近3ステップの色と同じものを避ける
+          colorHistory[shapeIndex].some(historyColor => 
+            Math.abs(historyColor[0] - newColor[0]) < 0.01 && 
+            Math.abs(historyColor[1] - newColor[1]) < 0.01 && 
+            Math.abs(historyColor[2] - newColor[2]) < 0.01
+          ) ||
+          // 同時刻の他の図形と同じ色を避ける
+          usedInThisStep.some(color => 
+            Math.abs(color[0] - newColor[0]) < 0.01 && 
+            Math.abs(color[1] - newColor[1]) < 0.01 && 
+            Math.abs(color[2] - newColor[2]) < 0.01
+          )
+        )
+      );
+      
+      nextColors.push(newColor);
+      usedInThisStep.push(newColor);
+      
+      // 色履歴を更新（直近3ステップまで保持）
+      colorHistory[shapeIndex].push(newColor);
+      if (colorHistory[shapeIndex].length > 3) {
+        colorHistory[shapeIndex].shift(); // 古い履歴を削除
+      }
+    }
+    
+    sequence.push([...nextColors]);
+    currentColors = nextColors;
+  }
+  
+  // デバッグ用: 最初の5ステップをコンソール出力
+  console.log("Generated color sequence (first 5 steps):");
+  for (let step = 0; step < Math.min(5, sequence.length); step++) {
+    console.log(`Step ${step}:`, sequence[step].map(color => 
+      `[${color[0].toFixed(2)}, ${color[1].toFixed(2)}, ${color[2].toFixed(2)}]`
+    ));
+  }
+  
+  return sequence;
+}
+
+// 色遷移シーケンスを事前生成
+const colorSequence = generateColorSequence(selectedTheme, 4, 30);
+
+// 色遷移用の初期設定
+const colorTransitionConfig = {
+  enableTransition: true,        // 色遷移を有効にするか
+  transitionSpeed: 0.25,         // 遷移速度（低いほど遅い）
+  changeInterval: 1.0,          // 目標色変更間隔（秒）- デバッグ用に短縮
+  sequenceLength: 60,           // シーケンスの長さ
+};
+
+// 事前計算（統合オブジェクト）
+const precomputedPaths: Path[] = [
+  {
+    vertices: parseSVGPathStatic(
+      "M20,-4.3C35.9,-4.1,65.7,-2.1,74.2,8.5C82.7,19.1,70,38.2,54.1,40.8C38.2,43.3,19.1,29.4,7.6,21.8C-3.9,14.2,-7.7,12.9,-13.4,10.3C-19.1,7.7,-26.7,3.9,-36,-9.3C-45.3,-22.5,-56.4,-45,-50.7,-45.2C-45,-45.3,-22.5,-23,-10.2,-12.7C2.1,-2.5,4.1,-4.4,20,-4.3Z",
+    ),
+    color: pathColors[0],
+    transform: { scale: 5, translateX: 128, translateY: 448 },
+  },
+  {
+    vertices: parseSVGPathStatic(
+      "M32,-40.6C32.1,-32,16.1,-16,19.9,3.8C23.7,23.6,47.2,47.1,47.1,59.3C47.1,71.6,23.6,72.4,6.5,66C-10.7,59.5,-21.3,45.8,-35.9,33.5C-50.5,21.3,-69,10.7,-74.3,-5.3C-79.5,-21.2,-71.5,-42.3,-56.9,-50.9C-42.3,-59.5,-21.2,-55.5,-2.6,-52.9C16,-50.3,32,-49.1,32,-40.6Z",
+    ),
+    color: pathColors[1],
+    transform: { scale: 5, translateX: 960, translateY: 128 },
+  },
+  {
+    vertices: parseSVGPathStatic(
+      "M48.3,-52.3C55.2,-41.4,48.5,-20.7,41.2,-7.2C34,6.2,26.3,12.4,19.3,24C12.4,35.7,6.2,52.8,-5.5,58.3C-17.3,63.9,-34.6,57.9,-50.3,46.2C-66,34.6,-80.2,17.3,-71.7,8.5C-63.3,-0.3,-32.1,-0.6,-16.3,-11.6C-0.6,-22.5,-0.3,-44.2,10.2,-54.4C20.7,-64.6,41.4,-63.3,48.3,-52.3Z",
+    ),
+    color: pathColors[2],
+    transform: { scale: 10, translateX: 960, translateY: 704 },
+  },
+  {
+    vertices: parseSVGPathStatic(
+      "M59.7,-62.3C72.6,-46.8,74.9,-23.4,64.6,-10.3C54.3,2.8,31.4,5.6,18.5,11.1C5.6,16.6,2.8,24.7,-3.7,28.3C-10.2,32,-20.4,31.3,-21.9,25.8C-23.4,20.4,-16.4,10.2,-21.1,-4.8C-25.9,-19.7,-42.5,-39.4,-40.9,-54.9C-39.4,-70.4,-19.7,-81.7,1.9,-83.6C23.4,-85.5,46.8,-77.9,59.7,-62.3Z",
+    ),
+    color: pathColors[3],
+    transform: { scale: 4, translateX: 64, translateY: 960, rotation: (-30 * Math.PI) / 180 },
+  },
+];
+
+const precomputedEllipse = generateEllipseVertices(256, 256, 512, 512, 100);
+const precomputedKernel = generateGaussianKernel(31, 64.0);
+---
+
+<canvas id="graphic" width="1024" height="1024" class:list={["fixed z-0 top-0 left-0", "w-full h-lvh", "opacity-25 blur-[16px]", className]}>
+</canvas>
+    <script define:vars={{ shaders, precomputedPaths, precomputedEllipse, precomputedKernel, colorThemes, selectedTheme, colorTransitionConfig, colorSequence }}>
+  /**
+   * @type {HTMLCanvasElement}
+   */
+  const canvas = document.getElementById("graphic");
+  if (!canvas) {
+    throw new Error("Canvas not found");
+  }
+
+  /**
+   * @type {WebGLRenderingContext}
+   */
+  const gl = canvas.getContext("webgl");
+  if (gl == null) {
+    throw new Error("WebGL not supported");
+  }
+
+  // キャンバスサイズを自動取得（フォールバック: 1024x1024）
+  const canvasWidth = canvas.width || 1024;
+  const canvasHeight = canvas.height || 1024;
+
+  class WebGLAPI {
+    /** @type {WebGLRenderingContext} */
+    ctx;
+
+    /** @param {WebGLRenderingContext} glContext */
+    constructor(glContext) {
+      this.ctx = glContext;
+    }
+
+    /**
+     * @param {GLenum} type
+     * @param {string} source
+     * @returns {WebGLShader}
+     */
+    createShader(type, source) {
+      const shader = this.ctx.createShader(type);
+      if (shader == null) {
+        throw new Error(`Invalid shader: ${type}`);
+      }
+
+      this.ctx.shaderSource(shader, source);
+      this.ctx.compileShader(shader);
+
+      if (!this.ctx.getShaderParameter(shader, this.ctx.COMPILE_STATUS)) {
+        const error = this.ctx.getShaderInfoLog(shader);
+        this.ctx.deleteShader(shader);
+        throw new Error(`Couldn't compile shader: ${error}`);
+      }
+
+      return shader;
+    }
+
+    /**
+     * @param {WebGLShader[]} shaders
+     * @returns {WebGLProgram}
+     */
+    createProgram(shaders) {
+      const program = this.ctx.createProgram();
+      for (const shader of shaders) {
+        this.ctx.attachShader(program, shader);
+      }
+      this.ctx.linkProgram(program);
+
+      if (!this.ctx.getProgramParameter(program, this.ctx.LINK_STATUS)) {
+        const error = this.ctx.getProgramInfoLog(program);
+        this.ctx.deleteProgram(program);
+        throw new Error(`Couldn't link program: ${error}`);
+      }
+
+      return program;
+    }
+
+    /**
+     * @param {WebGLShader[]} shaders
+     * @param {string[]} attributes
+     * @param {string[]} uniforms
+     * @returns {{program: WebGLProgram, locations: Object}}
+     */
+    createProgramWithLocations(shaders, attributes, uniforms) {
+      const program = this.createProgram(shaders);
+      const locations = {};
+
+      for (const attr of attributes) {
+        locations[attr] = this.ctx.getAttribLocation(program, attr);
+      }
+
+      for (const uniform of uniforms) {
+        locations[uniform] = this.ctx.getUniformLocation(program, uniform);
+      }
+
+      return { program, locations };
+    }
+
+    /**
+     * @param {number} width
+     * @param {number} height
+     * @returns {WebGLTexture}
+     */
+    createTexture(width, height) {
+      const texture = this.ctx.createTexture();
+      this.ctx.bindTexture(this.ctx.TEXTURE_2D, texture);
+      this.ctx.texImage2D(
+        this.ctx.TEXTURE_2D,
+        0,
+        this.ctx.RGBA,
+        width,
+        height,
+        0,
+        this.ctx.RGBA,
+        this.ctx.UNSIGNED_BYTE,
+        null,
+      );
+      this.ctx.texParameteri(this.ctx.TEXTURE_2D, this.ctx.TEXTURE_MIN_FILTER, this.ctx.LINEAR);
+      this.ctx.texParameteri(this.ctx.TEXTURE_2D, this.ctx.TEXTURE_MAG_FILTER, this.ctx.LINEAR);
+      this.ctx.texParameteri(this.ctx.TEXTURE_2D, this.ctx.TEXTURE_WRAP_S, this.ctx.CLAMP_TO_EDGE);
+      this.ctx.texParameteri(this.ctx.TEXTURE_2D, this.ctx.TEXTURE_WRAP_T, this.ctx.CLAMP_TO_EDGE);
+      return texture;
+    }
+
+    /**
+     * @param {WebGLTexture} texture
+     * @returns {WebGLFramebuffer}
+     */
+    createFramebuffer(texture) {
+      const framebuffer = this.ctx.createFramebuffer();
+      this.ctx.bindFramebuffer(this.ctx.FRAMEBUFFER, framebuffer);
+      this.ctx.framebufferTexture2D(this.ctx.FRAMEBUFFER, this.ctx.COLOR_ATTACHMENT0, this.ctx.TEXTURE_2D, texture, 0);
+      return framebuffer;
+    }
+
+    /**
+     * @param {Float32Array} data
+     * @returns {WebGLBuffer}
+     */
+    createBuffer(data) {
+      const buffer = this.ctx.createBuffer();
+      this.ctx.bindBuffer(this.ctx.ARRAY_BUFFER, buffer);
+      this.ctx.bufferData(this.ctx.ARRAY_BUFFER, data, this.ctx.STATIC_DRAW);
+      return buffer;
+    }
+
+    /**
+     * @param {number} width
+     * @param {number} height
+     */
+    initRenderer(width, height) {
+      this.ctx.viewport(0, 0, width, height);
+      this.ctx.clearColor(0.1, 0.15, 0.2, 1.0);
+      this.ctx.clear(this.ctx.COLOR_BUFFER_BIT);
+    }
+
+    /**
+     * @param {number[]} vertices
+     * @param {number[]} color
+     * @param {Object} transform
+     * @param {WebGLBuffer} positionBuffer
+     * @param {Object} locations
+     */
+    drawShape(vertices, color, transform, positionBuffer, locations) {
+      if (vertices.length < 6) return;
+
+      // 変換適用
+      const transformedVertices = [];
+      for (let i = 0; i < vertices.length; i += 2) {
+        let x = vertices[i];
+        let y = vertices[i + 1];
+
+        // スケール
+        x *= transform.scale;
+        y *= transform.scale;
+
+        // 回転
+        if (transform.rotation) {
+          const cos = Math.cos(transform.rotation);
+          const sin = Math.sin(transform.rotation);
+          const rotatedX = x * cos - y * sin;
+          const rotatedY = x * sin + y * cos;
+          x = rotatedX;
+          y = rotatedY;
+        }
+
+        // 移動
+        x += transform.translateX;
+        y += transform.translateY;
+
+        transformedVertices.push(x, y);
+      }
+
+      this.ctx.bindBuffer(this.ctx.ARRAY_BUFFER, positionBuffer);
+      this.ctx.bufferData(this.ctx.ARRAY_BUFFER, new Float32Array(transformedVertices), this.ctx.STATIC_DRAW);
+      this.ctx.enableVertexAttribArray(locations.a_position);
+      this.ctx.vertexAttribPointer(locations.a_position, 2, this.ctx.FLOAT, false, 0, 0);
+      this.ctx.uniform4fv(locations.u_color, color);
+
+      // まずLINE_LOOPで輪郭を描画（完璧な曲線）
+      this.ctx.lineWidth(2.0);
+      this.ctx.drawArrays(this.ctx.LINE_LOOP, 0, transformedVertices.length / 2);
+      
+      // 次にTRIANGLE_FANで塗りつぶし（中心を計算）
+      const centerX = transformedVertices.reduce((sum, val, i) => i % 2 === 0 ? sum + val : sum, 0) / (transformedVertices.length / 2);
+      const centerY = transformedVertices.reduce((sum, val, i) => i % 2 === 1 ? sum + val : sum, 0) / (transformedVertices.length / 2);
+      
+      // 中心点を先頭に追加した配列を作成
+      const fanVertices = [centerX, centerY, ...transformedVertices, transformedVertices[0], transformedVertices[1]];
+      
+      this.ctx.bufferData(this.ctx.ARRAY_BUFFER, new Float32Array(fanVertices), this.ctx.STATIC_DRAW);
+      this.ctx.drawArrays(this.ctx.TRIANGLE_FAN, 0, fanVertices.length / 2);
+    }
+
+    /**
+     * @param {number[]} vertices
+     * @param {number} time
+     * @param {number} shapeIndex
+     * @returns {number[]}
+     */
+    animateVertices(vertices, time, shapeIndex, config) {
+      const animatedVertices = [];
+      const frequency = 0.3 + shapeIndex * 0.15; // より低い周期でゆったり
+      const amplitude = 8.0 + shapeIndex * 3.0; // 揺れ幅を大きく
+      const speed = config.animation.vertexSpeed; // 設定可能な速度
+
+      for (let i = 0; i < vertices.length; i += 2) {
+        const x = vertices[i];
+        const y = vertices[i + 1];
+
+        // 揺れ幅を大きくした波の組み合わせ
+        const wave1 = amplitude * 0.8 * Math.sin(time * speed * frequency + i * 0.01 + x * 0.003);
+        const wave2 = amplitude * 0.7 * Math.cos(time * speed * frequency * 1.2 + i * 0.015 + y * 0.002);
+
+        // 円形の波動効果（強め）
+        const distance = Math.sqrt(x * x + y * y);
+        const radialWave = amplitude * 0.6 * Math.sin(time * speed * 0.5 + distance * 0.005);
+
+        // 螺旋の動き（強め）
+        const angle = Math.atan2(y, x);
+        const spiralWave = amplitude * 0.4 * Math.sin(time * speed * 0.4 + angle * 2 + distance * 0.008);
+
+        animatedVertices.push(
+          x + wave1 + radialWave * Math.cos(angle * 0.5) + spiralWave * 0.7,
+          y + wave2 + radialWave * Math.sin(angle * 0.5) + spiralWave * 0.7,
+        );
+      }
+
+      return animatedVertices;
+    }
+
+    /**
+     * @param {number[]} baseColor
+     * @param {number} time
+     * @param {number} shapeIndex
+     * @returns {number[]}
+     */
+    animateColors(baseColor, time, shapeIndex, config) {
+      if (colorTransitionConfig.enableTransition) {
+        // 従来のsin波アニメーション - baseColorがnullの場合は初期色を使用
+        const fallbackColor = baseColor || (shapeIndex < 0 
+          ? [209/255, 237/255, 247/255, 1] 
+          : precomputedPaths[shapeIndex]?.color || [1, 1, 1, 1]);
+        
+        const colorSpeed = config.animation.colorSpeed;
+        const intensity = 0.15;
+        return [
+          Math.max(0, Math.min(1, fallbackColor[0] + intensity * Math.sin(time * colorSpeed + shapeIndex))),
+          Math.max(0, Math.min(1, fallbackColor[1] + intensity * Math.sin(time * colorSpeed * 1.2 + shapeIndex + 1))),
+          Math.max(0, Math.min(1, fallbackColor[2] + intensity * Math.sin(time * colorSpeed * 0.8 + shapeIndex + 2))),
+          1.0,
+        ];
+      }
+
+      // 色遷移アニメーション
+      if (!this.colorTransitions) {
+        this.initColorTransitions();
+      }
+
+      // shapeIndexを配列インデックスに変換（楕円は-1なので最後の要素）
+      const transitionIndex = shapeIndex < 0 ? this.colorTransitions.length - 1 : shapeIndex;
+      
+      if (transitionIndex >= this.colorTransitions.length) {
+        console.warn(`Invalid transitionIndex: ${transitionIndex}, using fallback color`);
+        return shapeIndex < 0 
+          ? [209/255, 237/255, 247/255, 1] 
+          : precomputedPaths[shapeIndex]?.color || [1, 1, 1, 1];
+      }
+
+      const transition = this.colorTransitions[transitionIndex];
+      if (!transition) {
+        console.warn(`No transition found for index: ${transitionIndex}, using fallback color`);
+        return shapeIndex < 0 
+          ? [209/255, 237/255, 247/255, 1] 
+          : precomputedPaths[shapeIndex]?.color || [1, 1, 1, 1];
+      }
+
+      const progress = (time - transition.startTime) / (colorTransitionConfig.changeInterval * 1000);
+
+      // 目標色変更のタイミング（シーケンスベース）
+      if (progress >= 1.0) {
+        transition.currentColor = [...transition.targetColor];
+        
+        // 次のシーケンスステップに進む（各図形独立して進む）
+        if (typeof transition.sequenceStep !== 'number') {
+          transition.sequenceStep = 0;
+        }
+        transition.sequenceStep = (transition.sequenceStep + 1) % colorTransitionConfig.sequenceLength;
+        const nextStepColors = colorSequence[transition.sequenceStep];
+        
+        // sin波ベースの色変化を目標色として使用
+        const colorSpeed = config.animation.colorSpeed;
+        const intensity = 0.3; // より強い変化
+        const baseThemeColor = shapeIndex < 0 
+          ? [209/255, 237/255, 247/255, 1] 
+          : precomputedPaths[shapeIndex]?.color || [1, 1, 1, 1];
+          
+        transition.targetColor = [
+          Math.max(0, Math.min(1, baseThemeColor[0] + intensity * Math.sin(time * colorSpeed + shapeIndex))),
+          Math.max(0, Math.min(1, baseThemeColor[1] + intensity * Math.sin(time * colorSpeed * 1.2 + shapeIndex + 1))),
+          Math.max(0, Math.min(1, baseThemeColor[2] + intensity * Math.sin(time * colorSpeed * 0.8 + shapeIndex + 2))),
+          1.0,
+        ];
+        
+        console.log(`Shape ${shapeIndex} targeting sin-wave color:`, transition.targetColor);
+        
+        transition.startTime = time;
+      }
+
+      // 線形補間で色を遷移
+      const t = Math.min(progress, 1.0);
+      const smoothT = t * t * (3.0 - 2.0 * t); // smoothstep関数で滑らかに
+
+      const result = [
+        transition.currentColor[0] + (transition.targetColor[0] - transition.currentColor[0]) * smoothT,
+        transition.currentColor[1] + (transition.targetColor[1] - transition.currentColor[1]) * smoothT,
+        transition.currentColor[2] + (transition.targetColor[2] - transition.currentColor[2]) * smoothT,
+        1.0,
+      ];
+
+      return result;
+    }
+
+    /**
+     * 色遷移システムの初期化（シーケンスベース）
+     */
+    initColorTransitions() {
+      this.colorTransitions = [];
+      
+      const pathCount = precomputedPaths.length;
+      
+      for (let i = 0; i <= pathCount; i++) { // +1は楕円用
+        // 初期色は事前計算された色を使用
+        const currentColor = i < pathCount 
+          ? [...precomputedPaths[i].color] 
+          : [209/255, 237/255, 247/255, 1]; // 楕円の初期色
+          
+        // 次のステップの色をシーケンスから取得
+        const initialStep = Math.floor(Math.random() * colorTransitionConfig.sequenceLength);
+        const nextColor = colorSequence[initialStep] && colorSequence[initialStep][i] 
+          ? [...colorSequence[initialStep][i]] 
+          : this.getRandomThemeColor(); // フォールバック
+          
+        this.colorTransitions[i] = {
+          currentColor: currentColor,
+          targetColor: nextColor,
+          startTime: Math.random() * colorTransitionConfig.changeInterval * 1000, // ミリ秒に変換
+          sequenceStep: initialStep, // 各図形独立したステップ
+        };
+      }
+    }
+
+    /**
+     * テーマからランダムな色を取得
+     * @returns {number[]}
+     */
+    getRandomThemeColor() {
+      if (selectedTheme === "random") {
+        return [Math.random(), Math.random(), Math.random(), 1];
+      }
+      const themeColors = colorThemes[selectedTheme];
+      return [...themeColors[Math.floor(Math.random() * themeColors.length)]];
+    }
+
+    // generateRandomColor関数は不要（色はフロントマターで定義済み）
+  }
+
+  // 設定変数
+  const config = {
+    // アニメーション設定
+    animation: {
+      vertexSpeed: 0.8, // 頂点アニメーション速度
+      colorSpeed: 1.5, // 色変化速度
+      transformSpeed: 0.3, // 変形速度
+    },
+    // ブラー設定
+    blur: {
+      intensity: 64.0, // ブラー強度（sigma値）
+      kernelSize: 31, // カーネルサイズ
+    },
+  };
+
+  const api = new WebGLAPI(gl);
+
+  // シェーダー作成（外部化されたシェーダーコードを使用）
+  const vertexShaderSource = shaders.vertex;
+  const fragmentShaderSource = shaders.fragment;
+
+  // ポストエフェクト用のシェーダー（外部化されたシェーダーコードを使用）
+  const postVertexShaderSource = shaders.postVertex;
+  const postFragmentShaderSource = shaders.postFragment;
+
+  // 背景用のシェーダー（外部ファイルから読み込み）
+  const backgroundVertexShaderSource = shaders.backgroundVertex;
+  const backgroundFragmentShaderSource = shaders.backgroundFragment;
+
+  // メインレンダリング用シェーダー
+  const vertexShader = api.createShader(gl.VERTEX_SHADER, vertexShaderSource);
+  const fragmentShader = api.createShader(gl.FRAGMENT_SHADER, fragmentShaderSource);
+  const { program, locations: mainLoc } = api.createProgramWithLocations(
+    [vertexShader, fragmentShader],
+    ["a_position"],
+    ["u_resolution", "u_color"],
+  );
+
+  // ポストエフェクト用シェーダー
+  const postVertexShader = api.createShader(gl.VERTEX_SHADER, postVertexShaderSource);
+  const postFragmentShader = api.createShader(gl.FRAGMENT_SHADER, postFragmentShaderSource);
+  const { program: postProgram, locations: postLoc } = api.createProgramWithLocations(
+    [postVertexShader, postFragmentShader],
+    ["a_position"],
+    ["u_image", "u_textureSize", "u_direction", "u_kernel[0]"],
+  );
+
+  // 背景用シェーダー
+  const backgroundVertexShader = api.createShader(gl.VERTEX_SHADER, backgroundVertexShaderSource);
+  const backgroundFragmentShader = api.createShader(gl.FRAGMENT_SHADER, backgroundFragmentShaderSource);
+  const { program: backgroundProgram, locations: backgroundLoc } = api.createProgramWithLocations(
+    [backgroundVertexShader, backgroundFragmentShader],
+    ["a_position"],
+    ["u_time", "u_resolution"],
+  );
+
+  // バッファ作成
+  const positionBuffer = api.createBuffer(new Float32Array([])); // 空で初期化
+  const quadBuffer = api.createBuffer(new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]));
+
+  // 2パス処理用のテクスチャとフレームバッファ
+  const texture1 = api.createTexture(canvasWidth, canvasHeight);
+  const framebuffer1 = api.createFramebuffer(texture1);
+
+  const texture2 = api.createTexture(canvasWidth, canvasHeight);
+  const framebuffer2 = api.createFramebuffer(texture2);
+
+  // レンダラー初期化
+  api.initRenderer(canvasWidth, canvasHeight);
+
+  // メインプログラム使用
+  gl.useProgram(program);
+  gl.uniform2f(mainLoc.u_resolution, canvasWidth, canvasHeight);
+
+  // drawShape関数はWebGLAPIクラスに移動
+
+  // parseSVGPath関数は事前計算で使用済みのため削除（precomputedPathsを使用）
+
+  // 楕円描画（事前計算済みを使用）
+  api.drawShape(
+    precomputedEllipse,
+    [209 / 255, 237 / 255, 247 / 255, 1],
+    { scale: 1, translateX: 0, translateY: 0 },
+    positionBuffer,
+    mainLoc,
+  );
+
+  // アニメーション用変数
+  let startTime = performance.now();
+  let animationId;
+
+  // animateVertices、animateColors関数はWebGLAPIクラスに移動
+
+  function animate(currentTime) {
+    const elapsed = (currentTime - startTime) / 1000; // 秒
+
+    // Step 1: 元の図形をフレームバッファ1に描画
+    gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer1);
+    gl.viewport(0, 0, canvasWidth, canvasHeight);
+
+    // 動的背景を描画
+    gl.useProgram(backgroundProgram);
+    gl.uniform1f(backgroundLoc.u_time, elapsed);
+    gl.uniform2f(backgroundLoc.u_resolution, canvasWidth, canvasHeight);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+    gl.enableVertexAttribArray(backgroundLoc.a_position);
+    gl.vertexAttribPointer(backgroundLoc.a_position, 2, gl.FLOAT, false, 0, 0);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+    // メインプログラム使用
+    gl.useProgram(program);
+    gl.uniform2f(mainLoc.u_resolution, canvasWidth, canvasHeight);
+
+    // 楕円描画（静的）
+    const animatedEllipse = precomputedEllipse; // 静的
+    const ellipseColor = api.animateColors(null, elapsed, -1, config);
+    api.drawShape(animatedEllipse, ellipseColor, { scale: 1, translateX: 0, translateY: 0 }, positionBuffer, mainLoc);
+
+    // 各パスをアニメーション付きで描画
+    precomputedPaths.forEach((path, index) => {
+      const originalVertices = path.vertices;
+      // 静的な図形（なおった時点）
+      const animatedVertices = originalVertices;
+      // baseColorパラメータは使用せず、完全に独立した色遷移システム
+      const animatedColor = api.animateColors(null, elapsed, index, config);
+
+      // transform をより大胆に動かす
+      const animatedTransform = {
+        ...path.transform,
+        translateX: path.transform.translateX + 15 * Math.sin(elapsed * config.animation.transformSpeed + index * 1.5),
+        translateY:
+          path.transform.translateY + 12 * Math.cos(elapsed * config.animation.transformSpeed * 1.3 + index * 1.2),
+        rotation: path.transform.rotation
+          ? path.transform.rotation + 0.3 * Math.sin(elapsed * config.animation.transformSpeed * 0.7 + index)
+          : 0.2 * Math.sin(elapsed * config.animation.transformSpeed * 0.8 + index),
+      };
+
+      api.drawShape(animatedVertices, animatedColor, animatedTransform, positionBuffer, mainLoc);
+    });
+
+    // Step 2: 横方向ブラー（フレームバッファ1→フレームバッファ2）
+    gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer2);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.useProgram(postProgram);
+    gl.uniform2f(postLoc.u_textureSize, canvasWidth, canvasHeight);
+    gl.uniform1i(postLoc.u_direction, 0); // 横方向
+    gl.uniform1fv(postLoc["u_kernel[0]"], precomputedKernel);
+
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, texture1);
+    gl.uniform1i(postLoc.u_image, 0);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+    gl.enableVertexAttribArray(postLoc.a_position);
+    gl.vertexAttribPointer(postLoc.a_position, 2, gl.FLOAT, false, 0, 0);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+    // Step 3: 縦方向ブラー（フレームバッファ2→画面）
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.viewport(0, 0, canvasWidth, canvasHeight);
+
+    // 最終出力の動的背景を描画
+    gl.useProgram(backgroundProgram);
+    gl.uniform1f(backgroundLoc.u_time, elapsed);
+    gl.uniform2f(backgroundLoc.u_resolution, canvasWidth, canvasHeight);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+    gl.enableVertexAttribArray(backgroundLoc.a_position);
+    gl.vertexAttribPointer(backgroundLoc.a_position, 2, gl.FLOAT, false, 0, 0);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+    // ポストエフェクトを適用
+    gl.useProgram(postProgram);
+    gl.uniform2f(postLoc.u_textureSize, canvasWidth, canvasHeight);
+    gl.uniform1i(postLoc.u_direction, 1); // 縦方向
+
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, texture2);
+    gl.uniform1i(postLoc.u_image, 0);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+    gl.enableVertexAttribArray(postLoc.a_position);
+    gl.vertexAttribPointer(postLoc.a_position, 2, gl.FLOAT, false, 0, 0);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+    animationId = requestAnimationFrame(animate);
+  }
+
+  // アニメーション開始
+  startTime = performance.now();
+  requestAnimationFrame(animate);
+
+  // ページ離脱時にアニメーション停止
+  window.addEventListener("beforeunload", () => {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+    }
+  });
+</script>

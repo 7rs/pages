@@ -4,7 +4,7 @@
   import { PagesPagefind } from "@scripts/pagefind/pages-pagefind.svelte.ts";
   import { AutoComplete, type CursorEvent } from "@scripts/pagefind/autocomplete.svelte.ts";
   import { ParamParser } from "@scripts/pagefind/param-manager.ts";
-  import ArticleCard from "@components/ArticleCard.svelte";
+  import ArticleCard from "@components/blog/ArticleCard.svelte";
 
   interface Props {
     pagefindPath: string;

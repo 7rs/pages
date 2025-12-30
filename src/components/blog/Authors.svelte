@@ -1,5 +1,5 @@
 <script lang="ts">
-  import AnimatedAnchor from "@components/AnimatedAnchor.svelte";
+  import AnimatedAnchor from "@components/common/AnimatedAnchor.svelte";
 
   interface Props {
     authors?: string[];

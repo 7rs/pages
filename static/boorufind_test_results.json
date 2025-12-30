@@ -1,0 +1,57 @@
+[
+    {
+        "result_id": "rolldown",
+        "title": "Rolldownを試す",
+        "description": "rolldown-viteを体感する",
+        "image": "vscode-icons:file-type-rolldown",
+        "image_type": 1,
+        "filters": {
+            "tags": [
+                "frontend",
+                "javascript",
+                "typescript",
+                "node-js",
+                "vite",
+                "rolldown"
+            ],
+            "authors": [
+                "Cbrnex"
+            ]
+        },
+        "metadatas": {
+            "modified": "2025-06-20",
+            "category": "tech"
+        }
+    },
+    {
+        "result_id": "astro-setup",
+        "title": "Astroの環境構築する",
+        "description": "Astroのセットアップをまとめる",
+        "image": "logos:astro-icon",
+        "image_type": 1,
+        "filters": {
+            "tags": [
+                "frontend",
+                "javascript",
+                "typescript",
+                "node-js",
+                "astro",
+                "vite",
+                "astro-compress",
+                "vscode",
+                "biome",
+                "prettier",
+                "oxlint",
+                "eslint",
+                "tslint"
+            ],
+            "authors": [
+                "Cbrnex"
+            ]
+        },
+        "metadatas": {
+            "modified": "2025-06-20",
+            "category": "tech"
+        }
+    }
+]

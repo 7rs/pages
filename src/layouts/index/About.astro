@@ -1,99 +1,120 @@
 ---
-import Description from "@components/Description.astro";
-import LandingSection from "@components/LandingSection.astro";
-import RingContent from "@components/RingContent.astro";
+import Description from "@components/landing/Description.astro";
+import LandingSection from "@components/landing/LandingSection.astro";
+import RingContent from "@components/landing/RingContent.astro";
 import Tab from "@components/Tab.astro";
 import TabList from "@components/TabList.astro";
+
+import { MarkdownString, MarkdownStringObject } from "@scripts/markdown.ts";
 ---
 
-<LandingSection title="What does Pages have?" titleClassName="text-end from-emerald-500 to-[var(--color-base-content)]/50">
+<LandingSection
+  title="What does this website have?"
+  titleClassName="text-end from-emerald-500 to-[var(--color-base-content)]/50"
+>
   <TabList>
-    <Tab tabName="Pages Blog" icon="material-symbols:article-outline" checked>
+    <Tab tabName="Ultimate Fast" icon="line-md:speed-loop" checked>
       <RingContent
-        mainText="Pages Blog"
-        subText="Readable and Usable"
-        icons={[
-          { name: "material-symbols:search-rounded", alt: "Search" },
-          { name: "mdi:comment-multiple-outline", alt: "Comments/Chat" },
-          { name: "line-md:light-dark-loop", alt: "Dark Mode" },
-          { name: "mdi:share-variant", alt: "Share" },
-          { name: "material-symbols:translate-rounded", alt: "Multi Language" },
+        mainText="Ultimate Fast"
+        subText="The All for Speed"
+        items={[
+          {
+            name: "Performance",
+            description: MarkdownString(
+              "Amazing fast contents",
+              "by [Cloudflare](https://www.cloudflare.com/) and [Astro](https://astro.build/).",
+            ),
+            icon: "material-symbols:rocket-launch-outline-rounded",
+          },
+          {
+            name: "Optimizations",
+            description: "Minimum bundle size and compressed assets.",
+            icon: "material-symbols:compress-rounded",
+          },
+          {
+            name: "JavaScript",
+            description: MarkdownString(
+              "JS code are minimum",
+              "by [UnoCSS](https://unocss.dev/) and [Astro](https://astro.build/).",
+            ),
+            icon: "line-md:light-dark-loop",
+          },
+          {
+            name: "Ultimate SSG",
+            description: "Dynamically generated components and CSS are minimal.",
+            icon: "line-md:cloud-alt-print-loop",
+          },
+          { name: "Search", description: "Blazing fast search by Rust implementations.", icon: "line-md:search" },
         ]}
-      >
-        <Description title="Search" icon="material-symbols:search-rounded">
-          "Pagefind" written in Rust is amazing fast and, only requires once hydration.
-        </Description>
-        <Description title="Comments" icon="mdi:comment-multiple-outline"> Not planned </Description>
-        <Description title="Dark Mode" icon="line-md:light-dark-loop">
-          Used emerald for the light theme and dracula for the dark theme. You can change the theme without JS!
-        </Description>
-        <Description title="Share" icon="mdi:share-variant">
-          URLs can be copied unrelated to your device, and can be share to SNS.
-        </Description>
-        <Description title="i18n" icon="material-symbols:translate-rounded">
-          Japanese and English are supported. Also, you can translate the website with Google Translate.
-        </Description>
-      </RingContent>
+        useLinearGradient
+        reverseLinearDirection
+        catchCopyClassNames="from-white to-[var(--color-base-content)]/60"
+      />
     </Tab>
 
-    <Tab tabName="7rs.dev" icon="mdi:lightning-bolt">
+    <Tab tabName="User-friendly" icon="line-md:emoji-smile-wink">
       <RingContent
-        mainText="7rs.dev"
-        subText="Without the stress"
-        icons={[
-          { name: "simple-icons:cloudflare", alt: "Low-latency" },
-          { name: "material-symbols:compress-rounded", alt: "Low-transfer" },
-          { name: "material-symbols:shield-lock-outline-rounded", alt: "Security" },
-          { name: "material-symbols:money-off-rounded", alt: "Free" },
-          { name: "material-symbols:devices-outline-rounded", alt: "Any device" },
+        mainText="User-Friendly"
+        subText="Without sacrificing usability"
+        items={[
+          {
+            name: "Compatibility",
+            description: "Supports modern browser and many devices.",
+            icon: "simple-icons:cloudflare",
+          },
+          {
+            name: "Low-transfer",
+            description: MarkdownString("Dark theme without JS", "by [UnoCSS](https://unocss.dev/)."),
+            icon: "material-symbols:compress-rounded",
+          },
+          {
+            name: "Security",
+            description: MarkdownString(
+              "High accessibility",
+              "by [Iconify's icons](https://iconify.design/) and [daisyUI](https://daisyui.com/) components.",
+            ),
+            icon: "material-symbols:shield-lock-outline-rounded",
+          },
+          { name: "Free", description: "No ads, No marketing, No paid.", icon: "material-symbols:money-off-rounded" },
+          { name: "Any device", description: "", icon: "material-symbols:devices-outline-rounded" },
         ]}
-      >
-        <Description title="Low-latency" icon="simple-icons:cloudflare">
-          By HTTP/3 (QUIC), CDN, Caches, Rocket Loader and Cloudflare Pages etc.
-        </Description>
-        <Description title="Low-transfer" icon="material-symbols:compress-rounded">
-          By FontSource, Sharp, Brotil and PurgeCSS etc.
-        </Description>
-        <Description title="Security" icon="material-symbols:shield-lock-outline-rounded">
-          By HTTP/3 (QUIC), DNSSEC, HSTS. Also, it partially works without JavaScript.
-        </Description>
-        <Description title="Free" icon="material-symbols:money-off-rounded">
-          No paid content, No ads and No login. Only need a browser.
-        </Description>
-        <Description title="Any device" icon="material-symbols:devices-outline-rounded">
-          You can use any device! Oops, except for Internet Explorer.
-        </Description>
-      </RingContent>
+        useLinearGradient
+        catchCopyClassNames="from-white to-[var(--color-base-content)]/60"
+      />
     </Tab>
 
-    <Tab tabName="7rs/pages" icon="cib:creative-commons-zero">
+    <Tab tabName="For Developers" icon="material-symbols:code-rounded">
       <RingContent
-        mainText="Pages Project"
-        subText="FLOSS and Modern"
-        icons={[
-          { name: "cib:creative-commons-zero", alt: "CC0" },
-          { name: "simple-icons:bun", alt: "Experience" },
-          { name: "simple-icons:rust", alt: "Tools" },
-          { name: "simple-icons:typescript", alt: "TypeScript" },
-          { name: "material-symbols:groups", alt: "Global" },
+        mainText="For Developers"
+        subText="Contribute or Use"
+        items={[
+          {
+            name: "CC0",
+            description: MarkdownString("Distributed under the [CC0](https://creativecommons.org/public-domain/cc0/)."),
+            icon: "cib:creative-commons-zero",
+          },
+          {
+            name: "Experience",
+            description: MarkdownString(
+              "Used ESM,",
+              "[TypeScript (strict)](https://www.typescriptlang.org/) and [Oxlint](https://oxc.rs/docs/guide/usage/linter).",
+            ),
+            icon: "simple-icons:bun",
+          },
+          { name: "Tools", description: "Tools by compiled languages implementations.", icon: "simple-icons:rust" },
+          {
+            name: "TypeScript",
+            description: MarkdownString(
+              "Most code is written in simple frameworks",
+              "such as [Astro](https://astro.build/) and [Svelte](https://svelte.dev/).",
+            ),
+            icon: "simple-icons:typescript",
+          },
+          { name: "Global", description: "", icon: "material-symbols:groups" },
         ]}
-      >
-        <Description title="CC0" icon="cib:creative-commons-zero">
-          CC0 is the least restrictive and no copyleft.
-        </Description>
-        <Description title="Experience" icon="simple-icons:bun">
-          This project is developed for Bun and, I'm using Nushell. So amazing fast development experience on Windows!
-        </Description>
-        <Description title="Tools" icon="simple-icons:rust">
-          Used Oxlint (Faster than ESLint) and Biome (Faster than Prettier).
-        </Description>
-        <Description title="Share" icon="simple-icons:typescript">
-          Actively uses ESModule and TypeScript. In other words, developers will fight linters, not an invisible enemy.
-        </Description>
-        <Description title="Global" icon="material-symbols:groups">
-          Used only English. All people can contribute.
-        </Description>
-      </RingContent>
+        useLinearGradient
+        catchCopyClassNames="from-[var(--color-base-content)]/50 via-white to-[var(--color-base-content)]/50"
+      />
     </Tab>
   </TabList>
 </LandingSection>

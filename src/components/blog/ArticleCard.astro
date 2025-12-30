@@ -1,10 +1,10 @@
 ---
 import type { Blog as BlogFrontmatter } from "@content/config";
-import ArticleImage from "@components/ArticleImage.astro";
+import ArticleImage from "@components/blog/ArticleImage.astro";
 import type { Categories } from "@scripts/blog-category";
-import ArticleDetail from "./ArticleDetail.astro";
-import Authors from "./Authors.astro";
-import Tags from "./Tags.astro";
+import ArticleDetail from "@components/blog/ArticleDetail.astro";
+import Authors from "@components/blog/Authors.astro";
+import Tags from "@components/blog/Tags.astro";
 
 interface Props {
   slug: string;

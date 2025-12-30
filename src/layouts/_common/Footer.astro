@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import AnimatedAnchor from "@components/AnimatedAnchor.astro";
+import AnimatedAnchor from "@components/common/AnimatedAnchor.svelte";
 import LinkIcon from "@components/LinkIcon.astro";
 
 interface Navigation {
@@ -19,7 +19,6 @@ export interface Props {
   navigations?: Navigation[];
   socials?: Social[];
 }
-
 const { navigations = [], socials = [] } = Astro.props;
 ---
 

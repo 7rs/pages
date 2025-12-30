@@ -3,8 +3,8 @@ import { getCollection } from "astro:content";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 
 import Main from "@layouts/Main.astro";
-import Pagenation from "@components/Pagenation.svelte";
-import ArticleCard from "@components/ArticleCard.svelte";
+import Pagenation from "@components/blog/Pagenation.svelte";
+import ArticleCard from "@components/blog/ArticleCard.svelte";
 import Search from "@components/pagefind/Search.astro";
 import { getRawTextContent } from "@scripts/blogUtil";
 

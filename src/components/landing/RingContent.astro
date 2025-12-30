@@ -1,0 +1,33 @@
+---
+import Ring, { type Props as RingProps } from "@components/landing/Ring.astro";
+import Description from "@components/landing/Description.astro";
+import { MarkdownStringObject } from "@scripts/markdown.ts";
+
+export interface RingIcon {
+  name: string;
+  icon: string;
+  description: string | MarkdownStringObject;
+  className?: string;
+}
+
+interface Props extends RingProps {
+  items: RingIcon[];
+  mainText: string;
+}
+const { items, mainText, ...props } = Astro.props;
+---
+
+<div class="flex flex-col justify-center items-center">
+  <Ring items={items} {...props}>{mainText}</Ring>
+  <section class="max-w-[500px] w-full flex flex-col gap-y-6">
+    {
+      items.map((item) => (
+        <Description title={item.name} icon={item.icon}>
+          {async () =>
+            typeof item.description !== "string" ? <Fragment set:html={await item.description.toHtml()} /> : item.description
+          }
+        </Description>
+      ))
+    }
+  </section>
+</div>

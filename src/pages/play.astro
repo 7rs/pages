@@ -1,40 +1,11 @@
 ---
-
+import Main from "@layouts/Main.astro";
+import Gradient from "@components/Gradient.astro";
 ---
 
-<body>
-  <head>
-    <meta charset="UTF-8" />
-    <title>PLAYGROUND</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-  </head>
-  <body>
-    <script type="module" is:inline>
-      import init, { test, Boorufind } from "/boorufind/boorufind_wasm.js";
-
-      await init();
-
-      const start = performance.now();
-      console.log(`start: ${start}`);
-
-      test(start);
-      const results = Array.from({ length: 100 }).map((_, i) => {
-        return {
-          result_id: `result_id_${i}`,
-          title: `title_${i}`,
-          description: `description_${i}`,
-          image: `image_${i}.jpg`,
-          // image_type: ImageTypes.Raw,
-          // filters: {
-          //   tags: ["hello_1", "hello_2", "hello_3"],
-          // },
-          // metadatas: {
-          //   genre: "tech",
-          // },
-        };
-      });
-      const boorufind = new Boorufind(JSON.stringify({ results: results }));
-      console.log(boorufind.get_suggest_data("a"))
-    </script>
-  </body>
-</body>
+<Main title="Fast, Lean and Customizable! - 7rs.dev" className="mb-12 | flex flex-col gap-y-36" showFakeHeader={false}>
+  <div>
+a
+  </div>
+  <Gradient />
+</Main>

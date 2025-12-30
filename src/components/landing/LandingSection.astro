@@ -1,16 +1,11 @@
 ---
+import { getLinearDirection } from "@scripts/colored-text.ts";
 interface Props {
   title: string;
   titleClassName?: string;
 }
 
 const { title, titleClassName = "" } = Astro.props;
-
-const isTextStart = (() => {
-  for (const property of titleClassName.split(" ")) {
-    return property === "text-start";
-  }
-})();
 ---
 
 <section class="flex flex-col gap-y-4 md:gap-y-8">
@@ -18,7 +13,8 @@ const isTextStart = (() => {
     id={title.replaceAll(" ", "-").toLowerCase()}
     class:list={[
       "py-2 px-2 | bg-clip-text color-transparent text-2xl md:text-5xl font-bold",
-      isTextStart ? "bg-linear-to-r" : "bg-linear-to-l",
+      // isTextStart(titleClassName) ? "bg-linear-to-r" : "bg-linear-to-l",
+      getLinearDirection(titleClassName),
       titleClassName,
     ]}
   >

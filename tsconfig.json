@@ -1,11 +1,25 @@
 {
     "extends": "astro/tsconfigs/base",
     "compilerOptions": {
+        "baseUrl": ".",
+        "resolveJsonModule": true,
+        "strict": true,
+
         "module": "nodenext",
         "moduleResolution": "nodenext",
-        "resolveJsonModule": true,
-        "baseUrl": ".",
+        "moduleDetection": "force",
         "verbatimModuleSyntax": true,
+        "esModuleInterop": true,
+
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true,
+
+        "skipLibCheck": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "noPropertyAccessFromIndexSignature": false,
+
         "paths": {
             "@pages/*": ["src/pages/*"],
             "@assets/*": ["src/assets/*"],

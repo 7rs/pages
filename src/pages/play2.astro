@@ -1,0 +1,730 @@
+---
+// SVGパス事前解析
+function parseSVGPathStatic(pathString) {
+  const vertices = [];
+  let currentX = 0, currentY = 0;
+  let startX = 0, startY = 0;
+  
+  const pathData = pathString.replace(/([MmLlHhVvCcSsQqTtAaZz])/g, '|$1').split('|').filter(s => s.length > 0);
+  
+  for (let segment of pathData) {
+    const command = segment[0];
+    const args = segment.slice(1).match(/[-+]?(?:\d*\.?\d+(?:[eE][-+]?\d+)?)/g);
+    const numbers = args ? args.map(parseFloat) : [];
+    
+    switch (command) {
+      case 'M':
+        currentX = numbers[0];
+        currentY = numbers[1];
+        startX = currentX;
+        startY = currentY;
+        vertices.push(currentX, currentY);
+        break;
+        
+      case 'C':
+        for (let i = 0; i < numbers.length; i += 6) {
+          if (i + 5 < numbers.length) {
+            const cp1x = numbers[i];
+            const cp1y = numbers[i + 1];
+            const cp2x = numbers[i + 2];
+            const cp2y = numbers[i + 3];
+            const endX = numbers[i + 4];
+            const endY = numbers[i + 5];
+            
+            for (let t = 0.02; t <= 1; t += 0.02) {
+              const x = Math.pow(1-t, 3) * currentX + 
+                       3 * Math.pow(1-t, 2) * t * cp1x + 
+                       3 * (1-t) * Math.pow(t, 2) * cp2x + 
+                       Math.pow(t, 3) * endX;
+              const y = Math.pow(1-t, 3) * currentY + 
+                       3 * Math.pow(1-t, 2) * t * cp1y + 
+                       3 * (1-t) * Math.pow(t, 2) * cp2y + 
+                       Math.pow(t, 3) * endY;
+              vertices.push(x, y);
+            }
+            
+            currentX = endX;
+            currentY = endY;
+          }
+        }
+        break;
+        
+      case 'Z':
+      case 'z':
+        if (vertices.length >= 4) {
+          vertices.push(startX, startY);
+        }
+        break;
+    }
+  }
+  
+  return vertices;
+}
+
+// ガウシアンカーネル事前計算
+function generateGaussianKernel(size, sigma) {
+  const kernel = [];
+  let sum = 0.0;
+  const half = Math.floor(size / 2);
+  
+  for (let i = 0; i < size; i++) {
+    const x = i - half;
+    const weight = Math.exp(-(x * x) / (2 * sigma * sigma));
+    kernel.push(weight);
+    sum += weight;
+  }
+  
+  // 正規化
+  for (let i = 0; i < size; i++) {
+    kernel[i] /= sum;
+  }
+  
+  return kernel;
+}
+
+// 楕円頂点事前計算
+function generateEllipseVertices(cx, cy, rx, ry, segments = 100) {
+  const vertices = [];
+  for (let i = 0; i <= segments; i++) {
+    const angle = (i / segments) * Math.PI * 2;
+    const x = cx + Math.cos(angle) * rx;
+    const y = cy + Math.sin(angle) * ry;
+    vertices.push(x, y);
+  }
+  return vertices;
+}
+
+// デフォルト設定用のパスデータ
+const defaultPaths = [
+  "M20,-4.3C35.9,-4.1,65.7,-2.1,74.2,8.5C82.7,19.1,70,38.2,54.1,40.8C38.2,43.3,19.1,29.4,7.6,21.8C-3.9,14.2,-7.7,12.9,-13.4,10.3C-19.1,7.7,-26.7,3.9,-36,-9.3C-45.3,-22.5,-56.4,-45,-50.7,-45.2C-45,-45.3,-22.5,-23,-10.2,-12.7C2.1,-2.5,4.1,-4.4,20,-4.3Z",
+  "M32,-40.6C32.1,-32,16.1,-16,19.9,3.8C23.7,23.6,47.2,47.1,47.1,59.3C47.1,71.6,23.6,72.4,6.5,66C-10.7,59.5,-21.3,45.8,-35.9,33.5C-50.5,21.3,-69,10.7,-74.3,-5.3C-79.5,-21.2,-71.5,-42.3,-56.9,-50.9C-42.3,-59.5,-21.2,-55.5,-2.6,-52.9C16,-50.3,32,-49.1,32,-40.6Z",
+  "M48.3,-52.3C55.2,-41.4,48.5,-20.7,41.2,-7.2C34,6.2,26.3,12.4,19.3,24C12.4,35.7,6.2,52.8,-5.5,58.3C-17.3,63.9,-34.6,57.9,-50.3,46.2C-66,34.6,-80.2,17.3,-71.7,8.5C-63.3,-0.3,-32.1,-0.6,-16.3,-11.6C-0.6,-22.5,-0.3,-44.2,10.2,-54.4C20.7,-64.6,41.4,-63.3,48.3,-52.3Z",
+  "M59.7,-62.3C72.6,-46.8,74.9,-23.4,64.6,-10.3C54.3,2.8,31.4,5.6,18.5,11.1C5.6,16.6,2.8,24.7,-3.7,28.3C-10.2,32,-20.4,31.3,-21.9,25.8C-23.4,20.4,-16.4,10.2,-21.1,-4.8C-25.9,-19.7,-42.5,-39.4,-40.9,-54.9C-39.4,-70.4,-19.7,-81.7,1.9,-83.6C23.4,-85.5,46.8,-77.9,59.7,-62.3Z"
+];
+
+// デフォルト設定用の変換データ
+const defaultConfigs = [
+  { color: [168/255, 210/255, 240/255, 1], transform: {scale: 5, translateX: 128, translateY: 448} },
+  { color: [199/255, 123/255, 242/255, 1], transform: {scale: 5, translateX: 960, translateY: 128} },
+  { color: [252/255, 235/255, 194/255, 1], transform: {scale: 10, translateX: 960, translateY: 704} },
+  { color: [255/255, 203/255, 163/255, 1], transform: {scale: 4, translateX: 64, translateY: 960, rotation: -30 * Math.PI / 180} }
+];
+
+// 事前計算（デフォルト用）
+const precomputedPaths = defaultPaths.map(path => parseSVGPathStatic(path));
+const precomputedEllipse = generateEllipseVertices(256, 256, 512, 512, 100);
+const precomputedKernel = generateGaussianKernel(31, 64.0);
+const pathConfigs = defaultConfigs;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fluid Animation Renderer</title>
+  </head>
+  <body>
+    <canvas class="w-full h-full blur-3xl" id="graphic" width="1024" height="1024"></canvas>
+    <script is:inline define:vars={{ precomputedPaths, precomputedEllipse, precomputedKernel, pathConfigs }}>
+      /**
+       * 流体アニメーション WebGL レンダラー
+       * 開発者が簡単に使えるカプセル化されたクラス
+       */
+      class FluidAnimationRenderer {
+        constructor(canvas, options = {}) {
+          this.canvas = canvas;
+          this.gl = canvas.getContext('webgl');
+          
+          if (!this.gl) {
+            throw new Error('WebGL not supported');
+          }
+          
+          // デフォルト設定
+          this.config = {
+            blurStrength: options.blurStrength || 64.0,        // ぼかしの強さ
+            animationSpeed: options.animationSpeed || 1.0,     // アニメーション速度
+            waveAmplitude: options.waveAmplitude || 8.0,       // 波の振幅
+            backgroundColor: options.backgroundColor || [209/255, 237/255, 247/255, 1],
+            canvasSize: options.canvasSize || { width: 1024, height: 1024 },
+            ...options
+          };
+          
+          this.shapes = [];
+          this.animationId = null;
+          this.startTime = performance.now();
+          
+          this.init();
+        }
+        
+        init() {
+          this.setupShaders();
+          this.setupFramebuffers();
+          this.setupBuffers();
+        }
+        
+        setupShaders() {
+          const gl = this.gl;
+          
+          // メインシェーダー
+          const vertexShaderSource = `
+            attribute vec2 a_position;
+            uniform vec2 u_resolution;
+            varying vec2 v_position;
+            void main() {
+              vec2 zeroToOne = a_position / u_resolution;
+              vec2 zeroToTwo = zeroToOne * 2.0;
+              vec2 clipSpace = zeroToTwo - 1.0;
+              gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);
+              v_position = zeroToOne;
+            }
+          `;
+
+          const fragmentShaderSource = `
+            precision mediump float;
+            uniform vec4 u_color;
+            varying vec2 v_position;
+            void main() {
+              gl_FragColor = u_color;
+            }
+          `;
+          
+          // ポストエフェクト用シェーダー
+          const postVertexShaderSource = `
+            attribute vec2 a_position;
+            varying vec2 v_texCoord;
+            void main() {
+              gl_Position = vec4(a_position, 0.0, 1.0);
+              v_texCoord = a_position * 0.5 + 0.5;
+            }
+          `;
+          
+          const postFragmentShaderSource = `
+            #define KERNEL_SIZE 31
+            precision mediump float;
+            uniform sampler2D u_image;
+            uniform vec2 u_textureSize;
+            uniform int u_direction;
+            uniform float u_kernel[KERNEL_SIZE];
+            
+            void main() {
+              vec2 textCoord = gl_FragCoord.xy / u_textureSize;
+              vec2 onePixel = ((u_direction == 0) ? vec2(1.0, 0.0) : vec2(0.0, 1.0)) / u_textureSize;
+              vec4 meanColor = vec4(0);
+              int ms = KERNEL_SIZE / 2;
+              for (int i = 0; i < KERNEL_SIZE; i++) {
+                meanColor += texture2D(u_image, textCoord + onePixel * float(i - ms) * 2.0) * u_kernel[i];
+              }
+              gl_FragColor = meanColor;
+            }
+          `;
+          
+          // シェーダーコンパイル
+          this.program = this.createProgram(vertexShaderSource, fragmentShaderSource);
+          this.postProgram = this.createProgram(postVertexShaderSource, postFragmentShaderSource);
+          
+          // uniform locations
+          this.resolutionUniformLocation = this.gl.getUniformLocation(this.program, 'u_resolution');
+          this.colorUniformLocation = this.gl.getUniformLocation(this.program, 'u_color');
+          this.positionAttributeLocation = this.gl.getAttribLocation(this.program, 'a_position');
+          
+          this.postImageUniformLocation = this.gl.getUniformLocation(this.postProgram, 'u_image');
+          this.postTextureSizeUniformLocation = this.gl.getUniformLocation(this.postProgram, 'u_textureSize');
+          this.postDirectionUniformLocation = this.gl.getUniformLocation(this.postProgram, 'u_direction');
+          this.postKernelUniformLocation = this.gl.getUniformLocation(this.postProgram, 'u_kernel');
+          this.postPositionAttributeLocation = this.gl.getAttribLocation(this.postProgram, 'a_position');
+        }
+        
+        createShader(type, source) {
+          const gl = this.gl;
+          const shader = gl.createShader(type);
+          gl.shaderSource(shader, source);
+          gl.compileShader(shader);
+          
+          if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            console.error('Shader compile error:', gl.getShaderInfoLog(shader));
+            gl.deleteShader(shader);
+            return null;
+          }
+          return shader;
+        }
+        
+        createProgram(vertexSource, fragmentSource) {
+          const gl = this.gl;
+          const vertexShader = this.createShader(gl.VERTEX_SHADER, vertexSource);
+          const fragmentShader = this.createShader(gl.FRAGMENT_SHADER, fragmentSource);
+          
+          if (!vertexShader || !fragmentShader) return null;
+          
+          const program = gl.createProgram();
+          gl.attachShader(program, vertexShader);
+          gl.attachShader(program, fragmentShader);
+          gl.linkProgram(program);
+          
+          if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+            console.error('Program link error:', gl.getProgramInfoLog(program));
+            gl.deleteProgram(program);
+            return null;
+          }
+          
+          return program;
+        }
+        
+        setupFramebuffers() {
+          const gl = this.gl;
+          const { width, height } = this.config.canvasSize;
+          
+          // フレームバッファとテクスチャ作成
+          this.framebuffer1 = gl.createFramebuffer();
+          this.framebuffer2 = gl.createFramebuffer();
+          this.texture1 = gl.createTexture();
+          this.texture2 = gl.createTexture();
+          
+          // テクスチャ設定
+          [this.texture1, this.texture2].forEach(texture => {
+            gl.bindTexture(gl.TEXTURE_2D, texture);
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+          });
+          
+          // フレームバッファにテクスチャをアタッチ
+          gl.bindFramebuffer(gl.FRAMEBUFFER, this.framebuffer1);
+          gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.texture1, 0);
+          
+          gl.bindFramebuffer(gl.FRAMEBUFFER, this.framebuffer2);
+          gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.texture2, 0);
+          
+          // ガウシアンカーネル（事前計算済みまたは動的生成）
+          this.gaussianKernel = this.generateKernel(31, this.config.blurStrength);
+        }
+        
+        generateKernel(size, sigma) {
+          if (precomputedKernel && sigma === 64.0) {
+            return precomputedKernel;
+          }
+          
+          const kernel = [];
+          let sum = 0.0;
+          const half = Math.floor(size / 2);
+          
+          for (let i = 0; i < size; i++) {
+            const x = i - half;
+            const weight = Math.exp(-(x * x) / (2 * sigma * sigma));
+            kernel.push(weight);
+            sum += weight;
+          }
+          
+          // 正規化
+          for (let i = 0; i < size; i++) {
+            kernel[i] /= sum;
+          }
+          
+          return kernel;
+        }
+        
+        setupBuffers() {
+          const gl = this.gl;
+          
+          // 頂点バッファ
+          this.positionBuffer = gl.createBuffer();
+          
+          // フルスクリーンクワッド用バッファ
+          this.quadBuffer = gl.createBuffer();
+          gl.bindBuffer(gl.ARRAY_BUFFER, this.quadBuffer);
+          gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+            -1, -1, 1, -1, -1, 1, 1, 1,
+          ]), gl.STATIC_DRAW);
+        }
+        
+        /**
+         * シェイプを追加
+         * @param {Object} shape - シェイプオブジェクト
+         * @param {string|Array} shape.path - SVGパス文字列または頂点配列
+         * @param {Array} shape.color - RGBA色配列 [r, g, b, a]
+         * @param {Object} shape.transform - 変換オブジェクト
+         * @param {number} shape.transform.scale - スケール
+         * @param {number} shape.transform.translateX - X移動
+         * @param {number} shape.transform.translateY - Y移動
+         * @param {number} [shape.transform.rotation] - 回転（ラジアン）
+         */
+        addShape(shape) {
+          let vertices;
+          if (typeof shape.path === 'string') {
+            vertices = this.parseSVGPath(shape.path);
+          } else {
+            vertices = shape.path;
+          }
+          
+          this.shapes.push({
+            vertices,
+            color: shape.color,
+            transform: shape.transform
+          });
+        }
+        
+        /**
+         * 背景楕円を追加
+         * @param {Object} ellipse - 楕円オブジェクト
+         * @param {number} ellipse.cx - 中心X座標
+         * @param {number} ellipse.cy - 中心Y座標
+         * @param {number} ellipse.rx - X半径
+         * @param {number} ellipse.ry - Y半径
+         * @param {Array} ellipse.color - RGBA色配列
+         * @param {number} [ellipse.segments=100] - セグメント数
+         */
+        addEllipse(ellipse) {
+          const vertices = this.generateEllipseVertices(
+            ellipse.cx, ellipse.cy, ellipse.rx, ellipse.ry, ellipse.segments || 100
+          );
+          
+          this.shapes.unshift({ // 背景なので最初に追加
+            vertices,
+            color: ellipse.color,
+            transform: { scale: 1, translateX: 0, translateY: 0 }
+          });
+        }
+        
+        parseSVGPath(pathString) {
+          const vertices = [];
+          let currentX = 0, currentY = 0;
+          let startX = 0, startY = 0;
+          
+          const pathData = pathString.replace(/([MmLlHhVvCcSsQqTtAaZz])/g, '|$1').split('|').filter(s => s.length > 0);
+          
+          for (let segment of pathData) {
+            const command = segment[0];
+            const args = segment.slice(1).match(/[-+]?(?:\d*\.?\d+(?:[eE][-+]?\d+)?)/g);
+            const numbers = args ? args.map(parseFloat) : [];
+            
+            switch (command) {
+              case 'M':
+                currentX = numbers[0];
+                currentY = numbers[1];
+                startX = currentX;
+                startY = currentY;
+                vertices.push(currentX, currentY);
+                break;
+                
+              case 'C':
+                for (let i = 0; i < numbers.length; i += 6) {
+                  if (i + 5 < numbers.length) {
+                    const cp1x = numbers[i];
+                    const cp1y = numbers[i + 1];
+                    const cp2x = numbers[i + 2];
+                    const cp2y = numbers[i + 3];
+                    const endX = numbers[i + 4];
+                    const endY = numbers[i + 5];
+                    
+                    for (let t = 0.02; t <= 1; t += 0.02) {
+                      const x = Math.pow(1-t, 3) * currentX + 
+                               3 * Math.pow(1-t, 2) * t * cp1x + 
+                               3 * (1-t) * Math.pow(t, 2) * cp2x + 
+                               Math.pow(t, 3) * endX;
+                      const y = Math.pow(1-t, 3) * currentY + 
+                               3 * Math.pow(1-t, 2) * t * cp1y + 
+                               3 * (1-t) * Math.pow(t, 2) * cp2y + 
+                               Math.pow(t, 3) * endY;
+                      vertices.push(x, y);
+                    }
+                    
+                    currentX = endX;
+                    currentY = endY;
+                  }
+                }
+                break;
+                
+              case 'Z':
+              case 'z':
+                if (vertices.length >= 4) {
+                  vertices.push(startX, startY);
+                }
+                break;
+            }
+          }
+          
+          return vertices;
+        }
+        
+        generateEllipseVertices(cx, cy, rx, ry, segments = 100) {
+          const vertices = [];
+          for (let i = 0; i <= segments; i++) {
+            const angle = (i / segments) * Math.PI * 2;
+            const x = cx + Math.cos(angle) * rx;
+            const y = cy + Math.sin(angle) * ry;
+            vertices.push(x, y);
+          }
+          return vertices;
+        }
+        
+        animateVertices(vertices, elapsed, shapeIndex) {
+          const animatedVertices = [];
+          const { animationSpeed, waveAmplitude } = this.config;
+          const time = elapsed * animationSpeed * 0.001;
+          
+          for (let i = 0; i < vertices.length; i += 2) {
+            const x = vertices[i];
+            const y = vertices[i + 1];
+            
+            // 複数の波動を組み合わせ
+            const wave1 = waveAmplitude * Math.sin(time * 2 + shapeIndex * 1.5 + x * 0.01);
+            const wave2 = waveAmplitude * 0.7 * Math.cos(time * 1.5 + shapeIndex * 2 + y * 0.008);
+            const wave3 = waveAmplitude * 0.5 * Math.sin(time * 3 + shapeIndex + (x + y) * 0.005);
+            
+            // 放射状の波動
+            const centerX = 512, centerY = 512;
+            const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+            const radialWave = waveAmplitude * 0.3 * Math.sin(time * 2 + distance * 0.01 + shapeIndex);
+            
+            // 螺旋状の動き
+            const angle = Math.atan2(y - centerY, x - centerX);
+            const spiralWave = waveAmplitude * 0.2 * Math.sin(time * 0.7 + angle * 3 + distance * 0.01);
+            
+            animatedVertices.push(
+              x + wave1 + radialWave + spiralWave * Math.cos(angle),
+              y + wave2 + wave3 + spiralWave * Math.sin(angle)
+            );
+          }
+          
+          return animatedVertices;
+        }
+        
+        animateColors(baseColor, elapsed, shapeIndex) {
+          const { animationSpeed } = this.config;
+          const time = elapsed * animationSpeed * 0.001;
+          
+          const colorShift = 0.15 * Math.sin(time * 0.8 + shapeIndex * 1.2);
+          
+          return [
+            Math.max(0, Math.min(1, baseColor[0] + colorShift * 0.1)),
+            Math.max(0, Math.min(1, baseColor[1] + colorShift * 0.15)),
+            Math.max(0, Math.min(1, baseColor[2] + colorShift * 0.2)),
+            baseColor[3]
+          ];
+        }
+        
+        drawShape(vertices, color, transform) {
+          if (vertices.length < 6) return;
+          
+          const gl = this.gl;
+          const transformedVertices = [];
+          
+          for (let i = 0; i < vertices.length; i += 2) {
+            let x = vertices[i];
+            let y = vertices[i + 1];
+            
+            x *= transform.scale;
+            y *= transform.scale;
+            
+            if (transform.rotation) {
+              const cos = Math.cos(transform.rotation);
+              const sin = Math.sin(transform.rotation);
+              const rotatedX = x * cos - y * sin;
+              const rotatedY = x * sin + y * cos;
+              x = rotatedX;
+              y = rotatedY;
+            }
+            
+            x += transform.translateX;
+            y += transform.translateY;
+            transformedVertices.push(x, y);
+          }
+          
+          gl.bindBuffer(gl.ARRAY_BUFFER, this.positionBuffer);
+          gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(transformedVertices), gl.STATIC_DRAW);
+          gl.enableVertexAttribArray(this.positionAttributeLocation);
+          gl.vertexAttribPointer(this.positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+          gl.uniform4fv(this.colorUniformLocation, color);
+          
+          gl.drawArrays(gl.TRIANGLE_FAN, 0, transformedVertices.length / 2);
+        }
+        
+        render() {
+          const gl = this.gl;
+          const { width, height } = this.config.canvasSize;
+          const elapsed = performance.now() - this.startTime;
+          
+          // Step 1: メインレンダリング（フレームバッファ1へ）
+          gl.bindFramebuffer(gl.FRAMEBUFFER, this.framebuffer1);
+          gl.viewport(0, 0, width, height);
+          gl.clearColor(0, 0, 0, 0);
+          gl.clear(gl.COLOR_BUFFER_BIT);
+          
+          gl.useProgram(this.program);
+          gl.uniform2f(this.resolutionUniformLocation, width, height);
+          
+          // 全シェイプをアニメーション付きで描画
+          this.shapes.forEach((shape, index) => {
+            const animatedVertices = this.animateVertices(shape.vertices, elapsed, index);
+            const animatedColor = this.animateColors(shape.color, elapsed, index);
+            
+            // transform をアニメーション
+            const transform = shape.transform;
+            const animatedTransform = {
+              ...transform,
+              translateX: transform.translateX + 15 * Math.sin(elapsed * 0.0003 + index * 1.5),
+              translateY: transform.translateY + 12 * Math.cos(elapsed * 0.0004 + index * 1.2),
+              rotation: transform.rotation ? 
+                transform.rotation + 0.3 * Math.sin(elapsed * 0.0002 + index) : 
+                0.2 * Math.sin(elapsed * 0.00025 + index)
+            };
+            
+            this.drawShape(animatedVertices, animatedColor, animatedTransform);
+          });
+          
+          // Step 2: 横方向ブラー（フレームバッファ1→フレームバッファ2）
+          gl.bindFramebuffer(gl.FRAMEBUFFER, this.framebuffer2);
+          gl.clear(gl.COLOR_BUFFER_BIT);
+          gl.useProgram(this.postProgram);
+          
+          gl.activeTexture(gl.TEXTURE0);
+          gl.bindTexture(gl.TEXTURE_2D, this.texture1);
+          gl.uniform1i(this.postImageUniformLocation, 0);
+          gl.uniform2f(this.postTextureSizeUniformLocation, width, height);
+          gl.uniform1i(this.postDirectionUniformLocation, 0); // 横方向
+          gl.uniform1fv(this.postKernelUniformLocation, this.gaussianKernel);
+          
+          gl.bindBuffer(gl.ARRAY_BUFFER, this.quadBuffer);
+          gl.enableVertexAttribArray(this.postPositionAttributeLocation);
+          gl.vertexAttribPointer(this.postPositionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+          
+          // Step 3: 縦方向ブラー（フレームバッファ2→画面）
+          gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+          gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+          gl.clear(gl.COLOR_BUFFER_BIT);
+          
+          gl.activeTexture(gl.TEXTURE0);
+          gl.bindTexture(gl.TEXTURE_2D, this.texture2);
+          gl.uniform1i(this.postImageUniformLocation, 0);
+          gl.uniform2f(this.postTextureSizeUniformLocation, width, height);
+          gl.uniform1i(this.postDirectionUniformLocation, 1); // 縦方向
+          
+          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        }
+        
+        /**
+         * アニメーション開始 - requestAnimationFrameを使用
+         */
+        start() {
+          if (this.animationId) return; // 既に動いてる場合は何もしない
+          
+          const animate = () => {
+            this.render();
+            this.animationId = requestAnimationFrame(animate);
+          };
+          
+          this.startTime = performance.now(); // 高精度タイマー
+          animate();
+        }
+        
+        /**
+         * アニメーション停止
+         */
+        stop() {
+          if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+          }
+        }
+        
+        /**
+         * 設定を動的更新
+         * @param {Object} newConfig - 新しい設定
+         */
+        updateConfig(newConfig) {
+          this.config = { ...this.config, ...newConfig };
+          
+          // ブラー強度が変更された場合はカーネルを再生成
+          if (newConfig.blurStrength !== undefined) {
+            this.gaussianKernel = this.generateKernel(31, this.config.blurStrength);
+          }
+        }
+        
+        /**
+         * リソースを解放
+         */
+        dispose() {
+          this.stop();
+          
+          const gl = this.gl;
+          if (gl) {
+            gl.deleteProgram(this.program);
+            gl.deleteProgram(this.postProgram);
+            gl.deleteBuffer(this.positionBuffer);
+            gl.deleteBuffer(this.quadBuffer);
+            gl.deleteFramebuffer(this.framebuffer1);
+            gl.deleteFramebuffer(this.framebuffer2);
+            gl.deleteTexture(this.texture1);
+            gl.deleteTexture(this.texture2);
+          }
+        }
+      }
+      
+      // 使用例: デフォルトのアニメーションを作成
+      const renderer = new FluidAnimationRenderer(canvas, {
+        blurStrength: 64.0,        // ぼかし強度
+        animationSpeed: 1.0,       // アニメーション速度
+        waveAmplitude: 8.0         // 波の振幅
+      });
+      
+      // デフォルトの楕円を追加
+      renderer.addEllipse({
+        cx: 256, cy: 256, rx: 512, ry: 512,
+        color: [209/255, 237/255, 247/255, 1]
+      });
+      
+      // デフォルトのシェイプを追加（事前計算済みデータを使用）
+      if (precomputedPaths && pathConfigs) {
+        precomputedPaths.forEach((vertices, index) => {
+          renderer.addShape({
+            path: vertices,
+            color: pathConfigs[index].color,
+            transform: pathConfigs[index].transform
+          });
+        });
+      }
+      
+      // アニメーション開始
+      renderer.start();
+      
+      // グローバルに公開（開発者が使えるように）
+      window.FluidAnimationRenderer = FluidAnimationRenderer;
+      window.currentRenderer = renderer;
+      
+      // 使用例をコンソールに表示
+      console.log(`
+🌊 FluidAnimationRenderer が使用可能にゃん！
+
+📖 使用例:
+// 新しいレンダラーを作成
+const myRenderer = new FluidAnimationRenderer(canvas, {
+  blurStrength: 32.0,     // ぼかしの強さ
+  animationSpeed: 1.5,    // アニメーション速度
+  waveAmplitude: 12.0     // 波の振幅
+});
+
+// シェイプを追加
+myRenderer.addShape({
+  path: "SVGパス文字列",
+  color: [1.0, 0.5, 0.2, 1.0],  // RGBA
+  transform: {
+    scale: 5,
+    translateX: 100,
+    translateY: 200,
+    rotation: Math.PI / 4  // ラジアン
+  }
+});
+
+// 設定を動的変更
+currentRenderer.updateConfig({ 
+  animationSpeed: 2.0,
+  blurStrength: 128.0 
+});
+
+🎮 現在のレンダラー: window.currentRenderer
+      `);
+    </script>
+  </body>
+</html>

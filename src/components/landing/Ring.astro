@@ -1,24 +1,31 @@
 ---
 import { Icon } from "astro-icon/components";
-
-interface RingIcon {
-  name: string;
-  alt?: string;
-  className?: string;
-}
+import { getLinearDirection } from "@scripts/colored-text.ts";
+import { type RingIcon } from "@components/landing/RingContent.astro";
 
 export interface Props {
-  icons: RingIcon[];
+  items: RingIcon[];
   subText?: string;
   playbackTime?: number;
   size?: number;
   rainbowPlaybackTime?: number;
   rainbowSize?: number;
+  useLinearGradient?: boolean;
+  reverseLinearDirection?: boolean;
+  catchCopyClassNames?: string;
 }
 
-const { icons, subText, playbackTime = 15000, rainbowPlaybackTime = 20000, size = 8, rainbowSize = 8 } = Astro.props;
-
-const delay = Math.floor(playbackTime / icons.length);
+const {
+  items,
+  subText,
+  playbackTime = 15000,
+  rainbowPlaybackTime = 20000,
+  size = 8,
+  rainbowSize = 8,
+  useLinearGradient = false,
+  reverseLinearDirection = false,
+  catchCopyClassNames = "",
+} = Astro.props;
 ---
 
 <article>
@@ -26,25 +33,29 @@ const delay = Math.floor(playbackTime / icons.length);
     <hgroup
       style={`--rainbowPlaybackTime: ${rainbowPlaybackTime}ms`}
       class:list={[
-        "relative z-1 | flex flex-col text-center justify-center gap-y-2 | color-white",
+        "relative z-1 | flex flex-col text-center justify-center gap-y-2",
         "animate-[rainbow_var(--rainbowPlaybackTime)_linear_infinite_forwards]",
+        useLinearGradient
+          ? `bg-clip-text color-transparent ${reverseLinearDirection ? "bg-linear-to-l" : "bg-linear-to-r"}`
+          : "color-white",
+        catchCopyClassNames,
       ]}
     >
       <h2 class="text-4xl font-bold"><slot /></h2>
       {subText && <p>{subText}</p>}
     </hgroup>
     {
-      icons.map((icon, i) => (
+      items.map((item, i) => (
         <Icon
-          style={`--playbackTime: ${playbackTime}ms; animation-delay: ${Math.floor(playbackTime / icons.length) * i}ms`}
+          style={`--playbackTime: ${playbackTime}ms; animation-delay: -${Math.floor(playbackTime / items.length) * i}ms`}
           class:list={[
             "absolute top-1/2 left-1/2 z-0 | translate-x--1/2 translate-y--1/2 | h-full | text-3xl",
             "animate-[rotate_var(--playbackTime)_linear_infinite_forwards]",
             "opacity-0",
-            icon.className && icon.className,
+            item.className && item.className,
           ]}
-          title={icon.alt}
-          name={icon.name}
+          title={item.name}
+          name={item.icon}
         />
       ))
     }

@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import { hasIcon } from "@scripts/icon.ts";
-  import AnimatedAnchor from "@components/AnimatedAnchor.svelte";
+  import AnimatedAnchor from "@components/common/AnimatedAnchor.svelte";
 
   interface Props {
     tags?: string[];

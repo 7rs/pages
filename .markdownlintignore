@@ -1,0 +1,10 @@
+.astro/**
+.vscode/**
+dist/**
+node_modules/**
+public/**
+scripts/**
+src/assets/**
+src/components/**
+src/layouts/**
+src/styles/**
