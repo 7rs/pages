@@ -1,0 +1,15 @@
+{
+    "type": "module",
+    "name": "@7rs/pages-config",
+    "module": "index.ts",
+    "files": [
+        "src",
+        "index.ts"
+    ],
+    "exports": {
+        ".": "./index.ts"
+    },
+    "dependencies": {
+        "vite": "7.3.0"
+    }
+}

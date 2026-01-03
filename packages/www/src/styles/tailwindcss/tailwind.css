@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes:
+    emerald --default,
+    dracula --prefersdark;
+}
+
+@utility icon {
+  svg {
+    transition: all 0.3s ease;
+    color: var(--color-base-content);
+  }
+
+  &:hover {
+    svg {
+      transform: scale(1.25);
+    }
+  }
+}
+
+@utility icon-* {
+  svg {
+    transition: all 0.3s ease;
+    color: var(--color-base-content);
+  }
+
+  &:hover {
+    svg {
+      transform: scale(1.25);
+      color: --value([*]);
+    }
+  }
+}

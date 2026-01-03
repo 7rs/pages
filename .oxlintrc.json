@@ -1,0 +1,4 @@
+{
+    "plugins": ["eslint", "typescript", "unicorn", "oxc", "import", "jsx-a11y", "node", "promise"],
+    "ignorePatterns": ["node_modules/**", ".astro/**", "dist/**"]
+}

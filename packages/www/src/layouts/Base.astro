@@ -1,0 +1,25 @@
+---
+import Head, { type Props as HeadProps } from "@layouts/Head.astro";
+import Header, {type Props as HeaderProps} from "@components/Header.astro";
+import Footer from "@components/Footer.astro"
+
+import "@styles/tailwindcss/tailwind.css";
+import "@styles/global.scss";
+
+interface Props extends HeadProps, HeaderProps {
+  className?: string;
+}
+
+const { className = "", ...others } = Astro.props;
+const headProps: HeadProps = others;
+const headerProps: HeaderProps = others;
+---
+
+<html>
+  <Head {...headProps} />
+  <body class="pa-0 min-h-svh size-full flex flex-col relative">
+    <Header {...headerProps} />
+    <main class:list={["flex-1 size-full bg-base-300", className]}><slot /></main>
+    <Footer />
+  </body>
+</html>

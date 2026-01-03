@@ -1,0 +1,27 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  lightTheme?: string;
+  darkTheme?: string;
+  className?: string;
+}
+
+const { lightTheme = "light", darkTheme = "dark", className = "" } = Astro.props;
+---
+
+<label class:list={["swap", className]} data-tip="Light / Dark" >
+  <input id="theme-controller" type="checkbox" value={darkTheme || lightTheme} class="theme-controller" />
+  <Icon id="sunny-icon" name="line-md:sunny-loop" class="swap-off" />
+  <Icon id="moon-icon" name="line-md:moon-loop" class="swap-on" />
+</label>
+
+<script define:vars={{ lightTheme, darkTheme }}>
+  const controller = document.getElementById("theme-controller");
+
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    controller?.setAttribute("value", lightTheme);
+    document.getElementById("sunny-icon")?.classList.replace("swap-off", "swap-on");
+    document.getElementById("moon-icon")?.classList.replace("swap-on", "swap-off");
+  }
+</script>

@@ -1,0 +1,25 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { Icon } from "astro-icon/components";
+
+import Link from "./Link.astro";
+import { IconAliases, IconAliasKeys } from "./types.ts";
+
+export interface Props extends HTMLAttributes<"a"> {
+  icon: string;
+  tooltip?: string;
+  className?: string;
+}
+
+let { icon, tooltip, className = "icon", ...linkProps }: Props = Astro.props;
+
+if (!icon.includes(":") && IconAliasKeys.includes(icon)) {
+  const { id, label, ...props } = IconAliases[icon.toLowerCase() as keyof typeof IconAliases];
+  icon = id;
+  tooltip = label;
+}
+---
+
+<Link class:list={[tooltip && "tooltip", className]} data-tip={tooltip} {...linkProps}>
+  <Icon name={icon} />
+</Link>

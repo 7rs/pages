@@ -1,0 +1,35 @@
+{
+    "type": "module",
+    "private": true,
+    "name": "www",
+    "scripts": {
+        "dev": "astro dev",
+        "reload": "astro sync && astro dev",
+        "build": "astro build",
+        "preview": "astro preview"
+    },
+    "dependencies": {
+        "@7rs/pages-ui": "workspace:*",
+        "@7rs/pages-config": "workspace:*",
+        "@astrojs/svelte": "7.2.4",
+        "@iconify-json/line-md": "1.2.12",
+        "@iconify-json/simple-icons": "1.2.64",
+        "@iconify/svelte": "5.1.0",
+        "@playform/compress": "0.2.0",
+        "@tailwindcss/vite": "4.1.18",
+        "astro": "5.16.6",
+        "astro-compressor": "1.2.0",
+        "astro-icon": "1.1.5",
+        "autoprefixer": "10.4.23",
+        "clsx": "2.1.1",
+        "daisyui": "5.5.14",
+        "sass-embedded": "1.97.1",
+        "svelte": "5.46.1",
+        "tailwindcss": "4.1.18",
+        "vite": "7.3.0"
+    },
+    "devDependencies": {
+        "postcss": "8.5.6",
+        "sass": "1.97.1"
+    }
+}

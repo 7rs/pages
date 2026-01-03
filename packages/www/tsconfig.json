@@ -1,0 +1,16 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@pages/*": ["./src/pages/*"],
+            "@assets/*": ["./src/assets/*"],
+            "@layouts/*": ["./src/layouts/*"],
+            "@styles/*": ["./src/styles/*"],
+            "@components/*": ["./src/components/*"],
+            "@content/*": ["./src/content/*"],
+            "@icons/*": ["./src/icons/*"],
+            "@scripts/*": ["./scripts/*"]
+        }
+    }
+}

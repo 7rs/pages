@@ -1,11 +1,12 @@
 # Outputs
-data/
-dist/
-node_modules/
-.astro/
 .git/
-*-lighthouse.html
-lighthouse.html
+node_modules/
+dist/
+bun.lock
+.claude/
+
+**/.astro/*
+!**/.astro/settings.json
 
 # Logs
 *.log*
@@ -16,5 +17,3 @@ lighthouse.html
 # Environment-dependent files
 .DS_Store
 *.Identifier
-
-*storybook.log

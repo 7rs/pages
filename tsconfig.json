@@ -1,29 +1,24 @@
 {
-    "exclude": ["*node_modules*", "./packages/**"],
+    "extends": "astro/tsconfigs/strict",
     "compilerOptions": {
-        // Dependencies
-        "module": "nodenext",
-        "esModuleInterop": true,
-        "downlevelIteration": true,
-        "allowImportingTsExtensions": true,
-        // TS Options
-        "strictNullChecks": true,
-        "allowJs": true,
-        "resolveJsonModule": true,
-        // Output
-        "declaration": true,
-        "emitDeclarationOnly": true,
-        // Path
         "baseUrl": ".",
-        "paths": {
-            "@layouts/*": ["src/layouts/*"],
-            "@components/*": ["src/components/*"],
-            "@styles/*": ["src/styles/*"],
-            "@assets/*": ["src/assets/*"],
-            "@icons/*": ["src/icons/*"],
-            "@scripts/*": ["scripts/*"],
-            "@lib/*": ["scripts/lib/*"],
-            "@static/*": ["static/*"]
-        }
-    }
+        "resolveJsonModule": true,
+        "strict": true,
+
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "moduleDetection": "force",
+        "verbatimModuleSyntax": true,
+        "esModuleInterop": true,
+
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true,
+
+        "skipLibCheck": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "noPropertyAccessFromIndexSignature": false
+    },
+    "exclude": ["**/node_modules/**", "**/dist/**"]
 }

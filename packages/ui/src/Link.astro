@@ -1,0 +1,11 @@
+---
+export interface Props {
+  openAsNew?: boolean;
+}
+
+const { openAsNew = true, ...props } = Astro.props;
+---
+
+<a target={openAsNew ? "_blank" : "_self"} rel="noopener noreferrer" referrerpolicy="no-referrer" {...props}>
+  <slot />
+</a>

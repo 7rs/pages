@@ -1,0 +1,20 @@
+@mixin padding($value: 0) {
+  padding-top: $value;
+  padding-right: $value;
+  padding-bottom: $value;
+  padding-left: $value;
+}
+
+@mixin margin($value: 0) {
+  margin-top: $value;
+  margin-right: $value;
+  margin-bottom: $value;
+  margin-left: $value;
+}
+
+:where(body) {
+  @include padding;
+  @include margin;
+
+  box-sizing: border-box;
+}

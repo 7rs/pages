@@ -1,38 +1,34 @@
 {
-    // Scriptex is not distributed
-    // Fira Code: https://github.com/tonsky/FiraCode
-    // HackGen (CJK Support): https://github.com/yuru7/HackGen
     "editor.fontFamily": "'Scriptex', 'Fira Code', 'HackGen35 Console NFJ', monospace",
     "editor.fontLigatures": true,
     "editor.insertSpaces": true,
     "typescript.preferences.importModuleSpecifier": "non-relative",
-    "eslint.workingDirectories": ["packages"],
+
     // Prettier
     "prettier.configPath": "./.prettierrc",
     "prettier.ignorePath": "./.prettierignore",
-    // Stylelint
-    "stylelint.customSyntax": "stylelint-stylus/custom-syntax",
-    "stylelint.validate": ["astro", "svelte", "stylus"],
+
+    // Biome
+    "biome.configurationPath": "./biome.json",
+
     // file
     "[astro]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[svelte]": {
         "editor.tabSize": 2,
-        "editor.defaultFormatter": "svelte.svelte-vscode"
-    },
-    "[typescriptreact]": {
-        "editor.tabSize": 2
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[typescript]": {
-        "editor.tabSize": 2
-    },
-    "[stylus]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "biomejs.biome"
     },
     "[json]": {
-        "editor.tabSize": 4
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "biomejs.biome"
     },
+
     // Recommended: probably has to set up in user settings
     "workbench.editor.enablePreview": false
 }

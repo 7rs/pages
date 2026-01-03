@@ -1,0 +1,24 @@
+---
+import { LinkIcon } from '@7rs/pages-ui';
+---
+
+<footer class="bg-base-200 flex justify-center">
+  <div class="max-w-3xl p-4 size-full flex flex-col md:flex-row items-center justify-between gap-y-4">
+    <section class="w-full flex-1 text-center md:text-start">
+      <p>Copyright © {new Date().getFullYear()} - No right reserved</p>
+    </section>
+    <section
+      class:list={[
+        'flex-none',
+        'w-full flex flex-wrap items-center justify-center gap-x-8 text-xl',
+        'md:w-fit md:gap-x-4',
+      ]}
+    >
+      <LinkIcon href="https://7rs.dev/discord" icon="discord" className="icon-[#5865F2]" />
+      <LinkIcon href="https://github.com/7rs" icon="github" className="icon" />
+      <LinkIcon href="https://youtube.com/@qrze" icon="youtube" className="icon-[#FF0000]" />
+      <LinkIcon href="https://zenn.dev/7rs" icon="zenn" className="icon-[#3EA8FF]" />
+      <LinkIcon href="https://patreon.com/7rs" icon="patreon" className="icon" />
+    </section>
+  </div>
+</footer>
